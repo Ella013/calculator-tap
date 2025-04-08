@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payoff Calculator - Calculate Loan Repayment Time | Calculator Tap</title>
+    <meta name="description" content="Free payoff calculator to estimate your loan or debt repayment timeline. Plan your debt-free future with our easy-to-use loan payoff calculator.">
+    <meta name="keywords" content="payoff calculator, loan payoff calculator, debt repayment calculator, debt payoff timeline, loan repayment estimator">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <div class="logo">
+                <a href="../index.html" class="logo-link">
+                    <h1>Calculator Tap</h1>
+                </a>
+            </div>
+            <nav class="main-nav">
+                <a href="../index.html" class="nav-link"><i class="fas fa-home"></i> Home</a>
+                <a href="../blog.html" class="nav-link"><i class="fas fa-blog"></i> Blog</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="calculator-main">
+        <div class="calculator-container">
+            <h1>Payoff Calculator</h1>
+            <p class="calculator-description">Use our Payoff Calculator to estimate how long it will take to repay your loan or debt. Plan smarter and pay off faster.</p>
+            
+            <div class="calculator-form">
+                <div class="form-group">
+                    <label for="loanAmount">Loan Amount ($)</label>
+                    <input type="number" id="loanAmount" placeholder="Enter loan amount" min="0">
+                </div>
+                
+                <div class="form-group">
+                    <label for="interestRate">Annual Interest Rate (%)</label>
+                    <input type="number" id="interestRate" placeholder="Enter interest rate" min="0" step="0.01">
+                </div>
+                
+                <div class="form-group">
+                    <label for="monthlyPayment">Monthly Payment ($)</label>
+                    <input type="number" id="monthlyPayment" placeholder="Enter monthly payment" min="0">
+                </div>
+
+                <div class="form-group">
+                    <label for="startDate">Start Date (Optional)</label>
+                    <input type="date" id="startDate">
+                </div>
+                
+                <button id="calculateBtn" class="calculate-btn">Calculate</button>
+            </div>
+
+            <div class="results-container" id="resultsContainer" style="display: none;">
+                <h2>Payoff Summary</h2>
+                <div class="result-item">
+                    <span>Total Interest:</span>
+                    <span id="totalInterest">$0.00</span>
+                </div>
+                <div class="result-item">
+                    <span>Total Payment Period:</span>
+                    <span id="paymentPeriod">0 years 0 months</span>
+                </div>
+                <div class="result-item" id="payoffDateContainer">
+                    <span>Payoff Date:</span>
+                    <span id="payoffDate">-</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- SEO Content Section -->
+        <section class="loan-info-section">
+            <h2>What is a Payoff Calculator?</h2>
+            <p>
+                A <strong>Payoff Calculator</strong> helps you estimate how long it will take to pay off your loan or debt 
+                based on your monthly payments and interest rate. Whether you're managing student loans, credit cards, or a mortgage, 
+                this <strong>Loan Payoff Calculator</strong> gives you a clear payoff timeline. 
+                It's also called a <strong>Debt Repayment Calculator</strong>, perfect for planning your financial freedom.
+            </p>
+            
+            <div class="key-features">
+                <h3>How Our Payoff Calculator Helps You:</h3>
+                <ul>
+                    <li>Calculate your total payoff timeline</li>
+                    <li>See the total interest you'll pay</li>
+                    <li>Get your estimated debt-free date</li>
+                    <li>Plan your debt repayment strategy</li>
+                </ul>
+            </div>
+
+            <p>Understanding your loan payoff timeline is crucial for financial planning. Our calculator considers three main factors:</p>
+            <ul>
+                <li><strong>Loan Amount:</strong> Your current debt balance</li>
+                <li><strong>Interest Rate:</strong> The annual interest rate on your loan</li>
+                <li><strong>Monthly Payment:</strong> How much you can pay each month</li>
+            </ul>
+
+            <p>By adjusting your monthly payment amount, you can see how different payment strategies affect your payoff timeline and total interest paid.</p>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-links">
+                <a href="../privacy-policy.html">Privacy Policy</a>
+                <a href="../terms.html">Terms</a>
+                <a href="../about.html">About</a>
+            </div>
+            <div class="copyright">
+                <p>Copyright © 2025 Calculator Tap. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="payoff-calculator.js"></script>
+</body>
+</html> 

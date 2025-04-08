@@ -1,5 +1,6 @@
 // Search functionality
 const searchInput = document.getElementById('searchInput');
+const searchButton = document.getElementById('searchButton');
 const searchSuggestions = document.getElementById('searchSuggestions');
 
 // Calculator data
@@ -34,13 +35,36 @@ function handleSearch() {
     }
 }
 
+// Navigate to first match on search button click
+function handleSearchButtonClick() {
+    const searchTerm = searchInput.value.toLowerCase();
+    if (searchTerm.length < 2) return;
+
+    const matches = calculators.filter(calc => 
+        calc.name.toLowerCase().includes(searchTerm) ||
+        calc.keywords.some(keyword => keyword.includes(searchTerm))
+    );
+
+    if (matches.length > 0) {
+        window.location.href = matches[0].name.toLowerCase().replace(/\s+/g, '-') + '.html';
+    }
+}
+
 // Event listeners
 searchInput.addEventListener('input', handleSearch);
 searchInput.addEventListener('focus', handleSearch);
+searchButton.addEventListener('click', handleSearchButtonClick);
+
+// Handle Enter key press
+searchInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+        handleSearchButtonClick();
+    }
+});
 
 // Close suggestions when clicking outside
 document.addEventListener('click', (e) => {
-    if (!searchInput.contains(e.target) && !searchSuggestions.contains(e.target)) {
+    if (!searchInput.contains(e.target) && !searchSuggestions.contains(e.target) && !searchButton.contains(e.target)) {
         searchSuggestions.style.display = 'none';
     }
 }); 

@@ -13,32 +13,29 @@
     <header class="header">
         <div class="header-container">
             <div class="logo">
-                <h1>Calculator Tap</h1>
+                <a href="index.html" class="logo-link">
+                    <h1>Calculator Tap</h1>
+                </a>
             </div>
+            <nav class="main-nav">
+                <a href="index.html" class="nav-link"><i class="fas fa-home"></i> Home</a>
+                <a href="blog.html" class="nav-link"><i class="fas fa-blog"></i> Blog</a>
+            </nav>
         </div>
     </header>
 
     <!-- Main Content -->
     <main>
-        <!-- Search Section -->
-        <section class="search-section">
+        <!-- Title and Search Section -->
+        <section class="title-section">
+            <h1>Explore with <span class="highlight">Calculator Tap</span></h1>
             <div class="search-container">
                 <input type="text" id="searchInput" placeholder="Search calculators...">
+                <button id="searchButton" class="search-button">
+                    <i class="fas fa-search"></i>
+                </button>
                 <div class="search-suggestions" id="searchSuggestions"></div>
             </div>
-        </section>
-
-        <!-- SEO Description -->
-        <section class="site-description">
-            <h1>Welcome to Calculator Tap – Your Trusted Financial Calculator Hub</h1>
-            <p>
-                Calculator Tap is a simple yet powerful website that offers essential <strong>financial calculators</strong> to help you make informed financial decisions.
-                Whether you're looking to <strong>calculate loan eligibility</strong>, estimate your <strong>payoff duration</strong>, or understand your <strong>mortgage qualification</strong>, we've got you covered.
-            </p>
-            <p>
-                All calculators are built with clean UI/UX, optimized for mobile and desktop users, and structured with <strong>SEO best practices</strong> for faster discovery on search engines.
-                Try our tools today and gain clarity in your financial planning!
-            </p>
         </section>
 
         <!-- Calculator Blocks -->
@@ -47,13 +44,13 @@
                 <i class="fas fa-calculator"></i>
                 <h2>Loan Calculator</h2>
                 <p>Calculate your loan payments and interest rates with our easy-to-use loan calculator.</p>
-                <a href="loan-calculator.html" class="btn">Calculate Now</a>
+                <a href="loan-calculator/loan-calculator.html" class="btn">Calculate Now</a>
             </div>
             <div class="calculator-card">
                 <i class="fas fa-money-bill-wave"></i>
                 <h2>Payoff Calculator</h2>
                 <p>Determine how long it will take to pay off your debt and save on interest.</p>
-                <a href="payoff-calculator.html" class="btn">Calculate Now</a>
+                <a href="payoff-calculator/payoff-calculator.html" class="btn">Calculate Now</a>
             </div>
             <div class="calculator-card">
                 <i class="fas fa-home"></i>
@@ -61,6 +58,18 @@
                 <p>Find out how much house you can afford and your mortgage qualification.</p>
                 <a href="mortgage-calculator.html" class="btn">Calculate Now</a>
             </div>
+        </section>
+
+        <!-- Site Description -->
+        <section class="site-description">
+            <p>
+                Calculator Tap is a simple yet powerful website that offers essential <strong>financial calculators</strong> to help you make informed financial decisions.
+                Whether you're looking to <strong>calculate loan eligibility</strong>, estimate your <strong>payoff duration</strong>, or understand your <strong>mortgage qualification</strong>, we've got you covered.
+            </p>
+            <p>
+                All calculators are built with clean UI/UX, optimized for mobile and desktop users, and structured with <strong>SEO best practices</strong> for faster discovery on search engines.
+                Try our tools today and gain clarity in your financial planning!
+            </p>
         </section>
     </main>
 
