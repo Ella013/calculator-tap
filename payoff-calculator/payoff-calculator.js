@@ -10,13 +10,41 @@ document.addEventListener('DOMContentLoaded', () => {
     const payoffDateElement = document.getElementById('payoffDate');
 
     // Set default date to today
-    startDateInput.valueAsDate = new Date();
+    const today = new Date();
+    startDateInput.value = formatDateForInput(today);
+
+    // Initialize date picker
+    $(startDateInput).datepicker({
+        dateFormat: 'mm/dd/yy',
+        changeMonth: true,
+        changeYear: true,
+        yearRange: '2024:2054',
+        onSelect: function(dateText) {
+            startDateInput.value = dateText;
+        }
+    });
+
+    // Format date for input field
+    function formatDateForInput(date) {
+        const month = (date.getMonth() + 1).toString().padStart(2, '0');
+        const day = date.getDate().toString().padStart(2, '0');
+        const year = date.getFullYear();
+        return `${month}/${day}/${year}`;
+    }
+
+    // Parse date from input
+    function parseInputDate(dateString) {
+        const [month, day, year] = dateString.split('/').map(num => parseInt(num, 10));
+        return new Date(year, month - 1, day);
+    }
 
     // Format currency
     const formatCurrency = (amount) => {
         return new Intl.NumberFormat('en-US', {
             style: 'currency',
-            currency: 'USD'
+            currency: 'USD',
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
         }).format(amount);
     };
 
@@ -26,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const loanAmount = parseFloat(loanAmountInput.value);
             const annualInterestRate = parseFloat(interestRateInput.value);
             const monthlyPayment = parseFloat(monthlyPaymentInput.value);
-            const startDate = startDateInput.value ? new Date(startDateInput.value) : new Date();
+            const startDate = parseInputDate(startDateInput.value);
 
             // Validate inputs
             if (isNaN(loanAmount) || isNaN(annualInterestRate) || isNaN(monthlyPayment)) {
@@ -67,7 +95,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Update results
             totalInterestElement.textContent = formatCurrency(totalInterest);
             paymentPeriodElement.textContent = formatPaymentPeriod(months);
-            payoffDateElement.textContent = formatDate(payoffDate);
+            payoffDateElement.textContent = formatDateForDisplay(payoffDate);
 
             // Show results
             resultsContainer.style.display = 'block';
@@ -84,13 +112,12 @@ document.addEventListener('DOMContentLoaded', () => {
         return `${years} year${years !== 1 ? 's' : ''} ${remainingMonths} month${remainingMonths !== 1 ? 's' : ''}`;
     };
 
-    // Format date
-    const formatDate = (date) => {
-        return new Intl.DateTimeFormat('en-US', {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric'
-        }).format(date);
+    // Format date for display
+    const formatDateForDisplay = (date) => {
+        const month = date.toLocaleString('en-US', { month: 'long' });
+        const day = date.getDate();
+        const year = date.getFullYear();
+        return `${month} ${day}, ${year}`;
     };
 
     // Add event listeners

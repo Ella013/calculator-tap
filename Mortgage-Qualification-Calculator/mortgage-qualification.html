@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mortgage Qualification Calculator - Estimate Home Affordability | Calculator Tap</title>
+    <meta name="description" content="Free mortgage qualification calculator to estimate how much house you can afford. Calculate your maximum mortgage amount, monthly payments, and DTI ratio.">
+    <meta name="keywords" content="mortgage qualification calculator, home affordability calculator, DTI calculator, mortgage payment estimator, house affordability">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .input-group {
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+        .input-group input {
+            padding-left: 30px;
+        }
+        .currency-symbol {
+            position: absolute;
+            left: 10px;
+            color: #666;
+        }
+        .percent-symbol {
+            position: absolute;
+            right: 10px;
+            color: #666;
+        }
+        .optional-label {
+            color: #666;
+            font-size: 0.8em;
+            margin-left: 5px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <div class="logo">
+                <a href="../index.html" class="logo-link">
+                    <h1>Calculator Tap</h1>
+                </a>
+            </div>
+            <nav class="main-nav">
+                <a href="../index.html" class="nav-link"><i class="fas fa-home"></i> Home</a>
+                <a href="../blog.html" class="nav-link"><i class="fas fa-blog"></i> Blog</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="calculator-main">
+        <div class="calculator-container">
+            <h1>Mortgage Qualification Calculator</h1>
+            <p class="calculator-description">Find out how much house you can afford based on your income, debts, and loan terms.</p>
+            
+            <div class="calculator-form">
+                <div class="form-group">
+                    <label for="monthlyIncome">Monthly Income</label>
+                    <div class="input-group">
+                        <span class="currency-symbol">$</span>
+                        <input type="number" id="monthlyIncome" placeholder="Enter your monthly income" min="0">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="monthlyDebts">Other Monthly Debts</label>
+                    <div class="input-group">
+                        <span class="currency-symbol">$</span>
+                        <input type="number" id="monthlyDebts" placeholder="Enter your monthly debts" min="0">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="loanTerm">Loan Term (Years)</label>
+                    <input type="number" id="loanTerm" placeholder="Enter loan term" min="1" max="30" value="30">
+                </div>
+
+                <div class="form-group">
+                    <label for="interestRate">Interest Rate</label>
+                    <div class="input-group">
+                        <input type="number" id="interestRate" placeholder="Enter interest rate" min="0" step="0.01">
+                        <span class="percent-symbol">%</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="downPayment">Down Payment</label>
+                    <div class="input-group">
+                        <span class="currency-symbol">$</span>
+                        <input type="number" id="downPayment" placeholder="Enter down payment amount" min="0">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="taxesInsurance">
+                        Monthly Taxes & Insurance
+                        <span class="optional-label">(Optional)</span>
+                    </label>
+                    <div class="input-group">
+                        <span class="currency-symbol">$</span>
+                        <input type="number" id="taxesInsurance" placeholder="Enter monthly taxes and insurance" min="0">
+                    </div>
+                </div>
+                
+                <button id="calculateBtn" class="calculate-btn">Calculate</button>
+            </div>
+
+            <div class="results-container" id="resultsContainer" style="display: none;">
+                <h2>Qualification Summary</h2>
+                <div class="result-item">
+                    <span>Maximum Mortgage Amount:</span>
+                    <span id="maxMortgage">$0.00</span>
+                </div>
+                <div class="result-item">
+                    <span>Affordable Monthly Payment:</span>
+                    <span id="monthlyPayment">$0.00</span>
+                </div>
+                <div class="result-item">
+                    <span>DTI Ratio:</span>
+                    <span id="dtiRatio">0%</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- SEO Content Section -->
+        <section class="loan-info-section">
+            <h2>Understanding Mortgage Qualification</h2>
+            <p>
+                Our <strong>Mortgage Qualification Calculator</strong> helps you determine how much house you can afford 
+                based on your income, existing debts, and desired loan terms. This tool considers multiple factors that 
+                lenders evaluate when determining your mortgage eligibility.
+            </p>
+            
+            <div class="key-features">
+                <h3>Key Factors in Mortgage Qualification:</h3>
+                <ul>
+                    <li><strong>Income:</strong> Your monthly income is the primary factor in determining how much you can borrow</li>
+                    <li><strong>DTI Ratio:</strong> Lenders typically prefer a debt-to-income ratio below 43%</li>
+                    <li><strong>Down Payment:</strong> A larger down payment can increase your maximum mortgage amount</li>
+                    <li><strong>Interest Rate:</strong> Lower rates mean higher borrowing potential</li>
+                </ul>
+            </div>
+
+            <h3>How DTI Ratio Affects Your Mortgage</h3>
+            <p>
+                The Debt-to-Income (DTI) ratio is a key metric lenders use to evaluate mortgage applications. It's calculated 
+                by dividing your total monthly debt payments by your gross monthly income. Most lenders prefer a DTI ratio 
+                of 43% or less, though some may accept higher ratios under certain circumstances.
+            </p>
+
+            <div class="tips-section">
+                <h3>Tips for Better Mortgage Qualification:</h3>
+                <ul>
+                    <li>Reduce existing debt before applying</li>
+                    <li>Save for a larger down payment</li>
+                    <li>Improve your credit score</li>
+                    <li>Consider a longer loan term for lower monthly payments</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-links">
+                <a href="../privacy-policy.html">Privacy Policy</a>
+                <a href="../terms.html">Terms</a>
+                <a href="../about.html">About</a>
+            </div>
+            <div class="copyright">
+                <p>Copyright © 2025 Calculator Tap. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="./mortgage-qualification.js"></script>
+</body>
+</html> 

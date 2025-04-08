@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Post | Calculator Tap</title>
+    <link rel="stylesheet" href="../../styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .post-container {
+            max-width: 800px;
+            margin: 6rem auto;
+            padding: 2rem;
+        }
+        .post-header {
+            margin-bottom: 2rem;
+        }
+        .post-title {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+        .post-meta {
+            color: #666;
+            font-size: 1rem;
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        .post-meta i {
+            color: #007bff;
+        }
+        .post-content {
+            line-height: 1.8;
+            color: #333;
+        }
+        .post-content p {
+            margin-bottom: 1.5rem;
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #007bff;
+            text-decoration: none;
+            margin-bottom: 2rem;
+        }
+        .back-link:hover {
+            color: #0056b3;
+        }
+        @media (max-width: 768px) {
+            .post-container {
+                padding: 1rem;
+            }
+            .post-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-container">
+            <div class="logo">
+                <a href="../../index.html" class="logo-link">
+                    <h1>Calculator Tap</h1>
+                </a>
+            </div>
+            <nav class="main-nav">
+                <a href="../../index.html" class="nav-link"><i class="fas fa-home"></i> Home</a>
+                <a href="../index.html" class="nav-link active"><i class="fas fa-blog"></i> Blog</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="post-container">
+        <a href="../index.html" class="back-link">
+            <i class="fas fa-arrow-left"></i> Back to Blog
+        </a>
+        <article class="post-content">
+            <header class="post-header">
+                <h1 class="post-title" id="postTitle"></h1>
+                <div class="post-meta">
+                    <span><i class="far fa-calendar"></i> <span id="postDate"></span></span>
+                    <span><i class="far fa-folder"></i> <span id="postCategory"></span></span>
+                </div>
+            </header>
+            <div class="post-content" id="postContent"></div>
+        </article>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // URL에서 슬러그 추출
+            const slug = window.location.pathname.split('/').pop().replace('.html', '');
+            
+            // 포스트 데이터 로드
+            const postData = JSON.parse(localStorage.getItem(`post_${slug}`));
+            
+            if (postData) {
+                // 페이지 타이틀 설정
+                document.title = `${postData.title} | Calculator Tap`;
+                
+                // 콘텐츠 표시
+                document.getElementById('postTitle').textContent = postData.title;
+                document.getElementById('postDate').textContent = postData.date;
+                document.getElementById('postCategory').textContent = postData.category;
+                document.getElementById('postContent').innerHTML = postData.content;
+            } else {
+                document.getElementById('postContent').innerHTML = '<p>Post not found.</p>';
+            }
+        });
+    </script>
+</body>
+</html> 
