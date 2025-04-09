@@ -8,31 +8,511 @@
     <meta name="keywords" content="mortgage qualification calculator, home affordability calculator, DTI calculator, mortgage payment estimator, house affordability">
     <link rel="icon" href="../favicon.ico" type="image/x-icon">
     <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="../styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        .input-group {
+        /* Reset & Base Styles */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f7fa;
+        }
+        
+        /* Header Styles */
+        .header {
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
             display: flex;
             align-items: center;
+        }
+        
+        .logo-link {
+            text-decoration: none;
+            color: inherit;
+            transition: opacity 0.2s;
+        }
+        
+        .logo-link:hover {
+            opacity: 0.8;
+        }
+        
+        .logo h1 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        /* Main Nav Styles */
+        .main-nav {
+            display: flex;
+            gap: 1.5rem;
+        }
+        
+        .nav-link {
+            color: #2c3e50;
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            color: #3498db;
+        }
+        
+        .nav-link i {
+            font-size: 1.1rem;
+        }
+        
+        /* Container Styles */
+        .container {
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 1.5rem 1rem;
+        }
+        
+        /* Main Page Layout */
+        .page-layout {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 330px;
+            gap: 1.5rem;
+            padding: 1rem;
+        }
+        
+        /* Calculator Column */
+        .calculator-column {
+            width: 100%;
+        }
+        
+        /* Sidebar Column */
+        .sidebar-column {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        /* Advertisement Style */
+        .advertisement {
+            background-color: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 1rem;
+            height: 300px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+        
+        /* Other Calculators Section */
+        .other-calculators {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            padding: 1rem;
+        }
+        
+        .other-calculators h3 {
+            color: #2c3e50;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 0.5rem;
+        }
+        
+        .calculator-list {
+            list-style: none;
+        }
+        
+        .calculator-list li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .calculator-list a {
+            display: block;
+            padding: 0.5rem;
+            text-decoration: none;
+            color: #3498db;
+            transition: background-color 0.2s;
+            border-radius: 4px;
+        }
+        
+        .calculator-list a:hover {
+            background-color: #f8f9fa;
+        }
+        
+        /* Calculator Main Styles */
+        .calculator-main {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+        
+        .calculator-header {
+            grid-column: 1 / -1;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .calculator-title {
+            font-size: 1.75rem;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+        
+        .calculator-description {
+            color: #7f8c8d;
+            max-width: 600px;
+            margin: 0 auto;
+            font-size: 0.9rem;
+        }
+
+        /* Form Styles */
+        .calculator-form {
+            grid-column: 1;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            font-size: 0.875rem;
+            margin-bottom: 0.5rem;
+            color: #555;
+            font-weight: 500;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            transition: border-color 0.2s;
+            background-color: white;
+            height: 45px;
+        }
+        
+        .form-group input:focus {
+            border-color: #3498db;
+            outline: none;
+        }
+        
+        .input-group {
             position: relative;
+            width: 100%;
         }
-        .input-group input {
-            padding-left: 30px;
-        }
+        
         .currency-symbol {
             position: absolute;
-            left: 10px;
-            color: #666;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #555;
+            font-weight: 500;
+            pointer-events: none;
         }
+        
         .percent-symbol {
             position: absolute;
-            right: 10px;
-            color: #666;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #555;
+            font-weight: 500;
+            pointer-events: none;
         }
+        
+        .input-group input {
+            padding-left: 25px;
+        }
+        
+        .input-group input[id="interestRate"] {
+            padding-right: 25px;
+        }
+        
         .optional-label {
             color: #666;
             font-size: 0.8em;
             margin-left: 5px;
+        }
+        
+        /* Results Section */
+        .results-section {
+            grid-column: 2;
+            padding: 1rem;
+            background-color: #f8fafc;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .results-header {
+            font-size: 1.2rem;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+            text-align: center;
+            padding-top: 0.5rem;
+        }
+        
+        .chart-container {
+            width: 100%;
+            height: 180px;
+            margin: 0 auto 0.5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid #eee;
+            border-radius: 4px;
+            position: relative;
+        }
+        
+        /* Chart Legend Styles */
+        .chart-legend {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 1rem;
+            font-size: 0.75rem;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            color: #7f8c8d;
+        }
+        
+        .legend-color {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 4px;
+            display: inline-block;
+        }
+        
+        .legend-color.mortgage {
+            background-color: #3498db;
+        }
+        
+        .legend-color.payment {
+            background-color: #27ae60;
+        }
+        
+        .legend-color.dti {
+            background-color: #e74c3c;
+        }
+        
+        .chart-placeholder {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+        
+        .results-summary {
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+        
+        .max-mortgage-amount {
+            font-size: 2rem;
+            color: #2ecc71;
+            font-weight: 600;
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+        
+        .max-mortgage-label {
+            font-size: 0.9rem;
+            color: #7f8c8d;
+            display: block;
+        }
+        
+        .results-details {
+            margin-top: 1rem;
+            border-top: 1px solid #eee;
+            padding-top: 0.5rem;
+        }
+        
+        .result-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.4rem 0;
+            border-bottom: 1px solid #eee;
+            font-size: 0.9rem;
+        }
+        
+        .result-row:last-child {
+            border-bottom: none;
+        }
+        
+        .result-label {
+            color: #7f8c8d;
+        }
+        
+        .result-value {
+            font-weight: 500;
+            color: #2c3e50;
+        }
+        
+        /* Calculate Button */
+        .calculate-btn {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 0.75rem 1.25rem;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            margin-top: 1rem;
+            width: 100%;
+        }
+        
+        .calculate-btn:hover {
+            background-color: #2980b9;
+        }
+        
+        /* Explanation Section Styles */
+        .explanation-section {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .explanation-title {
+            font-size: 1.5rem;
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        
+        .explanation-text h3 {
+            color: #3498db;
+            margin: 1.5rem 0 0.75rem;
+            font-size: 1.125rem;
+        }
+        
+        .explanation-text p {
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+        
+        .explanation-text ul {
+            padding-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .explanation-text li {
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Footer Styles */
+        .footer {
+            background-color: #2c3e50;
+            color: white;
+            padding: 2rem 0;
+            margin-top: 4rem;
+        }
+        
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            text-align: center;
+        }
+        
+        .footer-links {
+            margin-bottom: 1rem;
+        }
+        
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            margin: 0 1rem;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: #3498db;
+        }
+        
+        .copyright {
+            font-size: 0.9rem;
+            color: #bdc3c7;
+        }
+        
+        /* Responsive styles */
+        @media (max-width: 900px) {
+            .page-layout {
+                grid-template-columns: 1fr;
+            }
+            
+            .calculator-column {
+                order: 1;
+            }
+            
+            .sidebar-column {
+                order: 2;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .calculator-main {
+                grid-template-columns: 1fr;
+            }
+            
+            .results-section {
+                grid-column: 1;
+                margin-top: 1rem;
+            }
+            
+            .calculator-form {
+                grid-column: 1;
+            }
         }
     </style>
 </head>
@@ -52,118 +532,186 @@
         </div>
     </header>
 
-    <!-- Main Content -->
-    <main class="calculator-main">
-        <div class="calculator-container">
-            <h1>Mortgage Qualification Calculator</h1>
-            <p class="calculator-description">Find out how much house you can afford based on your income, debts, and loan terms.</p>
-            
-            <div class="calculator-form">
-                <div class="form-group">
-                    <label for="monthlyIncome">Monthly Income</label>
-                    <div class="input-group">
-                        <span class="currency-symbol">$</span>
-                        <input type="number" id="monthlyIncome" placeholder="Enter your monthly income" min="0">
+    <div class="container">
+        <div class="page-layout">
+            <div class="calculator-column">
+                <!-- Main Content -->
+                <main class="calculator-main">
+                    <div class="calculator-header">
+                        <h1 class="calculator-title">Mortgage Qualification Calculator</h1>
+                        <p class="calculator-description">Find out how much house you can afford based on your income, debts, and loan terms.</p>
                     </div>
-                </div>
-                
-                <div class="form-group">
-                    <label for="monthlyDebts">Other Monthly Debts</label>
-                    <div class="input-group">
-                        <span class="currency-symbol">$</span>
-                        <input type="number" id="monthlyDebts" placeholder="Enter your monthly debts" min="0">
+                    
+                    <div class="calculator-form">
+                        <div class="form-group">
+                            <label for="monthlyIncome">Monthly Income</label>
+                            <div class="input-group">
+                                <span class="currency-symbol">$</span>
+                                <input type="number" id="monthlyIncome" placeholder="Enter your monthly income" min="0">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="monthlyDebts">Other Monthly Debts</label>
+                            <div class="input-group">
+                                <span class="currency-symbol">$</span>
+                                <input type="number" id="monthlyDebts" placeholder="Enter your monthly debts" min="0">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="loanTerm">Loan Term (Years)</label>
+                            <input type="number" id="loanTerm" placeholder="Enter loan term" min="1" max="30" value="30">
+                        </div>
+    
+                        <div class="form-group">
+                            <label for="interestRate">Interest Rate</label>
+                            <div class="input-group">
+                                <input type="number" id="interestRate" placeholder="Enter interest rate" min="0" step="0.01">
+                                <span class="percent-symbol">%</span>
+                            </div>
+                        </div>
+    
+                        <div class="form-group">
+                            <label for="downPayment">Down Payment</label>
+                            <div class="input-group">
+                                <span class="currency-symbol">$</span>
+                                <input type="number" id="downPayment" placeholder="Enter down payment amount" min="0">
+                            </div>
+                        </div>
+    
+                        <div class="form-group">
+                            <label for="taxesInsurance">
+                                Monthly Taxes & Insurance
+                                <span class="optional-label">(Optional)</span>
+                            </label>
+                            <div class="input-group">
+                                <span class="currency-symbol">$</span>
+                                <input type="number" id="taxesInsurance" placeholder="Enter monthly taxes and insurance" min="0">
+                            </div>
+                        </div>
+                        
+                        <button id="calculateBtn" class="calculate-btn">Calculate</button>
                     </div>
-                </div>
-                
-                <div class="form-group">
-                    <label for="loanTerm">Loan Term (Years)</label>
-                    <input type="number" id="loanTerm" placeholder="Enter loan term" min="1" max="30" value="30">
-                </div>
+                    
+                    <div class="results-section">
+                        <h3 class="results-header">Qualification Results</h3>
+                        
+                        <div class="chart-container">
+                            <canvas id="mortgageChart"></canvas>
+                            <div class="chart-placeholder">계산 후 차트가 표시됩니다</div>
+                        </div>
+                        
+                        <div class="chart-legend">
+                            <div class="legend-item">
+                                <span class="legend-color mortgage"></span>
+                                <span>Mortgage</span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-color payment"></span>
+                                <span>Payment</span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-color dti"></span>
+                                <span>DTI</span>
+                            </div>
+                        </div>
+                        
+                        <div class="results-summary">
+                            <span id="maxMortgage" class="max-mortgage-amount">$0.00</span>
+                            <span class="max-mortgage-label">Maximum Mortgage Amount</span>
+                        </div>
+                        
+                        <div class="results-details">
+                            <div class="result-row">
+                                <span class="result-label">Monthly Payment</span>
+                                <span id="monthlyPayment" class="result-value">$0.00</span>
+                            </div>
+                            <div class="result-row">
+                                <span class="result-label">DTI Ratio</span>
+                                <span id="dtiRatio" class="result-value">0%</span>
+                            </div>
+                            <div class="result-row">
+                                <span class="result-label">Monthly Income</span>
+                                <span id="incomeDisplay" class="result-value">$0.00</span>
+                            </div>
+                            <div class="result-row">
+                                <span class="result-label">Monthly Debts</span>
+                                <span id="debtsDisplay" class="result-value">$0.00</span>
+                            </div>
+                            <div class="result-row">
+                                <span class="result-label">Down Payment</span>
+                                <span id="downPaymentDisplay" class="result-value">$0.00</span>
+                            </div>
+                        </div>
+                    </div>
+                </main>
 
-                <div class="form-group">
-                    <label for="interestRate">Interest Rate</label>
-                    <div class="input-group">
-                        <input type="number" id="interestRate" placeholder="Enter interest rate" min="0" step="0.01">
-                        <span class="percent-symbol">%</span>
-                    </div>
-                </div>
+                <!-- SEO Content Section -->
+                <section class="explanation-section">
+                    <h2 class="explanation-title">Understanding Mortgage Qualification</h2>
+                    <div class="explanation-text">
+                        <p>
+                            Our <strong>Mortgage Qualification Calculator</strong> helps you determine how much house you can afford 
+                            based on your income, existing debts, and desired loan terms. This tool considers multiple factors that 
+                            lenders evaluate when determining your mortgage eligibility.
+                        </p>
+                        
+                        <h3>Key Factors in Mortgage Qualification:</h3>
+                        <ul>
+                            <li><strong>Income:</strong> Your monthly income is the primary factor in determining how much you can borrow</li>
+                            <li><strong>DTI Ratio:</strong> Lenders typically prefer a debt-to-income ratio below 43%</li>
+                            <li><strong>Down Payment:</strong> A larger down payment can increase your maximum mortgage amount</li>
+                            <li><strong>Interest Rate:</strong> Lower rates mean higher borrowing potential</li>
+                        </ul>
 
-                <div class="form-group">
-                    <label for="downPayment">Down Payment</label>
-                    <div class="input-group">
-                        <span class="currency-symbol">$</span>
-                        <input type="number" id="downPayment" placeholder="Enter down payment amount" min="0">
-                    </div>
-                </div>
+                        <h3>How DTI Ratio Affects Your Mortgage</h3>
+                        <p>
+                            The Debt-to-Income (DTI) ratio is a key metric lenders use to evaluate mortgage applications. It's calculated 
+                            by dividing your total monthly debt payments by your gross monthly income. Most lenders prefer a DTI ratio 
+                            of 43% or less, though some may accept higher ratios under certain circumstances.
+                        </p>
 
-                <div class="form-group">
-                    <label for="taxesInsurance">
-                        Monthly Taxes & Insurance
-                        <span class="optional-label">(Optional)</span>
-                    </label>
-                    <div class="input-group">
-                        <span class="currency-symbol">$</span>
-                        <input type="number" id="taxesInsurance" placeholder="Enter monthly taxes and insurance" min="0">
+                        <h3>Tips for Better Mortgage Qualification:</h3>
+                        <ul>
+                            <li>Reduce existing debt before applying</li>
+                            <li>Save for a larger down payment</li>
+                            <li>Improve your credit score</li>
+                            <li>Consider a longer loan term for lower monthly payments</li>
+                        </ul>
                     </div>
-                </div>
-                
-                <button id="calculateBtn" class="calculate-btn">Calculate</button>
+                </section>
             </div>
-
-            <div class="results-container" id="resultsContainer" style="display: none;">
-                <h2>Qualification Summary</h2>
-                <div class="result-item">
-                    <span>Maximum Mortgage Amount:</span>
-                    <span id="maxMortgage">$0.00</span>
+            
+            <div class="sidebar-column">
+                <!-- Advertisement -->
+                <div class="advertisement">
+                    <img src="https://placehold.co/300x250/f8f9fa/3498db?text=Advertisement+Space" alt="Advertisement">
                 </div>
-                <div class="result-item">
-                    <span>Affordable Monthly Payment:</span>
-                    <span id="monthlyPayment">$0.00</span>
-                </div>
-                <div class="result-item">
-                    <span>DTI Ratio:</span>
-                    <span id="dtiRatio">0%</span>
+                
+                <!-- Other Calculators -->
+                <div class="other-calculators">
+                    <h3>Other Calculators</h3>
+                    <ul class="calculator-list">
+                        <li><a href="../loan-calculator/loan-calculator.html">Loan Calculator</a></li>
+                        <li><a href="../paycheck-calculator/paycheck-calculator.html">Paycheck Calculator</a></li>
+                        <li><a href="../payoff-calculator/payoff-calculator.html">Debt Payoff Calculator</a></li>
+                        <li><a href="#">Age Calculator</a></li>
+                        <li><a href="#">Time Calculator</a></li>
+                        <li><a href="#">Date Calculator</a></li>
+                        <li><a href="#">GPA Calculator</a></li>
+                        <li><a href="#">Height Calculator</a></li>
+                        <li><a href="#">IP Subnet Calculator</a></li>
+                        <li><a href="#">Password Generator</a></li>
+                        <li><a href="#">Conversion Calculator</a></li>
+                        <li><a href="#">Financial Calculators</a></li>
+                        <li><a href="#">Health Calculators</a></li>
+                        <li><a href="#">Math Calculators</a></li>
+                    </ul>
                 </div>
             </div>
         </div>
-
-        <!-- SEO Content Section -->
-        <section class="loan-info-section">
-            <h2>Understanding Mortgage Qualification</h2>
-            <p>
-                Our <strong>Mortgage Qualification Calculator</strong> helps you determine how much house you can afford 
-                based on your income, existing debts, and desired loan terms. This tool considers multiple factors that 
-                lenders evaluate when determining your mortgage eligibility.
-            </p>
-            
-            <div class="key-features">
-                <h3>Key Factors in Mortgage Qualification:</h3>
-                <ul>
-                    <li><strong>Income:</strong> Your monthly income is the primary factor in determining how much you can borrow</li>
-                    <li><strong>DTI Ratio:</strong> Lenders typically prefer a debt-to-income ratio below 43%</li>
-                    <li><strong>Down Payment:</strong> A larger down payment can increase your maximum mortgage amount</li>
-                    <li><strong>Interest Rate:</strong> Lower rates mean higher borrowing potential</li>
-                </ul>
-            </div>
-
-            <h3>How DTI Ratio Affects Your Mortgage</h3>
-            <p>
-                The Debt-to-Income (DTI) ratio is a key metric lenders use to evaluate mortgage applications. It's calculated 
-                by dividing your total monthly debt payments by your gross monthly income. Most lenders prefer a DTI ratio 
-                of 43% or less, though some may accept higher ratios under certain circumstances.
-            </p>
-
-            <div class="tips-section">
-                <h3>Tips for Better Mortgage Qualification:</h3>
-                <ul>
-                    <li>Reduce existing debt before applying</li>
-                    <li>Save for a larger down payment</li>
-                    <li>Improve your credit score</li>
-                    <li>Consider a longer loan term for lower monthly payments</li>
-                </ul>
-            </div>
-        </section>
-    </main>
+    </div>
 
     <!-- Footer -->
     <footer class="footer">
@@ -174,11 +722,240 @@
                 <a href="../about.html">About</a>
             </div>
             <div class="copyright">
-                <p>Copyright © 2025 Calculator Tap. All rights reserved.</p>
+                <p>Copyright © <span id="currentYear"></span> Calculator Tap. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
-    <script src="./mortgage-qualification.js"></script>
+    <script>
+        // Update current year in footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+        
+        // Get all input elements
+        const monthlyIncomeInput = document.getElementById('monthlyIncome');
+        const monthlyDebtsInput = document.getElementById('monthlyDebts');
+        const loanTermInput = document.getElementById('loanTerm');
+        const interestRateInput = document.getElementById('interestRate');
+        const downPaymentInput = document.getElementById('downPayment');
+        const taxesInsuranceInput = document.getElementById('taxesInsurance');
+        const calculateBtn = document.getElementById('calculateBtn');
+        
+        // Get result elements
+        const maxMortgageElement = document.getElementById('maxMortgage');
+        const monthlyPaymentElement = document.getElementById('monthlyPayment');
+        const dtiRatioElement = document.getElementById('dtiRatio');
+        const incomeDisplay = document.getElementById('incomeDisplay');
+        const debtsDisplay = document.getElementById('debtsDisplay');
+        const downPaymentDisplay = document.getElementById('downPaymentDisplay');
+        const chartPlaceholder = document.querySelector('.chart-placeholder');
+        
+        // Format currency
+        const formatCurrency = (amount) => {
+            return new Intl.NumberFormat('en-US', {
+                style: 'currency',
+                currency: 'USD',
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            }).format(amount);
+        };
+        
+        // Format percentage
+        const formatPercentage = (value) => {
+            return new Intl.NumberFormat('en-US', {
+                style: 'percent',
+                minimumFractionDigits: 1,
+                maximumFractionDigits: 1
+            }).format(value / 100);
+        };
+        
+        // Create the initial pie chart with sample data
+        let mortgageChart;
+        
+        function createInitialChart() {
+            const ctx = document.getElementById('mortgageChart').getContext('2d');
+            
+            // Sample data
+            const data = {
+                labels: ['Maximum Home Price', 'Monthly Payment', 'DTI Ratio'],
+                datasets: [{
+                    data: [300000, 1500, 35],
+                    backgroundColor: ['#3498db', '#27ae60', '#e74c3c'],
+                    borderColor: ['#fff', '#fff', '#fff'],
+                    borderWidth: 2
+                }]
+            };
+            
+            // Config
+            const config = {
+                type: 'bar',
+                data: data,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    indexAxis: 'y',
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    const label = context.label || '';
+                                    const value = context.raw || 0;
+                                    if (label === 'Maximum Home Price') {
+                                        return `${label}: ${formatCurrency(value)}`;
+                                    } else if (label === 'Monthly Payment') {
+                                        return `${label}: ${formatCurrency(value)}`;
+                                    } else {
+                                        return `${label}: ${value}%`;
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            display: false
+                        },
+                        y: {
+                            display: false
+                        }
+                    }
+                }
+            };
+            
+            mortgageChart = new Chart(ctx, config);
+            
+            // Sample values display
+            maxMortgageElement.textContent = formatCurrency(300000);
+            monthlyPaymentElement.textContent = formatCurrency(1500);
+            dtiRatioElement.textContent = "35.0%";
+            incomeDisplay.textContent = formatCurrency(5000);
+            debtsDisplay.textContent = formatCurrency(1000);
+            downPaymentDisplay.textContent = formatCurrency(60000);
+            
+            // Hide placeholder
+            chartPlaceholder.style.display = 'none';
+        }
+        
+        // Initialize the chart
+        try {
+            createInitialChart();
+        } catch (e) {
+            console.error('Error creating chart:', e);
+            chartPlaceholder.textContent = '차트 초기화 오류';
+        }
+        
+        // Update the chart with calculated values
+        function updateChart(homePrice, monthlyPayment, dtiRatio) {
+            if (mortgageChart) {
+                mortgageChart.data.datasets[0].data = [homePrice, monthlyPayment, dtiRatio];
+                mortgageChart.update();
+            }
+        }
+        
+        // Calculate maximum mortgage amount
+        const calculateMaxMortgage = () => {
+            try {
+                // Get input values
+                const monthlyIncome = parseFloat(monthlyIncomeInput.value) || 0;
+                const monthlyDebts = parseFloat(monthlyDebtsInput.value) || 0;
+                const loanTerm = parseInt(loanTermInput.value) || 30;
+                const annualInterestRate = parseFloat(interestRateInput.value) || 0;
+                const downPayment = parseFloat(downPaymentInput.value) || 0;
+                const taxesInsurance = parseFloat(taxesInsuranceInput.value) || 0;
+
+                // Validate inputs
+                if (monthlyIncome <= 0) {
+                    alert('Please enter a valid monthly income');
+                    return;
+                }
+
+                // Calculate DTI ratio (maximum 43%)
+                const maxDTIRatio = 0.43;
+                const currentDTIRatio = (monthlyDebts / monthlyIncome) * 100;
+                
+                // Calculate maximum monthly payment available for mortgage
+                const maxMonthlyDebt = monthlyIncome * maxDTIRatio;
+                const availableForMortgage = maxMonthlyDebt - monthlyDebts;
+
+                // Adjust available amount for taxes and insurance
+                const availableForPrincipalAndInterest = availableForMortgage - taxesInsurance;
+
+                // Calculate maximum mortgage amount using the monthly payment formula
+                const monthlyInterestRate = (annualInterestRate / 100) / 12;
+                const numberOfPayments = loanTerm * 12;
+
+                let maxMortgage = 0;
+                if (monthlyInterestRate > 0) {
+                    // Using the standard mortgage payment formula solved for principal
+                    maxMortgage = availableForPrincipalAndInterest * 
+                        ((1 - Math.pow(1 + monthlyInterestRate, -numberOfPayments)) / monthlyInterestRate);
+                } else {
+                    // For 0% interest
+                    maxMortgage = availableForPrincipalAndInterest * numberOfPayments;
+                }
+
+                // Add down payment to get total house price
+                const totalHousePrice = maxMortgage + downPayment;
+
+                // Calculate monthly mortgage payment
+                const monthlyPayment = availableForPrincipalAndInterest;
+
+                // Update results
+                maxMortgageElement.textContent = formatCurrency(totalHousePrice);
+                monthlyPaymentElement.textContent = formatCurrency(monthlyPayment + taxesInsurance);
+                dtiRatioElement.textContent = formatPercentage(currentDTIRatio);
+                incomeDisplay.textContent = formatCurrency(monthlyIncome);
+                debtsDisplay.textContent = formatCurrency(monthlyDebts);
+                downPaymentDisplay.textContent = formatCurrency(downPayment);
+                
+                // Update chart with new values
+                updateChart(totalHousePrice, monthlyPayment + taxesInsurance, currentDTIRatio);
+                
+                // Hide placeholder if it's still visible
+                chartPlaceholder.style.display = 'none';
+
+            } catch (error) {
+                console.error('Calculation error:', error);
+                alert('An error occurred while calculating. Please check your inputs and try again.');
+            }
+        };
+
+        // Add event listeners
+        calculateBtn.addEventListener('click', calculateMaxMortgage);
+
+        // Allow calculation on Enter key
+        [monthlyIncomeInput, monthlyDebtsInput, loanTermInput, 
+        interestRateInput, downPaymentInput, taxesInsuranceInput].forEach(input => {
+            input.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    calculateMaxMortgage();
+                }
+            });
+        });
+
+        // Input validation
+        [monthlyIncomeInput, monthlyDebtsInput, interestRateInput, 
+        downPaymentInput, taxesInsuranceInput].forEach(input => {
+            input.addEventListener('input', () => {
+                // Remove any non-numeric characters except decimal point
+                input.value = input.value.replace(/[^0-9.]/g, '');
+                
+                // Ensure only one decimal point
+                if ((input.value.match(/\./g) || []).length > 1) {
+                    input.value = input.value.slice(0, -1);
+                }
+            });
+        });
+
+        // Loan term validation (whole numbers only)
+        loanTermInput.addEventListener('input', () => {
+            loanTermInput.value = loanTermInput.value.replace(/[^0-9]/g, '');
+            const value = parseInt(loanTermInput.value);
+            if (value > 30) loanTermInput.value = '30';
+            if (value < 1) loanTermInput.value = '1';
+        });
+    </script>
 </body>
 </html> 

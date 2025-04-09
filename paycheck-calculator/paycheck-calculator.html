@@ -82,11 +82,35 @@
             color: #3498db;
         }
         
+        /* Main Nav Styles */
+        .main-nav {
+            display: flex;
+            gap: 1.5rem;
+        }
+        
+        .nav-link {
+            color: #2c3e50;
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            color: #3498db;
+        }
+        
+        .nav-link i {
+            font-size: 1.1rem;
+        }
+        
         /* Container Styles */
         .container {
-            max-width: 1000px;
+            max-width: 100%;
             margin: 0 auto;
-            padding: 2rem 1rem;
+            padding: 1.5rem 1rem;
         }
         
         /* Calculator Main Styles */
@@ -473,8 +497,8 @@
             max-width: 1200px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: 65% 35%;
-            gap: 1rem;
+            grid-template-columns: 1fr 330px;
+            gap: 1.5rem;
             padding: 1rem;
         }
         
@@ -558,19 +582,16 @@
     </style>
 </head>
 <body>
-    <header>
+    <header class="header">
         <div class="header-container">
             <div class="logo">
                 <a href="../index.html" class="logo-link">
-                    <h1>Calculator <span>Tap</span></h1>
+                    <h1>Calculator Tap</h1>
                 </a>
             </div>
-            <nav>
-                <ul>
-                    <li><a href="../mortgage-qualification-calculator/mortgage-qualification.html">Mortgage Qualification</a></li>
-                    <li><a href="../loan-calculator/loan-calculator.html">Loan Calculator</a></li>
-                    <li><a href="paycheck-calculator.html">Paycheck Calculator</a></li>
-                </ul>
+            <nav class="main-nav">
+                <a href="../index.html" class="nav-link"><i class="fas fa-home"></i> Home</a>
+                <a href="../blog/index.html" class="nav-link"><i class="fas fa-blog"></i> Blog</a>
             </nav>
         </div>
     </header>
