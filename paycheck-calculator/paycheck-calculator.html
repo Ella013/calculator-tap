@@ -1,0 +1,1102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paycheck Calculator | Calculator Tap</title>
+    <meta name="description" content="Calculate your take-home pay with our free paycheck calculator. Account for federal, state, local taxes, deductions, and see your estimated net pay.">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Reset & Base Styles */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f7fa;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo-link {
+            text-decoration: none;
+            color: inherit;
+            transition: opacity 0.2s;
+        }
+        
+        .logo-link:hover {
+            opacity: 0.8;
+        }
+        
+        header h1 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        header h1 span {
+            color: #3498db;
+        }
+        
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 1.5rem;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: #555;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        
+        nav a:hover {
+            color: #3498db;
+        }
+        
+        /* Container Styles */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+        
+        /* Calculator Main Styles */
+        .calculator-main {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+        
+        .calculator-header {
+            grid-column: 1 / -1;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .calculator-title {
+            font-size: 1.75rem;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+        
+        .calculator-description {
+            color: #7f8c8d;
+            max-width: 600px;
+            margin: 0 auto;
+            font-size: 0.9rem;
+        }
+
+        /* Tab Styles */
+        .tab-container {
+            grid-column: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        
+        .tab-navigation {
+            display: flex;
+            border-bottom: 1px solid #e0e0e0;
+            margin-bottom: 1rem;
+        }
+        
+        .tab-button {
+            padding: 0.75rem 1rem;
+            background: none;
+            border: none;
+            border-bottom: 2px solid transparent;
+            color: #7f8c8d;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .tab-button.active {
+            color: #3498db;
+            border-bottom-color: #3498db;
+        }
+        
+        .tab-button:hover:not(.active) {
+            color: #2c3e50;
+            background-color: #f8f9fa;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        /* Form Styles */
+        .form-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .form-group {
+            flex: 1;
+            min-width: 150px;
+        }
+        
+        .full-width {
+            flex-basis: 100%;
+        }
+        
+        .section-title {
+            font-size: 1.1rem;
+            color: #2c3e50;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .section-title:first-child {
+            margin-top: 0;
+        }
+        
+        .field-label {
+            display: block;
+            font-size: 0.875rem;
+            margin-bottom: 0.5rem;
+            color: #555;
+            font-weight: 500;
+        }
+        
+        .input-field {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            transition: border-color 0.2s;
+            background-color: white;
+            height: 45px;
+        }
+        
+        .input-field:focus {
+            border-color: #3498db;
+            outline: none;
+        }
+        
+        .input-group {
+            position: relative;
+            width: 100%;
+        }
+        
+        .currency-symbol {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #555;
+            font-weight: 500;
+            pointer-events: none;
+        }
+        
+        .input-group .input-field {
+            padding-left: 25px;
+        }
+        
+        /* Results Section */
+        .results-section {
+            grid-column: 2;
+            padding: 1rem;
+            background-color: #f8fafc;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .results-header {
+            font-size: 1.2rem;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+            text-align: center;
+            padding-top: 0.5rem;
+        }
+        
+        .chart-container {
+            width: 100%;
+            height: 180px;
+            margin: 0 auto 0.5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid #eee;
+            border-radius: 4px;
+            position: relative;
+        }
+        
+        /* Chart Legend Styles */
+        .chart-legend {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 1rem;
+            font-size: 0.75rem;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            color: #7f8c8d;
+        }
+        
+        .legend-color {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 4px;
+            display: inline-block;
+        }
+        
+        .legend-color.take-home {
+            background-color: #f39c12;
+        }
+        
+        .legend-color.taxes {
+            background-color: #3498db;
+        }
+        
+        .legend-color.benefits {
+            background-color: #9b59b6;
+        }
+        
+        .chart-placeholder {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+        
+        .results-summary {
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+        
+        .take-home-amount {
+            font-size: 2rem;
+            color: #2ecc71;
+            font-weight: 600;
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+        
+        .take-home-label {
+            font-size: 0.9rem;
+            color: #7f8c8d;
+            display: block;
+        }
+        
+        .results-details {
+            margin-top: 1rem;
+            border-top: 1px solid #eee;
+            padding-top: 0.5rem;
+        }
+        
+        .result-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.4rem 0;
+            border-bottom: 1px solid #eee;
+            font-size: 0.9rem;
+        }
+        
+        .result-row:last-child {
+            border-bottom: none;
+        }
+        
+        .result-label {
+            color: #7f8c8d;
+        }
+        
+        .result-value {
+            font-weight: 500;
+            color: #2c3e50;
+        }
+        
+        .result-value.negative {
+            color: #e74c3c;
+        }
+        
+        /* Calculate Button */
+        .calculator-btn {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 0.75rem 1.25rem;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            margin-top: 1rem;
+            width: 100%;
+        }
+        
+        .calculator-btn:hover {
+            background-color: #2980b9;
+        }
+        
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .calculator-main {
+                grid-template-columns: 1fr;
+            }
+            
+            .results-section {
+                grid-column: 1;
+                grid-row: 3;
+                margin-top: 1rem;
+            }
+        }
+        
+        /* Explanation Section Styles */
+        .explanation-section {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .explanation-title {
+            font-size: 1.5rem;
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        
+        .explanation-text h3 {
+            color: #3498db;
+            margin: 1.5rem 0 0.75rem;
+            font-size: 1.125rem;
+        }
+        
+        .explanation-text p {
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+        
+        .explanation-text ul {
+            padding-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .explanation-text li {
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Footer Styles */
+        .footer {
+            background-color: #2c3e50;
+            color: white;
+            padding: 2rem 0;
+            margin-top: 4rem;
+        }
+        
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            text-align: center;
+        }
+        
+        .footer-links {
+            margin-bottom: 1rem;
+        }
+        
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            margin: 0 1rem;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: #3498db;
+        }
+        
+        .copyright {
+            font-size: 0.9rem;
+            color: #bdc3c7;
+        }
+        
+        /* Main Page Layout */
+        .page-layout {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 65% 35%;
+            gap: 1rem;
+            padding: 1rem;
+        }
+        
+        /* Calculator Column */
+        .calculator-column {
+            width: 100%;
+        }
+        
+        /* Sidebar Column */
+        .sidebar-column {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        /* Advertisement Style */
+        .advertisement {
+            background-color: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 1rem;
+            height: 300px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+        
+        /* Other Calculators Section */
+        .other-calculators {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            padding: 1rem;
+        }
+        
+        .other-calculators h3 {
+            color: #2c3e50;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 0.5rem;
+        }
+        
+        .calculator-list {
+            list-style: none;
+        }
+        
+        .calculator-list li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .calculator-list a {
+            display: block;
+            padding: 0.5rem;
+            text-decoration: none;
+            color: #3498db;
+            transition: background-color 0.2s;
+            border-radius: 4px;
+        }
+        
+        .calculator-list a:hover {
+            background-color: #f8f9fa;
+        }
+        
+        /* Responsive Adjustments */
+        @media (max-width: 900px) {
+            .page-layout {
+                grid-template-columns: 1fr;
+            }
+            
+            .calculator-column {
+                order: 1;
+            }
+            
+            .sidebar-column {
+                order: 2;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <a href="../index.html" class="logo-link">
+                    <h1>Calculator <span>Tap</span></h1>
+                </a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../mortgage-qualification-calculator/mortgage-qualification.html">Mortgage Qualification</a></li>
+                    <li><a href="../loan-calculator/loan-calculator.html">Loan Calculator</a></li>
+                    <li><a href="paycheck-calculator.html">Paycheck Calculator</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="page-layout">
+            <div class="calculator-column">
+                <main class="calculator-main">
+                    <div class="calculator-header">
+                        <h1 class="calculator-title">Paycheck Calculator</h1>
+                        <p class="calculator-description">Estimate your take-home pay by entering your earnings, deductions, and tax information.</p>
+                    </div>
+
+                    <div class="tab-container">
+                        <div class="tab-navigation">
+                            <button type="button" class="tab-button active" data-tab="earnings">Earnings</button>
+                            <button type="button" class="tab-button" data-tab="taxes">Taxes</button>
+                        </div>
+
+                        <div id="earnings" class="tab-content active">
+                            <h3 class="section-title">How often are you paid?</h3>
+                            <div class="form-row">
+                                <div class="form-group full-width">
+                                    <label for="payPeriod" class="field-label">Pay Frequency</label>
+                                    <select id="payPeriod" class="input-field">
+                                        <option value="weekly">Weekly</option>
+                                        <option value="biweekly" selected>Bi-Weekly (Every 2 Weeks)</option>
+                                        <option value="semimonthly">Semi-Monthly (Twice a Month)</option>
+                                        <option value="monthly">Monthly</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <h3 class="section-title">How are you paid?</h3>
+                            <div id="earningsContainer">
+                                <div class="earnings-item">
+                                    <div class="form-group">
+                                        <label for="hourlyRate" class="field-label">Hourly Rate</label>
+                                        <div class="input-group">
+                                            <span class="currency-symbol">$</span>
+                                            <input type="number" id="hourlyRate" class="input-field" placeholder="0.00">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="regularHours" class="field-label">Hours</label>
+                                        <input type="number" id="regularHours" class="input-field" placeholder="Hours">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <h3 class="section-title">Any overtime?</h3>
+                            <div id="overtimeContainer">
+                                <div class="overtime-item">
+                                    <div class="form-group">
+                                        <label for="overtimeHours" class="field-label">Hours</label>
+                                        <input type="number" id="overtimeHours" class="input-field" placeholder="Hours">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="overtimeMultiplier" class="field-label">Multiplier</label>
+                                        <select id="overtimeMultiplier" class="input-field">
+                                            <option value="1.5" selected>1.5x</option>
+                                            <option value="2">2x</option>
+                                            <option value="3">3x</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group" style="display: none;">
+                                        <input type="number" id="overtimeRate" class="input-field" disabled>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="tab-buttons">
+                                <button type="button" class="tab-next calculator-btn" data-next="taxes">Next: Taxes</button>
+                            </div>
+                        </div>
+
+                        <div id="taxes" class="tab-content">
+                            <h3 class="section-title">Tax Rates</h3>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="federalTax" class="field-label">Federal Income Tax (%)</label>
+                                    <input type="number" id="federalTax" class="input-field" value="15" placeholder="%">
+                                </div>
+                                <div class="form-group">
+                                    <label for="stateTax" class="field-label">State Income Tax (%)</label>
+                                    <input type="number" id="stateTax" class="input-field" value="5" placeholder="%">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="socialSecurity" class="field-label">Social Security Tax (%)</label>
+                                    <input type="number" id="socialSecurity" class="input-field" value="6.2" disabled>
+                                </div>
+                                <div class="form-group">
+                                    <label for="medicare" class="field-label">Medicare Tax (%)</label>
+                                    <input type="number" id="medicare" class="input-field" value="1.45" disabled>
+                                </div>
+                            </div>
+                            
+                            <h3 class="section-title">Deductions</h3>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="retirement" class="field-label">Retirement Contribution (%)</label>
+                                    <input type="number" id="retirement" class="input-field" value="0" placeholder="%">
+                                </div>
+                                <div class="form-group">
+                                    <label for="otherDeductions" class="field-label">Other Deductions ($)</label>
+                                    <div class="input-group">
+                                        <span class="currency-symbol">$</span>
+                                        <input type="number" id="otherDeductions" class="input-field" value="0" placeholder="0.00">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="tab-buttons">
+                                <button type="button" class="tab-prev calculator-btn" data-prev="earnings" style="background-color: #95a5a6; margin-right: 0.5rem;">Previous</button>
+                                <button type="button" id="calculateBtn" class="calculator-btn">Calculate Paycheck</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="results-section">
+                        <h3 class="results-header">Your Paycheck Results</h3>
+                        
+                        <div class="chart-container">
+                            <canvas id="paycheckChart"></canvas>
+                            <div class="chart-placeholder">차트가 계산 후 표시됩니다</div>
+                        </div>
+                        
+                        <div class="chart-legend">
+                            <div class="legend-item">
+                                <span class="legend-color take-home"></span>
+                                <span>Take Home</span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-color taxes"></span>
+                                <span>Taxes</span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-color benefits"></span>
+                                <span>Benefits</span>
+                            </div>
+                        </div>
+                        
+                        <div class="results-summary">
+                            <span id="netPay" class="take-home-amount">$0.00</span>
+                            <span class="take-home-label">Take Home Pay</span>
+                        </div>
+                        
+                        <div class="results-details">
+                            <div class="result-row">
+                                <span class="result-label">Earnings</span>
+                                <span id="grossPay" class="result-value">$0.00</span>
+                            </div>
+                            <div class="result-row">
+                                <span class="result-label">Salary</span>
+                                <span id="regularEarnings" class="result-value">$0.00</span>
+                            </div>
+                            <div class="result-row">
+                                <span class="result-label">Overtime</span>
+                                <span id="overtimeEarnings" class="result-value">$0.00</span>
+                            </div>
+                            <div class="result-row">
+                                <span class="result-label">Taxes</span>
+                                <span id="totalTaxes" class="result-value negative">$0.00</span>
+                            </div>
+                            <div class="result-row">
+                                <span class="result-label">Federal Income Tax</span>
+                                <span id="federalTaxAmount" class="result-value negative">$0.00</span>
+                            </div>
+                            <div class="result-row">
+                                <span class="result-label">State Income Tax</span>
+                                <span id="stateTaxAmount" class="result-value negative">$0.00</span>
+                            </div>
+                            <div class="result-row">
+                                <span class="result-label">Social Security Tax</span>
+                                <span id="socialSecurityAmount" class="result-value negative">$0.00</span>
+                            </div>
+                            <div class="result-row">
+                                <span class="result-label">Medicare Tax</span>
+                                <span id="medicareAmount" class="result-value negative">$0.00</span>
+                            </div>
+                            <div class="result-row">
+                                <span class="result-label">Benefits</span>
+                                <span id="totalBenefits" class="result-value negative">$0.00</span>
+                            </div>
+                            <div class="result-row">
+                                <span class="result-label">Retirement</span>
+                                <span id="retirementAmount" class="result-value negative">$0.00</span>
+                            </div>
+                            <div class="result-row">
+                                <span class="result-label">Other Deductions</span>
+                                <span id="otherDeductionsAmount" class="result-value negative">$0.00</span>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+
+                <section class="explanation-section">
+                    <h2 class="explanation-title">How Our Paycheck Calculator Works</h2>
+                    <div class="explanation-text">
+                        <p>
+                            Our paycheck calculator helps you estimate your take-home pay after taxes and deductions. 
+                            Understanding your net pay can help you budget more effectively and plan your finances.
+                        </p>
+                        
+                        <h3>Regular and Overtime Earnings</h3>
+                        <p>
+                            The calculator starts by computing your gross earnings based on the hours worked and your hourly rate. 
+                            Regular hours are paid at your standard rate, while overtime hours are multiplied by 1.5, 2, or 3 times 
+                            your regular rate depending on your selection.
+                        </p>
+                        
+                        <h3>Taxes and Deductions</h3>
+                        <p>
+                            From your gross pay, we calculate various deductions:
+                        </p>
+                        <ul>
+                            <li><strong>Federal Income Tax:</strong> Based on the percentage you input (defaults to 15%).</li>
+                            <li><strong>State Income Tax:</strong> Based on the percentage you input (defaults to 5%).</li>
+                            <li><strong>Social Security Tax:</strong> Fixed at 6.2% of gross pay up to the annual wage base limit.</li>
+                            <li><strong>Medicare Tax:</strong> Fixed at 1.45% of all gross pay.</li>
+                            <li><strong>Retirement Contributions:</strong> Optional percentage-based deduction from gross pay.</li>
+                            <li><strong>Other Deductions:</strong> Any additional fixed dollar amount deductions.</li>
+                        </ul>
+                        
+                        <h3>Net Pay Calculation</h3>
+                        <p>
+                            Your net pay is calculated by subtracting all taxes and deductions from your gross pay. 
+                            This is the amount you'll actually receive in your paycheck.
+                        </p>
+                        
+                        <p>
+                            <strong>Note:</strong> This calculator provides estimates only. Actual tax calculations can be more complex 
+                            and depend on your specific tax situation, filing status, allowances, and other factors. For accurate tax 
+                            advice, please consult with a tax professional.
+                        </p>
+                    </div>
+                </section>
+            </div>
+            
+            <div class="sidebar-column">
+                <!-- Advertisement -->
+                <div class="advertisement">
+                    <img src="https://placehold.co/300x250/f8f9fa/3498db?text=Advertisement+Space" alt="Advertisement">
+                </div>
+                
+                <!-- Other Calculators -->
+                <div class="other-calculators">
+                    <h3>Other Calculators</h3>
+                    <ul class="calculator-list">
+                        <li><a href="../loan-calculator/loan-calculator.html">Loan Calculator</a></li>
+                        <li><a href="../mortgage-qualification-calculator/mortgage-qualification.html">Mortgage Qualification</a></li>
+                        <li><a href="../payoff-calculator/payoff-calculator.html">Debt Payoff Calculator</a></li>
+                        <li><a href="#">Age Calculator</a></li>
+                        <li><a href="#">Time Calculator</a></li>
+                        <li><a href="#">Date Calculator</a></li>
+                        <li><a href="#">GPA Calculator</a></li>
+                        <li><a href="#">Height Calculator</a></li>
+                        <li><a href="#">IP Subnet Calculator</a></li>
+                        <li><a href="#">Password Generator</a></li>
+                        <li><a href="#">Conversion Calculator</a></li>
+                        <li><a href="#">Financial Calculators</a></li>
+                        <li><a href="#">Health Calculators</a></li>
+                        <li><a href="#">Math Calculators</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-links">
+                <a href="../privacy-policy.html">Privacy Policy</a>
+                <a href="../terms.html">Terms</a>
+                <a href="../about.html">About</a>
+            </div>
+            <div class="copyright">
+                <p>Copyright © <span id="currentYear"></span> Calculator Tap. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Update current year in footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+        
+        // Check if Chart.js is loaded
+        if (typeof Chart === 'undefined') {
+            console.error('Chart.js is not loaded!');
+            document.querySelector('.chart-placeholder').textContent = 'Chart.js 라이브러리 로딩 오류';
+        }
+        
+        // Tab Navigation
+        const tabButtons = document.querySelectorAll('.tab-button');
+        const tabContents = document.querySelectorAll('.tab-content');
+        const nextButtons = document.querySelectorAll('.tab-next');
+        const prevButtons = document.querySelectorAll('.tab-prev');
+        
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons and contents
+                tabButtons.forEach(btn => btn.classList.remove('active'));
+                tabContents.forEach(content => content.classList.remove('active'));
+                
+                // Add active class to clicked button
+                button.classList.add('active');
+                
+                // Show corresponding content
+                const tabId = button.getAttribute('data-tab');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+        
+        nextButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const nextTabId = button.getAttribute('data-next');
+                
+                // Remove active class from all buttons and contents
+                tabButtons.forEach(btn => btn.classList.remove('active'));
+                tabContents.forEach(content => content.classList.remove('active'));
+                
+                // Add active class to next tab
+                document.querySelector(`[data-tab="${nextTabId}"]`).classList.add('active');
+                document.getElementById(nextTabId).classList.add('active');
+            });
+        });
+        
+        prevButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const prevTabId = button.getAttribute('data-prev');
+                
+                // Remove active class from all buttons and contents
+                tabButtons.forEach(btn => btn.classList.remove('active'));
+                tabContents.forEach(content => content.classList.remove('active'));
+                
+                // Add active class to previous tab
+                document.querySelector(`[data-tab="${prevTabId}"]`).classList.add('active');
+                document.getElementById(prevTabId).classList.add('active');
+            });
+        });
+        
+        // DOM Elements
+        const hourlyRateInput = document.getElementById('hourlyRate');
+        const regularHoursInput = document.getElementById('regularHours');
+        const overtimeHoursInput = document.getElementById('overtimeHours');
+        const overtimeRateInput = document.getElementById('overtimeRate');
+        const overtimeMultiplierSelect = document.getElementById('overtimeMultiplier');
+        const calculateBtn = document.getElementById('calculateBtn');
+        
+        // Update overtime rate when hourly rate changes
+        hourlyRateInput.addEventListener('input', updateOvertimeRate);
+        overtimeMultiplierSelect.addEventListener('change', updateOvertimeRate);
+        
+        function updateOvertimeRate() {
+            const hourlyRate = parseFloat(hourlyRateInput.value) || 0;
+            const multiplier = parseFloat(overtimeMultiplierSelect.value) || 1.5;
+            overtimeRateInput.value = (hourlyRate * multiplier).toFixed(2);
+        }
+        
+        // Calculate button click handler
+        calculateBtn.addEventListener('click', calculatePaycheck);
+        
+        function calculatePaycheck() {
+            // Get values from inputs
+            const payPeriod = document.getElementById('payPeriod').value;
+            const regularHours = parseFloat(regularHoursInput.value) || 0;
+            const hourlyRate = parseFloat(hourlyRateInput.value) || 0;
+            const overtimeHours = parseFloat(overtimeHoursInput.value) || 0;
+            const overtimeRate = parseFloat(overtimeRateInput.value) || 0;
+            const federalTaxRate = parseFloat(document.getElementById('federalTax').value) || 15;
+            const stateTaxRate = parseFloat(document.getElementById('stateTax').value) || 5;
+            const socialSecurityRate = 6.2; // Fixed rate
+            const medicareRate = 1.45; // Fixed rate
+            const retirementRate = parseFloat(document.getElementById('retirement').value) || 0;
+            const otherDeductions = parseFloat(document.getElementById('otherDeductions').value) || 0;
+            
+            // Calculate earnings
+            const regularEarnings = regularHours * hourlyRate;
+            const overtimeEarnings = overtimeHours * overtimeRate;
+            const grossPay = regularEarnings + overtimeEarnings;
+            
+            // Calculate deductions
+            const federalTaxAmount = grossPay * (federalTaxRate / 100);
+            const stateTaxAmount = grossPay * (stateTaxRate / 100);
+            const socialSecurityAmount = grossPay * (socialSecurityRate / 100);
+            const medicareAmount = grossPay * (medicareRate / 100);
+            const retirementAmount = grossPay * (retirementRate / 100);
+            
+            // Calculate total taxes and benefits
+            const totalTaxes = federalTaxAmount + stateTaxAmount + socialSecurityAmount + medicareAmount;
+            const totalBenefits = retirementAmount + otherDeductions;
+            
+            // Calculate net pay
+            const netPay = grossPay - totalTaxes - totalBenefits;
+            
+            // Update result values
+            document.getElementById('regularEarnings').textContent = `$${regularEarnings.toFixed(2)}`;
+            document.getElementById('overtimeEarnings').textContent = `$${overtimeEarnings.toFixed(2)}`;
+            document.getElementById('grossPay').textContent = `$${grossPay.toFixed(2)}`;
+            document.getElementById('federalTaxAmount').textContent = `-$${federalTaxAmount.toFixed(2)}`;
+            document.getElementById('stateTaxAmount').textContent = `-$${stateTaxAmount.toFixed(2)}`;
+            document.getElementById('socialSecurityAmount').textContent = `-$${socialSecurityAmount.toFixed(2)}`;
+            document.getElementById('medicareAmount').textContent = `-$${medicareAmount.toFixed(2)}`;
+            document.getElementById('retirementAmount').textContent = `-$${retirementAmount.toFixed(2)}`;
+            document.getElementById('otherDeductionsAmount').textContent = `-$${otherDeductions.toFixed(2)}`;
+            document.getElementById('totalTaxes').textContent = `-$${totalTaxes.toFixed(2)}`;
+            document.getElementById('totalBenefits').textContent = `-$${totalBenefits.toFixed(2)}`;
+            document.getElementById('netPay').textContent = `$${netPay.toFixed(2)}`;
+            
+            // Create chart
+            createPaycheckChart(grossPay, totalTaxes, totalBenefits, netPay);
+        }
+        
+        function createPaycheckChart(grossPay, totalTaxes, totalBenefits, netPay) {
+            const ctx = document.getElementById('paycheckChart').getContext('2d');
+            
+            // Destroy existing chart if it exists
+            if (window.paycheckChart) {
+                window.paycheckChart.destroy();
+            }
+            
+            // Create new chart
+            window.paycheckChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Take Home', 'Taxes', 'Benefits'],
+                    datasets: [{
+                        data: [netPay, totalTaxes, totalBenefits],
+                        backgroundColor: ['#f39c12', '#3498db', '#9b59b6'],
+                        borderColor: ['#fff', '#fff', '#fff'],
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false // Hide the legend
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    const label = context.label || '';
+                                    const value = context.raw || 0;
+                                    const percentage = ((value / grossPay) * 100).toFixed(1);
+                                    return `${label}: $${value.toFixed(2)} (${percentage}%)`;
+                                }
+                            }
+                        }
+                    },
+                    cutout: '75%'
+                }
+            });
+            
+            // Hide placeholder once chart is loaded
+            document.querySelector('.chart-placeholder').style.display = 'none';
+        }
+        
+        // Initialize overtime rate
+        updateOvertimeRate();
+        
+        // Initial chart with sample data - keep it visible with realistic sample values
+        try {
+            // Initialize with sample data that clearly shows the chart
+            const sampleNetPay = 3000;
+            const sampleTaxes = 900;
+            const sampleBenefits = 300;
+            const sampleGross = sampleNetPay + sampleTaxes + sampleBenefits;
+            
+            const ctx = document.getElementById('paycheckChart').getContext('2d');
+            window.paycheckChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Take Home', 'Taxes', 'Benefits'],
+                    datasets: [{
+                        data: [sampleNetPay, sampleTaxes, sampleBenefits],
+                        backgroundColor: ['#f39c12', '#3498db', '#9b59b6'],
+                        borderColor: ['#fff', '#fff', '#fff'],
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    const label = context.label || '';
+                                    const value = context.raw || 0;
+                                    const percentage = ((value / sampleGross) * 100).toFixed(1);
+                                    return `${label}: $${value.toFixed(2)} (${percentage}%)`;
+                                }
+                            }
+                        }
+                    },
+                    cutout: '75%'
+                }
+            });
+            
+            // Update the display values to match sample chart
+            document.getElementById('netPay').textContent = `$${sampleNetPay.toFixed(2)}`;
+            document.getElementById('grossPay').textContent = `$${sampleGross.toFixed(2)}`;
+            document.getElementById('regularEarnings').textContent = `$${sampleNetPay.toFixed(2)}`;
+            document.getElementById('overtimeEarnings').textContent = `$0.00`;
+            document.getElementById('totalTaxes').textContent = `-$${sampleTaxes.toFixed(2)}`;
+            document.getElementById('federalTaxAmount').textContent = `-$${(sampleTaxes * 0.6).toFixed(2)}`;
+            document.getElementById('stateTaxAmount').textContent = `-$${(sampleTaxes * 0.2).toFixed(2)}`;
+            document.getElementById('socialSecurityAmount').textContent = `-$${(sampleTaxes * 0.15).toFixed(2)}`;
+            document.getElementById('medicareAmount').textContent = `-$${(sampleTaxes * 0.05).toFixed(2)}`;
+            document.getElementById('totalBenefits').textContent = `-$${sampleBenefits.toFixed(2)}`;
+            document.getElementById('retirementAmount').textContent = `-$${sampleBenefits.toFixed(2)}`;
+            document.getElementById('otherDeductionsAmount').textContent = `-$0.00`;
+            
+            // Hide placeholder once chart is loaded
+            document.querySelector('.chart-placeholder').style.display = 'none';
+        } catch (e) {
+            console.error('Failed to initialize chart:', e);
+            document.querySelector('.chart-placeholder').textContent = '차트 초기화 오류';
+        }
+    </script>
+</body>
+</html> 

@@ -3,10 +3,87 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculator Tap - Your Financial Calculator Hub</title>
-    <meta name="description" content="Free financial calculators for loans, payoffs, and mortgage qualifications. Make informed financial decisions with our easy-to-use tools.">
+    <title>Calculator Tap | Financial Calculators</title>
+    <meta name="description" content="Free online financial calculators for mortgage, loans, retirement planning and more. Easy to use tools to help make informed financial decisions.">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Compact calculator card styles */
+        .calculator-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.2rem;
+            margin: 2rem auto;
+            max-width: 1000px;
+            justify-content: center;
+        }
+        
+        .calculator-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 18px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .calculator-card i {
+            font-size: 2rem;
+            color: #3498db;
+            margin-bottom: 0.8rem;
+        }
+        
+        .calculator-card h2 {
+            font-size: 1.2rem;
+            margin-bottom: 0.6rem;
+            color: #2c3e50;
+        }
+        
+        .calculator-card p {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 1rem;
+            line-height: 1.4;
+        }
+        
+        .calculator-card .btn {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: #3498db;
+            color: white;
+            border-radius: 25px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: background 0.2s;
+        }
+        
+        .calculator-card .btn:hover {
+            background: #2980b9;
+        }
+        
+        .calculator-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        @media (max-width: 768px) {
+            .calculator-grid {
+                grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+                gap: 1rem;
+                padding: 0 1rem;
+            }
+            
+            .calculator-card i {
+                font-size: 1.8rem;
+            }
+            
+            .calculator-card h2 {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Header -->
@@ -43,20 +120,26 @@
             <div class="calculator-card">
                 <i class="fas fa-calculator"></i>
                 <h2>Loan Calculator</h2>
-                <p>Calculate your loan payments and interest rates with our easy-to-use loan calculator.</p>
-                <a href="loan-calculator/loan-calculator.html" class="btn">Calculate Now</a>
+                <p>Calculate payments and interest for any type of loan.</p>
+                <a href="loan-calculator/loan-calculator.html" class="btn">Calculate</a>
+            </div>
+            <div class="calculator-card">
+                <i class="fas fa-home"></i>
+                <h2>Mortgage Calculator</h2>
+                <p>Find out how much house you can afford.</p>
+                <a href="Mortgage-Qualification-Calculator/mortgage-qualification.html" class="btn">Calculate</a>
+            </div>
+            <div class="calculator-card">
+                <i class="fas fa-wallet"></i>
+                <h2>Paycheck Calculator</h2>
+                <p>Estimate take-home pay after taxes and deductions.</p>
+                <a href="paycheck-calculator/paycheck-calculator.html" class="btn">Calculate</a>
             </div>
             <div class="calculator-card">
                 <i class="fas fa-money-bill-wave"></i>
                 <h2>Payoff Calculator</h2>
-                <p>Determine how long it will take to pay off your debt and save on interest.</p>
-                <a href="payoff-calculator/payoff-calculator.html" class="btn">Calculate Now</a>
-            </div>
-            <div class="calculator-card">
-                <i class="fas fa-home"></i>
-                <h2>Mortgage Qualification Calculator</h2>
-                <p>Find out how much house you can afford and your mortgage qualification.</p>
-                <a href="Mortgage-Qualification-Calculator/mortgage-qualification.html" class="btn">Calculate Now</a>
+                <p>Plan your debt payoff strategy and save on interest.</p>
+                <a href="payoff-calculator/payoff-calculator.html" class="btn">Calculate</a>
             </div>
         </section>
 
