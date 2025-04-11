@@ -74,20 +74,25 @@ main {
 
 /* Title Section */
 .title-section {
-    max-width: 800px;
-    margin: 0 auto 3rem;
     text-align: center;
     padding: 2rem 1rem;
+    background-color: #f8fafc;
+    margin-bottom: 2rem;
 }
 
 .title-section h1 {
     font-size: 2.5rem;
     color: #2c3e50;
-    margin-bottom: 2rem;
-    line-height: 1.2;
+    margin-bottom: 1rem;
 }
 
-.highlight {
+.title-section .subtitle {
+    font-size: 1.2rem;
+    color: #7f8c8d;
+    margin-bottom: 2rem;
+}
+
+.title-section .highlight {
     color: #3498db;
 }
 
@@ -95,69 +100,75 @@ main {
 .site-description {
     max-width: 800px;
     margin: 3rem auto;
-    text-align: center;
     padding: 0 1rem;
+    text-align: center;
 }
 
-.site-description h1 {
-    font-size: 2.5rem;
-    margin-bottom: 1.5rem;
+.site-description h2 {
     color: #2c3e50;
-    line-height: 1.2;
+    margin-bottom: 1.5rem;
+    font-size: 1.8rem;
+}
+
+.site-description h3 {
+    color: #3498db;
+    margin: 2rem 0 1rem;
+    font-size: 1.4rem;
 }
 
 .site-description p {
-    font-size: 1.1rem;
-    color: #505965;
+    color: #666;
     line-height: 1.6;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
 }
 
-.site-description strong {
-    color: #2c3e50;
-    font-weight: 600;
+.site-description ul {
+    list-style: none;
+    padding: 0;
+    margin: 1.5rem 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.site-description li {
+    background: #f8f9fa;
+    padding: 1rem;
+    border-radius: 8px;
+    text-align: left;
 }
 
 /* Search Section */
 .search-container {
-    position: relative;
     max-width: 600px;
     margin: 0 auto;
+    position: relative;
 }
 
-#searchInput {
+.search-container input {
     width: 100%;
     padding: 1rem;
-    font-size: 1.1rem;
     border: 2px solid #e0e0e0;
-    border-radius: 25px;
-    outline: none;
-    transition: border-color 0.3s ease;
-    padding-right: 3rem;
+    border-radius: 50px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
 }
 
-#searchInput:focus {
+.search-container input:focus {
     border-color: #3498db;
+    outline: none;
 }
 
 .search-button {
     position: absolute;
-    right: 1rem;
+    right: 10px;
     top: 50%;
     transform: translateY(-50%);
     background: none;
     border: none;
-    cursor: pointer;
-    color: #666;
-    transition: color 0.3s ease;
-}
-
-.search-button:hover {
     color: #3498db;
-}
-
-.search-button i {
-    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 0.5rem;
 }
 
 .search-suggestions {
@@ -168,8 +179,8 @@ main {
     background: white;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    display: none;
     z-index: 100;
+    display: none;
 }
 
 .suggestion-item {
@@ -185,11 +196,10 @@ main {
     color: #2c3e50;
     text-decoration: none;
     display: block;
-    transition: color 0.3s ease;
 }
 
-.suggestion-item a:hover {
-    color: #3498db;
+.suggestion-item:hover {
+    background-color: #f8f9fa;
 }
 
 /* Calculator Grid */
@@ -472,4 +482,103 @@ main {
         flex-direction: column;
         gap: 1rem;
     }
+}
+
+/* FAQ Section Styles */
+.faq-section {
+    max-width: 800px;
+    margin: 3rem auto;
+    padding: 0 1rem;
+}
+
+.faq-section h2 {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 2rem;
+    font-size: 1.8rem;
+}
+
+.faq-item {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.faq-item h3 {
+    color: #3498db;
+    margin-bottom: 0.8rem;
+    font-size: 1.2rem;
+}
+
+.faq-item p {
+    color: #666;
+    line-height: 1.6;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .title-section h1 {
+        font-size: 2rem;
+    }
+    
+    .title-section .subtitle {
+        font-size: 1rem;
+    }
+    
+    .site-description ul {
+        grid-template-columns: 1fr;
+    }
+    
+    .faq-item {
+        padding: 1rem;
+    }
+}
+
+/* Breadcrumb Navigation */
+.breadcrumb {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+.breadcrumb nav {
+    font-size: 0.9rem;
+}
+
+.breadcrumb ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.breadcrumb li {
+    display: flex;
+    align-items: center;
+}
+
+.breadcrumb li:not(:last-child)::after {
+    content: '/';
+    margin-left: 0.5rem;
+    color: #666;
+}
+
+.breadcrumb a {
+    color: #007bff;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.breadcrumb a:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+.breadcrumb [aria-current="page"] {
+    color: #666;
+    font-weight: 500;
 } 

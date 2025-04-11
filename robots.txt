@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /blog/admin/
+Disallow: /blog/posts/drafts/
+
+Sitemap: https://calculatortap.com/sitemap.xml 

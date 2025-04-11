@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Site Map | Calculator Tap</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .sitemap-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        
+        .sitemap-section {
+            margin-bottom: 3rem;
+        }
+        
+        .sitemap-section h2 {
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #007bff;
+        }
+        
+        .sitemap-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .sitemap-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: transform 0.2s ease;
+        }
+        
+        .sitemap-item:hover {
+            transform: translateY(-2px);
+        }
+        
+        .sitemap-item h3 {
+            color: #007bff;
+            margin-bottom: 0.5rem;
+        }
+        
+        .sitemap-item p {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+        
+        .sitemap-item a {
+            color: #2c3e50;
+            text-decoration: none;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .sitemap-item a:hover {
+            color: #007bff;
+        }
+        
+        @media (max-width: 768px) {
+            .sitemap-list {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <div class="header-container">
+            <div class="logo">
+                <a href="/">
+                    <img src="images/logo.png" alt="Calculator Tap Logo">
+                </a>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/blog/">Blog</a></li>
+                    <li><a href="/sitemap.html" class="active">Site Map</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="sitemap-container">
+        <h1>Site Map</h1>
+        
+        <section class="sitemap-section">
+            <h2>Financial Calculators</h2>
+            <ul class="sitemap-list">
+                <li class="sitemap-item">
+                    <h3>Loan Calculator</h3>
+                    <p>Calculate your loan payments, interest, and total cost</p>
+                    <a href="/loan-calculator/loan-calculator.html">View Calculator <i class="fas fa-arrow-right"></i></a>
+                </li>
+                <li class="sitemap-item">
+                    <h3>Mortgage Qualification Calculator</h3>
+                    <p>Determine how much house you can afford</p>
+                    <a href="/Mortgage-Qualification-Calculator/mortgage-qualification.html">View Calculator <i class="fas fa-arrow-right"></i></a>
+                </li>
+                <li class="sitemap-item">
+                    <h3>Debt Payoff Calculator</h3>
+                    <p>Plan your debt repayment strategy</p>
+                    <a href="/payoff-calculator/payoff-calculator.html">View Calculator <i class="fas fa-arrow-right"></i></a>
+                </li>
+                <li class="sitemap-item">
+                    <h3>Paycheck Calculator</h3>
+                    <p>Calculate your take-home pay and deductions</p>
+                    <a href="/paycheck-calculator/paycheck-calculator.html">View Calculator <i class="fas fa-arrow-right"></i></a>
+                </li>
+            </ul>
+        </section>
+        
+        <section class="sitemap-section">
+            <h2>Blog & Resources</h2>
+            <ul class="sitemap-list">
+                <li class="sitemap-item">
+                    <h3>Blog Home</h3>
+                    <p>Latest articles and financial insights</p>
+                    <a href="/blog/">View Blog <i class="fas fa-arrow-right"></i></a>
+                </li>
+                <li class="sitemap-item">
+                    <h3>Financial Tips</h3>
+                    <p>Expert advice on managing your finances</p>
+                    <a href="/blog/category/financial-tips">View Articles <i class="fas fa-arrow-right"></i></a>
+                </li>
+                <li class="sitemap-item">
+                    <h3>Calculator Guides</h3>
+                    <p>How-to guides for using our calculators</p>
+                    <a href="/blog/category/calculator-guides">View Guides <i class="fas fa-arrow-right"></i></a>
+                </li>
+            </ul>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-logo">
+                <img src="images/logo-white.png" alt="Calculator Tap Logo">
+                <p>Free online financial calculators to help you make better financial decisions.</p>
+            </div>
+            <div class="footer-links">
+                <div class="footer-section">
+                    <h3>Calculators</h3>
+                    <ul>
+                        <li><a href="/loan-calculator/loan-calculator.html">Loan Calculator</a></li>
+                        <li><a href="/mortgage-qualification-calculator/mortgage-qualification.html">Mortgage Calculator</a></li>
+                        <li><a href="/payoff-calculator/payoff-calculator.html">Debt Payoff Calculator</a></li>
+                        <li><a href="/paycheck-calculator/paycheck-calculator.html">Paycheck Calculator</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="/blog/">Blog</a></li>
+                        <li><a href="/sitemap.html">Site Map</a></li>
+                        <li><a href="/privacy-policy.html">Privacy Policy</a></li>
+                        <li><a href="/terms.html">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; <span id="current-year"></span> Calculator Tap. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html> 

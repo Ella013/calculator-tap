@@ -3,31 +3,510 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Payoff Calculator - Calculate Loan Repayment Time | Calculator Tap</title>
-    <meta name="description" content="Free payoff calculator to estimate your loan or debt repayment timeline. Plan your debt-free future with our easy-to-use loan payoff calculator.">
-    <meta name="keywords" content="payoff calculator, loan payoff calculator, debt repayment calculator, debt payoff timeline, loan repayment estimator">
-    <link rel="stylesheet" href="../styles.css">
+    <title>Debt Payoff Calculator - Calculate Your Debt Free Date | Calculator Tap</title>
+    <meta name="description" content="Free debt payoff calculator to estimate when you'll be debt-free. Calculate your debt-free date, total interest, and monthly payments.">
+    <meta name="keywords" content="debt payoff calculator, debt free calculator, debt snowball calculator, debt avalanche calculator, debt repayment calculator">
+    <link rel="icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
     <style>
-        .ui-datepicker {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            font-size: 14px;
+        /* Reset & Base Styles */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
-        #startDate {
+        
+        body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            font-size: 1rem;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f7fa;
+        }
+        
+        /* Header Styles */
+        .header {
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo-link {
+            text-decoration: none;
+            color: inherit;
+            transition: opacity 0.2s;
+        }
+        
+        .logo-link:hover {
+            opacity: 0.8;
+        }
+        
+        .logo h1 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        /* Main Nav Styles */
+        .main-nav {
+            display: flex;
+            gap: 1.5rem;
+        }
+        
+        .nav-link {
+            color: #2c3e50;
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            color: #3498db;
+        }
+        
+        .nav-link i {
+            font-size: 1.1rem;
+        }
+        
+        /* Container Styles */
+        .container {
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 1.5rem 1rem;
+        }
+        
+        /* Main Page Layout */
+        .page-layout {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 330px;
+            gap: 1.5rem;
+            padding: 1rem;
+        }
+        
+        /* Calculator Column */
+        .calculator-column {
             width: 100%;
-            padding: 0.8rem;
-            border: 2px solid #e0e0e0;
-            border-radius: 8px;
-            transition: border-color 0.3s ease;
-            cursor: pointer;
-            background-color: white;
         }
-        #startDate:focus {
+        
+        /* Sidebar Column */
+        .sidebar-column {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        /* Advertisement Style */
+        .advertisement {
+            background-color: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 1rem;
+            height: 300px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+        
+        /* Other Calculators Section */
+        .other-calculators {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            padding: 1rem;
+        }
+        
+        .other-calculators h3 {
+            color: #2c3e50;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 0.5rem;
+        }
+        
+        .calculator-list {
+            list-style: none;
+        }
+        
+        .calculator-list li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .calculator-list a {
+            display: block;
+            padding: 0.5rem;
+            text-decoration: none;
+            color: #3498db;
+            transition: background-color 0.2s;
+            border-radius: 4px;
+        }
+        
+        .calculator-list a:hover {
+            background-color: #f8f9fa;
+        }
+        
+        /* Calculator Main Styles */
+        .calculator-main {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+        
+        .calculator-header {
+            grid-column: 1 / -1;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .calculator-title {
+            font-size: 1.75rem;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+        
+        .calculator-description {
+            color: #7f8c8d;
+            max-width: 600px;
+            margin: 0 auto;
+            font-size: 0.9rem;
+        }
+
+        /* Form Styles */
+        .calculator-form {
+            grid-column: 1;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            font-size: 0.875rem;
+            margin-bottom: 0.5rem;
+            color: #555;
+            font-weight: 500;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            transition: border-color 0.2s;
+            background-color: white;
+            height: 45px;
+        }
+        
+        .form-group input:focus {
             border-color: #3498db;
             outline: none;
+        }
+        
+        .input-group {
+            position: relative;
+            width: 100%;
+        }
+        
+        .currency-symbol {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #555;
+            font-weight: 500;
+            pointer-events: none;
+        }
+        
+        .percent-symbol {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #555;
+            font-weight: 500;
+            pointer-events: none;
+        }
+        
+        .input-group input {
+            padding-left: 25px;
+        }
+        
+        .input-group input[id="interestRate"] {
+            padding-right: 25px;
+        }
+        
+        /* Results Section */
+        .results-section {
+            grid-column: 2;
+            padding: 1rem;
+            background-color: #f8fafc;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .results-header {
+            font-size: 1.2rem;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+            text-align: center;
+            padding-top: 0.5rem;
+        }
+        
+        .chart-container {
+            width: 100%;
+            height: 180px;
+            margin: 0 auto 0.5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid #eee;
+            border-radius: 4px;
+            position: relative;
+        }
+        
+        /* Chart Legend Styles */
+        .chart-legend {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 1rem;
+            font-size: 0.75rem;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            color: #7f8c8d;
+        }
+        
+        .legend-color {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 4px;
+            display: inline-block;
+        }
+        
+        .legend-color.principal {
+            background-color: #3498db;
+        }
+        
+        .legend-color.interest {
+            background-color: #e74c3c;
+        }
+        
+        .legend-color.payment {
+            background-color: #27ae60;
+        }
+        
+        .chart-placeholder {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+        
+        .results-summary {
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+        
+        .debt-free-date {
+            font-size: 2rem;
+            color: #2ecc71;
+            font-weight: 600;
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+        
+        .debt-free-label {
+            font-size: 0.9rem;
+            color: #7f8c8d;
+            display: block;
+        }
+        
+        .results-details {
+            margin-top: 1rem;
+            border-top: 1px solid #eee;
+            padding-top: 0.5rem;
+        }
+        
+        .result-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.4rem 0;
+            border-bottom: 1px solid #eee;
+            font-size: 0.9rem;
+        }
+        
+        .result-row:last-child {
+            border-bottom: none;
+        }
+        
+        .result-label {
+            color: #7f8c8d;
+        }
+        
+        .result-value {
+            font-weight: 500;
+            color: #2c3e50;
+        }
+        
+        /* Calculate Button */
+        .calculate-btn {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 0.75rem 1.25rem;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            margin-top: 1rem;
+            width: 100%;
+        }
+        
+        .calculate-btn:hover {
+            background-color: #2980b9;
+        }
+        
+        /* Explanation Section Styles */
+        .explanation-section {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .explanation-title {
+            font-size: 1.5rem;
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        
+        .explanation-text h3 {
+            color: #3498db;
+            margin: 1.5rem 0 0.75rem;
+            font-size: 1.125rem;
+        }
+        
+        .explanation-text p {
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+        
+        .explanation-text ul {
+            padding-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .explanation-text li {
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Footer Styles */
+        .footer {
+            background-color: #2c3e50;
+            color: white;
+            padding: 2rem 0;
+            margin-top: 4rem;
+        }
+        
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            text-align: center;
+        }
+        
+        .footer-links {
+            margin-bottom: 1rem;
+        }
+        
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            margin: 0 1rem;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: #3498db;
+        }
+        
+        .copyright {
+            font-size: 0.9rem;
+            color: #bdc3c7;
+        }
+        
+        /* Responsive styles */
+        @media (max-width: 900px) {
+            .page-layout {
+                grid-template-columns: 1fr;
+            }
+            
+            .calculator-column {
+                order: 1;
+            }
+            
+            .sidebar-column {
+                order: 2;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .calculator-main {
+                grid-template-columns: 1fr;
+            }
+            
+            .results-section {
+                grid-column: 1;
+                margin-top: 1rem;
+            }
+            
+            .calculator-form {
+                grid-column: 1;
+            }
         }
     </style>
 </head>
@@ -42,88 +521,164 @@
             </div>
             <nav class="main-nav">
                 <a href="../index.html" class="nav-link"><i class="fas fa-home"></i> Home</a>
-                <a href="../blog.html" class="nav-link"><i class="fas fa-blog"></i> Blog</a>
+                <a href="../blog/index.html" class="nav-link"><i class="fas fa-blog"></i> Blog</a>
             </nav>
         </div>
     </header>
 
-    <!-- Main Content -->
-    <main class="calculator-main">
-        <div class="calculator-container">
-            <h1>Payoff Calculator</h1>
-            <p class="calculator-description">Use our Payoff Calculator to estimate how long it will take to repay your loan or debt. Plan smarter and pay off faster.</p>
-            
-            <div class="calculator-form">
-                <div class="form-group">
-                    <label for="loanAmount">Loan Amount ($)</label>
-                    <input type="number" id="loanAmount" placeholder="Enter loan amount" min="0">
-                </div>
-                
-                <div class="form-group">
-                    <label for="interestRate">Annual Interest Rate (%)</label>
-                    <input type="number" id="interestRate" placeholder="Enter interest rate" min="0" step="0.01">
-                </div>
-                
-                <div class="form-group">
-                    <label for="monthlyPayment">Monthly Payment ($)</label>
-                    <input type="number" id="monthlyPayment" placeholder="Enter monthly payment" min="0">
-                </div>
+    <div class="container">
+        <div class="page-layout">
+            <div class="calculator-column">
+                <!-- Main Content -->
+                <main class="calculator-main">
+                    <div class="calculator-header">
+                        <h1 class="calculator-title">Debt Payoff Calculator</h1>
+                        <p class="calculator-description">Calculate when you'll be debt-free and how much interest you'll pay.</p>
+                    </div>
+                    
+                    <div class="calculator-form">
+                        <div class="form-group">
+                            <label for="debtAmount">Total Debt Amount</label>
+                            <div class="input-group">
+                                <span class="currency-symbol">$</span>
+                                <input type="number" id="debtAmount" placeholder="Enter your total debt amount" min="0">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="interestRate">Annual Interest Rate</label>
+                            <div class="input-group">
+                                <input type="number" id="interestRate" placeholder="Enter annual interest rate" min="0" step="0.01">
+                                <span class="percent-symbol">%</span>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="monthlyPayment">Monthly Payment</label>
+                            <div class="input-group">
+                                <span class="currency-symbol">$</span>
+                                <input type="number" id="monthlyPayment" placeholder="Enter monthly payment amount" min="0">
+                            </div>
+                        </div>
+                        
+                        <button id="calculateBtn" class="calculate-btn">Calculate</button>
+                    </div>
+                    
+                    <div class="results-section">
+                        <h3 class="results-header">Payoff Results</h3>
+                        
+                        <div class="chart-container">
+                            <canvas id="payoffChart"></canvas>
+                            <div class="chart-placeholder">계산 후 차트가 표시됩니다</div>
+                        </div>
+                        
+                        <div class="chart-legend">
+                            <div class="legend-item">
+                                <span class="legend-color principal"></span>
+                                <span>Principal</span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-color interest"></span>
+                                <span>Interest</span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-color payment"></span>
+                                <span>Payment</span>
+                            </div>
+                        </div>
+                        
+                        <div class="results-summary">
+                            <span id="debtFreeDate" class="debt-free-date">0 months</span>
+                            <span class="debt-free-label">Time to Debt-Free</span>
+                        </div>
+                        
+                        <div class="results-details">
+                            <div class="result-row">
+                                <span class="result-label">Total Interest</span>
+                                <span id="totalInterest" class="result-value">$0.00</span>
+                            </div>
+                            <div class="result-row">
+                                <span class="result-label">Total Payment</span>
+                                <span id="totalPayment" class="result-value">$0.00</span>
+                            </div>
+                            <div class="result-row">
+                                <span class="result-label">Monthly Payment</span>
+                                <span id="monthlyPaymentDisplay" class="result-value">$0.00</span>
+                            </div>
+                            <div class="result-row">
+                                <span class="result-label">Debt Amount</span>
+                                <span id="debtAmountDisplay" class="result-value">$0.00</span>
+                            </div>
+                        </div>
+                    </div>
+                </main>
 
-                <div class="form-group">
-                    <label for="startDate">Start Date (Optional)</label>
-                    <input type="text" id="startDate" placeholder="MM/DD/YYYY" readonly>
-                </div>
-                
-                <button id="calculateBtn" class="calculate-btn">Calculate</button>
+                <!-- SEO Content Section -->
+                <section class="explanation-section">
+                    <h2 class="explanation-title">Understanding Debt Payoff</h2>
+                    <div class="explanation-text">
+                        <p>
+                            Our <strong>Debt Payoff Calculator</strong> helps you determine when you'll be debt-free based on your 
+                            current debt amount, interest rate, and monthly payment. This tool provides valuable insights into 
+                            your debt repayment journey.
+                        </p>
+                        
+                        <h3>Key Factors in Debt Payoff:</h3>
+                        <ul>
+                            <li><strong>Debt Amount:</strong> The total amount you owe</li>
+                            <li><strong>Interest Rate:</strong> The annual percentage rate (APR) on your debt</li>
+                            <li><strong>Monthly Payment:</strong> The amount you can afford to pay each month</li>
+                            <li><strong>Time to Debt-Free:</strong> How long it will take to pay off your debt</li>
+                        </ul>
+
+                        <h3>Strategies for Faster Debt Payoff:</h3>
+                        <ul>
+                            <li>Make larger monthly payments when possible</li>
+                            <li>Consider debt consolidation for lower interest rates</li>
+                            <li>Use the debt snowball or avalanche method</li>
+                            <li>Look for ways to increase your monthly payment</li>
+                        </ul>
+
+                        <h3>Benefits of Being Debt-Free:</h3>
+                        <ul>
+                            <li>Improved credit score</li>
+                            <li>More disposable income</li>
+                            <li>Reduced financial stress</li>
+                            <li>Better financial flexibility</li>
+                        </ul>
+                    </div>
+                </section>
             </div>
-
-            <div class="results-container" id="resultsContainer" style="display: none;">
-                <h2>Payoff Summary</h2>
-                <div class="result-item">
-                    <span>Total Interest:</span>
-                    <span id="totalInterest">$0.00</span>
+            
+            <div class="sidebar-column">
+                <!-- Advertisement -->
+                <div class="advertisement">
+                    <img src="https://placehold.co/300x250/f8f9fa/3498db?text=Advertisement+Space" alt="Advertisement">
                 </div>
-                <div class="result-item">
-                    <span>Total Payment Period:</span>
-                    <span id="paymentPeriod">0 years 0 months</span>
-                </div>
-                <div class="result-item" id="payoffDateContainer">
-                    <span>Payoff Date:</span>
-                    <span id="payoffDate">-</span>
+                
+                <!-- Other Calculators -->
+                <div class="other-calculators">
+                    <h3>Other Calculators</h3>
+                    <ul class="calculator-list">
+                        <li><a href="../loan-calculator/loan-calculator.html">Loan Calculator</a></li>
+                        <li><a href="../mortgage-qualification-calculator/mortgage-qualification.html">Mortgage Calculator</a></li>
+                        <li><a href="../paycheck-calculator/paycheck-calculator.html">Paycheck Calculator</a></li>
+                        <li><a href="#">Age Calculator</a></li>
+                        <li><a href="#">Time Calculator</a></li>
+                        <li><a href="#">Date Calculator</a></li>
+                        <li><a href="#">GPA Calculator</a></li>
+                        <li><a href="#">Height Calculator</a></li>
+                        <li><a href="#">IP Subnet Calculator</a></li>
+                        <li><a href="#">Password Generator</a></li>
+                        <li><a href="#">Conversion Calculator</a></li>
+                        <li><a href="#">Financial Calculators</a></li>
+                        <li><a href="#">Health Calculators</a></li>
+                        <li><a href="#">Math Calculators</a></li>
+                    </ul>
                 </div>
             </div>
         </div>
-
-        <!-- SEO Content Section -->
-        <section class="loan-info-section">
-            <h2>What is a Payoff Calculator?</h2>
-            <p>
-                A <strong>Payoff Calculator</strong> helps you estimate how long it will take to pay off your loan or debt 
-                based on your monthly payments and interest rate. Whether you're managing student loans, credit cards, or a mortgage, 
-                this <strong>Loan Payoff Calculator</strong> gives you a clear payoff timeline. 
-                It's also called a <strong>Debt Repayment Calculator</strong>, perfect for planning your financial freedom.
-            </p>
-            
-            <div class="key-features">
-                <h3>How Our Payoff Calculator Helps You:</h3>
-                <ul>
-                    <li>Calculate your total payoff timeline</li>
-                    <li>See the total interest you'll pay</li>
-                    <li>Get your estimated debt-free date</li>
-                    <li>Plan your debt repayment strategy</li>
-                </ul>
-            </div>
-
-            <p>Understanding your loan payoff timeline is crucial for financial planning. Our calculator considers three main factors:</p>
-            <ul>
-                <li><strong>Loan Amount:</strong> Your current debt balance</li>
-                <li><strong>Interest Rate:</strong> The annual interest rate on your loan</li>
-                <li><strong>Monthly Payment:</strong> How much you can pay each month</li>
-            </ul>
-
-            <p>By adjusting your monthly payment amount, you can see how different payment strategies affect your payoff timeline and total interest paid.</p>
-        </section>
-    </main>
+    </div>
 
     <!-- Footer -->
     <footer class="footer">
@@ -134,13 +689,222 @@
                 <a href="../about.html">About</a>
             </div>
             <div class="copyright">
-                <p>Copyright © 2025 Calculator Tap. All rights reserved.</p>
+                <p>Copyright © <span id="currentYear"></span> Calculator Tap. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
-    <script src="payoff-calculator.js"></script>
+    <script>
+        // Update current year in footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+        
+        // Get all input elements
+        const debtAmountInput = document.getElementById('debtAmount');
+        const interestRateInput = document.getElementById('interestRate');
+        const monthlyPaymentInput = document.getElementById('monthlyPayment');
+        const calculateBtn = document.getElementById('calculateBtn');
+        
+        // Get result elements
+        const debtFreeDateElement = document.getElementById('debtFreeDate');
+        const totalInterestElement = document.getElementById('totalInterest');
+        const totalPaymentElement = document.getElementById('totalPayment');
+        const monthlyPaymentDisplay = document.getElementById('monthlyPaymentDisplay');
+        const debtAmountDisplay = document.getElementById('debtAmountDisplay');
+        const chartPlaceholder = document.querySelector('.chart-placeholder');
+        
+        // Format currency
+        const formatCurrency = (amount) => {
+            return new Intl.NumberFormat('en-US', {
+                style: 'currency',
+                currency: 'USD',
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            }).format(amount);
+        };
+        
+        // Format percentage
+        const formatPercentage = (value) => {
+            return new Intl.NumberFormat('en-US', {
+                style: 'percent',
+                minimumFractionDigits: 1,
+                maximumFractionDigits: 1
+            }).format(value / 100);
+        };
+        
+        // Create the initial pie chart with sample data
+        let payoffChart;
+        
+        function createInitialChart() {
+            const ctx = document.getElementById('payoffChart').getContext('2d');
+            
+            // Sample data
+            const data = {
+                labels: ['Principal', 'Interest', 'Monthly Payment'],
+                datasets: [{
+                    data: [10000, 2000, 500],
+                    backgroundColor: ['#3498db', '#e74c3c', '#27ae60'],
+                    borderColor: ['#fff', '#fff', '#fff'],
+                    borderWidth: 2
+                }]
+            };
+            
+            // Config
+            const config = {
+                type: 'bar',
+                data: data,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    indexAxis: 'y',
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    const label = context.label || '';
+                                    const value = context.raw || 0;
+                                    return `${label}: ${formatCurrency(value)}`;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            display: false
+                        },
+                        y: {
+                            display: false
+                        }
+                    }
+                }
+            };
+            
+            payoffChart = new Chart(ctx, config);
+            
+            // Sample values display
+            debtFreeDateElement.textContent = "24 months";
+            totalInterestElement.textContent = formatCurrency(2000);
+            totalPaymentElement.textContent = formatCurrency(12000);
+            monthlyPaymentDisplay.textContent = formatCurrency(500);
+            debtAmountDisplay.textContent = formatCurrency(10000);
+            
+            // Hide placeholder
+            chartPlaceholder.style.display = 'none';
+        }
+        
+        // Initialize the chart
+        try {
+            createInitialChart();
+        } catch (e) {
+            console.error('Error creating chart:', e);
+            chartPlaceholder.textContent = '차트 초기화 오류';
+        }
+        
+        // Update the chart with calculated values
+        function updateChart(principal, interest, payment) {
+            if (payoffChart) {
+                payoffChart.data.datasets[0].data = [principal, interest, payment];
+                payoffChart.update();
+            }
+        }
+        
+        // Calculate debt payoff
+        const calculatePayoff = () => {
+            try {
+                // Get input values
+                const debtAmount = parseFloat(debtAmountInput.value) || 0;
+                const annualInterestRate = parseFloat(interestRateInput.value) || 0;
+                const monthlyPayment = parseFloat(monthlyPaymentInput.value) || 0;
+
+                // Validate inputs
+                if (debtAmount <= 0) {
+                    alert('Please enter a valid debt amount');
+                    return;
+                }
+                if (monthlyPayment <= 0) {
+                    alert('Please enter a valid monthly payment');
+                    return;
+                }
+
+                // Calculate monthly interest rate
+                const monthlyInterestRate = (annualInterestRate / 100) / 12;
+                
+                // Initialize variables
+                let remainingBalance = debtAmount;
+                let totalInterest = 0;
+                let months = 0;
+                
+                // Calculate months to payoff
+                if (monthlyInterestRate > 0) {
+                    // Using the loan payoff formula
+                    months = Math.ceil(
+                        Math.log(monthlyPayment / (monthlyPayment - remainingBalance * monthlyInterestRate)) /
+                        Math.log(1 + monthlyInterestRate)
+                    );
+                    
+                    // Calculate total interest
+                    totalInterest = (monthlyPayment * months) - remainingBalance;
+                } else {
+                    // For 0% interest
+                    months = Math.ceil(remainingBalance / monthlyPayment);
+                    totalInterest = 0;
+                }
+
+                // Calculate total payment
+                const totalPayment = remainingBalance + totalInterest;
+
+                // Format months to years and months
+                const years = Math.floor(months / 12);
+                const remainingMonths = months % 12;
+                const timeToPayoff = years > 0 
+                    ? `${years} year${years > 1 ? 's' : ''} ${remainingMonths} month${remainingMonths !== 1 ? 's' : ''}`
+                    : `${months} month${months !== 1 ? 's' : ''}`;
+
+                // Update results
+                debtFreeDateElement.textContent = timeToPayoff;
+                totalInterestElement.textContent = formatCurrency(totalInterest);
+                totalPaymentElement.textContent = formatCurrency(totalPayment);
+                monthlyPaymentDisplay.textContent = formatCurrency(monthlyPayment);
+                debtAmountDisplay.textContent = formatCurrency(debtAmount);
+                
+                // Update chart with new values
+                updateChart(debtAmount, totalInterest, monthlyPayment);
+                
+                // Hide placeholder if it's still visible
+                chartPlaceholder.style.display = 'none';
+
+            } catch (error) {
+                console.error('Calculation error:', error);
+                alert('An error occurred while calculating. Please check your inputs and try again.');
+            }
+        };
+
+        // Add event listeners
+        calculateBtn.addEventListener('click', calculatePayoff);
+
+        // Allow calculation on Enter key
+        [debtAmountInput, interestRateInput, monthlyPaymentInput].forEach(input => {
+            input.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    calculatePayoff();
+                }
+            });
+        });
+
+        // Input validation
+        [debtAmountInput, interestRateInput, monthlyPaymentInput].forEach(input => {
+            input.addEventListener('input', () => {
+                // Remove any non-numeric characters except decimal point
+                input.value = input.value.replace(/[^0-9.]/g, '');
+                
+                // Ensure only one decimal point
+                if ((input.value.match(/\./g) || []).length > 1) {
+                    input.value = input.value.slice(0, -1);
+                }
+            });
+        });
+    </script>
 </body>
 </html> 

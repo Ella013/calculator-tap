@@ -3,12 +3,96 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculator Tap | Financial Calculators</title>
-    <meta name="description" content="Free online financial calculators for mortgage, loans, retirement planning and more. Easy to use tools to help make informed financial decisions.">
+    <title>Financial Calculators | Free Online Tools for Loans, Mortgage & More | Calculator Tap</title>
+    <meta name="description" content="Free online financial calculators for loans, mortgage qualification, debt payoff, and paycheck calculations. Make informed financial decisions with our easy-to-use tools.">
+    <meta name="keywords" content="financial calculator, loan calculator, mortgage calculator, debt payoff calculator, paycheck calculator, online calculator, free calculator">
+    <meta name="author" content="Calculator Tap">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://calculatortap.com/">
+    <meta property="og:title" content="Financial Calculators | Free Online Tools | Calculator Tap">
+    <meta property="og:description" content="Free online financial calculators for loans, mortgage qualification, debt payoff, and paycheck calculations.">
+    <meta property="og:image" content="https://calculatortap.com/images/og-image.jpg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://calculatortap.com/">
+    <meta property="twitter:title" content="Financial Calculators | Free Online Tools | Calculator Tap">
+    <meta property="twitter:description" content="Free online financial calculators for loans, mortgage qualification, debt payoff, and paycheck calculations.">
+    <meta property="twitter:image" content="https://calculatortap.com/images/og-image.jpg">
+
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Calculator Tap",
+        "url": "https://calculatortap.com",
+        "description": "Free online financial calculators for loans, mortgage qualification, debt payoff, and paycheck calculations.",
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://calculatortap.com/search?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+        }
+    }
+    </script>
+    
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "item": {
+                    "@type": "WebApplication",
+                    "name": "Loan Calculator",
+                    "url": "https://calculatortap.com/loan-calculator/loan-calculator.html",
+                    "description": "Calculate payments and interest for any type of loan."
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "item": {
+                    "@type": "WebApplication",
+                    "name": "Mortgage Calculator",
+                    "url": "https://calculatortap.com/mortgage-qualification-calculator/mortgage-qualification.html",
+                    "description": "Find out how much house you can afford."
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 3,
+                "item": {
+                    "@type": "WebApplication",
+                    "name": "Paycheck Calculator",
+                    "url": "https://calculatortap.com/paycheck-calculator/paycheck-calculator.html",
+                    "description": "Estimate take-home pay after taxes and deductions."
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 4,
+                "item": {
+                    "@type": "WebApplication",
+                    "name": "Debt Payoff Calculator",
+                    "url": "https://calculatortap.com/payoff-calculator/payoff-calculator.html",
+                    "description": "Plan your debt payoff strategy and save on interest."
+                }
+            }
+        ]
+    }
+    </script>
+
     <style>
         /* Compact calculator card styles */
         .calculator-grid {
@@ -90,69 +174,96 @@
     <header class="header">
         <div class="header-container">
             <div class="logo">
-                <a href="index.html" class="logo-link">
+                <a href="/" class="logo-link">
                     <h1>Calculator Tap</h1>
                 </a>
             </div>
             <nav class="main-nav">
-                <a href="index.html" class="nav-link"><i class="fas fa-home"></i> Home</a>
-                <a href="blog/index.html" class="nav-link"><i class="fas fa-blog"></i> Blog</a>
+                <a href="/" class="nav-link">Home</a>
+                <a href="/blog/" class="nav-link">Blog</a>
             </nav>
         </div>
     </header>
 
     <!-- Main Content -->
-    <main>
+    <main class="main-content">
         <!-- Title and Search Section -->
         <section class="title-section">
-            <h1>Explore with <span class="highlight">Calculator Tap</span></h1>
+            <h1>Free Online Financial Calculators</h1>
+            <p class="subtitle">Make informed financial decisions with our easy-to-use tools</p>
             <div class="search-container">
-                <input type="text" id="searchInput" placeholder="Search calculators...">
-                <button id="searchButton" class="search-button">
+                <input type="text" id="searchInput" placeholder="Search calculators..." aria-label="Search calculators">
+                <button id="searchButton" class="search-button" aria-label="Search">
                     <i class="fas fa-search"></i>
                 </button>
-                <div class="search-suggestions" id="searchSuggestions"></div>
+                <div class="search-suggestions" id="searchSuggestions" role="listbox"></div>
             </div>
         </section>
 
         <!-- Calculator Blocks -->
-        <section class="calculator-grid">
+        <section class="calculator-grid" aria-label="Available calculators">
             <div class="calculator-card">
-                <i class="fas fa-calculator"></i>
+                <i class="fas fa-calculator" aria-hidden="true"></i>
                 <h2>Loan Calculator</h2>
-                <p>Calculate payments and interest for any type of loan.</p>
-                <a href="loan-calculator/loan-calculator.html" class="btn">Calculate</a>
+                <p>Calculate monthly payments, total interest, and payoff timeline for any type of loan. Perfect for personal loans, auto loans, and student loans.</p>
+                <a href="loan-calculator/loan-calculator.html" class="btn" aria-label="Use Loan Calculator">Calculate</a>
             </div>
             <div class="calculator-card">
-                <i class="fas fa-home"></i>
+                <i class="fas fa-home" aria-hidden="true"></i>
                 <h2>Mortgage Calculator</h2>
-                <p>Find out how much house you can afford.</p>
-                <a href="Mortgage-Qualification-Calculator/mortgage-qualification.html" class="btn">Calculate</a>
+                <p>Determine how much house you can afford, estimate monthly payments, and understand your mortgage qualification requirements.</p>
+                <a href="mortgage-qualification-calculator/mortgage-qualification.html" class="btn" aria-label="Use Mortgage Calculator">Calculate</a>
             </div>
             <div class="calculator-card">
-                <i class="fas fa-wallet"></i>
+                <i class="fas fa-wallet" aria-hidden="true"></i>
                 <h2>Paycheck Calculator</h2>
-                <p>Estimate take-home pay after taxes and deductions.</p>
-                <a href="paycheck-calculator/paycheck-calculator.html" class="btn">Calculate</a>
+                <p>Estimate your take-home pay after taxes and deductions. Understand your net income and plan your budget effectively.</p>
+                <a href="paycheck-calculator/paycheck-calculator.html" class="btn" aria-label="Use Paycheck Calculator">Calculate</a>
             </div>
             <div class="calculator-card">
-                <i class="fas fa-money-bill-wave"></i>
-                <h2>Payoff Calculator</h2>
-                <p>Plan your debt payoff strategy and save on interest.</p>
-                <a href="payoff-calculator/payoff-calculator.html" class="btn">Calculate</a>
+                <i class="fas fa-money-bill-wave" aria-hidden="true"></i>
+                <h2>Debt Payoff Calculator</h2>
+                <p>Create a debt repayment plan, calculate your debt-free date, and see how much you can save on interest payments.</p>
+                <a href="payoff-calculator/payoff-calculator.html" class="btn" aria-label="Use Debt Payoff Calculator">Calculate</a>
             </div>
         </section>
 
         <!-- Site Description -->
         <section class="site-description">
+            <h2>About Calculator Tap</h2>
             <p>
-                Calculator Tap is a simple yet powerful website that offers essential <strong>financial calculators</strong> to help you make informed financial decisions.
-                Whether you're looking to <strong>calculate loan eligibility</strong>, estimate your <strong>payoff duration</strong>, or understand your <strong>mortgage qualification</strong>, we've got you covered.
+                Calculator Tap is your go-to resource for essential <strong>financial calculators</strong> designed to help you make informed financial decisions. 
+                Our tools are built with user experience in mind, offering clear results and helpful explanations.
             </p>
             <p>
-                All calculators are built with clean UI/UX, optimized for mobile and desktop users, and structured with <strong>SEO best practices</strong> for faster discovery on search engines.
-                Try our tools today and gain clarity in your financial planning!
+                Whether you're planning to <strong>take out a loan</strong>, <strong>buy a home</strong>, <strong>manage debt</strong>, or <strong>understand your paycheck</strong>, 
+                our calculators provide accurate estimates to guide your financial planning.
             </p>
+            
+            <h3>Why Choose Our Calculators?</h3>
+            <ul>
+                <li><strong>Easy to Use:</strong> Simple, intuitive interfaces for quick calculations</li>
+                <li><strong>Mobile-Friendly:</strong> Works seamlessly on all devices</li>
+                <li><strong>Detailed Results:</strong> Comprehensive breakdowns and explanations</li>
+                <li><strong>Free to Use:</strong> No registration required, no hidden fees</li>
+            </ul>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="faq-section">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-item">
+                <h3>Are these calculators free to use?</h3>
+                <p>Yes, all our calculators are completely free to use. No registration or payment is required.</p>
+            </div>
+            <div class="faq-item">
+                <h3>How accurate are the calculations?</h3>
+                <p>Our calculators use standard financial formulas and up-to-date tax rates. However, actual results may vary based on specific circumstances.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Can I save my calculations?</h3>
+                <p>Currently, calculations are performed in real-time and not saved. We recommend noting down important results.</p>
+            </div>
         </section>
     </main>
 
@@ -165,11 +276,64 @@
                 <a href="about.html">About</a>
             </div>
             <div class="copyright">
-                <p>Copyright © 2025 Calculator Tap. All rights reserved.</p>
+                <p>Copyright © <span id="currentYear"></span> Calculator Tap. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script>
+        // Update current year in footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+        
+        // Search functionality
+        const searchInput = document.getElementById('searchInput');
+        const searchButton = document.getElementById('searchButton');
+        const searchSuggestions = document.getElementById('searchSuggestions');
+        
+        const calculators = [
+            { name: 'Loan Calculator', url: 'loan-calculator/loan-calculator.html', keywords: ['loan', 'payment', 'interest'] },
+            { name: 'Mortgage Calculator', url: 'mortgage-qualification-calculator/mortgage-qualification.html', keywords: ['mortgage', 'house', 'home'] },
+            { name: 'Paycheck Calculator', url: 'paycheck-calculator/paycheck-calculator.html', keywords: ['paycheck', 'salary', 'tax'] },
+            { name: 'Debt Payoff Calculator', url: 'payoff-calculator/payoff-calculator.html', keywords: ['debt', 'payoff', 'repayment'] }
+        ];
+        
+        function updateSuggestions(query) {
+            searchSuggestions.innerHTML = '';
+            if (!query) return;
+            
+            const matches = calculators.filter(calc => 
+                calc.name.toLowerCase().includes(query.toLowerCase()) ||
+                calc.keywords.some(keyword => keyword.toLowerCase().includes(query.toLowerCase()))
+            );
+            
+            matches.forEach(calc => {
+                const div = document.createElement('div');
+                div.className = 'suggestion-item';
+                div.innerHTML = `<a href="${calc.url}">${calc.name}</a>`;
+                searchSuggestions.appendChild(div);
+            });
+            
+            searchSuggestions.style.display = matches.length ? 'block' : 'none';
+        }
+        
+        searchInput.addEventListener('input', () => updateSuggestions(searchInput.value));
+        searchButton.addEventListener('click', () => {
+            const query = searchInput.value;
+            if (query) {
+                const match = calculators.find(calc => 
+                    calc.name.toLowerCase().includes(query.toLowerCase()) ||
+                    calc.keywords.some(keyword => keyword.toLowerCase().includes(query.toLowerCase()))
+                );
+                if (match) window.location.href = match.url;
+            }
+        });
+        
+        // Close suggestions when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!searchInput.contains(e.target) && !searchSuggestions.contains(e.target)) {
+                searchSuggestions.style.display = 'none';
+            }
+        });
+    </script>
 </body>
 </html> 
