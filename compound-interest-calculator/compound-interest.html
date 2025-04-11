@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compound Interest Calculator | Calculator Tap</title>
+    <meta name="description" content="Calculate how your investments will grow over time with our free compound interest calculator. Plan your financial future with accurate projections.">
+    <meta name="keywords" content="compound interest calculator, investment growth calculator, interest calculator, savings calculator, investment calculator">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="compound-interest.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="icon" href="../favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <div class="logo">
+                <a href="../index.html" class="logo-link">
+                    <h1>Calculator Tap</h1>
+                </a>
+            </div>
+            <nav class="main-nav">
+                <a href="../index.html" class="nav-link"><i class="fas fa-home"></i> Home</a>
+                <a href="../blog/index.html" class="nav-link"><i class="fas fa-blog"></i> Blog</a>
+            </nav>
+            <div class="hamburger-menu" id="hamburgerMenu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav" id="mobileNav">
+        <div class="close-menu" id="closeMenu">
+            <i class="fas fa-times"></i>
+        </div>
+        <a href="../index.html" class="mobile-nav-link"><i class="fas fa-home"></i> Home</a>
+        <a href="../loan-calculator/loan-calculator.html" class="mobile-nav-link"><i class="fas fa-money-bill"></i> Loan Calculator</a>
+        <a href="../Mortgage-Qualification-Calculator/mortgage-qualification.html" class="mobile-nav-link"><i class="fas fa-home"></i> Mortgage Calculator</a>
+        <a href="../paycheck-calculator/paycheck-calculator.html" class="mobile-nav-link"><i class="fas fa-wallet"></i> Paycheck Calculator</a>
+        <a href="../payoff-calculator/payoff-calculator.html" class="mobile-nav-link"><i class="fas fa-money-bill-wave"></i> Debt Payoff Calculator</a>
+        <a href="compound-interest.html" class="mobile-nav-link active"><i class="fas fa-chart-line"></i> Compound Interest Calculator</a>
+        <a href="../investment-return-calculator/investment-return.html" class="mobile-nav-link"><i class="fas fa-chart-pie"></i> Investment Return Calculator</a>
+        <a href="../dividend-calculator/dividend-calculator.html" class="mobile-nav-link"><i class="fas fa-hand-holding-usd"></i> Dividend Calculator</a>
+        <a href="../stock-return-calculator/stock-return.html" class="mobile-nav-link"><i class="fas fa-chart-bar"></i> Stock Return Calculator</a>
+        <a href="../blog/index.html" class="mobile-nav-link"><i class="fas fa-blog"></i> Blog</a>
+    </div>
+
+    <!-- Main Content -->
+    <main class="calculator-container">
+        <section class="calculator-intro">
+            <h1 style="margin-top: 2rem;">Compound Interest Calculator</h1>
+            <p>Calculate how your investments will grow over time with the power of compound interest. See the difference between different compounding frequencies and understand the impact of additional contributions.</p>
+        </section>
+
+        <div class="calculator-layout">
+            <!-- Calculator Form -->
+            <section class="calculator-form">
+                <div class="form-group">
+                    <label for="initialInvestment">Initial Investment ($)</label>
+                    <input type="number" id="initialInvestment" min="0" value="10000" step="100">
+                </div>
+
+                <div class="form-group">
+                    <label for="contributionAmount">Additional Contribution ($)</label>
+                    <input type="number" id="contributionAmount" min="0" value="100" step="10">
+                </div>
+
+                <div class="form-group">
+                    <label for="contributionFrequency">Contribution Frequency</label>
+                    <select id="contributionFrequency">
+                        <option value="monthly" selected>Monthly</option>
+                        <option value="quarterly">Quarterly</option>
+                        <option value="annually">Annually</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="interestRate">Interest Rate (% per year)</label>
+                    <input type="number" id="interestRate" min="0" max="100" value="7" step="0.1">
+                </div>
+
+                <div class="form-group">
+                    <label for="compoundFrequency">Compound Frequency</label>
+                    <select id="compoundFrequency">
+                        <option value="annually">Annually</option>
+                        <option value="semiannually">Semi-annually</option>
+                        <option value="quarterly">Quarterly</option>
+                        <option value="monthly" selected>Monthly</option>
+                        <option value="daily">Daily</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="investmentLength">Investment Time (years)</label>
+                    <input type="number" id="investmentLength" min="1" max="50" value="10" step="1">
+                </div>
+
+                <button id="calculateBtn" class="calculate-btn"><i class="fas fa-calculator"></i> Calculate</button>
+                <button id="resetBtn" class="reset-btn"><i class="fas fa-undo"></i> Reset</button>
+            </section>
+
+            <!-- Results Section -->
+            <section class="calculator-results">
+                <h2>Investment Results</h2>
+                <div class="results-summary">
+                    <div class="result-item">
+                        <h3>Future Value</h3>
+                        <p class="result-value" id="futureValue">$0.00</p>
+                        <p class="result-description">Total amount after the investment period</p>
+                    </div>
+
+                    <div class="result-item">
+                        <h3>Total Principal</h3>
+                        <p class="result-value" id="totalPrincipal">$0.00</p>
+                        <p class="result-description">Initial investment + additional contributions</p>
+                    </div>
+
+                    <div class="result-item">
+                        <h3>Total Interest</h3>
+                        <p class="result-value" id="totalInterest">$0.00</p>
+                        <p class="result-description">Earnings from interest over time</p>
+                    </div>
+                </div>
+
+                <div class="results-chart">
+                    <canvas id="growthChart"></canvas>
+                </div>
+
+                <div class="results-table">
+                    <h3>Investment Growth Over Time</h3>
+                    <div class="table-container">
+                        <table id="growthTable">
+                            <thead>
+                                <tr>
+                                    <th>Year</th>
+                                    <th>Principal</th>
+                                    <th>Interest</th>
+                                    <th>Balance</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Table will be populated by JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- About Section -->
+        <section class="about-calculator">
+            <h2>About Compound Interest</h2>
+            <p>
+                Compound interest is a powerful financial concept where you earn interest not only on your initial investment but also on the accumulated interest over time. It's often described as "interest on interest" and is a key factor in long-term investment growth.
+            </p>
+            <h3>How It Works</h3>
+            <p>
+                With compound interest, your investment grows at an accelerating rate. The more frequently interest is compounded (daily, monthly, quarterly, etc.), the faster your money grows. This calculator allows you to see the difference various compounding frequencies make.
+            </p>
+            <h3>The Impact of Additional Contributions</h3>
+            <p>
+                Regular additional contributions can dramatically increase your investment's growth. This calculator shows how consistent deposits, combined with compound interest, can help you reach your financial goals faster.
+            </p>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-links">
+                <a href="../privacy-policy.html">Privacy Policy</a>
+                <a href="../terms.html">Terms</a>
+                <a href="../about.html">About</a>
+            </div>
+            <div class="copyright">
+                <p>Copyright © <span id="currentYear"></span> Calculator Tap. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="compound-interest.js"></script>
+</body>
+</html> 

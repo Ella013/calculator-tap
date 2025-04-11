@@ -331,11 +331,13 @@
         }
         
         .monthly-amount {
-            font-size: 2rem;
+            font-size: 2.5rem;
             color: #2ecc71;
-            font-weight: 600;
+            font-weight: 700;
             display: block;
             margin-bottom: 0.25rem;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+            padding: 0.2rem 0;
         }
         
         .monthly-label {
@@ -461,6 +463,58 @@
             color: #bdc3c7;
         }
         
+        /* 모바일 메뉴 스타일 추가 */
+        .hamburger-menu {
+            display: none;
+            font-size: 1.8rem;
+            color: #333;
+            cursor: pointer;
+        }
+        
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(255, 255, 255, 0.95);
+            z-index: 1000;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transform: translateY(-100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .mobile-nav.active {
+            transform: translateY(0);
+            display: flex;
+        }
+        
+        .mobile-nav-link {
+            display: block;
+            font-size: 1.5rem;
+            padding: 1rem;
+            color: #333;
+            text-decoration: none;
+            margin: 0.5rem 0;
+            transition: color 0.2s;
+        }
+        
+        .mobile-nav-link:hover {
+            color: #3498db;
+        }
+        
+        .close-menu {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            font-size: 2rem;
+            color: #333;
+            cursor: pointer;
+        }
+        
         /* Responsive styles */
         @media (max-width: 900px) {
             .page-layout {
@@ -477,6 +531,14 @@
         }
         
         @media (max-width: 768px) {
+            .main-nav {
+                display: none;
+            }
+            
+            .hamburger-menu {
+                display: block;
+            }
+            
             .calculator-main {
                 grid-template-columns: 1fr;
             }
@@ -505,8 +567,24 @@
                 <a href="../index.html" class="nav-link"><i class="fas fa-home"></i> Home</a>
                 <a href="../blog/index.html" class="nav-link"><i class="fas fa-blog"></i> Blog</a>
             </nav>
+            <div class="hamburger-menu" id="hamburgerMenu">
+                <i class="fas fa-bars" aria-hidden="true"></i>
+            </div>
         </div>
     </header>
+
+    <!-- 모바일 내비게이션 추가 -->
+    <div class="mobile-nav" id="mobileNav">
+        <div class="close-menu" id="closeMenu">
+            <i class="fas fa-times" aria-hidden="true"></i>
+        </div>
+        <a href="../index.html" class="mobile-nav-link"><i class="fas fa-home"></i> Home</a>
+        <a href="../loan-calculator/loan-calculator.html" class="mobile-nav-link"><i class="fas fa-money-bill"></i> Loan Calculator</a>
+        <a href="../Mortgage-Qualification-Calculator/mortgage-qualification.html" class="mobile-nav-link"><i class="fas fa-home"></i> Mortgage Calculator</a>
+        <a href="../paycheck-calculator/paycheck-calculator.html" class="mobile-nav-link"><i class="fas fa-wallet"></i> Paycheck Calculator</a>
+        <a href="../payoff-calculator/payoff-calculator.html" class="mobile-nav-link"><i class="fas fa-money-bill-wave"></i> Debt Payoff Calculator</a>
+        <a href="../blog/index.html" class="mobile-nav-link"><i class="fas fa-blog"></i> Blog</a>
+    </div>
 
     <div class="container">
         <div class="page-layout">
@@ -566,16 +644,16 @@
                         
                         <div class="results-details">
                             <div class="result-row">
-                                <span class="result-label">Loan Amount</span>
-                                <span id="loanAmountDisplay" class="result-value">$0.00</span>
+                                <span class="result-label">Total Payment</span>
+                                <span id="totalPayment" class="result-value">$0.00</span>
                             </div>
                             <div class="result-row">
                                 <span class="result-label">Total Interest</span>
                                 <span id="totalInterest" class="result-value">$0.00</span>
                             </div>
                             <div class="result-row">
-                                <span class="result-label">Total Payment</span>
-                                <span id="totalPayment" class="result-value">$0.00</span>
+                                <span class="result-label">Loan Amount</span>
+                                <span id="loanAmountDisplay" class="result-value">$0.00</span>
                             </div>
                             <div class="result-row">
                                 <span class="result-label">Interest Rate</span>
@@ -829,6 +907,30 @@
                 if ((input.value.match(/\./g) || []).length > 1) {
                     input.value = input.value.slice(0, -1);
                 }
+            });
+        });
+
+        // 모바일 메뉴 스크립트 추가
+        const hamburgerMenu = document.getElementById('hamburgerMenu');
+        const mobileNav = document.getElementById('mobileNav');
+        const closeMenu = document.getElementById('closeMenu');
+        
+        hamburgerMenu.addEventListener('click', () => {
+            mobileNav.classList.add('active');
+            document.body.style.overflow = 'hidden'; // 스크롤 방지
+        });
+        
+        closeMenu.addEventListener('click', () => {
+            mobileNav.classList.remove('active');
+            document.body.style.overflow = ''; // 스크롤 복원
+        });
+        
+        // 모바일 메뉴 링크 클릭 시 메뉴 닫기
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileNav.classList.remove('active');
+                document.body.style.overflow = '';
             });
         });
     </script>

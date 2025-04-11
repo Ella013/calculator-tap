@@ -152,7 +152,67 @@
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
         
+        /* 모바일 메뉴 스타일 추가 */
+        .hamburger-menu {
+            display: none;
+            font-size: 1.8rem;
+            color: #333;
+            cursor: pointer;
+        }
+        
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(255, 255, 255, 0.95);
+            z-index: 1000;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transform: translateY(-100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .mobile-nav.active {
+            transform: translateY(0);
+            display: flex;
+        }
+        
+        .mobile-nav-link {
+            display: block;
+            font-size: 1.5rem;
+            padding: 1rem;
+            color: #333;
+            text-decoration: none;
+            margin: 0.5rem 0;
+            transition: color 0.2s;
+        }
+        
+        .mobile-nav-link:hover {
+            color: #3498db;
+        }
+        
+        .close-menu {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            font-size: 2rem;
+            color: #333;
+            cursor: pointer;
+        }
+        
         @media (max-width: 768px) {
+            .main-nav {
+                display: none;
+            }
+            
+            .hamburger-menu {
+                display: block;
+            }
+            
             .calculator-grid {
                 grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
                 gap: 1rem;
@@ -174,17 +234,37 @@
     <header class="header">
         <div class="header-container">
             <div class="logo">
-                <a href="/" class="logo-link">
+                <a href="index.html" class="logo-link">
                     <h1>Calculator Tap</h1>
                 </a>
             </div>
             <nav class="main-nav">
-                <a href="/" class="nav-link">Home</a>
-                <a href="/blog/" class="nav-link">Blog</a>
+                <a href="index.html" class="nav-link"><i class="fas fa-home"></i> Home</a>
+                <a href="blog/index.html" class="nav-link"><i class="fas fa-blog"></i> Blog</a>
             </nav>
+            <div class="hamburger-menu" id="hamburgerMenu">
+                <i class="fas fa-bars" aria-hidden="true"></i>
+            </div>
         </div>
     </header>
 
+    <!-- 모바일 내비게이션 추가 -->
+    <div class="mobile-nav" id="mobileNav">
+        <div class="close-menu" id="closeMenu">
+            <i class="fas fa-times" aria-hidden="true"></i>
+        </div>
+        <a href="index.html" class="mobile-nav-link"><i class="fas fa-home"></i> Home</a>
+        <a href="loan-calculator/loan-calculator.html" class="mobile-nav-link"><i class="fas fa-money-bill"></i> Loan Calculator</a>
+        <a href="Mortgage-Qualification-Calculator/mortgage-qualification.html" class="mobile-nav-link"><i class="fas fa-home"></i> Mortgage Calculator</a>
+        <a href="paycheck-calculator/paycheck-calculator.html" class="mobile-nav-link"><i class="fas fa-wallet"></i> Paycheck Calculator</a>
+        <a href="payoff-calculator/payoff-calculator.html" class="mobile-nav-link"><i class="fas fa-money-bill-wave"></i> Debt Payoff Calculator</a>
+        <a href="compound-interest-calculator/compound-interest.html" class="mobile-nav-link"><i class="fas fa-chart-line"></i> Compound Interest Calculator</a>
+        <a href="investment-return-calculator/investment-return.html" class="mobile-nav-link"><i class="fas fa-chart-pie"></i> Investment Return Calculator</a>
+        <a href="dividend-calculator/dividend-calculator.html" class="mobile-nav-link"><i class="fas fa-hand-holding-usd"></i> Dividend Calculator</a>
+        <a href="stock-return-calculator/stock-return.html" class="mobile-nav-link"><i class="fas fa-chart-bar"></i> Stock Return Calculator</a>
+        <a href="blog/index.html" class="mobile-nav-link"><i class="fas fa-blog"></i> Blog</a>
+    </div>
+        
     <!-- Main Content -->
     <main class="main-content">
         <!-- Title and Search Section -->
@@ -212,7 +292,7 @@
                 <i class="fas fa-home" aria-hidden="true"></i>
                 <h2>Mortgage Calculator</h2>
                 <p>Determine how much house you can afford, estimate monthly payments, and understand your mortgage qualification requirements.</p>
-                <a href="mortgage-qualification-calculator/mortgage-qualification.html" class="btn" aria-label="Use Mortgage Calculator">Calculate</a>
+                <a href="Mortgage-Qualification-Calculator/mortgage-qualification.html" class="btn" aria-label="Use Mortgage Calculator">Calculate</a>
             </div>
             <div class="calculator-card">
                 <i class="fas fa-wallet" aria-hidden="true"></i>
@@ -225,6 +305,30 @@
                 <h2>Debt Payoff Calculator</h2>
                 <p>Create a debt repayment plan, calculate your debt-free date, and see how much you can save on interest payments.</p>
                 <a href="payoff-calculator/payoff-calculator.html" class="btn" aria-label="Use Debt Payoff Calculator">Calculate</a>
+            </div>
+            <div class="calculator-card">
+                <i class="fas fa-chart-line" aria-hidden="true"></i>
+                <h2>Compound Interest Calculator</h2>
+                <p>Calculate how your investments will grow over time with compound interest. Plan for your financial future.</p>
+                <a href="compound-interest-calculator/compound-interest.html" class="btn" aria-label="Use Compound Interest Calculator">Calculate</a>
+            </div>
+            <div class="calculator-card">
+                <i class="fas fa-chart-pie" aria-hidden="true"></i>
+                <h2>Investment Return Calculator</h2>
+                <p>Analyze your investment performance and calculate returns on your portfolio over different time periods.</p>
+                <a href="investment-return-calculator/investment-return.html" class="btn" aria-label="Use Investment Return Calculator">Calculate</a>
+            </div>
+            <div class="calculator-card">
+                <i class="fas fa-hand-holding-usd" aria-hidden="true"></i>
+                <h2>Dividend Calculator</h2>
+                <p>Calculate dividend income, yield, and growth potential from your stock investments and dividend portfolios.</p>
+                <a href="dividend-calculator/dividend-calculator.html" class="btn" aria-label="Use Dividend Calculator">Calculate</a>
+            </div>
+            <div class="calculator-card">
+                <i class="fas fa-chart-bar" aria-hidden="true"></i>
+                <h2>Stock Return Calculator</h2>
+                <p>Calculate your stock investment returns including capital gains, dividends, and total returns over your investment period.</p>
+                <a href="stock-return-calculator/stock-return.html" class="btn" aria-label="Use Stock Return Calculator">Calculate</a>
             </div>
         </section>
 
@@ -292,9 +396,13 @@
         
         const calculators = [
             { name: 'Loan Calculator', url: 'loan-calculator/loan-calculator.html', keywords: ['loan', 'payment', 'interest'] },
-            { name: 'Mortgage Calculator', url: 'mortgage-qualification-calculator/mortgage-qualification.html', keywords: ['mortgage', 'house', 'home'] },
+            { name: 'Mortgage Calculator', url: 'Mortgage-Qualification-Calculator/mortgage-qualification.html', keywords: ['mortgage', 'house', 'home'] },
             { name: 'Paycheck Calculator', url: 'paycheck-calculator/paycheck-calculator.html', keywords: ['paycheck', 'salary', 'tax'] },
-            { name: 'Debt Payoff Calculator', url: 'payoff-calculator/payoff-calculator.html', keywords: ['debt', 'payoff', 'repayment'] }
+            { name: 'Debt Payoff Calculator', url: 'payoff-calculator/payoff-calculator.html', keywords: ['debt', 'payoff', 'repayment'] },
+            { name: 'Compound Interest Calculator', url: 'compound-interest-calculator/compound-interest.html', keywords: ['compound', 'interest', 'investment'] },
+            { name: 'Investment Return Calculator', url: 'investment-return-calculator/investment-return.html', keywords: ['return', 'investment', 'portfolio'] },
+            { name: 'Dividend Calculator', url: 'dividend-calculator/dividend-calculator.html', keywords: ['dividend', 'income', 'yield'] },
+            { name: 'Stock Return Calculator', url: 'stock-return-calculator/stock-return.html', keywords: ['stock', 'return', 'equity'] }
         ];
         
         function updateSuggestions(query) {
@@ -333,6 +441,30 @@
             if (!searchInput.contains(e.target) && !searchSuggestions.contains(e.target)) {
                 searchSuggestions.style.display = 'none';
             }
+        });
+        
+        // 모바일 메뉴 스크립트 추가
+        const hamburgerMenu = document.getElementById('hamburgerMenu');
+        const mobileNav = document.getElementById('mobileNav');
+        const closeMenu = document.getElementById('closeMenu');
+        
+        hamburgerMenu.addEventListener('click', () => {
+            mobileNav.classList.add('active');
+            document.body.style.overflow = 'hidden'; // 스크롤 방지
+        });
+        
+        closeMenu.addEventListener('click', () => {
+            mobileNav.classList.remove('active');
+            document.body.style.overflow = ''; // 스크롤 복원
+        });
+        
+        // 모바일 메뉴 링크 클릭 시 메뉴 닫기
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileNav.classList.remove('active');
+                document.body.style.overflow = '';
+            });
         });
     </script>
 </body>
