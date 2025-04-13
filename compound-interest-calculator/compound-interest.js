@@ -9,13 +9,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const compoundFrequencySelect = document.getElementById('compoundFrequency');
     const investmentLengthInput = document.getElementById('investmentLength');
     const calculateBtn = document.getElementById('calculateBtn');
-    const resetBtn = document.getElementById('resetBtn');
     
     // Get references to result elements
     const futureValueEl = document.getElementById('futureValue');
     const totalPrincipalEl = document.getElementById('totalPrincipal');
     const totalInterestEl = document.getElementById('totalInterest');
-    const growthTableBody = document.getElementById('growthTable').querySelector('tbody');
     
     // Chart reference
     let growthChart = null;
@@ -23,32 +21,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // Update year in footer
     document.getElementById('currentYear').textContent = new Date().getFullYear();
     
-    // Mobile menu functionality
-    const hamburgerMenu = document.getElementById('hamburgerMenu');
-    const mobileNav = document.getElementById('mobileNav');
-    const closeMenu = document.getElementById('closeMenu');
-    
-    hamburgerMenu.addEventListener('click', function() {
-        mobileNav.classList.add('active');
-        document.body.style.overflow = 'hidden';
-    });
-    
-    closeMenu.addEventListener('click', function() {
-        mobileNav.classList.remove('active');
-        document.body.style.overflow = '';
-    });
-    
-    const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
-    mobileNavLinks.forEach(link => {
-        link.addEventListener('click', function() {
-            mobileNav.classList.remove('active');
-            document.body.style.overflow = '';
-        });
-    });
-    
     // Event Listeners
     calculateBtn.addEventListener('click', calculateCompoundInterest);
-    resetBtn.addEventListener('click', resetCalculator);
     
     // Initialize with default calculation
     calculateCompoundInterest();
@@ -127,53 +101,11 @@ document.addEventListener('DOMContentLoaded', function() {
         totalPrincipalEl.textContent = formatCurrency(totalContributions);
         totalInterestEl.textContent = formatCurrency(balance - totalContributions);
         
-        // Update table
-        updateGrowthTable(yearlyData);
-        
         // Update chart
         updateGrowthChart(labels, principalData, interestData);
-    }
-    
-    function resetCalculator() {
-        // Reset to default values
-        initialInvestmentInput.value = 10000;
-        contributionAmountInput.value = 100;
-        contributionFrequencySelect.value = 'monthly';
-        interestRateInput.value = 7;
-        compoundFrequencySelect.value = 'monthly';
-        investmentLengthInput.value = 10;
         
-        // Recalculate
-        calculateCompoundInterest();
-    }
-    
-    function updateGrowthTable(data) {
-        // Clear existing table rows
-        growthTableBody.innerHTML = '';
-        
-        // Create table rows
-        data.forEach(yearData => {
-            const row = document.createElement('tr');
-            
-            const yearCell = document.createElement('td');
-            yearCell.textContent = yearData.year;
-            
-            const principalCell = document.createElement('td');
-            principalCell.textContent = formatCurrency(yearData.principal);
-            
-            const interestCell = document.createElement('td');
-            interestCell.textContent = formatCurrency(yearData.interest);
-            
-            const balanceCell = document.createElement('td');
-            balanceCell.textContent = formatCurrency(yearData.balance);
-            
-            row.appendChild(yearCell);
-            row.appendChild(principalCell);
-            row.appendChild(interestCell);
-            row.appendChild(balanceCell);
-            
-            growthTableBody.appendChild(row);
-        });
+        // Update growth table
+        updateGrowthTable(yearlyData);
     }
     
     function updateGrowthChart(labels, principalData, interestData) {
@@ -193,14 +125,14 @@ document.addEventListener('DOMContentLoaded', function() {
                     {
                         label: 'Principal',
                         data: principalData,
-                        backgroundColor: 'rgba(52, 152, 219, 0.6)',
+                        backgroundColor: 'rgba(52, 152, 219, 0.7)',  // 파란색
                         borderColor: 'rgba(52, 152, 219, 1)',
                         borderWidth: 1
                     },
                     {
                         label: 'Interest',
                         data: interestData,
-                        backgroundColor: 'rgba(46, 204, 113, 0.6)',
+                        backgroundColor: 'rgba(46, 204, 113, 0.7)',  // 초록색
                         borderColor: 'rgba(46, 204, 113, 1)',
                         borderWidth: 1
                     }
@@ -209,28 +141,11 @@ document.addEventListener('DOMContentLoaded', function() {
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
-                scales: {
-                    x: {
-                        stacked: true,
-                        title: {
-                            display: true,
-                            text: 'Time Period'
-                        }
-                    },
-                    y: {
-                        stacked: true,
-                        title: {
-                            display: true,
-                            text: 'Amount ($)'
-                        },
-                        ticks: {
-                            callback: function(value) {
-                                return formatCurrency(value, false);
-                            }
-                        }
-                    }
-                },
                 plugins: {
+                    legend: {
+                        display: false,
+                        position: 'bottom'
+                    },
                     tooltip: {
                         callbacks: {
                             label: function(context) {
@@ -241,48 +156,89 @@ document.addEventListener('DOMContentLoaded', function() {
                                 return 'Total: ' + formatCurrency(totalValue);
                             }
                         }
+                    }
+                },
+                scales: {
+                    x: {
+                        stacked: true,
+                        grid: {
+                            display: false
+                        },
+                        title: {
+                            display: true,
+                            text: 'Time Period'
+                        }
                     },
-                    legend: {
-                        position: 'top'
-                    },
-                    title: {
-                        display: true,
-                        text: 'Investment Growth Over Time'
+                    y: {
+                        stacked: true,
+                        grid: {
+                            color: 'rgba(0, 0, 0, 0.05)'
+                        },
+                        title: {
+                            display: true,
+                            text: 'Amount ($)'
+                        },
+                        ticks: {
+                            callback: function(value) {
+                                return formatCurrency(value, false);
+                            }
+                        }
                     }
                 }
             }
         });
     }
     
-    // Helper functions
+    function updateGrowthTable(yearlyData) {
+        const tableBody = document.getElementById('growthTableBody');
+        tableBody.innerHTML = ''; // Clear existing rows
+        
+        // Add rows to table
+        yearlyData.forEach(data => {
+            const row = document.createElement('tr');
+            
+            const yearCell = document.createElement('td');
+            yearCell.textContent = data.year;
+            row.appendChild(yearCell);
+            
+            const principalCell = document.createElement('td');
+            principalCell.textContent = formatCurrency(data.principal);
+            row.appendChild(principalCell);
+            
+            const interestCell = document.createElement('td');
+            interestCell.textContent = formatCurrency(data.interest);
+            row.appendChild(interestCell);
+            
+            const balanceCell = document.createElement('td');
+            balanceCell.textContent = formatCurrency(data.balance);
+            row.appendChild(balanceCell);
+            
+            tableBody.appendChild(row);
+        });
+    }
+    
+    // Helper Functions
     function getCompoundPeriods(frequency) {
-        switch (frequency) {
-            case 'daily': return 365;
-            case 'monthly': return 12;
-            case 'quarterly': return 4;
-            case 'semiannually': return 2;
-            case 'annually': return 1;
-            default: return 12;
-        }
+        const periods = {
+            'daily': 365,
+            'monthly': 12,
+            'quarterly': 4,
+            'semiannually': 2,
+            'annually': 1
+        };
+        return periods[frequency] || 12;
     }
     
     function getContributionPeriods(frequency) {
-        switch (frequency) {
-            case 'monthly': return 12;
-            case 'quarterly': return 4;
-            case 'annually': return 1;
-            default: return 12;
-        }
+        const periods = {
+            'monthly': 12,
+            'quarterly': 4,
+            'annually': 1
+        };
+        return periods[frequency] || 12;
     }
     
     function formatCurrency(value, includeSymbol = true) {
-        const formatter = new Intl.NumberFormat('en-US', {
-            style: includeSymbol ? 'currency' : 'decimal',
-            currency: 'USD',
-            minimumFractionDigits: 2,
-            maximumFractionDigits: 2
-        });
-        
-        return formatter.format(value);
+        return (includeSymbol ? '$' : '') + value.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
     }
 }); 

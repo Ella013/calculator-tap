@@ -24,147 +24,228 @@
                 <a href="../index.html" class="nav-link"><i class="fas fa-home"></i> Home</a>
                 <a href="../blog/index.html" class="nav-link"><i class="fas fa-blog"></i> Blog</a>
             </nav>
-            <div class="hamburger-menu" id="hamburgerMenu">
-                <i class="fas fa-bars"></i>
-            </div>
         </div>
     </header>
 
-    <!-- Mobile Navigation -->
-    <div class="mobile-nav" id="mobileNav">
-        <div class="close-menu" id="closeMenu">
-            <i class="fas fa-times"></i>
-        </div>
-        <a href="../index.html" class="mobile-nav-link"><i class="fas fa-home"></i> Home</a>
-        <a href="../loan-calculator/loan-calculator.html" class="mobile-nav-link"><i class="fas fa-money-bill"></i> Loan Calculator</a>
-        <a href="../Mortgage-Qualification-Calculator/mortgage-qualification.html" class="mobile-nav-link"><i class="fas fa-home"></i> Mortgage Calculator</a>
-        <a href="../paycheck-calculator/paycheck-calculator.html" class="mobile-nav-link"><i class="fas fa-wallet"></i> Paycheck Calculator</a>
-        <a href="../payoff-calculator/payoff-calculator.html" class="mobile-nav-link"><i class="fas fa-money-bill-wave"></i> Debt Payoff Calculator</a>
-        <a href="compound-interest.html" class="mobile-nav-link active"><i class="fas fa-chart-line"></i> Compound Interest Calculator</a>
-        <a href="../investment-return-calculator/investment-return.html" class="mobile-nav-link"><i class="fas fa-chart-pie"></i> Investment Return Calculator</a>
-        <a href="../dividend-calculator/dividend-calculator.html" class="mobile-nav-link"><i class="fas fa-hand-holding-usd"></i> Dividend Calculator</a>
-        <a href="../stock-return-calculator/stock-return.html" class="mobile-nav-link"><i class="fas fa-chart-bar"></i> Stock Return Calculator</a>
-        <a href="../blog/index.html" class="mobile-nav-link"><i class="fas fa-blog"></i> Blog</a>
-    </div>
-
     <!-- Main Content -->
-    <main class="calculator-container">
-        <section class="calculator-intro">
-            <h1 style="margin-top: 2rem;">Compound Interest Calculator</h1>
-            <p>Calculate how your investments will grow over time with the power of compound interest. See the difference between different compounding frequencies and understand the impact of additional contributions.</p>
-        </section>
-
-        <div class="calculator-layout">
-            <!-- Calculator Form -->
-            <section class="calculator-form">
-                <div class="form-group">
-                    <label for="initialInvestment">Initial Investment ($)</label>
-                    <input type="number" id="initialInvestment" min="0" value="10000" step="100">
-                </div>
-
-                <div class="form-group">
-                    <label for="contributionAmount">Additional Contribution ($)</label>
-                    <input type="number" id="contributionAmount" min="0" value="100" step="10">
-                </div>
-
-                <div class="form-group">
-                    <label for="contributionFrequency">Contribution Frequency</label>
-                    <select id="contributionFrequency">
-                        <option value="monthly" selected>Monthly</option>
-                        <option value="quarterly">Quarterly</option>
-                        <option value="annually">Annually</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="interestRate">Interest Rate (% per year)</label>
-                    <input type="number" id="interestRate" min="0" max="100" value="7" step="0.1">
-                </div>
-
-                <div class="form-group">
-                    <label for="compoundFrequency">Compound Frequency</label>
-                    <select id="compoundFrequency">
-                        <option value="annually">Annually</option>
-                        <option value="semiannually">Semi-annually</option>
-                        <option value="quarterly">Quarterly</option>
-                        <option value="monthly" selected>Monthly</option>
-                        <option value="daily">Daily</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="investmentLength">Investment Time (years)</label>
-                    <input type="number" id="investmentLength" min="1" max="50" value="10" step="1">
-                </div>
-
-                <button id="calculateBtn" class="calculate-btn"><i class="fas fa-calculator"></i> Calculate</button>
-                <button id="resetBtn" class="reset-btn"><i class="fas fa-undo"></i> Reset</button>
-            </section>
-
-            <!-- Results Section -->
-            <section class="calculator-results">
-                <h2>Investment Results</h2>
-                <div class="results-summary">
-                    <div class="result-item">
-                        <h3>Future Value</h3>
-                        <p class="result-value" id="futureValue">$0.00</p>
-                        <p class="result-description">Total amount after the investment period</p>
+    <main class="container">
+        <div class="page-layout">
+            <!-- Calculator Column -->
+            <div class="calculator-column">
+                <div class="form-results-container">
+                    <div class="calculator-header">
+                        <h1 class="calculator-title">Compound Interest Calculator</h1>
+                        <p class="calculator-description">Calculate how your investments will grow over time with the power of compound interest. See the difference between different compounding frequencies and understand the impact of additional contributions.</p>
                     </div>
 
-                    <div class="result-item">
-                        <h3>Total Principal</h3>
-                        <p class="result-value" id="totalPrincipal">$0.00</p>
-                        <p class="result-description">Initial investment + additional contributions</p>
+                    <!-- Calculator Form -->
+                    <div class="calculator-form">
+                        <div class="form-group">
+                            <label for="initialInvestment">Initial Investment ($)</label>
+                            <input type="number" id="initialInvestment" min="0" value="10000" step="100">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contributionAmount">Additional Contribution ($)</label>
+                            <input type="number" id="contributionAmount" min="0" value="100" step="10">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contributionFrequency">Contribution Frequency</label>
+                            <select id="contributionFrequency">
+                                <option value="monthly" selected>Monthly</option>
+                                <option value="quarterly">Quarterly</option>
+                                <option value="annually">Annually</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="interestRate">Interest Rate (% per year)</label>
+                            <input type="number" id="interestRate" min="0" max="100" value="7" step="0.1">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="compoundFrequency">Compound Frequency</label>
+                            <select id="compoundFrequency">
+                                <option value="annually">Annually</option>
+                                <option value="semiannually">Semi-annually</option>
+                                <option value="quarterly">Quarterly</option>
+                                <option value="monthly" selected>Monthly</option>
+                                <option value="daily">Daily</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="investmentLength">Investment Time (years)</label>
+                            <input type="number" id="investmentLength" min="1" max="50" value="10" step="1">
+                        </div>
+
+                        <button id="calculateBtn" class="calculate-btn">Calculate</button>
                     </div>
 
-                    <div class="result-item">
-                        <h3>Total Interest</h3>
-                        <p class="result-value" id="totalInterest">$0.00</p>
-                        <p class="result-description">Earnings from interest over time</p>
+                    <!-- Results Section -->
+                    <div class="results-section">
+                        <h3>Investment Results</h3>
+                        
+                        <div class="results-cards">
+                            <div class="result-card">
+                                <h4>Future Value</h4>
+                                <div class="result-amount" id="futureValue">$37,506.06</div>
+                                <p class="result-description">Total amount after the investment period</p>
+                            </div>
+                            
+                            <div class="result-card">
+                                <h4>Total Principal</h4>
+                                <div class="result-amount" id="totalPrincipal">$22,000.00</div>
+                                <p class="result-description">Initial investment + additional contributions</p>
+                            </div>
+                            
+                            <div class="result-card">
+                                <h4>Total Interest</h4>
+                                <div class="result-amount" id="totalInterest">$15,506.06</div>
+                                <p class="result-description">Earnings from interest over time</p>
+                            </div>
+                        </div>
+
+                        <div class="chart-container">
+                            <h4>Investment Growth Over Time</h4>
+                            <canvas id="growthChart"></canvas>
+                            <div class="chart-legend">
+                                <div class="legend-item">
+                                    <span class="legend-color principal"></span>
+                                    <span>Principal</span>
+                                </div>
+                                <div class="legend-item">
+                                    <span class="legend-color interest"></span>
+                                    <span>Interest</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="growth-table-container">
+                            <div class="growth-table-header">
+                                <h4>Investment Growth Over Time</h4>
+                            </div>
+                            <div class="growth-table-wrapper">
+                                <table class="growth-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Year</th>
+                                            <th>Principal</th>
+                                            <th>Interest</th>
+                                            <th>Balance</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="growthTableBody">
+                                        <tr>
+                                            <td>1</td>
+                                            <td>$11,200.00</td>
+                                            <td>$769.39</td>
+                                            <td>$11,969.39</td>
+                                        </tr>
+                                        <tr>
+                                            <td>2</td>
+                                            <td>$12,400.00</td>
+                                            <td>$1,681.14</td>
+                                            <td>$14,081.14</td>
+                                        </tr>
+                                        <!-- JavaScript will populate more rows -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
+            </div>
 
-                <div class="results-chart">
-                    <canvas id="growthChart"></canvas>
+            <!-- Sidebar Column -->
+            <div class="sidebar-column">
+                <!-- Advertisement -->
+                <div class="advertisement">
+                    <img src="https://placehold.co/300x250/f8f9fa/3498db?text=Advertisement+Space" alt="Advertisement">
                 </div>
 
-                <div class="results-table">
-                    <h3>Investment Growth Over Time</h3>
-                    <div class="table-container">
-                        <table id="growthTable">
-                            <thead>
-                                <tr>
-                                    <th>Year</th>
-                                    <th>Principal</th>
-                                    <th>Interest</th>
-                                    <th>Balance</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <!-- Table will be populated by JavaScript -->
-                            </tbody>
-                        </table>
-                    </div>
+                <!-- Other Calculators -->
+                <div class="other-calculators">
+                    <h3>Other Calculators</h3>
+                    <ul class="calculator-list">
+                        <li><a href="../loan-calculator/loan-calculator.html">Loan Calculator</a></li>
+                        <li><a href="../paycheck-calculator/paycheck-calculator.html">Paycheck Calculator</a></li>
+                        <li><a href="../debt-payoff-calculator/debt-payoff-calculator.html">Debt Payoff Calculator</a></li>
+                        <li><a href="../mortgage-qualification-calculator/mortgage-qualification.html">Mortgage Qualification</a></li>
+                        <li><a href="../compound-interest-calculator/compound-interest.html">Compound Interest Calculator</a></li>
+                        <li><a href="../age-calculator/age-calculator.html">Age Calculator</a></li>
+                        <li><a href="../time-calculator/time-calculator.html">Time Calculator</a></li>
+                        <li><a href="../date-calculator/date-calculator.html">Date Calculator</a></li>
+                        <li><a href="../gpa-calculator/gpa-calculator.html">GPA Calculator</a></li>
+                        <li><a href="../height-calculator/height-calculator.html">Height Calculator</a></li>
+                    </ul>
                 </div>
-            </section>
+            </div>
         </div>
-
-        <!-- About Section -->
-        <section class="about-calculator">
-            <h2>About Compound Interest</h2>
-            <p>
-                Compound interest is a powerful financial concept where you earn interest not only on your initial investment but also on the accumulated interest over time. It's often described as "interest on interest" and is a key factor in long-term investment growth.
-            </p>
-            <h3>How It Works</h3>
-            <p>
-                With compound interest, your investment grows at an accelerating rate. The more frequently interest is compounded (daily, monthly, quarterly, etc.), the faster your money grows. This calculator allows you to see the difference various compounding frequencies make.
-            </p>
-            <h3>The Impact of Additional Contributions</h3>
-            <p>
-                Regular additional contributions can dramatically increase your investment's growth. This calculator shows how consistent deposits, combined with compound interest, can help you reach your financial goals faster.
-            </p>
-        </section>
     </main>
+
+    <!-- Additional Sections -->
+    <div class="container additional-sections">
+        <div class="page-layout">
+            <div class="calculator-column">
+                <!-- About Section -->
+                <section class="about-calculator">
+                    <h2>About Compound Interest</h2>
+                    <p>
+                        Compound interest is a powerful financial concept where you earn interest not only on your initial investment but also on the accumulated interest over time. It's often described as "interest on interest" and is a key factor in long-term investment growth.
+                    </p>
+                    <h3>How It Works</h3>
+                    <p>
+                        With compound interest, your investment grows at an accelerating rate. The more frequently interest is compounded (daily, monthly, quarterly, etc.), the faster your money grows. This calculator allows you to see the difference various compounding frequencies make.
+                    </p>
+                    <h3>The Impact of Additional Contributions</h3>
+                    <p>
+                        Regular additional contributions can dramatically increase your investment's growth. This calculator shows how consistent deposits, combined with compound interest, can help you reach your financial goals faster.
+                    </p>
+                </section>
+
+                <!-- Q&A Section -->
+                <section class="qa-section">
+                    <h2>Frequently Asked Questions</h2>
+                    
+                    <div class="qa-item">
+                        <h3>How does compound interest work?</h3>
+                        <p>Compound interest is the interest you earn on both your original investment and the interest that accumulates over time. It's often called "interest on interest" and can significantly boost your investment growth compared to simple interest.</p>
+                    </div>
+
+                    <div class="qa-item">
+                        <h3>What's the difference between daily, monthly, and annual compounding?</h3>
+                        <p>The more frequently interest is compounded, the faster your money grows. Daily compounding earns slightly more than monthly, which earns more than annual compounding. For example, $10,000 at 5% interest compounded daily would grow to $16,532.98 in 10 years, while annual compounding would result in $16,288.95.</p>
+                    </div>
+
+                    <div class="qa-item">
+                        <h3>How much should I invest monthly to reach my financial goals?</h3>
+                        <p>This depends on your goals, timeline, and expected returns. Use our calculator to experiment with different monthly contributions. For example, investing $500 monthly at 7% annual return would grow to about $86,000 in 10 years, $240,000 in 20 years, and $520,000 in 30 years.</p>
+                    </div>
+
+                    <div class="qa-item">
+                        <h3>What's the Rule of 72?</h3>
+                        <p>The Rule of 72 is a quick way to estimate how long it will take for your investment to double. Divide 72 by your annual interest rate to get the approximate number of years. For example, at 6% interest, your money would double in about 12 years (72 ÷ 6 = 12).</p>
+                    </div>
+
+                    <div class="qa-item">
+                        <h3>How does inflation affect compound interest?</h3>
+                        <p>Inflation reduces the real value of your returns. For example, if your investment earns 5% annually and inflation is 2%, your real return is only 3%. This is why it's important to consider inflation when planning long-term investments.</p>
+                    </div>
+
+                    <div class="qa-item">
+                        <h3>What's the best way to maximize compound interest?</h3>
+                        <p>To maximize compound interest: 1) Start investing early, 2) Make regular contributions, 3) Choose investments with higher returns, 4) Reinvest your earnings, and 5) Stay invested for the long term. Even small differences in these factors can lead to significant differences in your final balance.</p>
+                    </div>
+                </section>
+            </div>
+            
+            <div class="sidebar-column">
+                <!-- 사이드바 여백 유지용 -->
+            </div>
+        </div>
+    </div>
 
     <!-- Footer -->
     <footer class="footer">

@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Return Calculator - Calculate Investment Performance | Calculator Tap</title>
+    <meta name="description" content="Free online stock return calculator to measure your investment performance. Calculate total return, annualized return (CAGR), and gain/loss for your stock investments.">
+    <meta name="keywords" content="stock return calculator, investment performance calculator, CAGR calculator, annualized return calculator, stock profit calculator">
+    <link rel="icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Reset & Base Styles */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f7fa;
+        }
+        
+        /* Header Styles */
+        .header {
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo-link {
+            text-decoration: none;
+            color: inherit;
+            transition: opacity 0.2s;
+        }
+        
+        .logo-link:hover {
+            opacity: 0.8;
+        }
+        
+        .logo h1 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        /* Main Nav Styles */
+        .main-nav {
+            display: flex;
+            gap: 1.5rem;
+        }
+        
+        .nav-link {
+            color: #2c3e50;
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            color: #3498db;
+        }
+        
+        .nav-link i {
+            font-size: 1.1rem;
+        }
+        
+        /* Container Styles */
+        .container {
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 1.5rem 1rem;
+        }
+        
+        /* Main Page Layout */
+        .page-layout {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 330px;
+            gap: 1.5rem;
+            padding: 1rem;
+        }
+        
+        /* Calculator Column */
+        .calculator-column {
+            width: 100%;
+        }
+        
+        /* Sidebar Column */
+        .sidebar-column {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        /* Advertisement Style */
+        .advertisement {
+            background-color: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 1rem;
+            height: 300px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+        
+        /* Other Calculators Section */
+        .other-calculators {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            padding: 1rem;
+        }
+        
+        .other-calculators h3 {
+            color: #2c3e50;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 0.5rem;
+        }
+        
+        .calculator-list {
+            list-style: none;
+        }
+        
+        .calculator-list li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .calculator-list a {
+            display: block;
+            padding: 0.5rem;
+            text-decoration: none;
+            color: #3498db;
+            transition: background-color 0.2s;
+            border-radius: 4px;
+        }
+        
+        .calculator-list a:hover {
+            background-color: #f8f9fa;
+        }
+        
+        /* Calculator Main Styles */
+        .calculator-main {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+        
+        .calculator-header {
+            grid-column: 1 / -1;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .calculator-title {
+            font-size: 1.75rem;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+        
+        .calculator-description {
+            color: #7f8c8d;
+            max-width: 600px;
+            margin: 0 auto;
+            font-size: 0.9rem;
+        }
+
+        /* Form Styles */
+        .calculator-form {
+            grid-column: 1;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            font-size: 0.875rem;
+            margin-bottom: 0.5rem;
+            color: #555;
+            font-weight: 500;
+        }
+        
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            transition: border-color 0.2s;
+            background-color: white;
+            height: 45px;
+        }
+        
+        .form-group input:focus, .form-group select:focus {
+            border-color: #3498db;
+            outline: none;
+        }
+        
+        .input-group {
+            position: relative;
+            width: 100%;
+        }
+        
+        .currency-symbol {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #555;
+            font-weight: 500;
+            pointer-events: none;
+        }
+        
+        .percent-symbol {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #555;
+            font-weight: 500;
+            pointer-events: none;
+        }
+        
+        .input-group .input-field {
+            padding-left: 25px;
+        }
+        
+        .input-group .percent-field {
+            padding-right: 25px;
+        }
+        
+        /* Checkbox Style */
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            margin-top: 0.5rem;
+        }
+        
+        .checkbox-group input[type="checkbox"] {
+            margin-right: 0.5rem;
+            width: auto;
+            height: auto;
+        }
+        
+        /* Tooltip Styles */
+        .tooltip-container {
+            position: relative;
+            display: inline-block;
+            margin-left: 5px;
+        }
+        
+        .tooltip-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background-color: #7f8c8d;
+            color: white;
+            font-size: 11px;
+            font-weight: bold;
+            cursor: help;
+        }
+        
+        .tooltip-text {
+            visibility: hidden;
+            width: 250px;
+            background-color: #333;
+            color: #fff;
+            text-align: left;
+            border-radius: 6px;
+            padding: 8px 10px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 0.8rem;
+            font-weight: normal;
+            line-height: 1.4;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+        
+        .tooltip-text::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border-width: 5px;
+            border-style: solid;
+            border-color: #333 transparent transparent transparent;
+        }
+        
+        .tooltip-container:hover .tooltip-text {
+            visibility: visible;
+            opacity: 1;
+        }
+        
+        /* Results Section */
+        .results-section {
+            grid-column: 2;
+            padding: 1rem;
+            background-color: #f8fafc;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .results-header {
+            font-size: 1.2rem;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            text-align: center;
+            padding-top: 0.5rem;
+        }
+        
+        .results-summary {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .return-amount {
+            font-size: 2.5rem;
+            color: #27ae60;
+            font-weight: 700;
+            display: block;
+            margin-bottom: 0.25rem;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+            padding: 0.2rem 0;
+        }
+        
+        .return-amount.negative {
+            color: #e74c3c;
+        }
+        
+        .return-label {
+            font-size: 0.9rem;
+            color: #7f8c8d;
+            display: block;
+        }
+        
+        /* Chart Styles */
+        .chart-container {
+            width: 100%;
+            height: 180px;
+            margin: 0 auto 0.5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid #eee;
+            border-radius: 4px;
+            position: relative;
+        }
+        
+        .chart-placeholder {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+        
+        .chart-legend {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 1rem;
+            font-size: 0.75rem;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            color: #7f8c8d;
+        }
+        
+        .legend-color {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 4px;
+            display: inline-block;
+        }
+        
+        .legend-color.initial {
+            background-color: #3498db;
+        }
+        
+        .legend-color.final {
+            background-color: #27ae60;
+        }
+        
+        .results-details {
+            margin-top: 1rem;
+            border-top: 1px solid #eee;
+            padding-top: 0.5rem;
+        }
+        
+        .result-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.4rem 0;
+            border-bottom: 1px solid #eee;
+            font-size: 0.9rem;
+        }
+        
+        .result-row:last-child {
+            border-bottom: none;
+        }
+        
+        .result-label {
+            color: #7f8c8d;
+        }
+        
+        .result-value {
+            font-weight: 500;
+            color: #2c3e50;
+        }
+        
+        .result-value.negative {
+            color: #e74c3c;
+        }
+        
+        .result-value.positive {
+            color: #27ae60;
+        }
+        
+        /* Calculate Button */
+        .calculate-btn {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 0.75rem 1.25rem;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            margin-top: 1rem;
+            width: 100%;
+        }
+        
+        .calculate-btn:hover {
+            background-color: #2980b9;
+        }
+        
+        /* Reset Button */
+        .reset-btn {
+            background-color: #f1f1f1;
+            color: #333;
+            border: none;
+            border-radius: 4px;
+            padding: 0.75rem 1.25rem;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            margin-top: 0.5rem;
+            width: 100%;
+        }
+        
+        .reset-btn:hover {
+            background-color: #e0e0e0;
+        }
+        
+        /* Explanation Section Styles */
+        .explanation-section {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .explanation-title {
+            font-size: 1.5rem;
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        
+        .explanation-text h3 {
+            color: #3498db;
+            margin: 1.5rem 0 0.75rem;
+            font-size: 1.125rem;
+        }
+        
+        .explanation-text p {
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+        
+        .explanation-text ul {
+            padding-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .explanation-text ul li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .explanation-text ol {
+            padding-left: 1.5rem;
+            margin-bottom: 1rem;
+            list-style-position: outside;
+        }
+        
+        .explanation-text ol li {
+            margin-bottom: 0.75rem;
+            padding-left: 0.25rem;
+            margin-left: 0.5rem;
+        }
+        
+        /* Footer Styles */
+        .footer {
+            background-color: #2c3e50;
+            color: white;
+            padding: 2rem 0;
+            margin-top: 4rem;
+        }
+        
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            text-align: center;
+        }
+        
+        .footer-links {
+            margin-bottom: 1rem;
+        }
+        
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            margin: 0 1rem;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: #3498db;
+        }
+        
+        .copyright {
+            font-size: 0.9rem;
+            color: #bdc3c7;
+        }
+        
+        /* 모바일 메뉴 스타일 추가 */
+        .hamburger-menu {
+            display: none;
+            font-size: 1.8rem;
+            color: #333;
+            cursor: pointer;
+        }
+        
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(255, 255, 255, 0.95);
+            z-index: 1000;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transform: translateY(-100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .mobile-nav.active {
+            transform: translateY(0);
+            display: flex;
+        }
+        
+        .mobile-nav-link {
+            display: block;
+            font-size: 1.5rem;
+            padding: 1rem;
+            color: #333;
+            text-decoration: none;
+            margin: 0.5rem 0;
+            transition: color 0.2s;
+        }
+        
+        .mobile-nav-link:hover {
+            color: #3498db;
+        }
+        
+        .close-menu {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            font-size: 2rem;
+            color: #333;
+            cursor: pointer;
+        }
+        
+        /* Responsive styles */
+        @media (max-width: 900px) {
+            .page-layout {
+                grid-template-columns: 1fr;
+            }
+            
+            .calculator-column {
+                order: 1;
+            }
+            
+            .sidebar-column {
+                order: 2;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .main-nav {
+                display: none;
+            }
+            
+            .hamburger-menu {
+                display: block;
+            }
+            
+            .calculator-main {
+                grid-template-columns: 1fr;
+            }
+            
+            .results-section {
+                grid-column: 1;
+                margin-top: 1rem;
+            }
+            
+            .calculator-form {
+                grid-column: 1;
+            }
+        }
+    </style>
+    <script src="stock-return.js" defer></script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <div class="logo">
+                <a href="../index.html" class="logo-link">
+                    <h1>Calculator Tap</h1>
+                </a>
+            </div>
+            <nav class="main-nav">
+                <a href="../index.html" class="nav-link"><i class="fas fa-home"></i> Home</a>
+                <a href="../blog/index.html" class="nav-link"><i class="fas fa-blog"></i> Blog</a>
+            </nav>
+            <div class="hamburger-menu" id="hamburgerMenu">
+                <i class="fas fa-bars" aria-hidden="true"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- 모바일 내비게이션 추가 -->
+    <div class="mobile-nav" id="mobileNav">
+        <div class="close-menu" id="closeMenu">
+            <i class="fas fa-times" aria-hidden="true"></i>
+        </div>
+        <a href="../index.html" class="mobile-nav-link"><i class="fas fa-home"></i> Home</a>
+        <a href="../loan-calculator/loan-calculator.html" class="mobile-nav-link"><i class="fas fa-money-bill"></i> Loan Calculator</a>
+        <a href="../Mortgage-Qualification-Calculator/mortgage-qualification.html" class="mobile-nav-link"><i class="fas fa-home"></i> Mortgage Calculator</a>
+        <a href="../paycheck-calculator/paycheck-calculator.html" class="mobile-nav-link"><i class="fas fa-wallet"></i> Paycheck Calculator</a>
+        <a href="../payoff-calculator/payoff-calculator.html" class="mobile-nav-link"><i class="fas fa-money-bill-wave"></i> Debt Payoff Calculator</a>
+        <a href="../investment-return-calculator/investment-return.html" class="mobile-nav-link"><i class="fas fa-chart-line"></i> Investment Return Calculator</a>
+        <a href="../dividend-calculator/dividend-calculator.html" class="mobile-nav-link"><i class="fas fa-hand-holding-usd"></i> Dividend Calculator</a>
+        <a href="../blog/index.html" class="mobile-nav-link"><i class="fas fa-blog"></i> Blog</a>
+    </div>
+
+    <div class="container">
+        <div class="page-layout">
+            <div class="calculator-column">
+                <!-- Main Content -->
+                <main class="calculator-main">
+                    <div class="calculator-header">
+                        <h1 class="calculator-title">Stock Return Calculator</h1>
+                        <p class="calculator-description">Calculate your stock investment performance and measure your returns</p>
+                    </div>
+                    
+                    <div class="calculator-form">
+                        <div class="form-group">
+                            <label for="initialPrice">Initial Share Price ($)</label>
+                            <div class="input-group">
+                                <span class="currency-symbol">$</span>
+                                <input type="text" id="initialPrice" placeholder="Enter initial share price" class="input-field">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="currentPrice">Current Share Price ($)</label>
+                            <div class="input-group">
+                                <span class="currency-symbol">$</span>
+                                <input type="text" id="currentPrice" placeholder="Enter current share price" class="input-field">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="numberOfShares">Number of Shares</label>
+                            <input type="number" id="numberOfShares" placeholder="Enter number of shares" min="1" step="1">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="investmentPeriod">Investment Period</label>
+                            <select id="investmentPeriod">
+                                <option value="days">Days</option>
+                                <option value="months">Months</option>
+                                <option value="years" selected>Years</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="investmentTime">Time Period Length</label>
+                            <input type="number" id="investmentTime" placeholder="Enter time period" min="1" step="1" value="1">
+                        </div>
+                        
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="includeDividends">
+                            <label for="includeDividends">Include Dividends</label>
+                            <div class="tooltip-container">
+                                <div class="tooltip-icon">?</div>
+                                <div class="tooltip-text">Check this option to include dividends received during the investment period in your return calculations.</div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group" id="dividendAmountGroup" style="display: none;">
+                            <label for="dividendAmount">Total Dividends Received ($)</label>
+                            <div class="input-group">
+                                <span class="currency-symbol">$</span>
+                                <input type="text" id="dividendAmount" placeholder="Enter total dividends received" class="input-field">
+                            </div>
+                        </div>
+                        
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="accountForSplits">
+                            <label for="accountForSplits">Account for Stock Splits</label>
+                            <div class="tooltip-container">
+                                <div class="tooltip-icon">?</div>
+                                <div class="tooltip-text">Check this option if your stock has undergone splits during the investment period. This will adjust your return calculations accordingly.</div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group" id="splitRatioGroup" style="display: none;">
+                            <label for="splitRatio">Split Ratio (e.g., 2:1 = 2)</label>
+                            <input type="number" id="splitRatio" placeholder="Enter split ratio" min="1" step="0.1" value="2">
+                        </div>
+                        
+                        <button id="calculateBtn" class="calculate-btn">Calculate Returns</button>
+                        <button id="resetBtn" class="reset-btn">Reset</button>
+                    </div>
+                    
+                    <div class="results-section" id="resultsSection">
+                        <h3 class="results-header">Investment Results</h3>
+                        
+                        <div class="chart-container">
+                            <canvas id="returnChart"></canvas>
+                            <div class="chart-placeholder">Results will be displayed here</div>
+                        </div>
+                        
+                        <div class="chart-legend">
+                            <div class="legend-item">
+                                <span class="legend-color initial"></span>
+                                <span>Initial Investment</span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-color final"></span>
+                                <span>Current Value</span>
+                            </div>
+                        </div>
+                        
+                        <div class="results-summary">
+                            <span id="totalReturnAmount" class="return-amount">0.00%</span>
+                            <span class="return-label">Total Return</span>
+                        </div>
+                        
+                        <div class="results-details">
+                            <div class="result-row">
+                                <span class="result-label">Initial Investment</span>
+                                <span id="initialInvestmentDisplay" class="result-value">$0.00</span>
+                            </div>
+                            <div class="result-row">
+                                <span class="result-label">Current Value</span>
+                                <span id="currentValueDisplay" class="result-value">$0.00</span>
+                            </div>
+                            <div class="result-row">
+                                <span class="result-label">Total Gain/Loss</span>
+                                <span id="totalGainLossDisplay" class="result-value">$0.00</span>
+                            </div>
+                            <div class="result-row">
+                                <span class="result-label">Total Return</span>
+                                <span id="totalReturnDisplay" class="result-value">0.00%</span>
+                            </div>
+                            <div class="result-row">
+                                <span class="result-label">Annualized Return (CAGR)</span>
+                                <span id="annualizedReturnDisplay" class="result-value">0.00%</span>
+                            </div>
+                            <div class="result-row" id="dividendReturnRow" style="display: none;">
+                                <span class="result-label">Dividends Return</span>
+                                <span id="dividendReturnDisplay" class="result-value">0.00%</span>
+                            </div>
+                            <div class="result-row" id="priceReturnRow">
+                                <span class="result-label">Price Return</span>
+                                <span id="priceReturnDisplay" class="result-value">0.00%</span>
+                            </div>
+                            <div class="result-row">
+                                <span class="result-label">Investment Period</span>
+                                <span id="periodDisplay" class="result-value">0 years</span>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+
+                <!-- SEO Content Section -->
+                <section class="explanation-section">
+                    <h2 class="explanation-title">Understanding Stock Returns</h2>
+                    <div class="explanation-text">
+                        <p>Our Stock Return Calculator helps you measure the performance of your stock investments. Whether you're tracking past investments or planning future ones, this calculator provides valuable insights into your investment returns.</p>
+                        
+                        <h3>Key Features of Our Stock Return Calculator</h3>
+                        <ul>
+                            <li>Calculate total return including both price appreciation and dividends</li>
+                            <li>Measure annualized returns (CAGR) for accurate performance comparison</li>
+                            <li>Account for stock splits in your return calculations</li>
+                            <li>View clear breakdown of price returns vs. dividend returns</li>
+                            <li>Visualize investment growth with an interactive chart</li>
+                        </ul>
+
+                        <h3>Understanding Return Metrics</h3>
+                        <p>When analyzing stock investments, these key metrics help you evaluate performance:</p>
+                        <ul>
+                            <li><strong>Total Return:</strong> The overall percentage gain or loss on your investment, including both price changes and dividends</li>
+                            <li><strong>Annualized Return (CAGR):</strong> The Compound Annual Growth Rate shows the year-over-year growth rate of an investment over a specified time period</li>
+                            <li><strong>Price Return:</strong> The return from changes in the stock price alone, excluding dividends</li>
+                            <li><strong>Dividend Return:</strong> The portion of total return attributed to dividends received</li>
+                            <li><strong>Total Gain/Loss:</strong> The absolute dollar amount gained or lost on the investment</li>
+                        </ul>
+
+                        <h3>How to Use This Calculator</h3>
+                        <p>To calculate your stock returns:</p>
+                        <ol>
+                            <li>Enter the initial (purchase) price of the stock</li>
+                            <li>Input the current (or selling) price of the stock</li>
+                            <li>Specify the number of shares purchased</li>
+                            <li>Select the investment period (days, months, or years) and enter the length</li>
+                            <li>Optionally include dividends received and account for any stock splits</li>
+                            <li>Click "Calculate Returns" to see your investment performance</li>
+                        </ol>
+
+                        <h3>Types of Returns</h3>
+                        <p>The calculator provides several perspectives on your investment returns:</p>
+                        <ul>
+                            <li><strong>Absolute Return:</strong> The total percentage gain or loss on your investment</li>
+                            <li><strong>Annualized Return:</strong> Essential for comparing investments over different time periods</li>
+                            <li><strong>Total Return:</strong> Combines both price appreciation and income from dividends</li>
+                        </ul>
+
+                        <p>Remember that past performance is not a guarantee of future results. Use this calculator as a guide to understand historical returns, but always consider other factors when making investment decisions.</p>
+                    </div>
+                </section>
+            </div>
+            
+            <div class="sidebar-column">
+                <!-- Advertisement -->
+                <div class="advertisement">
+                    <img src="https://placehold.co/300x250/f8f9fa/3498db?text=Advertisement+Space" alt="Advertisement">
+                </div>
+                
+                <!-- Other Calculators -->
+                <div class="other-calculators">
+                    <h3>Other Calculators</h3>
+                    <ul class="calculator-list">
+                        <li><a href="../loan-calculator/loan-calculator.html">Loan Calculator</a></li>
+                        <li><a href="../mortgage-qualification-calculator/mortgage-qualification.html">Mortgage Qualification</a></li>
+                        <li><a href="../paycheck-calculator/paycheck-calculator.html">Paycheck Calculator</a></li>
+                        <li><a href="../payoff-calculator/payoff-calculator.html">Debt Payoff Calculator</a></li>
+                        <li><a href="../compound-interest-calculator/compound-interest.html">Compound Interest Calculator</a></li>
+                        <li><a href="../investment-return-calculator/investment-return.html">Investment Return Calculator</a></li>
+                        <li><a href="../dividend-calculator/dividend-calculator.html">Dividend Calculator</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-links">
+                <a href="../privacy-policy.html">Privacy Policy</a>
+                <a href="../terms.html">Terms</a>
+                <a href="../about.html">About</a>
+            </div>
+            <div class="copyright">
+                <p>Copyright © <span id="currentYear"></span> Calculator Tap. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Update current year in footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+        
+        // 모바일 메뉴 스크립트 추가
+        const hamburgerMenu = document.getElementById('hamburgerMenu');
+        const mobileNav = document.getElementById('mobileNav');
+        const closeMenu = document.getElementById('closeMenu');
+        
+        if (hamburgerMenu && mobileNav && closeMenu) {
+            hamburgerMenu.addEventListener('click', () => {
+                mobileNav.classList.add('active');
+                document.body.style.overflow = 'hidden'; // 스크롤 방지
+            });
+            
+            closeMenu.addEventListener('click', () => {
+                mobileNav.classList.remove('active');
+                document.body.style.overflow = ''; // 스크롤 복원
+            });
+            
+            // 모바일 메뉴 링크 클릭 시 메뉴 닫기
+            const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+            mobileNavLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileNav.classList.remove('active');
+                    document.body.style.overflow = '';
+                });
+            });
+        }
+    </script>
+</body>
+</html> 

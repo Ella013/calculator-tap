@@ -227,6 +227,166 @@
                 font-size: 1.1rem;
             }
         }
+        
+        /* 기본 계산기 스타일 추가 */
+        .basic-calculator {
+            margin: 0 auto;
+            width: 100%;
+            max-width: 420px;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+        }
+        
+        .calc-display {
+            background: white;
+            padding: 16px 20px;
+            text-align: right;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            height: auto;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .calc-expression {
+            font-size: 0.9rem;
+            color: #777;
+            margin-bottom: 5px;
+            height: 20px;
+        }
+        
+        .calc-result {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #000;
+        }
+
+        .calc-buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 4px;
+            background: #f0f0f0;
+            padding: 6px;
+        }
+        
+        .calc-button {
+            background: white;
+            border: none;
+            height: 45px;
+            font-size: 1.4rem;
+            cursor: pointer;
+            transition: background 0.1s;
+            border-radius: 8px;
+            aspect-ratio: 2 / 1;
+            font-weight: normal;
+        }
+        
+        .calc-button:hover {
+            background: #f5f5f5;
+            transform: none;
+        }
+        
+        .calc-button:active {
+            background: #eee;
+        }
+        
+        .calc-button.operation {
+            background: white;
+            color: #333;
+            font-size: 1.6rem;
+        }
+        
+        .calc-button.equals {
+            background: #0088cc;
+            color: white;
+        }
+        
+        .calc-button.equals:hover {
+            background: #0077b6;
+        }
+        
+        .calc-button.clear {
+            background: #f8f8f8;
+            color: #e74c3c;
+        }
+        
+        /* 기본 계산기 섹션 스타일 */
+        .hero-section {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            max-width: 1100px;
+            margin: 2rem auto 3rem;
+            padding: 0 1rem;
+            align-items: center;
+        }
+
+        .calculator-wrapper {
+            flex: 1;
+            min-width: 400px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-content {
+            flex: 1;
+            min-width: 300px;
+            text-align: left;
+        }
+
+        .basic-calculator-section {
+            margin: 0;
+            padding: 0;
+        }
+
+        .hero-content h1 {
+            margin-top: 0;
+            font-size: 2.2rem;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+
+        .hero-content .subtitle {
+            font-size: 1.1rem;
+            color: #7f8c8d;
+            margin-bottom: 2rem;
+        }
+
+        .search-container {
+            position: relative;
+            max-width: 450px;
+            margin-left: 0;
+        }
+
+        @media (max-width: 768px) {
+            .hero-section {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+            
+            .hero-content {
+                order: 1;
+                width: 100%;
+            }
+            
+            .calculator-wrapper {
+                order: 2;
+                width: 100%;
+                min-width: initial;
+            }
+            
+            .search-container {
+                margin: 0 auto;
+            }
+            
+            .basic-calculator {
+                max-width: 100%;
+            }
+        }
     </style>
 </head>
 <body>
@@ -267,16 +427,55 @@
         
     <!-- Main Content -->
     <main class="main-content">
-        <!-- Title and Search Section -->
-        <section class="title-section">
-            <h1>Free Online Financial Calculators</h1>
-            <p class="subtitle">Make informed financial decisions with our easy-to-use tools</p>
-            <div class="search-container">
-                <input type="text" id="searchInput" placeholder="Search calculators..." aria-label="Search calculators">
-                <button id="searchButton" class="search-button" aria-label="Search">
-                    <i class="fas fa-search"></i>
-                </button>
-                <div class="search-suggestions" id="searchSuggestions" role="listbox"></div>
+        <!-- Hero Section with Calculator and Title/Search -->
+        <section class="hero-section">
+            <div class="calculator-wrapper">
+                <div class="basic-calculator-section">
+                    <div class="basic-calculator">
+                        <div class="calc-display">
+                            <div class="calc-expression" id="calcExpression"></div>
+                            <div class="calc-result" id="calcDisplay">0</div>
+                        </div>
+                        <div class="calc-buttons">
+                            <button class="calc-button clear" onclick="clearCalc()">C</button>
+                            <button class="calc-button operation" onclick="appendToCalc('%')">%</button>
+                            <button class="calc-button" onclick="backspace()">⌫</button>
+                            <button class="calc-button operation" onclick="appendToCalc('/')">&divide;</button>
+                            
+                            <button class="calc-button" onclick="appendToCalc('7')">7</button>
+                            <button class="calc-button" onclick="appendToCalc('8')">8</button>
+                            <button class="calc-button" onclick="appendToCalc('9')">9</button>
+                            <button class="calc-button operation" onclick="appendToCalc('*')">&times;</button>
+                            
+                            <button class="calc-button" onclick="appendToCalc('4')">4</button>
+                            <button class="calc-button" onclick="appendToCalc('5')">5</button>
+                            <button class="calc-button" onclick="appendToCalc('6')">6</button>
+                            <button class="calc-button operation" onclick="appendToCalc('-')">−</button>
+                            
+                            <button class="calc-button" onclick="appendToCalc('1')">1</button>
+                            <button class="calc-button" onclick="appendToCalc('2')">2</button>
+                            <button class="calc-button" onclick="appendToCalc('3')">3</button>
+                            <button class="calc-button operation" onclick="appendToCalc('+')">+</button>
+                            
+                            <button class="calc-button" onclick="toggleSign()">+/−</button>
+                            <button class="calc-button" onclick="appendToCalc('0')">0</button>
+                            <button class="calc-button" onclick="appendToCalc('.')">.</button>
+                            <button class="calc-button equals" onclick="calculateResult()">=</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="hero-content">
+                <h1>Free Online Financial Calculators</h1>
+                <p class="subtitle">Make informed financial decisions with our easy-to-use tools</p>
+                <div class="search-container">
+                    <input type="text" id="searchInput" placeholder="Search calculators..." aria-label="Search calculators">
+                    <button id="searchButton" class="search-button" aria-label="Search">
+                        <i class="fas fa-search"></i>
+                    </button>
+                    <div class="search-suggestions" id="searchSuggestions" role="listbox"></div>
+                </div>
             </div>
         </section>
 
@@ -466,6 +665,82 @@
                 document.body.style.overflow = '';
             });
         });
+        
+        // 기본 계산기 기능
+        let calcExpression = '';
+        let lastResult = '';
+        const calcDisplayResult = document.getElementById('calcDisplay');
+        const calcDisplayExpression = document.getElementById('calcExpression');
+        
+        function appendToCalc(value) {
+            // '%' 처리를 위한 로직
+            if (value === '%') {
+                if (calcExpression && !isNaN(calcExpression[calcExpression.length - 1])) {
+                    calcExpression = String(parseFloat(calcExpression) / 100);
+                    updateDisplay();
+                    return;
+                }
+            }
+            
+            calcExpression += value;
+            updateDisplay();
+        }
+        
+        function updateDisplay() {
+            // 화면에 표시할 때 기호 변경
+            let displayText = calcExpression
+                .replace(/\*/g, '×')
+                .replace(/\//g, '÷');
+            calcDisplayResult.textContent = displayText || '0';
+        }
+        
+        function clearCalc() {
+            calcExpression = '';
+            lastResult = '';
+            calcDisplayResult.textContent = '0';
+            calcDisplayExpression.textContent = '';
+        }
+        
+        function backspace() {
+            calcExpression = calcExpression.slice(0, -1);
+            updateDisplay();
+        }
+        
+        function toggleSign() {
+            if (calcExpression) {
+                // 간단한 구현: 결과가 있으면 부호 변경
+                const currentValue = parseFloat(calcExpression);
+                if (!isNaN(currentValue)) {
+                    calcExpression = String(-currentValue);
+                    updateDisplay();
+                }
+            }
+        }
+        
+        function calculateResult() {
+            try {
+                // 계산식 저장
+                const expressionForDisplay = calcExpression
+                    .replace(/\*/g, ' × ')
+                    .replace(/\//g, ' ÷ ')
+                    .replace(/\+/g, ' + ')
+                    .replace(/\-/g, ' - ');
+                
+                // 안전한 eval 대안
+                const result = Function('"use strict"; return (' + calcExpression + ')')();
+                
+                // 계산식 표시
+                calcDisplayExpression.textContent = expressionForDisplay + ' =';
+                
+                // 결과 저장 및 표시
+                lastResult = result;
+                calcExpression = String(result);
+                calcDisplayResult.textContent = Number.isInteger(result) ? result : result.toFixed(2);
+            } catch (error) {
+                calcDisplayResult.textContent = 'Error';
+                calcExpression = '';
+            }
+        }
     </script>
 </body>
 </html> 
