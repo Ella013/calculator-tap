@@ -125,16 +125,20 @@ document.addEventListener('DOMContentLoaded', function() {
                     {
                         label: 'Principal',
                         data: principalData,
-                        backgroundColor: 'rgba(52, 152, 219, 0.7)',  // 파란색
+                        backgroundColor: 'rgba(52, 152, 219, 0.7)',
                         borderColor: 'rgba(52, 152, 219, 1)',
-                        borderWidth: 1
+                        borderWidth: 1,
+                        barPercentage: 0.8,
+                        categoryPercentage: 0.9
                     },
                     {
                         label: 'Interest',
                         data: interestData,
-                        backgroundColor: 'rgba(46, 204, 113, 0.7)',  // 초록색
+                        backgroundColor: 'rgba(46, 204, 113, 0.7)',
                         borderColor: 'rgba(46, 204, 113, 1)',
-                        borderWidth: 1
+                        borderWidth: 1,
+                        barPercentage: 0.8,
+                        categoryPercentage: 0.9
                     }
                 ]
             },
@@ -143,8 +147,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 maintainAspectRatio: false,
                 plugins: {
                     legend: {
-                        display: false,
-                        position: 'bottom'
+                        display: false
                     },
                     tooltip: {
                         callbacks: {
@@ -167,6 +170,11 @@ document.addEventListener('DOMContentLoaded', function() {
                         title: {
                             display: true,
                             text: 'Time Period'
+                        },
+                        ticks: {
+                            maxRotation: 0,
+                            autoSkip: true,
+                            autoSkipPadding: 10
                         }
                     },
                     y: {
@@ -181,8 +189,18 @@ document.addEventListener('DOMContentLoaded', function() {
                         ticks: {
                             callback: function(value) {
                                 return formatCurrency(value, false);
-                            }
-                        }
+                            },
+                            maxTicksLimit: 8
+                        },
+                        beginAtZero: true
+                    }
+                },
+                layout: {
+                    padding: {
+                        top: 20,
+                        right: 25,
+                        bottom: 20,
+                        left: 25
                     }
                 }
             }
