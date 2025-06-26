@@ -794,6 +794,18 @@
                 }
             }
             
+            // 연산자 중복 입력 방지
+            const operators = ['*', '/', '+', '-'];
+            const lastChar = calcExpression[calcExpression.length - 1];
+            
+            // 연산자를 입력하려고 할 때
+            if (operators.includes(value)) {
+                // 이전 문자가 연산자이거나 calcExpression이 비어있으면 입력하지 않음
+                if (operators.includes(lastChar) || calcExpression === '') {
+                    return;
+                }
+            }
+            
             calcExpression += value;
             updateDisplay();
         }
