@@ -114,7 +114,8 @@
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 1.2rem;
             margin: 2rem auto;
-            max-width: 1000px;
+            max-width: 1100px;
+            padding: 0 2rem;
             justify-content: center;
         }
         
@@ -331,9 +332,9 @@
             display: flex;
             flex-wrap: wrap;
             gap: 2rem;
-            max-width: 1000px;
-            margin: 2rem auto 3rem;
-            padding: 0 1rem;
+            max-width: 1100px;
+            margin: 3rem auto 3rem;
+            padding: 0 2rem;
             align-items: center;
         }
 
@@ -380,6 +381,7 @@
                 flex-direction: column;
                 align-items: center;
                 gap: 1rem;
+                padding: 0 1rem;
             }
             
             .hero-content {
@@ -399,6 +401,10 @@
             
             .basic-calculator {
                 max-width: 100%;
+            }
+            
+            .calculator-grid {
+                padding: 0 1rem;
             }
         }
 
@@ -526,7 +532,23 @@
                 </a>
             </div>
             <nav class="main-nav">
-                <a href="index.html" class="nav-link"><i class="fas fa-home"></i> Home</a>
+                <a href="index.html" class="nav-link" data-translate="nav.home"><i class="fas fa-home"></i> Home</a>
+                <div class="language-selector">
+                    <div class="language-select-wrapper">
+                        <i class="fas fa-globe language-icon"></i>
+                        <button class="language-select-btn" id="languageSelectBtn">
+                            <span class="language-selected">English</span>
+                            <i class="fas fa-chevron-down language-arrow"></i>
+                        </button>
+                        <div class="language-dropdown" id="languageDropdown">
+                            <div class="language-option" data-lang="en">English</div>
+                            <div class="language-option" data-lang="es">Español</div>
+                            <div class="language-option" data-lang="zh">中文</div>
+                            <div class="language-option" data-lang="ko">한국어</div>
+                            <div class="language-option" data-lang="ja">日本語</div>
+                        </div>
+                    </div>
+                </div>
             </nav>
             <div class="hamburger-menu" id="hamburgerMenu">
                 <i class="fas fa-bars" aria-hidden="true"></i>
@@ -592,10 +614,10 @@
             </div>
             
             <div class="hero-content">
-                <h1>Free Online Financial Calculators</h1>
-                <p class="subtitle">Make informed financial decisions with our easy-to-use tools</p>
+                <h1 data-translate="hero.title">Free Online Financial Calculators</h1>
+                <p class="subtitle" data-translate="hero.subtitle">Make informed financial decisions with our easy-to-use tools</p>
                 <div class="search-container">
-                    <input type="text" id="searchInput" placeholder="Search calculators..." aria-label="Search calculators">
+                    <input type="text" id="searchInput" placeholder="Search calculators..." data-translate-attr="hero.searchPlaceholder" aria-label="Search calculators">
                     <button id="searchButton" class="search-button" aria-label="Search">
                         <i class="fas fa-search"></i>
                     </button>
@@ -608,89 +630,89 @@
         <section class="calculator-grid" aria-label="Available calculators">
             <div class="calculator-card">
                 <i class="fas fa-calculator" aria-hidden="true"></i>
-                <h2>Loan Calculator</h2>
-                <p>Calculate monthly payments, total interest, and payoff timeline for any type of loan. Perfect for personal loans, auto loans, and student loans.</p>
-                <a href="loan-calculator/loan-calculator.html" class="btn" aria-label="Use Loan Calculator">Calculate</a>
+                <h2 data-translate="calculators.loan.title">Loan Calculator</h2>
+                <p data-translate="calculators.loan.description">Calculate monthly payments, total interest, and payoff timeline for any type of loan. Perfect for personal loans, auto loans, and student loans.</p>
+                <a href="loan-calculator/loan-calculator.html" class="btn" aria-label="Use Loan Calculator" data-translate="calculators.loan.button">Calculate</a>
             </div>
             <div class="calculator-card">
                 <i class="fas fa-home" aria-hidden="true"></i>
-                <h2>Mortgage Calculator</h2>
-                <p>Determine how much house you can afford, estimate monthly payments, and understand your mortgage qualification requirements.</p>
-                <a href="Mortgage-Qualification-Calculator/mortgage-qualification.html" class="btn" aria-label="Use Mortgage Calculator">Calculate</a>
+                <h2 data-translate="calculators.mortgage.title">Mortgage Calculator</h2>
+                <p data-translate="calculators.mortgage.description">Determine how much house you can afford, estimate monthly payments, and understand your mortgage qualification requirements.</p>
+                <a href="Mortgage-Qualification-Calculator/mortgage-qualification.html" class="btn" aria-label="Use Mortgage Calculator" data-translate="calculators.mortgage.button">Calculate</a>
             </div>
             <div class="calculator-card">
                 <i class="fas fa-wallet" aria-hidden="true"></i>
-                <h2>Paycheck Calculator</h2>
-                <p>Estimate your take-home pay after taxes and deductions. Understand your net income and plan your budget effectively.</p>
-                <a href="paycheck-calculator/paycheck-calculator.html" class="btn" aria-label="Use Paycheck Calculator">Calculate</a>
+                <h2 data-translate="calculators.paycheck.title">Paycheck Calculator</h2>
+                <p data-translate="calculators.paycheck.description">Estimate your take-home pay after taxes and deductions. Understand your net income and plan your budget effectively.</p>
+                <a href="paycheck-calculator/paycheck-calculator.html" class="btn" aria-label="Use Paycheck Calculator" data-translate="calculators.paycheck.button">Calculate</a>
             </div>
             <div class="calculator-card">
                 <i class="fas fa-money-bill-wave" aria-hidden="true"></i>
-                <h2>Debt Payoff Calculator</h2>
-                <p>Create a debt repayment plan, calculate your debt-free date, and see how much you can save on interest payments.</p>
-                <a href="payoff-calculator/payoff-calculator.html" class="btn" aria-label="Use Debt Payoff Calculator">Calculate</a>
+                <h2 data-translate="calculators.debt.title">Debt Payoff Calculator</h2>
+                <p data-translate="calculators.debt.description">Create a debt repayment plan, calculate your debt-free date, and see how much you can save on interest payments.</p>
+                <a href="payoff-calculator/payoff-calculator.html" class="btn" aria-label="Use Debt Payoff Calculator" data-translate="calculators.debt.button">Calculate</a>
             </div>
             <div class="calculator-card">
                 <i class="fas fa-chart-line" aria-hidden="true"></i>
-                <h2>Compound Interest Calculator</h2>
-                <p>Calculate how your investments will grow over time with compound interest. Plan for your financial future.</p>
-                <a href="compound-interest-calculator/compound-interest.html" class="btn" aria-label="Use Compound Interest Calculator">Calculate</a>
+                <h2 data-translate="calculators.compound.title">Compound Interest Calculator</h2>
+                <p data-translate="calculators.compound.description">Calculate how your investments will grow over time with compound interest. Plan for your financial future.</p>
+                <a href="compound-interest-calculator/compound-interest.html" class="btn" aria-label="Use Compound Interest Calculator" data-translate="calculators.compound.button">Calculate</a>
             </div>
             <div class="calculator-card">
                 <i class="fas fa-chart-pie" aria-hidden="true"></i>
-                <h2>Investment Return Calculator</h2>
-                <p>Analyze your investment performance and calculate returns on your portfolio over different time periods.</p>
-                <a href="investment-return-calculator/investment-return.html" class="btn" aria-label="Use Investment Return Calculator">Calculate</a>
+                <h2 data-translate="calculators.investment.title">Investment Return Calculator</h2>
+                <p data-translate="calculators.investment.description">Analyze your investment performance and calculate returns on your portfolio over different time periods.</p>
+                <a href="investment-return-calculator/investment-return.html" class="btn" aria-label="Use Investment Return Calculator" data-translate="calculators.investment.button">Calculate</a>
             </div>
             <div class="calculator-card">
                 <i class="fas fa-hand-holding-usd" aria-hidden="true"></i>
-                <h2>Dividend Calculator</h2>
-                <p>Calculate dividend income, yield, and growth potential from your stock investments and dividend portfolios.</p>
-                <a href="dividend-calculator/dividend-calculator.html" class="btn" aria-label="Use Dividend Calculator">Calculate</a>
+                <h2 data-translate="calculators.dividend.title">Dividend Calculator</h2>
+                <p data-translate="calculators.dividend.description">Calculate dividend income, yield, and growth potential from your stock investments and dividend portfolios.</p>
+                <a href="dividend-calculator/dividend-calculator.html" class="btn" aria-label="Use Dividend Calculator" data-translate="calculators.dividend.button">Calculate</a>
             </div>
             <div class="calculator-card">
                 <i class="fas fa-chart-bar" aria-hidden="true"></i>
-                <h2>Stock Return Calculator</h2>
-                <p>Calculate your stock investment returns including capital gains, dividends, and total returns over your investment period.</p>
-                <a href="stock-return-calculator/stock-return.html" class="btn" aria-label="Use Stock Return Calculator">Calculate</a>
+                <h2 data-translate="calculators.stock.title">Stock Return Calculator</h2>
+                <p data-translate="calculators.stock.description">Calculate your stock investment returns including capital gains, dividends, and total returns over your investment period.</p>
+                <a href="stock-return-calculator/stock-return.html" class="btn" aria-label="Use Stock Return Calculator" data-translate="calculators.stock.button">Calculate</a>
             </div>
         </section>
 
         <!-- Site Description -->
         <section class="site-description">
-            <h2>About Calculator Tap</h2>
-            <p>
+            <h2 data-translate="about.title">About Calculator Tap</h2>
+            <p data-translate="about.paragraph1">
                 Calculator Tap is your go-to resource for essential <strong>financial calculators</strong> designed to help you make informed financial decisions. 
                 Our tools are built with user experience in mind, offering clear results and helpful explanations.
             </p>
-            <p>
+            <p data-translate="about.paragraph2">
                 Whether you're planning to <strong>take out a loan</strong>, <strong>buy a home</strong>, <strong>manage debt</strong>, or <strong>understand your paycheck</strong>, 
                 our calculators provide accurate estimates to guide your financial planning.
             </p>
             
-            <h3>Why Choose Our Calculators?</h3>
+            <h3 data-translate="about.whyTitle">Why Choose Our Calculators?</h3>
             <ul>
-                <li><strong>Easy to Use:</strong> Simple, intuitive interfaces for quick calculations</li>
-                <li><strong>Mobile-Friendly:</strong> Works seamlessly on all devices</li>
-                <li><strong>Detailed Results:</strong> Comprehensive breakdowns and explanations</li>
-                <li><strong>Free to Use:</strong> No registration required, no hidden fees</li>
+                <li data-translate="about.why1"><strong>Easy to Use:</strong> Simple, intuitive interfaces for quick calculations</li>
+                <li data-translate="about.why2"><strong>Mobile-Friendly:</strong> Works seamlessly on all devices</li>
+                <li data-translate="about.why3"><strong>Detailed Results:</strong> Comprehensive breakdowns and explanations</li>
+                <li data-translate="about.why4"><strong>Free to Use:</strong> No registration required, no hidden fees</li>
             </ul>
         </section>
 
         <!-- FAQ Section -->
         <section class="faq-section">
-            <h2>Frequently Asked Questions</h2>
+            <h2 data-translate="faq.title">Frequently Asked Questions</h2>
             <div class="faq-item">
-                <h3>Are these calculators free to use?</h3>
-                <p>Yes, all our calculators are completely free to use. No registration or payment is required.</p>
+                <h3 data-translate="faq.q1">Are these calculators free to use?</h3>
+                <p data-translate="faq.a1">Yes, all our calculators are completely free to use. No registration or payment is required.</p>
             </div>
             <div class="faq-item">
-                <h3>How accurate are the calculations?</h3>
-                <p>Our calculators use standard financial formulas and up-to-date tax rates. However, actual results may vary based on specific circumstances.</p>
+                <h3 data-translate="faq.q2">How accurate are the calculations?</h3>
+                <p data-translate="faq.a2">Our calculators use standard financial formulas and up-to-date tax rates. However, actual results may vary based on specific circumstances.</p>
             </div>
             <div class="faq-item">
-                <h3>Can I save my calculations?</h3>
-                <p>Currently, calculations are performed in real-time and not saved. We recommend noting down important results.</p>
+                <h3 data-translate="faq.q3">Can I save my calculations?</h3>
+                <p data-translate="faq.a3">Currently, calculations are performed in real-time and not saved. We recommend noting down important results.</p>
             </div>
         </section>
     </main>
@@ -767,6 +789,142 @@
                 searchSuggestions.style.display = 'none';
             }
         });
+        
+        // 커스텀 언어 선택 드롭다운
+        (function initLanguageSelector() {
+            const languageSelectBtn = document.getElementById('languageSelectBtn');
+            const languageDropdown = document.getElementById('languageDropdown');
+            const languageOptions = document.querySelectorAll('.language-option');
+            const languageSelected = document.querySelector('.language-selected');
+            
+            if (!languageSelectBtn || !languageDropdown) {
+                console.warn('Language selector elements not found');
+                return;
+            }
+            
+            // 현재 언어 감지
+            const currentPath = window.location.pathname;
+            const pathLang = currentPath.split('/').find(p => ['en', 'es', 'zh', 'ko', 'ja'].includes(p)) || 'en';
+            const langMap = {
+                'en': 'English',
+                'es': 'Español',
+                'zh': '中文',
+                'ko': '한국어',
+                'ja': '日本語'
+            };
+            
+            // 현재 언어 설정
+            if (languageSelected) {
+                languageSelected.textContent = langMap[pathLang] || 'English';
+            }
+            
+            if (languageOptions.length > 0) {
+                languageOptions.forEach(option => {
+                    if (option.dataset.lang === pathLang) {
+                        option.classList.add('active');
+                    }
+                });
+            }
+            
+            // 드롭다운 토글
+            languageSelectBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                const isActive = languageSelectBtn.classList.contains('active');
+                languageSelectBtn.classList.toggle('active');
+                languageDropdown.classList.toggle('show');
+            });
+            
+            // 옵션 선택
+            if (languageOptions.length > 0) {
+                languageOptions.forEach(option => {
+                    option.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        
+                        const selectedLang = option.dataset.lang;
+                        if (!selectedLang) return;
+                        
+                        // 같은 언어면 이동하지 않음
+                        if (selectedLang === pathLang) {
+                            languageSelectBtn.classList.remove('active');
+                            languageDropdown.classList.remove('show');
+                            return;
+                        }
+                        
+                        localStorage.setItem('preferred-language', selectedLang);
+                        
+                        // 현재 경로에서 언어 코드만 교체
+                        const currentPath = window.location.pathname;
+                        const currentUrl = window.location.href;
+                        const langCodes = ['en', 'es', 'zh', 'ko', 'ja'];
+                        
+                        // 현재 경로에서 언어 코드 찾기 및 교체
+                        let newPath = '';
+                        const pathParts = currentPath.split('/').filter(p => p);
+                        
+                        // 언어 코드 위치 찾기
+                        let langIndex = -1;
+                        for (let i = 0; i < pathParts.length; i++) {
+                            if (langCodes.includes(pathParts[i])) {
+                                langIndex = i;
+                                break;
+                            }
+                        }
+                        
+                        if (langIndex >= 0) {
+                            // 언어 코드를 새 언어로 교체
+                            pathParts[langIndex] = selectedLang;
+                            
+                            // 로컬 파일 환경
+                            if (window.location.protocol === 'file:') {
+                                // 상대 경로 사용: ../es/index.html
+                                const remainingPath = pathParts.slice(langIndex + 1).join('/');
+                                newPath = '../' + selectedLang + '/' + (remainingPath || 'index.html');
+                            } else {
+                                // 서버 환경: 절대 경로 사용
+                                newPath = '/' + pathParts.join('/');
+                            }
+                        } else {
+                            // 언어 코드가 없는 경우
+                            const fileName = pathParts[pathParts.length - 1] || 'index.html';
+                            
+                            if (window.location.protocol === 'file:') {
+                                // 로컬 파일: 상대 경로 사용
+                                newPath = '../' + selectedLang + '/' + fileName;
+                            } else {
+                                // 서버: 절대 경로 사용
+                                newPath = '/' + selectedLang + '/' + fileName;
+                            }
+                        }
+                        
+                        // 디버깅용 (나중에 제거 가능)
+                        console.log('Current path:', currentPath);
+                        console.log('New path:', newPath);
+                        console.log('Protocol:', window.location.protocol);
+                        
+                        // 페이지 이동
+                        try {
+                            window.location.href = newPath;
+                        } catch (error) {
+                            console.error('Navigation error:', error);
+                            // 대체 방법: window.location.replace 사용
+                            window.location.replace(newPath);
+                        }
+                    });
+                });
+            }
+            
+            // 외부 클릭 시 닫기
+            document.addEventListener('click', function(e) {
+                if (languageSelectBtn && languageDropdown) {
+                    if (!languageSelectBtn.contains(e.target) && !languageDropdown.contains(e.target)) {
+                        languageSelectBtn.classList.remove('active');
+                        languageDropdown.classList.remove('show');
+                    }
+                }
+            });
+        })();
         
         // 모바일 메뉴 스크립트 추가
         const hamburgerMenu = document.getElementById('hamburgerMenu');
@@ -881,4 +1039,4 @@
         }
     </script>
 </body>
-</html> 
+</html>

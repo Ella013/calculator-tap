@@ -1,0 +1,79 @@
+{
+  "lang": "en",
+  "langName": "English",
+  "meta": {
+    "title": "Financial Calculators | Free Online Tools for Loans, Mortgage & More | Calculator Tap",
+    "description": "Free online financial calculators for loans, mortgage qualification, debt payoff, and paycheck calculations. Make informed financial decisions with our easy-to-use tools.",
+    "keywords": "financial calculator, loan calculator, mortgage calculator, debt payoff calculator, paycheck calculator, online calculator, free calculator"
+  },
+  "nav": {
+    "home": "Home"
+  },
+  "hero": {
+    "title": "Free Online Financial Calculators",
+    "subtitle": "Make informed financial decisions with our easy-to-use tools",
+    "searchPlaceholder": "Search calculators..."
+  },
+  "calculators": {
+    "loan": {
+      "title": "Loan Calculator",
+      "description": "Calculate monthly payments, total interest, and payoff timeline for any type of loan. Perfect for personal loans, auto loans, and student loans.",
+      "button": "Calculate"
+    },
+    "mortgage": {
+      "title": "Mortgage Calculator",
+      "description": "Determine how much house you can afford, estimate monthly payments, and understand your mortgage qualification requirements.",
+      "button": "Calculate"
+    },
+    "paycheck": {
+      "title": "Paycheck Calculator",
+      "description": "Estimate your take-home pay after taxes and deductions. Understand your net income and plan your budget effectively.",
+      "button": "Calculate"
+    },
+    "debt": {
+      "title": "Debt Payoff Calculator",
+      "description": "Create a debt repayment plan, calculate your debt-free date, and see how much you can save on interest payments.",
+      "button": "Calculate"
+    },
+    "compound": {
+      "title": "Compound Interest Calculator",
+      "description": "Calculate how your investments will grow over time with compound interest. Plan for your financial future.",
+      "button": "Calculate"
+    },
+    "investment": {
+      "title": "Investment Return Calculator",
+      "description": "Analyze your investment performance and calculate returns on your portfolio over different time periods.",
+      "button": "Calculate"
+    },
+    "dividend": {
+      "title": "Dividend Calculator",
+      "description": "Calculate dividend income, yield, and growth potential from your stock investments and dividend portfolios.",
+      "button": "Calculate"
+    },
+    "stock": {
+      "title": "Stock Return Calculator",
+      "description": "Calculate your stock investment returns including capital gains, dividends, and total returns over your investment period.",
+      "button": "Calculate"
+    }
+  },
+  "about": {
+    "title": "About Calculator Tap",
+    "paragraph1": "Calculator Tap is your go-to resource for essential <strong>financial calculators</strong> designed to help you make informed financial decisions. Our tools are built with user experience in mind, offering clear results and helpful explanations.",
+    "paragraph2": "Whether you're planning to <strong>take out a loan</strong>, <strong>buy a home</strong>, <strong>manage debt</strong>, or <strong>understand your paycheck</strong>, our calculators provide accurate estimates to guide your financial planning.",
+    "whyTitle": "Why Choose Our Calculators?",
+    "why1": "Easy to Use: Simple, intuitive interfaces for quick calculations",
+    "why2": "Mobile-Friendly: Works seamlessly on all devices",
+    "why3": "Detailed Results: Comprehensive breakdowns and explanations",
+    "why4": "Free to Use: No registration required, no hidden fees"
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "q1": "Are these calculators free to use?",
+    "a1": "Yes, all our calculators are completely free to use. No registration or payment is required.",
+    "q2": "How accurate are the calculations?",
+    "a2": "Our calculators use standard financial formulas and up-to-date tax rates. However, actual results may vary based on specific circumstances.",
+    "q3": "Can I save my calculations?",
+    "a3": "Currently, calculations are performed in real-time and not saved. We recommend noting down important results."
+  }
+}
+

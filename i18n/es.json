@@ -1,0 +1,79 @@
+{
+  "lang": "es",
+  "langName": "Español",
+  "meta": {
+    "title": "Calculadoras Financieras | Herramientas Gratuitas en Línea para Préstamos e Hipotecas | Calculator Tap",
+    "description": "Calculadoras financieras gratuitas en línea para préstamos, calificación hipotecaria, pago de deudas y cálculos de salario. Tome decisiones financieras informadas con nuestras herramientas fáciles de usar.",
+    "keywords": "calculadora financiera, calculadora de préstamos, calculadora hipotecaria, calculadora de pago de deudas, calculadora de salario, calculadora en línea, calculadora gratis"
+  },
+  "nav": {
+    "home": "Inicio"
+  },
+  "hero": {
+    "title": "Calculadoras Financieras Gratuitas en Línea",
+    "subtitle": "Tome decisiones financieras informadas con nuestras herramientas fáciles de usar",
+    "searchPlaceholder": "Buscar calculadoras..."
+  },
+  "calculators": {
+    "loan": {
+      "title": "Calculadora de Préstamos",
+      "description": "Calcule los pagos mensuales, el interés total y el cronograma de pago para cualquier tipo de préstamo. Perfecto para préstamos personales, préstamos para automóviles y préstamos estudiantiles.",
+      "button": "Calcular"
+    },
+    "mortgage": {
+      "title": "Calculadora Hipotecaria",
+      "description": "Determine cuánta casa puede pagar, estime los pagos mensuales y comprenda los requisitos de calificación hipotecaria.",
+      "button": "Calcular"
+    },
+    "paycheck": {
+      "title": "Calculadora de Salario",
+      "description": "Estime su salario neto después de impuestos y deducciones. Comprenda sus ingresos netos y planifique su presupuesto de manera efectiva.",
+      "button": "Calcular"
+    },
+    "debt": {
+      "title": "Calculadora de Pago de Deudas",
+      "description": "Cree un plan de pago de deudas, calcule su fecha libre de deudas y vea cuánto puede ahorrar en pagos de intereses.",
+      "button": "Calcular"
+    },
+    "compound": {
+      "title": "Calculadora de Interés Compuesto",
+      "description": "Calcule cómo crecerán sus inversiones con el tiempo con interés compuesto. Planifique su futuro financiero.",
+      "button": "Calcular"
+    },
+    "investment": {
+      "title": "Calculadora de Retorno de Inversión",
+      "description": "Analice el rendimiento de su inversión y calcule los retornos de su cartera durante diferentes períodos de tiempo.",
+      "button": "Calcular"
+    },
+    "dividend": {
+      "title": "Calculadora de Dividendos",
+      "description": "Calcule los ingresos por dividendos, el rendimiento y el potencial de crecimiento de sus inversiones en acciones y carteras de dividendos.",
+      "button": "Calcular"
+    },
+    "stock": {
+      "title": "Calculadora de Retorno de Acciones",
+      "description": "Calcule el retorno de su inversión en acciones, incluidas las ganancias de capital, los dividendos y los retornos totales durante su período de inversión.",
+      "button": "Calcular"
+    }
+  },
+  "about": {
+    "title": "Acerca de Calculator Tap",
+    "paragraph1": "Calculator Tap es su recurso de referencia para <strong>calculadoras financieras</strong> esenciales diseñadas para ayudarlo a tomar decisiones financieras informadas. Nuestras herramientas están construidas pensando en la experiencia del usuario, ofreciendo resultados claros y explicaciones útiles.",
+    "paragraph2": "Ya sea que esté planeando <strong>obtener un préstamo</strong>, <strong>comprar una casa</strong>, <strong>gestionar deudas</strong> o <strong>entender su salario</strong>, nuestras calculadoras proporcionan estimaciones precisas para guiar su planificación financiera.",
+    "whyTitle": "¿Por qué elegir nuestras calculadoras?",
+    "why1": "Fácil de usar: Interfaces simples e intuitivas para cálculos rápidos",
+    "why2": "Compatible con móviles: Funciona perfectamente en todos los dispositivos",
+    "why3": "Resultados detallados: Análisis y explicaciones completas",
+    "why4": "Gratis: No se requiere registro, sin tarifas ocultas"
+  },
+  "faq": {
+    "title": "Preguntas Frecuentes",
+    "q1": "¿Estas calculadoras son gratuitas?",
+    "a1": "Sí, todas nuestras calculadoras son completamente gratuitas. No se requiere registro ni pago.",
+    "q2": "¿Qué tan precisos son los cálculos?",
+    "a2": "Nuestras calculadoras usan fórmulas financieras estándar y tasas de impuestos actualizadas. Sin embargo, los resultados reales pueden variar según las circunstancias específicas.",
+    "q3": "¿Puedo guardar mis cálculos?",
+    "a3": "Actualmente, los cálculos se realizan en tiempo real y no se guardan. Recomendamos anotar resultados importantes."
+  }
+}
+
