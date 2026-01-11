@@ -43,58 +43,20 @@ function translateHTML(html, translations, lang) {
     `<meta name="keywords" content="${translations.meta.keywords}"`
   );
   
-  // href 속성의 언어 경로 업데이트 (상대 경로만)
-  translatedHTML = translatedHTML.replace(
-    /href="([^"]*\.html)"/g,
-    (match, url) => {
-      // 절대 URL이나 이미 언어 경로가 포함된 경우는 변경하지 않음
-      if (url.startsWith('http') || url.includes(`/${lang}/`) || url.startsWith('/')) {
-        return match;
-      }
-      // 상대 경로를 언어별 경로로 변경
-      return `href="${lang}/${url}"`;
-    }
-  );
+  // href 속성은 그대로 유지 (언어별 빌드된 파일에서는 상대 경로가 맞음)
   
   // data-translate 속성 처리 (여러 줄 지원)
-  const translateRegex = /data-translate="([^"]*)"/g;
-  const processedKeys = new Set();
-  let match;
-  
-  while ((match = translateRegex.exec(translatedHTML)) !== null) {
-    const key = match[1];
-    if (processedKeys.has(key)) continue;
-    processedKeys.add(key);
-    
+  // 각 요소를 태그 이름으로 그룹화하여 처리
+  const translateRegex = /<(\w+)([^>]*?)data-translate="([^"]*)"([^>]*?)>([\s\S]*?)<\/\1>/g;
+  translatedHTML = translatedHTML.replace(translateRegex, (match, tagName, beforeAttrs, key, afterAttrs, oldContent) => {
     const value = getNestedValue(translations, key);
-    
     if (value) {
-      // HTML 태그 내의 내용만 교체 (여러 줄, 중첩 태그 포함)
-      const elementRegex = new RegExp(
-        `(<[^>]*data-translate="${key.replace(/\./g, '\\.')}"[^>]*>)([\\s\\S]*?)(<\/[^>]+>)`,
-        'g'
-      );
-      
-      translatedHTML = translatedHTML.replace(elementRegex, (match, openTag, oldContent, closeTag) => {
-        // data-translate 속성 제거
-        const cleanOpenTag = openTag.replace(/\s*data-translate="[^"]*"/, '');
-        
-        // HTML 태그가 포함된 경우 그대로 유지, 아니면 텍스트만 교체
-        if (oldContent.includes('<')) {
-          // HTML이 포함된 경우, 텍스트 노드만 교체
-          return match.replace(/(>)([^<]+)(<)/g, (m, p1, text, p2) => {
-            const trimmed = text.trim();
-            if (trimmed && !text.includes('<')) {
-              return `${p1}${value}${p2}`;
-            }
-            return m;
-          }).replace(openTag, cleanOpenTag);
-        } else {
-          return `${cleanOpenTag}${value}${closeTag}`;
-        }
-      });
+      // data-translate 속성 제거
+      const cleanAttrs = (beforeAttrs + afterAttrs).replace(/\s*data-translate="[^"]*"/g, '').trim();
+      return `<${tagName}${cleanAttrs ? ' ' + cleanAttrs : ''}>${value}</${tagName}>`;
     }
-  }
+    return match;
+  });
   
   // 남은 data-translate 속성 제거 (번역되지 않은 것들)
   translatedHTML = translatedHTML.replace(/\s*data-translate="[^"]*"/g, '');
@@ -213,20 +175,20 @@ function build() {
     
     // 하위 디렉토리의 HTML 파일들도 빌드
     const subDirs = [
-      'loan-calculator',
-      'Mortgage-Qualification-Calculator',
-      'paycheck-calculator',
-      'payoff-calculator',
-      'compound-interest-calculator',
-      'investment-return-calculator',
-      'dividend-calculator',
-      'stock-return-calculator'
+      { dir: 'loan-calculator', file: 'loan-calculator.html' },
+      { dir: 'Mortgage-Qualification-Calculator', file: 'mortgage-qualification.html' },
+      { dir: 'paycheck-calculator', file: 'paycheck-calculator.html' },
+      { dir: 'payoff-calculator', file: 'payoff-calculator.html' },
+      { dir: 'compound-interest-calculator', file: 'compound-interest.html' },
+      { dir: 'investment-return-calculator', file: 'investment-return.html' },
+      { dir: 'dividend-calculator', file: 'dividend-calculator.html' },
+      { dir: 'stock-return-calculator', file: 'stock-return.html' }
     ];
     
-    subDirs.forEach(subDir => {
-      const htmlPath = path.join(__dirname, subDir, `${path.basename(subDir)}.html`);
+    subDirs.forEach(({ dir, file }) => {
+      const htmlPath = path.join(__dirname, dir, file);
       if (fs.existsSync(htmlPath)) {
-        const outputSubDir = path.join(outputDir, subDir);
+        const outputSubDir = path.join(outputDir, dir);
         if (!fs.existsSync(outputSubDir)) {
           fs.mkdirSync(outputSubDir, { recursive: true });
         }

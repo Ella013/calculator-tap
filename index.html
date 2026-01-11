@@ -854,13 +854,11 @@
                         
                         localStorage.setItem('preferred-language', selectedLang);
                         
-                        // 현재 경로에서 언어 코드만 교체
+                        // 가장 단순한 방법: 현재 경로에서 언어 코드만 교체
                         const currentPath = window.location.pathname;
-                        const currentUrl = window.location.href;
                         const langCodes = ['en', 'es', 'zh', 'ko', 'ja'];
                         
-                        // 현재 경로에서 언어 코드 찾기 및 교체
-                        let newPath = '';
+                        // 경로를 배열로 분리 (빈 문자열 제거)
                         const pathParts = currentPath.split('/').filter(p => p);
                         
                         // 언어 코드 위치 찾기
@@ -872,45 +870,36 @@
                             }
                         }
                         
+                        let newPath = '';
+                        
                         if (langIndex >= 0) {
-                            // 언어 코드를 새 언어로 교체
-                            pathParts[langIndex] = selectedLang;
-                            
-                            // 로컬 파일 환경
-                            if (window.location.protocol === 'file:') {
-                                // 상대 경로 사용: ../es/index.html
-                                const remainingPath = pathParts.slice(langIndex + 1).join('/');
-                                newPath = '../' + selectedLang + '/' + (remainingPath || 'index.html');
-                            } else {
-                                // 서버 환경: 절대 경로 사용
-                                newPath = '/' + pathParts.join('/');
-                            }
-                        } else {
-                            // 언어 코드가 없는 경우
-                            const fileName = pathParts[pathParts.length - 1] || 'index.html';
+                            // 언어 코드 이후의 경로
+                            const afterLang = pathParts.slice(langIndex + 1);
                             
                             if (window.location.protocol === 'file:') {
                                 // 로컬 파일: 상대 경로 사용
-                                newPath = '../' + selectedLang + '/' + fileName;
+                                // 예: dist/ko/index.html -> ../es/index.html
+                                // 예: dist/ko/loan-calculator/loan-calculator.html -> ../../es/loan-calculator/loan-calculator.html
+                                const dirDepth = afterLang.length;
+                                newPath = '../'.repeat(dirDepth) + selectedLang + '/' + afterLang.join('/');
                             } else {
                                 // 서버: 절대 경로 사용
-                                newPath = '/' + selectedLang + '/' + fileName;
+                                pathParts[langIndex] = selectedLang;
+                                newPath = '/' + pathParts.join('/');
+                            }
+                        } else {
+                            // 언어 코드가 없는 경우 (메인 index.html에서)
+                            const fileName = pathParts[pathParts.length - 1] || 'index.html';
+                            // 메인 index.html에서 dist/언어/index.html로 이동
+                            if (window.location.protocol === 'file:') {
+                                newPath = 'dist/' + selectedLang + '/' + fileName;
+                            } else {
+                                newPath = '/dist/' + selectedLang + '/' + fileName;
                             }
                         }
                         
-                        // 디버깅용 (나중에 제거 가능)
-                        console.log('Current path:', currentPath);
-                        console.log('New path:', newPath);
-                        console.log('Protocol:', window.location.protocol);
-                        
                         // 페이지 이동
-                        try {
-                            window.location.href = newPath;
-                        } catch (error) {
-                            console.error('Navigation error:', error);
-                            // 대체 방법: window.location.replace 사용
-                            window.location.replace(newPath);
-                        }
+                        window.location.href = newPath;
                     });
                 });
             }
