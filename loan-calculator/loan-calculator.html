@@ -773,14 +773,35 @@
         const interestRateDisplay = document.getElementById('interestRateDisplay');
         const loanTermDisplay = document.getElementById('loanTermDisplay');
         const chartPlaceholder = document.querySelector('.chart-placeholder');
+        const currencySymbolElement = document.querySelector('.currency-symbol');
         
-        // Format currency
+        // URL 경로에서 locale 감지
+        const currentPath = window.location.pathname;
+        const pathLang = currentPath.split('/').find(p => ['en', 'es', 'zh', 'ko', 'ja'].includes(p)) || 'en';
+        
+        // Locale별 통화 설정
+        const currencyConfig = {
+            en: { symbol: '$', currency: 'USD', locale: 'en-US' },
+            ko: { symbol: '₩', currency: 'KRW', locale: 'ko-KR' },
+            zh: { symbol: '¥', currency: 'CNY', locale: 'zh-CN' },
+            es: { symbol: '$', currency: 'USD', locale: 'es-US' }, // 스페인어는 달러 사용 (필요시 EUR로 변경)
+            ja: { symbol: '¥', currency: 'JPY', locale: 'ja-JP' }
+        };
+        
+        const currentCurrency = currencyConfig[pathLang] || currencyConfig['en'];
+        
+        // 통화 기호 업데이트
+        if (currencySymbolElement) {
+            currencySymbolElement.textContent = currentCurrency.symbol;
+        }
+        
+        // Format currency with locale
         const formatCurrency = (amount) => {
-            return new Intl.NumberFormat('en-US', {
+            return new Intl.NumberFormat(currentCurrency.locale, {
                 style: 'currency',
-                currency: 'USD',
-                minimumFractionDigits: 2,
-                maximumFractionDigits: 2
+                currency: currentCurrency.currency,
+                minimumFractionDigits: currentCurrency.currency === 'JPY' || currentCurrency.currency === 'KRW' ? 0 : 2,
+                maximumFractionDigits: currentCurrency.currency === 'JPY' || currentCurrency.currency === 'KRW' ? 0 : 2
             }).format(amount);
         };
         
@@ -852,6 +873,18 @@
         function updateChart(principal, interest) {
             if (loanChart) {
                 loanChart.data.datasets[0].data = [principal, interest];
+                
+                // 차트 툴팁 포맷 업데이트
+                if (loanChart.options.plugins && loanChart.options.plugins.tooltip) {
+                    loanChart.options.plugins.tooltip.callbacks.label = function(context) {
+                        const label = context.label || '';
+                        const value = context.raw || 0;
+                        const total = principal + interest;
+                        const percentage = ((value / total) * 100).toFixed(1);
+                        return `${label}: ${formatCurrency(value)} (${percentage}%)`;
+                    };
+                }
+                
                 loanChart.update();
             }
         }
