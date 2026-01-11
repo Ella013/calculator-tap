@@ -1256,7 +1256,7 @@
                                     const label = context.label || '';
                                     const value = context.raw || 0;
                                     const percentage = ((value / sampleGross) * 100).toFixed(1);
-                                    return `${label}: $${value.toFixed(2)} (${percentage}%)`;
+                                    return `${label}: ${formatCurrency(value)} (${percentage}%)`;
                                 }
                             }
                         }
