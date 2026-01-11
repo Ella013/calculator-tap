@@ -441,6 +441,25 @@
             background-color: #2980b9;
         }
         
+        /* Reset Button */
+        .reset-btn {
+            background-color: #f1f1f1;
+            color: #333;
+            border: none;
+            border-radius: 4px;
+            padding: 0.75rem 1.25rem;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            margin-top: 0.5rem;
+            width: 100%;
+        }
+
+        .reset-btn:hover {
+            background-color: #e0e0e0;
+        }
+        
         /* Responsive styles */
         @media (max-width: 768px) {
             .calculator-main {
@@ -864,6 +883,7 @@
                                 <button type="button" class="tab-prev calculator-btn" data-prev="earnings" data-translate="calculators.paycheck.previous">Previous</button>
                                 <button type="button" id="calculateBtn" class="calculator-btn" data-translate="calculators.paycheck.button">Calculate Paycheck</button>
                             </div>
+                            <button type="button" id="resetBtn" class="calculator-btn reset-btn" data-translate="calculators.paycheck.resetButton">Reset</button>
                         </div>
                     </div>
 
@@ -1085,6 +1105,7 @@
         const overtimeRateInput = document.getElementById('overtimeRate');
         const overtimeMultiplierSelect = document.getElementById('overtimeMultiplier');
         const calculateBtn = document.getElementById('calculateBtn');
+        const resetBtn = document.getElementById('resetBtn');
         
         // URL 경로에서 locale 감지
         const currentPath = window.location.pathname;
@@ -1164,8 +1185,51 @@
             overtimeRateInput.value = (hourlyRate * multiplier).toFixed(2);
         }
         
+        // Reset function
+        const resetCalculator = () => {
+            // Reset input values to defaults or empty
+            document.getElementById('payPeriod').value = 'biweekly';
+            hourlyRateInput.value = '';
+            regularHoursInput.value = '';
+            overtimeHoursInput.value = '';
+            overtimeRateInput.value = '';
+            overtimeMultiplierSelect.value = '1.5';
+            document.getElementById('federalTax').value = '15';
+            document.getElementById('stateTax').value = '5';
+            document.getElementById('retirement').value = '0';
+            otherDeductionsInput.value = '';
+
+            // Reset results
+            document.getElementById('netPay').textContent = formatCurrency(0);
+            document.getElementById('grossPay').textContent = formatCurrency(0);
+            document.getElementById('regularEarnings').textContent = formatCurrency(0);
+            document.getElementById('overtimeEarnings').textContent = formatCurrency(0);
+            document.getElementById('federalTaxAmount').textContent = '-' + formatCurrency(0);
+            document.getElementById('stateTaxAmount').textContent = '-' + formatCurrency(0);
+            document.getElementById('socialSecurityAmount').textContent = '-' + formatCurrency(0);
+            document.getElementById('medicareAmount').textContent = '-' + formatCurrency(0);
+            document.getElementById('retirementAmount').textContent = '-' + formatCurrency(0);
+            document.getElementById('otherDeductionsAmount').textContent = '-' + formatCurrency(0);
+            document.getElementById('totalTaxes').textContent = '-' + formatCurrency(0);
+            document.getElementById('totalBenefits').textContent = '-' + formatCurrency(0);
+
+            // Reset chart
+            if (window.paycheckChart) {
+                window.paycheckChart.destroy();
+                window.paycheckChart = null;
+            }
+            // Show placeholder
+            const chartPlaceholder = document.querySelector('.chart-placeholder');
+            if (chartPlaceholder) {
+                chartPlaceholder.style.display = 'flex';
+            }
+        };
+
         // Calculate button click handler
         calculateBtn.addEventListener('click', calculatePaycheck);
+        if (resetBtn) {
+            resetBtn.addEventListener('click', resetCalculator);
+        }
         
         // Comma formatting for currency input fields
         const otherDeductionsInput = document.getElementById('otherDeductions');

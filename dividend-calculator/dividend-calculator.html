@@ -741,7 +741,10 @@
         <div class="header-container">
             <div class="logo">
                 <a href="../index.html" class="logo-link" style="display: flex; align-items: center; text-decoration: none;">
-                    <img src="../calculator tap logo.png" alt="Calculator Tap" style="height: 40px; width: auto;">
+                    <picture>
+                        <source srcset="../calculator-tap-logo.webp" type="image/webp">
+                        <img src="../calculator-tap-logo.png" alt="Calculator Tap" style="height: 40px; width: auto;">
+                    </picture>
                     <h1 style="margin-left: 10px; color: #2c3e50;">Calculator Tap</h1>
                 </a>
             </div>
@@ -776,75 +779,75 @@
                 <!-- Main Content -->
                 <main class="calculator-main">
                     <div class="calculator-header">
-                        <h1 class="calculator-title">Dividend Calculator</h1>
-                        <p class="calculator-description">Calculate your dividend income and see potential growth with reinvestment</p>
+                        <h1 class="calculator-title" data-translate="calculators.dividend.title">Dividend Calculator</h1>
+                        <p class="calculator-description" data-translate="calculators.dividend.description">Calculate your dividend income and see potential growth with reinvestment</p>
                     </div>
                     
                     <div class="calculator-form">
                         <div class="tab-container">
-                            <button class="tab-button active" id="amountTab">Dividend Amount</button>
-                            <button class="tab-button" id="yieldTab">Dividend Yield</button>
+                            <button class="tab-button active" id="amountTab" data-translate="calculators.dividend.amountTab">Dividend Amount</button>
+                            <button class="tab-button" id="yieldTab" data-translate="calculators.dividend.yieldTab">Dividend Yield</button>
                         </div>
                         
                         <div id="amountTabContent" class="tab-content active">
                             <div class="form-group">
-                                <label for="stockPrice">Stock Price ($)</label>
+                                <label for="stockPrice" data-translate="calculators.dividend.stockPrice">Stock Price</label>
                                 <div class="input-group">
                                     <span class="currency-symbol">$</span>
-                                    <input type="text" id="stockPrice" placeholder="Enter stock price" class="input-field">
+                                    <input type="text" id="stockPrice" placeholder="Enter stock price" class="input-field" data-translate-attr="calculators.dividend.placeholderStockPrice">
                                 </div>
                             </div>
                             
                             <div class="form-group">
-                                <label for="dividendAmount">Dividend Amount Per Share ($)</label>
+                                <label for="dividendAmount" data-translate="calculators.dividend.dividendAmount">Dividend Amount Per Share</label>
                                 <div class="input-group">
                                     <span class="currency-symbol">$</span>
-                                    <input type="text" id="dividendAmount" placeholder="Enter dividend amount per share" class="input-field">
+                                    <input type="text" id="dividendAmount" placeholder="Enter dividend amount per share" class="input-field" data-translate-attr="calculators.dividend.placeholderDividendAmount">
                                 </div>
                             </div>
                         </div>
                         
                         <div id="yieldTabContent" class="tab-content">
                             <div class="form-group">
-                                <label for="stockPriceYield">Stock Price ($)</label>
+                                <label for="stockPriceYield" data-translate="calculators.dividend.stockPrice">Stock Price</label>
                                 <div class="input-group">
                                     <span class="currency-symbol">$</span>
-                                    <input type="text" id="stockPriceYield" placeholder="Enter stock price" class="input-field">
+                                    <input type="text" id="stockPriceYield" placeholder="Enter stock price" class="input-field" data-translate-attr="calculators.dividend.placeholderStockPrice">
                                 </div>
                             </div>
                             
                             <div class="form-group">
-                                <label for="dividendYield">Dividend Yield (%)</label>
+                                <label for="dividendYield" data-translate="calculators.dividend.dividendYield">Dividend Yield (%)</label>
                                 <div class="input-group">
-                                    <input type="text" id="dividendYield" placeholder="Enter dividend yield" class="input-field percent-field">
+                                    <input type="text" id="dividendYield" placeholder="Enter dividend yield" class="input-field percent-field" data-translate-attr="calculators.dividend.placeholderDividendYield">
                                     <span class="percent-symbol">%</span>
                                 </div>
                             </div>
                         </div>
                         
                         <div class="form-group">
-                            <label for="numberOfShares">Number of Shares</label>
-                            <input type="number" id="numberOfShares" placeholder="Enter number of shares" min="1" step="1">
+                            <label for="numberOfShares" data-translate="calculators.dividend.numberOfShares">Number of Shares</label>
+                            <input type="number" id="numberOfShares" placeholder="Enter number of shares" data-translate-attr="calculators.dividend.placeholderShares" min="1" step="1">
                         </div>
                         
                         <div class="form-group">
-                            <label for="dividendFrequency">Dividend Frequency</label>
+                            <label for="dividendFrequency" data-translate="calculators.dividend.dividendFrequency">Dividend Frequency</label>
                             <select id="dividendFrequency">
-                                <option value="annually">Annual (1 time per year)</option>
-                                <option value="semi-annually">Semi-Annual (2 times per year)</option>
-                                <option value="quarterly" selected>Quarterly (4 times per year)</option>
-                                <option value="monthly">Monthly (12 times per year)</option>
+                                <option value="annually" data-translate="calculators.dividend.annually">Annual (1 time per year)</option>
+                                <option value="semi-annually" data-translate="calculators.dividend.semiAnnually">Semi-Annual (2 times per year)</option>
+                                <option value="quarterly" selected data-translate="calculators.dividend.quarterly">Quarterly (4 times per year)</option>
+                                <option value="monthly" data-translate="calculators.dividend.monthly">Monthly (12 times per year)</option>
                             </select>
                         </div>
                         
                         <div class="form-group">
-                            <label for="investmentPeriod">Investment Period (years)</label>
-                            <input type="number" id="investmentPeriod" placeholder="Enter investment period" min="1" step="1" value="10">
+                            <label for="investmentPeriod" data-translate="calculators.dividend.investmentPeriod">Investment Period (years)</label>
+                            <input type="number" id="investmentPeriod" placeholder="Enter investment period" data-translate-attr="calculators.dividend.placeholderPeriod" min="1" step="1" value="10">
                         </div>
                         
                         <div class="checkbox-group">
                             <input type="checkbox" id="reinvestDividends" checked>
-                            <label for="reinvestDividends">Reinvest Dividends (DRIP)</label>
+                            <label for="reinvestDividends" data-translate="calculators.dividend.reinvestDividends">Reinvest Dividends (DRIP)</label>
                             <div class="tooltip-container">
                                 <div class="tooltip-icon">?</div>
                                 <div class="tooltip-text">DRIP (Dividend Reinvestment Plan) automatically reinvests dividend payments to buy additional shares instead of receiving cash. This enables compounding growth over time as you earn dividends on previously reinvested dividends.</div>
@@ -852,80 +855,80 @@
                         </div>
                         
                         <div class="form-group">
-                            <label for="dividendGrowthRate">Annual Dividend Growth Rate (%)</label>
+                            <label for="dividendGrowthRate" data-translate="calculators.dividend.dividendGrowthRate">Annual Dividend Growth Rate (%)</label>
                             <div class="input-group">
-                                <input type="text" id="dividendGrowthRate" placeholder="Enter dividend growth rate" class="input-field percent-field" value="3">
+                                <input type="text" id="dividendGrowthRate" placeholder="Enter dividend growth rate" class="input-field percent-field" data-translate-attr="calculators.dividend.placeholderGrowthRate" value="3">
                                 <span class="percent-symbol">%</span>
                             </div>
                         </div>
                         
-                        <button id="calculateBtn" class="calculate-btn">Calculate Dividends</button>
-                        <button id="resetBtn" class="reset-btn">Reset</button>
+                        <button id="calculateBtn" class="calculate-btn" data-translate="calculators.dividend.button">Calculate Dividends</button>
+                        <button id="resetBtn" class="reset-btn" data-translate="calculators.dividend.resetButton">Reset</button>
                     </div>
                     
                     <div class="results-section" id="resultsSection">
-                        <h3 class="results-header">Dividend Results</h3>
+                        <h3 class="results-header" data-translate="calculators.dividend.results">Dividend Results</h3>
                         
                         <div class="chart-container">
                             <canvas id="dividendChart"></canvas>
-                            <div class="chart-placeholder">결과가 여기에 표시됩니다</div>
+                            <div class="chart-placeholder" data-translate="calculators.dividend.chartPlaceholder">Chart will be displayed after calculation</div>
                         </div>
                         
                         <div class="chart-legend">
                             <div class="legend-item">
                                 <span class="legend-color initial"></span>
-                                <span>Initial Investment</span>
+                                <span data-translate="calculators.dividend.initialInvestment">Initial Investment</span>
                             </div>
                             <div class="legend-item">
                                 <span class="legend-color dividend"></span>
-                                <span>Dividend Income</span>
+                                <span data-translate="calculators.dividend.dividendIncome">Dividend Income</span>
                             </div>
                         </div>
                         
                         <div class="results-summary">
                             <span id="annualDividendIncome" class="dividend-amount">$0.00</span>
-                            <span class="dividend-label">Annual Dividend Income</span>
+                            <span class="dividend-label" data-translate="calculators.dividend.annualDividendIncome">Annual Dividend Income</span>
                         </div>
                         
                         <div class="results-details">
                             <div class="result-row">
-                                <span class="result-label">Stock Price</span>
+                                <span class="result-label" data-translate="calculators.dividend.stockPriceLabel">Stock Price</span>
                                 <span id="stockPriceDisplay" class="result-value">$0.00</span>
                             </div>
                             <div class="result-row">
-                                <span class="result-label">Dividend Per Share</span>
+                                <span class="result-label" data-translate="calculators.dividend.dividendPerShare">Dividend Per Share</span>
                                 <span id="dividendPerShareDisplay" class="result-value">$0.00</span>
                             </div>
                             <div class="result-row">
-                                <span class="result-label">Dividend Yield</span>
+                                <span class="result-label" data-translate="calculators.dividend.dividendYieldLabel">Dividend Yield</span>
                                 <span id="dividendYieldDisplay" class="result-value">0.00%</span>
                             </div>
                             <div class="result-row">
-                                <span class="result-label">Number of Shares</span>
+                                <span class="result-label" data-translate="calculators.dividend.numberOfSharesLabel">Number of Shares</span>
                                 <span id="sharesDisplay" class="result-value">0</span>
                             </div>
                             <div class="result-row">
-                                <span class="result-label">Initial Investment</span>
+                                <span class="result-label" data-translate="calculators.dividend.initialInvestmentLabel">Initial Investment</span>
                                 <span id="initialInvestmentDisplay" class="result-value">$0.00</span>
                             </div>
                             <div class="result-row">
-                                <span class="result-label">Monthly Dividend</span>
+                                <span class="result-label" data-translate="calculators.dividend.monthlyDividend">Monthly Dividend</span>
                                 <span id="monthlyDividendDisplay" class="result-value">$0.00</span>
                             </div>
                             <div class="result-row">
-                                <span class="result-label">Quarterly Dividend</span>
+                                <span class="result-label" data-translate="calculators.dividend.quarterlyDividend">Quarterly Dividend</span>
                                 <span id="quarterlyDividendDisplay" class="result-value">$0.00</span>
                             </div>
                             <div class="result-row">
-                                <span class="result-label">Annual Dividend</span>
+                                <span class="result-label" data-translate="calculators.dividend.annualDividend">Annual Dividend</span>
                                 <span id="annualDividendDisplay" class="result-value">$0.00</span>
                             </div>
                             <div class="result-row">
-                                <span class="result-label">Total Dividends (All Years)</span>
+                                <span class="result-label" data-translate="calculators.dividend.totalDividends">Total Dividends (All Years)</span>
                                 <span id="totalDividendsDisplay" class="result-value">$0.00</span>
                             </div>
                             <div class="result-row">
-                                <span class="result-label">Final Investment Value</span>
+                                <span class="result-label" data-translate="calculators.dividend.finalValue">Final Investment Value</span>
                                 <span id="finalValueDisplay" class="result-value">$0.00</span>
                             </div>
                         </div>

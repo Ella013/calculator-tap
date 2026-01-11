@@ -420,6 +420,25 @@
         .calculate-btn:hover {
             background-color: #2980b9;
         }
+
+        /* Reset Button */
+        .reset-btn {
+            background-color: #f1f1f1;
+            color: #333;
+            border: none;
+            border-radius: 4px;
+            padding: 0.75rem 1.25rem;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            margin-top: 0.5rem;
+            width: 100%;
+        }
+
+        .reset-btn:hover {
+            background-color: #e0e0e0;
+        }
         
         /* Explanation Section Styles */
         .explanation-section {
@@ -589,7 +608,10 @@
         <div class="header-container">
             <div class="logo">
                 <a href="../index.html" class="logo-link" style="display: flex; align-items: center; text-decoration: none;">
-                    <img src="../calculator tap logo.png" alt="Calculator Tap" style="height: 40px; width: auto;">
+                    <picture>
+                        <source srcset="../calculator-tap-logo.webp" type="image/webp">
+                        <img src="../calculator-tap-logo.png" alt="Calculator Tap" style="height: 40px; width: auto;">
+                    </picture>
                     <h1 style="margin-left: 10px; color: #2c3e50;">Calculator Tap</h1>
                 </a>
             </div>
@@ -612,7 +634,6 @@
         <a href="../Mortgage-Qualification-Calculator/mortgage-qualification.html" class="mobile-nav-link"><i class="fas fa-home"></i> Mortgage Calculator</a>
         <a href="../paycheck-calculator/paycheck-calculator.html" class="mobile-nav-link"><i class="fas fa-wallet"></i> Paycheck Calculator</a>
         <a href="../payoff-calculator/payoff-calculator.html" class="mobile-nav-link"><i class="fas fa-money-bill-wave"></i> Debt Payoff Calculator</a>
-        <a href="../blog/index.html" class="mobile-nav-link"><i class="fas fa-blog"></i> Blog</a>
     </div>
 
     <div class="container">
@@ -645,6 +666,7 @@
                         </div>
                         
                         <button id="calculateBtn" class="calculate-btn" data-translate="calculators.loan.button">Calculate</button>
+                        <button id="resetBtn" class="reset-btn" data-translate="calculators.loan.resetButton">Reset</button>
                     </div>
                     
                     <div class="results-section">

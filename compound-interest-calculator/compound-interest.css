@@ -129,6 +129,25 @@ body {
     outline: none;
 }
 
+.input-group {
+    position: relative;
+    width: 100%;
+}
+
+.input-group input[type="number"] {
+    padding-left: 25px;
+}
+
+.input-group .currency-symbol {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-weight: 500;
+    color: #555;
+    pointer-events: none;
+}
+
 /* Calculate Button */
 .calculate-btn {
     background-color: #3498db;

@@ -26,14 +26,36 @@ document.addEventListener('DOMContentLoaded', function() {
     // Investment chart
     let investmentChart;
     
-    // Format currency
+    // URL 경로에서 locale 감지
+    const currentPath = window.location.pathname;
+    const pathLang = currentPath.split('/').find(p => ['en', 'es', 'zh', 'ko', 'ja'].includes(p)) || 'en';
+    
+    // Locale별 통화 설정
+    const currencyConfig = {
+        en: { symbol: '$', currency: 'USD', locale: 'en-US' },
+        ko: { symbol: '₩', currency: 'KRW', locale: 'ko-KR' },
+        zh: { symbol: '¥', currency: 'CNY', locale: 'zh-CN' },
+        es: { symbol: '$', currency: 'USD', locale: 'es-US' },
+        ja: { symbol: '¥', currency: 'JPY', locale: 'ja-JP' }
+    };
+    
+    const currentCurrency = currencyConfig[pathLang] || currencyConfig['en'];
+    
+    // 모든 통화 기호 요소 업데이트
+    const currencySymbolElements = document.querySelectorAll('.currency-symbol');
+    currencySymbolElements.forEach(el => {
+        el.textContent = currentCurrency.symbol;
+    });
+    
+    // Format currency with locale
     const formatCurrency = (amount) => {
-        return new Intl.NumberFormat('en-US', {
+        const formatOptions = {
             style: 'currency',
-            currency: 'USD',
-            minimumFractionDigits: 2,
-            maximumFractionDigits: 2
-        }).format(amount);
+            currency: currentCurrency.currency,
+            minimumFractionDigits: currentCurrency.currency === 'KRW' || currentCurrency.currency === 'JPY' ? 0 : 2,
+            maximumFractionDigits: currentCurrency.currency === 'KRW' || currentCurrency.currency === 'JPY' ? 0 : 2
+        };
+        return new Intl.NumberFormat(currentCurrency.locale, formatOptions).format(amount);
     };
     
     // Format percentage
@@ -340,13 +362,13 @@ document.addEventListener('DOMContentLoaded', function() {
         totalReturnPercentageElement.textContent = '0.00%';
         totalReturnPercentageElement.style.color = '#2c3e50';
         
-        totalReturnAmountElement.textContent = '$0.00';
+        totalReturnAmountElement.textContent = formatCurrency(0);
         totalReturnAmountElement.style.color = '#2c3e50';
         
-        initialInvestmentDisplay.textContent = '$0.00';
-        contributionsDisplay.textContent = '$0.00';
-        totalInvestedDisplay.textContent = '$0.00';
-        finalValueDisplay.textContent = '$0.00';
+        initialInvestmentDisplay.textContent = formatCurrency(0);
+        contributionsDisplay.textContent = formatCurrency(0);
+        totalInvestedDisplay.textContent = formatCurrency(0);
+        finalValueDisplay.textContent = formatCurrency(0);
         investmentPeriodDisplay.textContent = '0 years';
         
         // Reset chart to initial state
@@ -397,7 +419,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const value = parseCurrencyInput(input.value);
             if (value > 0) {
                 // Format as currency but without the $ (handled by CSS)
-                input.value = new Intl.NumberFormat('en-US', {
+                input.value = new Intl.NumberFormat(currentCurrency.locale, {
                     minimumFractionDigits: 0,
                     maximumFractionDigits: 2
                 }).format(value);

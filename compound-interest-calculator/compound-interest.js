@@ -42,16 +42,93 @@ document.addEventListener('DOMContentLoaded', function() {
         el.textContent = currentCurrency.symbol;
     });
     
+    // Format currency with locale
+    const formatCurrency = (amount) => {
+        const formatOptions = {
+            style: 'currency',
+            currency: currentCurrency.currency,
+            minimumFractionDigits: currentCurrency.currency === 'KRW' || currentCurrency.currency === 'JPY' ? 0 : 2,
+            maximumFractionDigits: currentCurrency.currency === 'KRW' || currentCurrency.currency === 'JPY' ? 0 : 2
+        };
+        return new Intl.NumberFormat(currentCurrency.locale, formatOptions).format(amount);
+    };
+    
+    // Format number with commas
+    const formatNumber = (value) => {
+        if (!value) return '';
+        const numValue = value.toString().replace(/[^0-9.-]+/g, '');
+        if (!numValue) return '';
+        const num = parseFloat(numValue);
+        if (isNaN(num)) return '';
+        return num.toLocaleString('en-US');
+    };
+    
+    // Parse number from formatted string
+    const parseNumber = (value) => {
+        if (!value) return 0;
+        const numValue = value.toString().replace(/[^0-9.-]+/g, '');
+        return parseFloat(numValue) || 0;
+    };
+    
+    // Format input on input event
+    const formatInput = (input) => {
+        const cursorPosition = input.selectionStart;
+        const oldValue = input.value;
+        const formattedValue = formatNumber(oldValue);
+        input.value = formattedValue;
+        
+        // Adjust cursor position
+        const newCursorPosition = cursorPosition + (formattedValue.length - oldValue.length);
+        input.setSelectionRange(newCursorPosition, newCursorPosition);
+    };
+    
+    // Reset function
+    const resetCalculator = () => {
+        // Reset all inputs
+        initialInvestmentInput.value = '';
+        contributionAmountInput.value = '';
+        contributionFrequencySelect.value = 'monthly';
+        interestRateInput.value = '7';
+        compoundFrequencySelect.value = 'monthly';
+        investmentLengthInput.value = '10';
+        
+        // Reset results
+        futureValueEl.textContent = formatCurrency(0);
+        totalPrincipalEl.textContent = formatCurrency(0);
+        totalInterestEl.textContent = formatCurrency(0);
+        
+        // Reset chart to initial state
+        if (growthChart) {
+            growthChart.destroy();
+            growthChart = null;
+            createInitialChart();
+        }
+        
+        // Reset growth table
+        const tableBody = document.getElementById('growthTableBody');
+        if (tableBody) {
+            tableBody.innerHTML = '';
+        }
+    };
+    
     // Event Listeners
     calculateBtn.addEventListener('click', calculateCompoundInterest);
+    const resetBtn = document.getElementById('resetBtn');
+    if (resetBtn) {
+        resetBtn.addEventListener('click', resetCalculator);
+    }
+    
+    // Input formatting event listeners
+    initialInvestmentInput.addEventListener('input', () => formatInput(initialInvestmentInput));
+    contributionAmountInput.addEventListener('input', () => formatInput(contributionAmountInput));
     
     // Initialize with default calculation
     calculateCompoundInterest();
     
     function calculateCompoundInterest() {
         // Get input values
-        const initialInvestment = parseFloat(initialInvestmentInput.value) || 0;
-        const contributionAmount = parseFloat(contributionAmountInput.value) || 0;
+        const initialInvestment = parseNumber(initialInvestmentInput.value) || 0;
+        const contributionAmount = parseNumber(contributionAmountInput.value) || 0;
         const contributionFrequency = contributionFrequencySelect.value;
         const annualInterestRate = parseFloat(interestRateInput.value) / 100 || 0;
         const compoundFrequency = compoundFrequencySelect.value;
@@ -102,7 +179,9 @@ document.addEventListener('DOMContentLoaded', function() {
             // If this is the last period of a year, or the final period
             const currentYear = Math.ceil(period / compoundPeriodsPerYear);
             if (period % compoundPeriodsPerYear === 0 || period === totalCompoundPeriods) {
-                labels.push(`Year ${currentYear}`);
+                // Get Year translation from page
+                const yearLabel = document.querySelector('[data-translate="calculators.compound.year"]')?.textContent || 'Year';
+                labels.push(`${yearLabel} ${currentYear}`);
                 principalData.push(totalContributions);
                 interestData.push(balance - totalContributions);
                 balanceData.push(balance);
@@ -275,9 +354,5 @@ document.addEventListener('DOMContentLoaded', function() {
             'annually': 1
         };
         return periods[frequency] || 12;
-    }
-    
-    function formatCurrency(value, includeSymbol = true) {
-        return (includeSymbol ? '$' : '') + value.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
     }
 }); 

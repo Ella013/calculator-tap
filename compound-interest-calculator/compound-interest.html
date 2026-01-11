@@ -246,6 +246,25 @@
             outline: none;
         }
 
+        .input-group {
+            position: relative;
+            width: 100%;
+        }
+        
+        .currency-symbol {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #555;
+            font-weight: 500;
+            pointer-events: none;
+        }
+        
+        .input-group input[type="text"] {
+            padding-left: 25px;
+        }
+
         /* Results Section */
         .results-section {
             grid-column: 2;
@@ -583,7 +602,10 @@
         <div class="header-container">
             <div class="logo">
                 <a href="../index.html" class="logo-link" style="display: flex; align-items: center;">
-                    <img src="../calculator tap logo.png" alt="Calculator Tap" style="height: 40px; width: auto;">
+                    <picture>
+                        <source srcset="../calculator-tap-logo.webp" type="image/webp">
+                        <img src="../calculator-tap-logo.png" alt="Calculator Tap" style="height: 40px; width: auto;">
+                    </picture>
                     <h1 style="margin-left: 10px;">Calculator Tap</h1>
                 </a>
             </div>
@@ -626,21 +648,27 @@
                     <!-- Calculator Form -->
                     <div class="calculator-form">
                         <div class="form-group">
-                            <label for="initialInvestment" data-translate="calculators.compound.initialInvestment">Initial Investment ($)</label>
-                            <input type="number" id="initialInvestment" min="0" value="10000" step="100">
+                            <label for="initialInvestment" data-translate="calculators.compound.initialInvestment">Initial Investment</label>
+                            <div class="input-group">
+                                <span class="currency-symbol">$</span>
+                                <input type="text" id="initialInvestment" placeholder="Enter initial investment" data-translate-attr="calculators.compound.placeholderInitial" min="0" inputmode="numeric">
+                            </div>
                         </div>
 
                         <div class="form-group">
-                            <label for="contributionAmount" data-translate="calculators.compound.contributionAmount">Additional Contribution ($)</label>
-                            <input type="number" id="contributionAmount" min="0" value="100" step="10">
+                            <label for="contributionAmount" data-translate="calculators.compound.contributionAmount">Additional Contribution</label>
+                            <div class="input-group">
+                                <span class="currency-symbol">$</span>
+                                <input type="text" id="contributionAmount" placeholder="Enter additional contribution" data-translate-attr="calculators.compound.placeholderContribution" min="0" inputmode="numeric">
+                            </div>
                         </div>
 
                         <div class="form-group">
                             <label for="contributionFrequency" data-translate="calculators.compound.contributionFrequency">Contribution Frequency</label>
                             <select id="contributionFrequency">
-                                <option value="monthly" selected>Monthly</option>
-                                <option value="quarterly">Quarterly</option>
-                                <option value="annually">Annually</option>
+                                <option value="monthly" selected data-translate="calculators.compound.monthly">Monthly</option>
+                                <option value="quarterly" data-translate="calculators.compound.quarterly">Quarterly</option>
+                                <option value="annually" data-translate="calculators.compound.annually">Annually</option>
                             </select>
                         </div>
 
@@ -652,11 +680,11 @@
                         <div class="form-group">
                             <label for="compoundFrequency" data-translate="calculators.compound.compoundFrequency">Compound Frequency</label>
                             <select id="compoundFrequency">
-                                <option value="annually">Annually</option>
-                                <option value="semiannually">Semi-annually</option>
-                                <option value="quarterly">Quarterly</option>
-                                <option value="monthly" selected>Monthly</option>
-                                <option value="daily">Daily</option>
+                                <option value="annually" data-translate="calculators.compound.annually">Annually</option>
+                                <option value="semiannually" data-translate="calculators.compound.semiannually">Semi-annually</option>
+                                <option value="quarterly" data-translate="calculators.compound.quarterly">Quarterly</option>
+                                <option value="monthly" selected data-translate="calculators.compound.monthly">Monthly</option>
+                                <option value="daily" data-translate="calculators.compound.daily">Daily</option>
                             </select>
                         </div>
 
@@ -666,6 +694,7 @@
                         </div>
 
                         <button id="calculateBtn" class="calculate-btn" data-translate="calculators.compound.button">Calculate</button>
+                        <button id="resetBtn" class="reset-btn" data-translate="calculators.compound.resetButton">Reset</button>
                     </div>
 
                     <!-- Results Section -->
@@ -703,10 +732,10 @@
                                 <table class="growth-table">
                                     <thead>
                                         <tr>
-                                            <th>Year</th>
-                                            <th>Principal</th>
-                                            <th>Interest</th>
-                                            <th>Balance</th>
+                                            <th data-translate="calculators.compound.year">Year</th>
+                                            <th data-translate="calculators.compound.principal">Principal</th>
+                                            <th data-translate="calculators.compound.interest">Interest</th>
+                                            <th data-translate="calculators.compound.balance">Balance</th>
                                         </tr>
                                     </thead>
                                     <tbody id="growthTableBody">

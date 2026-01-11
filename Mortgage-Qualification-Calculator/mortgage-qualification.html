@@ -443,6 +443,25 @@
             background-color: #2980b9;
         }
         
+        /* Reset Button */
+        .reset-btn {
+            background-color: #f1f1f1;
+            color: #333;
+            border: none;
+            border-radius: 4px;
+            padding: 0.75rem 1.25rem;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            margin-top: 0.5rem;
+            width: 100%;
+        }
+
+        .reset-btn:hover {
+            background-color: #e0e0e0;
+        }
+        
         /* Explanation Section Styles */
         .explanation-section {
             background-color: #fff;
@@ -703,6 +722,7 @@
                         </div>
                         
                         <button id="calculateBtn" class="calculate-btn" data-translate="calculators.mortgage.button">Calculate</button>
+                        <button id="resetBtn" class="reset-btn" data-translate="calculators.mortgage.resetButton">Reset</button>
                     </div>
                     
                     <div class="results-section">
@@ -839,6 +859,7 @@
         const downPaymentInput = document.getElementById('downPayment');
         const taxesInsuranceInput = document.getElementById('taxesInsurance');
         const calculateBtn = document.getElementById('calculateBtn');
+        const resetBtn = document.getElementById('resetBtn');
         
         // Get result elements
         const maxMortgageElement = document.getElementById('maxMortgage');
@@ -1077,8 +1098,37 @@
             }
         };
 
+        // Reset function
+        const resetCalculator = () => {
+            // Reset input values
+            monthlyIncomeInput.value = '';
+            monthlyDebtsInput.value = '';
+            loanTermInput.value = '30';
+            interestRateInput.value = '4.5';
+            downPaymentInput.value = '';
+            taxesInsuranceInput.value = '';
+
+            // Reset displayed results
+            maxMortgageElement.textContent = formatCurrency(0);
+            monthlyPaymentElement.textContent = formatCurrency(0);
+            dtiRatioElement.textContent = '0.00%';
+            incomeDisplay.textContent = formatCurrency(0);
+            debtsDisplay.textContent = formatCurrency(0);
+            downPaymentDisplay.textContent = formatCurrency(0);
+
+            // Reset chart
+            if (mortgageChart) {
+                mortgageChart.destroy();
+                mortgageChart = null;
+                createInitialChart();
+            }
+        };
+
         // Add event listeners
         calculateBtn.addEventListener('click', calculateMaxMortgage);
+        if (resetBtn) {
+            resetBtn.addEventListener('click', resetCalculator);
+        }
 
         // Allow calculation on Enter key
         [monthlyIncomeInput, monthlyDebtsInput, loanTermInput, 

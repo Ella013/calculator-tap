@@ -414,6 +414,25 @@
             width: 100%;
         }
         
+        /* Reset Button */
+        .reset-btn {
+            background-color: #f1f1f1;
+            color: #333;
+            border: none;
+            border-radius: 4px;
+            padding: 0.75rem 1.25rem;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            margin-top: 0.5rem;
+            width: 100%;
+        }
+
+        .reset-btn:hover {
+            background-color: #e0e0e0;
+        }
+        
         .calculate-btn:hover {
             background-color: #2980b9;
         }
@@ -586,7 +605,10 @@
         <div class="header-container">
             <div class="logo">
                 <a href="../index.html" class="logo-link" style="display: flex; align-items: center; text-decoration: none;">
-                    <img src="../calculator tap logo.png" alt="Calculator Tap" style="height: 40px; width: auto;">
+                    <picture>
+                        <source srcset="../calculator-tap-logo.webp" type="image/webp">
+                        <img src="../calculator-tap-logo.png" alt="Calculator Tap" style="height: 40px; width: auto;">
+                    </picture>
                     <h1 style="margin-left: 10px; color: #2c3e50;">Calculator Tap</h1>
                 </a>
             </div>
@@ -609,7 +631,6 @@
         <a href="../Mortgage-Qualification-Calculator/mortgage-qualification.html" class="mobile-nav-link"><i class="fas fa-home"></i> Mortgage Calculator</a>
         <a href="../paycheck-calculator/paycheck-calculator.html" class="mobile-nav-link"><i class="fas fa-wallet"></i> Paycheck Calculator</a>
         <a href="../payoff-calculator/payoff-calculator.html" class="mobile-nav-link"><i class="fas fa-money-bill-wave"></i> Debt Payoff Calculator</a>
-        <a href="../blog/index.html" class="mobile-nav-link"><i class="fas fa-blog"></i> Blog</a>
     </div>
 
     <div class="container">
@@ -627,7 +648,7 @@
                             <label for="debtAmount" data-translate="calculators.debt.debtAmount">Total Debt Amount</label>
                             <div class="input-group">
                                 <span class="currency-symbol">$</span>
-                                <input type="number" id="debtAmount" placeholder="Enter your total debt amount" data-translate-attr="calculators.debt.placeholderDebt" min="0">
+                                <input type="text" id="debtAmount" placeholder="Enter your total debt amount" data-translate-attr="calculators.debt.placeholderDebt" min="0" inputmode="numeric">
                             </div>
                         </div>
                         
@@ -643,11 +664,12 @@
                             <label for="monthlyPayment" data-translate="calculators.debt.monthlyPayment">Monthly Payment</label>
                             <div class="input-group">
                                 <span class="currency-symbol">$</span>
-                                <input type="number" id="monthlyPayment" placeholder="Enter monthly payment amount" data-translate-attr="calculators.debt.placeholderPayment" min="0">
+                                <input type="text" id="monthlyPayment" placeholder="Enter monthly payment amount" data-translate-attr="calculators.debt.placeholderPayment" min="0" inputmode="numeric">
                             </div>
                         </div>
                         
                         <button id="calculateBtn" class="calculate-btn" data-translate="calculators.debt.button">Calculate</button>
+                        <button id="resetBtn" class="reset-btn" data-translate="calculators.debt.resetButton">Reset</button>
                     </div>
                     
                     <div class="results-section">
@@ -779,6 +801,10 @@
         const interestRateInput = document.getElementById('interestRate');
         const monthlyPaymentInput = document.getElementById('monthlyPayment');
         const calculateBtn = document.getElementById('calculateBtn');
+        const resetBtn = document.getElementById('resetBtn');
+        
+        // Note: loanAmountInput is used in calculatePayoff but refers to debtAmountInput
+        const loanAmountInput = debtAmountInput;
         
         // Get result elements
         const debtFreeDateElement = document.getElementById('debtFreeDate');
@@ -827,6 +853,35 @@
                 minimumFractionDigits: 1,
                 maximumFractionDigits: 1
             }).format(value / 100);
+        };
+        
+        // Format number with commas
+        const formatNumber = (value) => {
+            if (!value) return '';
+            const numValue = value.toString().replace(/[^0-9.-]+/g, '');
+            if (!numValue) return '';
+            const num = parseFloat(numValue);
+            if (isNaN(num)) return '';
+            return num.toLocaleString('en-US');
+        };
+        
+        // Parse number from formatted string
+        const parseNumber = (value) => {
+            if (!value) return 0;
+            const numValue = value.toString().replace(/[^0-9.-]+/g, '');
+            return parseFloat(numValue) || 0;
+        };
+        
+        // Format input on input event
+        const formatInput = (input) => {
+            const cursorPosition = input.selectionStart;
+            const oldValue = input.value;
+            const formattedValue = formatNumber(oldValue);
+            input.value = formattedValue;
+            
+            // Adjust cursor position
+            const newCursorPosition = cursorPosition + (formattedValue.length - oldValue.length);
+            input.setSelectionRange(newCursorPosition, newCursorPosition);
         };
         
         // Create the initial pie chart with sample data
@@ -941,9 +996,9 @@
         const calculatePayoff = () => {
             try {
                 // Get input values
-                const debtAmount = parseFloat(debtAmountInput.value) || 0;
+                const debtAmount = parseNumber(debtAmountInput.value) || 0;
                 const annualInterestRate = parseFloat(interestRateInput.value) || 0;
-                const monthlyPayment = parseFloat(monthlyPaymentInput.value) || 0;
+                const monthlyPayment = parseNumber(monthlyPaymentInput.value) || 0;
 
                 // Validate inputs
                 if (debtAmount <= 0) {
@@ -1034,8 +1089,33 @@
             }
         };
 
+        // Reset function
+        const resetCalculator = () => {
+            // Reset input values
+            debtAmountInput.value = '';
+            interestRateInput.value = '';
+            monthlyPaymentInput.value = '';
+
+            // Reset displayed results
+            debtFreeDateElement.textContent = '0 months';
+            totalInterestElement.textContent = formatCurrency(0);
+            totalPaymentElement.textContent = formatCurrency(0);
+            monthlyPaymentDisplay.textContent = formatCurrency(0);
+            debtAmountDisplay.textContent = formatCurrency(0);
+
+            // Reset chart to initial state
+            if (payoffChart) {
+                payoffChart.destroy();
+                payoffChart = null;
+                createInitialChart();
+            }
+        };
+
         // Add event listeners
         calculateBtn.addEventListener('click', calculatePayoff);
+        if (resetBtn) {
+            resetBtn.addEventListener('click', resetCalculator);
+        }
 
         // Allow calculation on Enter key
         [debtAmountInput, interestRateInput, monthlyPaymentInput].forEach(input => {
@@ -1046,17 +1126,19 @@
             });
         });
 
-        // Input validation
-        [debtAmountInput, interestRateInput, monthlyPaymentInput].forEach(input => {
-            input.addEventListener('input', () => {
-                // Remove any non-numeric characters except decimal point
-                input.value = input.value.replace(/[^0-9.]/g, '');
-                
-                // Ensure only one decimal point
-                if ((input.value.match(/\./g) || []).length > 1) {
-                    input.value = input.value.slice(0, -1);
-                }
-            });
+        // Input formatting for currency fields (debtAmount, monthlyPayment)
+        debtAmountInput.addEventListener('input', () => formatInput(debtAmountInput));
+        monthlyPaymentInput.addEventListener('input', () => formatInput(monthlyPaymentInput));
+        
+        // Input validation for interest rate (keep numeric only)
+        interestRateInput.addEventListener('input', () => {
+            // Remove any non-numeric characters except decimal point
+            interestRateInput.value = interestRateInput.value.replace(/[^0-9.]/g, '');
+            
+            // Ensure only one decimal point
+            if ((interestRateInput.value.match(/\./g) || []).length > 1) {
+                interestRateInput.value = interestRateInput.value.slice(0, -1);
+            }
         });
 
         // 모바일 메뉴 스크립트 추가

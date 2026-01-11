@@ -32,14 +32,36 @@ document.addEventListener('DOMContentLoaded', function() {
     // Dividend chart
     let dividendChart;
     
-    // Format currency
+    // URL 경로에서 locale 감지
+    const currentPath = window.location.pathname;
+    const pathLang = currentPath.split('/').find(p => ['en', 'es', 'zh', 'ko', 'ja'].includes(p)) || 'en';
+    
+    // Locale별 통화 설정
+    const currencyConfig = {
+        en: { symbol: '$', currency: 'USD', locale: 'en-US' },
+        ko: { symbol: '₩', currency: 'KRW', locale: 'ko-KR' },
+        zh: { symbol: '¥', currency: 'CNY', locale: 'zh-CN' },
+        es: { symbol: '$', currency: 'USD', locale: 'es-US' },
+        ja: { symbol: '¥', currency: 'JPY', locale: 'ja-JP' }
+    };
+    
+    const currentCurrency = currencyConfig[pathLang] || currencyConfig['en'];
+    
+    // 모든 통화 기호 요소 업데이트
+    const currencySymbolElements = document.querySelectorAll('.currency-symbol');
+    currencySymbolElements.forEach(el => {
+        el.textContent = currentCurrency.symbol;
+    });
+    
+    // Format currency with locale
     const formatCurrency = (amount) => {
-        return new Intl.NumberFormat('en-US', {
+        const formatOptions = {
             style: 'currency',
-            currency: 'USD',
-            minimumFractionDigits: 2,
-            maximumFractionDigits: 2
-        }).format(amount);
+            currency: currentCurrency.currency,
+            minimumFractionDigits: currentCurrency.currency === 'KRW' || currentCurrency.currency === 'JPY' ? 0 : 2,
+            maximumFractionDigits: currentCurrency.currency === 'KRW' || currentCurrency.currency === 'JPY' ? 0 : 2
+        };
+        return new Intl.NumberFormat(currentCurrency.locale, formatOptions).format(amount);
     };
     
     // Format percentage
@@ -53,43 +75,73 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Format number with commas
     const formatNumber = (value) => {
-        return new Intl.NumberFormat('en-US').format(value);
+        if (!value) return '';
+        const numValue = value.toString().replace(/[^0-9.-]+/g, '');
+        if (!numValue) return '';
+        const num = parseFloat(numValue);
+        if (isNaN(num)) return '';
+        return num.toLocaleString('en-US');
     };
     
-    // Parse currency input
+    // Parse number from formatted string
+    const parseNumber = (value) => {
+        if (!value) return 0;
+        const numValue = value.toString().replace(/[^0-9.-]+/g, '');
+        return parseFloat(numValue) || 0;
+    };
+    
+    // Parse currency input (backward compatibility)
     const parseCurrencyInput = (value) => {
-        return parseFloat(value.replace(/[^0-9.-]+/g, '')) || 0;
+        return parseNumber(value);
     };
     
     // Parse percentage input
     const parsePercentageInput = (value) => {
-        return parseFloat(value.replace(/[^0-9.-]+/g, '')) || 0;
+        return parseNumber(value);
     };
     
-    // Sync stock price between tabs
+    // Format input on input event
+    const formatInput = (input) => {
+        const cursorPosition = input.selectionStart;
+        const oldValue = input.value;
+        const formattedValue = formatNumber(oldValue);
+        input.value = formattedValue;
+        
+        // Adjust cursor position
+        const newCursorPosition = cursorPosition + (formattedValue.length - oldValue.length);
+        input.setSelectionRange(Math.max(0, Math.min(newCursorPosition, formattedValue.length)), Math.max(0, Math.min(newCursorPosition, formattedValue.length)));
+    };
+    
+    // Format input fields with commas and sync stock price between tabs
     stockPriceInput.addEventListener('input', () => {
+        formatInput(stockPriceInput);
         stockPriceYieldInput.value = stockPriceInput.value;
     });
     
     stockPriceYieldInput.addEventListener('input', () => {
+        formatInput(stockPriceYieldInput);
         stockPriceInput.value = stockPriceYieldInput.value;
+    });
+    
+    dividendAmountInput.addEventListener('input', () => {
+        formatInput(dividendAmountInput);
     });
     
     // Calculate dividend amount from yield
     dividendYieldInput.addEventListener('input', () => {
         if (stockPriceYieldInput.value && dividendYieldInput.value) {
-            const stockPrice = parseCurrencyInput(stockPriceYieldInput.value);
+            const stockPrice = parseNumber(stockPriceYieldInput.value);
             const dividendYield = parsePercentageInput(dividendYieldInput.value) / 100;
             const calculatedDividendAmount = stockPrice * dividendYield;
-            dividendAmountInput.value = calculatedDividendAmount.toFixed(2);
+            dividendAmountInput.value = formatNumber(calculatedDividendAmount.toFixed(2));
         }
     });
     
-    // Calculate yield from dividend amount
-    dividendAmountInput.addEventListener('input', () => {
+    // Calculate yield from dividend amount (on blur to avoid conflicts)
+    dividendAmountInput.addEventListener('blur', () => {
         if (stockPriceInput.value && dividendAmountInput.value) {
-            const stockPrice = parseCurrencyInput(stockPriceInput.value);
-            const dividendAmount = parseCurrencyInput(dividendAmountInput.value);
+            const stockPrice = parseNumber(stockPriceInput.value);
+            const dividendAmount = parseNumber(dividendAmountInput.value);
             if (stockPrice > 0) {
                 const calculatedYield = (dividendAmount / stockPrice) * 100;
                 dividendYieldInput.value = calculatedYield.toFixed(2);
@@ -332,17 +384,17 @@ document.addEventListener('DOMContentLoaded', function() {
         reinvestDividendsCheckbox.checked = true;
         
         // Reset results
-        annualDividendIncomeElement.textContent = '$0.00';
-        stockPriceDisplay.textContent = '$0.00';
-        dividendPerShareDisplay.textContent = '$0.00';
+        annualDividendIncomeElement.textContent = formatCurrency(0);
+        stockPriceDisplay.textContent = formatCurrency(0);
+        dividendPerShareDisplay.textContent = formatCurrency(0);
         dividendYieldDisplay.textContent = '0.00%';
         sharesDisplay.textContent = '0';
-        initialInvestmentDisplay.textContent = '$0.00';
-        monthlyDividendDisplay.textContent = '$0.00';
-        quarterlyDividendDisplay.textContent = '$0.00';
-        annualDividendDisplay.textContent = '$0.00';
-        totalDividendsDisplay.textContent = '$0.00';
-        finalValueDisplay.textContent = '$0.00';
+        initialInvestmentDisplay.textContent = formatCurrency(0);
+        monthlyDividendDisplay.textContent = formatCurrency(0);
+        quarterlyDividendDisplay.textContent = formatCurrency(0);
+        annualDividendDisplay.textContent = formatCurrency(0);
+        totalDividendsDisplay.textContent = formatCurrency(0);
+        finalValueDisplay.textContent = formatCurrency(0);
         
         // Reset chart to initial state
         if (dividendChart) {
@@ -353,40 +405,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // Add event listeners
     calculateBtn.addEventListener('click', calculateDividends);
     resetBtn.addEventListener('click', resetCalculator);
-    
-    // Input validation and formatting
-    [stockPriceInput, stockPriceYieldInput, dividendAmountInput].forEach(input => {
-        input.addEventListener('input', (e) => {
-            // Remove any non-numeric characters except decimal point
-            let value = e.target.value.replace(/[^0-9.]/g, '');
-            
-            // Ensure only one decimal point
-            const decimalPoints = value.match(/\./g);
-            if (decimalPoints && decimalPoints.length > 1) {
-                value = value.substring(0, value.lastIndexOf('.'));
-            }
-            
-            // Add commas for thousands
-            if (value) {
-                const parts = value.split('.');
-                parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-                value = parts.join('.');
-            }
-            
-            e.target.value = value;
-        });
-        
-        // Format on blur
-        input.addEventListener('blur', () => {
-            const value = parseCurrencyInput(input.value);
-            if (value > 0) {
-                input.value = new Intl.NumberFormat('en-US', {
-                    minimumFractionDigits: 0,
-                    maximumFractionDigits: 2
-                }).format(value);
-            }
-        });
-    });
     
     // Percentage input formatting
     [dividendYieldInput, dividendGrowthRateInput].forEach(input => {
