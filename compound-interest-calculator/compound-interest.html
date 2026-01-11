@@ -619,24 +619,24 @@
             <div class="calculator-column">
                 <main class="calculator-main">
                     <div class="calculator-header">
-                        <h1 class="calculator-title">Compound Interest Calculator</h1>
-                        <p class="calculator-description">Calculate how your investments will grow over time with the power of compound interest.</p>
+                        <h1 class="calculator-title" data-translate="calculators.compound.title">Compound Interest Calculator</h1>
+                        <p class="calculator-description" data-translate="calculators.compound.description">Calculate how your investments will grow over time with compound interest. Plan for your financial future.</p>
                     </div>
 
                     <!-- Calculator Form -->
                     <div class="calculator-form">
                         <div class="form-group">
-                            <label for="initialInvestment">Initial Investment ($)</label>
+                            <label for="initialInvestment" data-translate="calculators.compound.initialInvestment">Initial Investment ($)</label>
                             <input type="number" id="initialInvestment" min="0" value="10000" step="100">
                         </div>
 
                         <div class="form-group">
-                            <label for="contributionAmount">Additional Contribution ($)</label>
+                            <label for="contributionAmount" data-translate="calculators.compound.contributionAmount">Additional Contribution ($)</label>
                             <input type="number" id="contributionAmount" min="0" value="100" step="10">
                         </div>
 
                         <div class="form-group">
-                            <label for="contributionFrequency">Contribution Frequency</label>
+                            <label for="contributionFrequency" data-translate="calculators.compound.contributionFrequency">Contribution Frequency</label>
                             <select id="contributionFrequency">
                                 <option value="monthly" selected>Monthly</option>
                                 <option value="quarterly">Quarterly</option>
@@ -645,12 +645,12 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="interestRate">Interest Rate (% per year)</label>
+                            <label for="interestRate" data-translate="calculators.compound.interestRate">Interest Rate (% per year)</label>
                             <input type="number" id="interestRate" min="0" max="100" value="7" step="0.1">
                         </div>
 
                         <div class="form-group">
-                            <label for="compoundFrequency">Compound Frequency</label>
+                            <label for="compoundFrequency" data-translate="calculators.compound.compoundFrequency">Compound Frequency</label>
                             <select id="compoundFrequency">
                                 <option value="annually">Annually</option>
                                 <option value="semiannually">Semi-annually</option>
@@ -661,44 +661,44 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="investmentLength">Investment Time (years)</label>
+                            <label for="investmentLength" data-translate="calculators.compound.investmentLength">Investment Time (years)</label>
                             <input type="number" id="investmentLength" min="1" max="50" value="10" step="1">
                         </div>
 
-                        <button id="calculateBtn" class="calculate-btn">Calculate</button>
+                        <button id="calculateBtn" class="calculate-btn" data-translate="calculators.compound.button">Calculate</button>
                     </div>
 
                     <!-- Results Section -->
                     <div class="results-section">
-                        <h3>Investment Results</h3>
+                        <h3 data-translate="calculators.compound.results">Investment Results</h3>
                         
                         <div class="results-cards">
                             <div class="result-card">
-                                <h4>Future Value</h4>
+                                <h4 data-translate="calculators.compound.futureValue">Future Value</h4>
                                 <div class="result-amount" id="futureValue">$37,506.06</div>
-                                <p class="result-description">Total amount after the investment period</p>
+                                <p class="result-description" data-translate="calculators.compound.futureValueDesc">Total amount after the investment period</p>
                             </div>
                             
                             <div class="result-card">
-                                <h4>Total Principal</h4>
+                                <h4 data-translate="calculators.compound.totalPrincipal">Total Principal</h4>
                                 <div class="result-amount" id="totalPrincipal">$22,000.00</div>
-                                <p class="result-description">Initial investment + additional contributions</p>
+                                <p class="result-description" data-translate="calculators.compound.totalPrincipalDesc">Initial investment + additional contributions</p>
                             </div>
                             
                             <div class="result-card">
-                                <h4>Total Interest</h4>
+                                <h4 data-translate="calculators.compound.totalInterest">Total Interest</h4>
                                 <div class="result-amount" id="totalInterest">$15,506.06</div>
-                                <p class="result-description">Earnings from interest over time</p>
+                                <p class="result-description" data-translate="calculators.compound.totalInterestDesc">Earnings from interest over time</p>
                             </div>
                         </div>
 
                         <div class="chart-container">
-                            <h4>Investment Growth Over Time</h4>
+                            <h4 data-translate="calculators.compound.growthOverTime">Investment Growth Over Time</h4>
                             <canvas id="growthChart"></canvas>
                         </div>
 
                         <div class="growth-table-container">
-                            <h4>Investment Growth Details</h4>
+                            <h4 data-translate="calculators.compound.growthDetails">Investment Growth Details</h4>
                             <div class="growth-table-wrapper">
                                 <table class="growth-table">
                                     <thead>

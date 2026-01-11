@@ -646,109 +646,109 @@
                 <!-- Main Content -->
                 <main class="calculator-main">
                     <div class="calculator-header">
-                        <h1 class="calculator-title">Mortgage Calculator</h1>
-                        <p class="calculator-description">Find out how much house you can afford based on your income, debts, and loan terms.</p>
+                        <h1 class="calculator-title" data-translate="calculators.mortgage.title">Mortgage Calculator</h1>
+                        <p class="calculator-description" data-translate="calculators.mortgage.description">Determine how much house you can afford, estimate monthly payments, and understand your mortgage qualification requirements.</p>
                     </div>
                     
                     <div class="calculator-form">
                         <div class="form-group">
-                            <label for="monthlyIncome">Monthly Income</label>
+                            <label for="monthlyIncome" data-translate="calculators.mortgage.monthlyIncome">Monthly Income</label>
                             <div class="input-group">
                                 <span class="currency-symbol">$</span>
-                                <input type="number" id="monthlyIncome" placeholder="Enter your monthly income" min="0">
+                                <input type="number" id="monthlyIncome" placeholder="Enter your monthly income" data-translate-attr="calculators.mortgage.placeholderIncome" min="0">
                             </div>
                         </div>
                         
                         <div class="form-group">
-                            <label for="monthlyDebts">Other Monthly Debts</label>
+                            <label for="monthlyDebts" data-translate="calculators.mortgage.monthlyDebts">Other Monthly Debts</label>
                             <div class="input-group">
                                 <span class="currency-symbol">$</span>
-                                <input type="number" id="monthlyDebts" placeholder="Enter your monthly debts" min="0">
+                                <input type="number" id="monthlyDebts" placeholder="Enter your monthly debts" data-translate-attr="calculators.mortgage.placeholderDebts" min="0">
                             </div>
                         </div>
                         
                         <div class="form-group">
-                            <label for="loanTerm">Loan Term (Years)</label>
-                            <input type="number" id="loanTerm" placeholder="Enter loan term" min="1" max="30" value="30">
+                            <label for="loanTerm" data-translate="calculators.mortgage.loanTerm">Loan Term (Years)</label>
+                            <input type="number" id="loanTerm" placeholder="Enter loan term" data-translate-attr="calculators.mortgage.placeholderTerm" min="1" max="30" value="30">
                         </div>
     
                         <div class="form-group">
-                            <label for="interestRate">Interest Rate</label>
+                            <label for="interestRate" data-translate="calculators.mortgage.interestRate">Interest Rate</label>
                             <div class="input-group">
-                                <input type="number" id="interestRate" placeholder="Enter interest rate" min="0" step="0.01">
+                                <input type="number" id="interestRate" placeholder="Enter interest rate" data-translate-attr="calculators.mortgage.placeholderRate" min="0" step="0.01">
                                 <span class="percent-symbol">%</span>
                             </div>
                         </div>
     
                         <div class="form-group">
-                            <label for="downPayment">Down Payment</label>
+                            <label for="downPayment" data-translate="calculators.mortgage.downPayment">Down Payment</label>
                             <div class="input-group">
                                 <span class="currency-symbol">$</span>
-                                <input type="number" id="downPayment" placeholder="Enter down payment amount" min="0">
+                                <input type="number" id="downPayment" placeholder="Enter down payment amount" data-translate-attr="calculators.mortgage.placeholderDown" min="0">
                             </div>
                         </div>
     
                         <div class="form-group">
                             <label for="taxesInsurance">
-                                Monthly Taxes & Insurance
-                                <span class="optional-label">(Optional)</span>
+                                <span data-translate="calculators.mortgage.taxesInsurance">Monthly Taxes & Insurance</span>
+                                <span class="optional-label" data-translate="calculators.mortgage.optional">(Optional)</span>
                             </label>
                             <div class="input-group">
                                 <span class="currency-symbol">$</span>
-                                <input type="number" id="taxesInsurance" placeholder="Enter monthly taxes and insurance" min="0">
+                                <input type="number" id="taxesInsurance" placeholder="Enter monthly taxes and insurance" data-translate-attr="calculators.mortgage.placeholderTaxes" min="0">
                             </div>
                         </div>
                         
-                        <button id="calculateBtn" class="calculate-btn">Calculate</button>
+                        <button id="calculateBtn" class="calculate-btn" data-translate="calculators.mortgage.button">Calculate</button>
                     </div>
                     
                     <div class="results-section">
-                        <h3 class="results-header">Qualification Results</h3>
+                        <h3 class="results-header" data-translate="calculators.mortgage.results">Qualification Results</h3>
                         
                         <div class="chart-container">
                             <canvas id="mortgageChart"></canvas>
-                            <div class="chart-placeholder">계산 후 차트가 표시됩니다</div>
+                            <div class="chart-placeholder" data-translate="calculators.mortgage.chartPlaceholder">Chart will be displayed after calculation</div>
                         </div>
                         
                         <div class="chart-legend">
                             <div class="legend-item">
                                 <span class="legend-color mortgage"></span>
-                                <span>Mortgage</span>
+                                <span data-translate="calculators.mortgage.mortgage">Mortgage</span>
                             </div>
                             <div class="legend-item">
                                 <span class="legend-color payment"></span>
-                                <span>Payment</span>
+                                <span data-translate="calculators.mortgage.payment">Payment</span>
                             </div>
                             <div class="legend-item">
                                 <span class="legend-color dti"></span>
-                                <span>DTI</span>
+                                <span data-translate="calculators.mortgage.dti">DTI</span>
                             </div>
                         </div>
                         
                         <div class="results-summary">
                             <span id="maxMortgage" class="max-mortgage-amount">$0.00</span>
-                            <span class="max-mortgage-label">Maximum Mortgage Amount</span>
+                            <span class="max-mortgage-label" data-translate="calculators.mortgage.maxMortgage">Maximum Mortgage Amount</span>
                         </div>
                         
                         <div class="results-details">
                             <div class="result-row">
-                                <span class="result-label">Monthly Payment</span>
+                                <span class="result-label" data-translate="calculators.mortgage.monthlyPayment">Monthly Payment</span>
                                 <span id="monthlyPayment" class="result-value">$0.00</span>
                             </div>
                             <div class="result-row">
-                                <span class="result-label">DTI Ratio</span>
+                                <span class="result-label" data-translate="calculators.mortgage.dtiRatio">DTI Ratio</span>
                                 <span id="dtiRatio" class="result-value">0%</span>
                             </div>
                             <div class="result-row">
-                                <span class="result-label">Monthly Income</span>
+                                <span class="result-label" data-translate="calculators.mortgage.monthlyIncomeLabel">Monthly Income</span>
                                 <span id="incomeDisplay" class="result-value">$0.00</span>
                             </div>
                             <div class="result-row">
-                                <span class="result-label">Monthly Debts</span>
+                                <span class="result-label" data-translate="calculators.mortgage.monthlyDebtsLabel">Monthly Debts</span>
                                 <span id="debtsDisplay" class="result-value">$0.00</span>
                             </div>
                             <div class="result-row">
-                                <span class="result-label">Down Payment</span>
+                                <span class="result-label" data-translate="calculators.mortgage.downPaymentLabel">Down Payment</span>
                                 <span id="downPaymentDisplay" class="result-value">$0.00</span>
                             </div>
                         </div>

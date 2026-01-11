@@ -656,42 +656,42 @@
                 <!-- Main Content -->
                 <main class="calculator-main">
                     <div class="calculator-header">
-                        <h1 class="calculator-title">Investment Return Calculator</h1>
-                        <p class="calculator-description">Calculate your investment return rate and analyze your performance over time</p>
+                        <h1 class="calculator-title" data-translate="calculators.investment.title">Investment Return Calculator</h1>
+                        <p class="calculator-description" data-translate="calculators.investment.description">Analyze your investment performance and calculate returns on your portfolio over different time periods.</p>
                     </div>
                     
                     <div class="calculator-form">
                         <div class="form-group">
-                            <label for="initialInvestment">Initial Investment ($)</label>
+                            <label for="initialInvestment" data-translate="calculators.investment.initialInvestment">Initial Investment ($)</label>
                             <div class="input-group">
                                 <span class="currency-symbol">$</span>
-                                <input type="text" id="initialInvestment" placeholder="Enter initial investment" class="input-field">
+                                <input type="text" id="initialInvestment" placeholder="Enter initial investment" data-translate-attr="calculators.investment.placeholderInitial" class="input-field">
                             </div>
                         </div>
                         
                         <div class="form-group">
-                            <label for="finalValue">Final Investment Value ($)</label>
+                            <label for="finalValue" data-translate="calculators.investment.finalValue">Final Investment Value ($)</label>
                             <div class="input-group">
                                 <span class="currency-symbol">$</span>
-                                <input type="text" id="finalValue" placeholder="Enter final value" class="input-field">
+                                <input type="text" id="finalValue" placeholder="Enter final value" data-translate-attr="calculators.investment.placeholderFinal" class="input-field">
                             </div>
                         </div>
                         
                         <div class="form-group">
-                            <label for="investmentPeriod">Investment Period (years)</label>
-                            <input type="number" id="investmentPeriod" placeholder="Enter investment period" min="0.5" step="0.5">
+                            <label for="investmentPeriod" data-translate="calculators.investment.investmentPeriod">Investment Period (years)</label>
+                            <input type="number" id="investmentPeriod" placeholder="Enter investment period" data-translate-attr="calculators.investment.placeholderPeriod" min="0.5" step="0.5">
                         </div>
                         
                         <div class="form-group">
-                            <label for="additionalContributions">Additional Contributions ($)</label>
+                            <label for="additionalContributions" data-translate="calculators.investment.additionalContributions">Additional Contributions ($)</label>
                             <div class="input-group">
                                 <span class="currency-symbol">$</span>
-                                <input type="text" id="additionalContributions" placeholder="Enter additional contributions (optional)" class="input-field">
+                                <input type="text" id="additionalContributions" placeholder="Enter additional contributions (optional)" data-translate-attr="calculators.investment.placeholderContributions" class="input-field">
                             </div>
                         </div>
                         
                         <div class="form-group">
-                            <label for="contributionFrequency">Contribution Frequency</label>
+                            <label for="contributionFrequency" data-translate="calculators.investment.contributionFrequency">Contribution Frequency</label>
                             <select id="contributionFrequency">
                                 <option value="none">None</option>
                                 <option value="monthly" selected>Monthly</option>
@@ -701,8 +701,8 @@
                             </select>
                         </div>
                         
-                        <button id="calculateBtn" class="calculate-btn">Calculate Return</button>
-                        <button id="resetBtn" class="reset-btn">Reset</button>
+                        <button id="calculateBtn" class="calculate-btn" data-translate="calculators.investment.calculateReturn">Calculate Return</button>
+                        <button id="resetBtn" class="reset-btn" data-translate="calculators.investment.reset">Reset</button>
                     </div>
                     
                     <div class="results-section" id="resultsSection">

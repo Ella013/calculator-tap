@@ -621,75 +621,75 @@
                 <!-- Main Content -->
                 <main class="calculator-main">
                     <div class="calculator-header">
-                        <h1 class="calculator-title">Loan Calculator</h1>
-                        <p class="calculator-description">Calculate your monthly payments and total loan cost instantly</p>
+                        <h1 class="calculator-title" data-translate="calculators.loan.title">Loan Calculator</h1>
+                        <p class="calculator-description" data-translate="calculators.loan.description">Calculate monthly payments, total interest, and payoff timeline for any type of loan. Perfect for personal loans, auto loans, and student loans.</p>
                     </div>
                     
                     <div class="calculator-form">
                         <div class="form-group">
-                            <label for="loanAmount">Loan Amount ($)</label>
+                            <label for="loanAmount" data-translate="calculators.loan.loanAmount">Loan Amount ($)</label>
                             <div class="input-group">
                                 <span class="currency-symbol">$</span>
-                                <input type="number" id="loanAmount" placeholder="Enter loan amount" min="0" class="input-field">
+                                <input type="number" id="loanAmount" placeholder="Enter loan amount" data-translate-attr="calculators.loan.placeholderAmount" min="0" class="input-field">
                             </div>
                         </div>
                         
                         <div class="form-group">
-                            <label for="interestRate">Annual Interest Rate (%)</label>
-                            <input type="number" id="interestRate" placeholder="Enter interest rate" min="0" step="0.01">
+                            <label for="interestRate" data-translate="calculators.loan.interestRate">Annual Interest Rate (%)</label>
+                            <input type="number" id="interestRate" placeholder="Enter interest rate" data-translate-attr="calculators.loan.placeholderRate" min="0" step="0.01">
                         </div>
                         
                         <div class="form-group">
-                            <label for="loanTerm">Loan Term (years)</label>
-                            <input type="number" id="loanTerm" placeholder="Enter loan term" min="1">
+                            <label for="loanTerm" data-translate="calculators.loan.loanTerm">Loan Term (years)</label>
+                            <input type="number" id="loanTerm" placeholder="Enter loan term" data-translate-attr="calculators.loan.placeholderTerm" min="1">
                         </div>
                         
-                        <button id="calculateBtn" class="calculate-btn">Calculate</button>
+                        <button id="calculateBtn" class="calculate-btn" data-translate="calculators.loan.button">Calculate</button>
                     </div>
                     
                     <div class="results-section">
-                        <h3 class="results-header">Loan Results</h3>
+                        <h3 class="results-header" data-translate="calculators.loan.results">Loan Results</h3>
                         
                         <div class="chart-container">
                             <canvas id="loanChart"></canvas>
-                            <div class="chart-placeholder">계산 후 차트가 표시됩니다</div>
+                            <div class="chart-placeholder" data-translate="calculators.loan.chartPlaceholder">Chart will be displayed after calculation</div>
                         </div>
                         
                         <div class="chart-legend">
                             <div class="legend-item">
                                 <span class="legend-color principal"></span>
-                                <span>Principal</span>
+                                <span data-translate="calculators.loan.principal">Principal</span>
                             </div>
                             <div class="legend-item">
                                 <span class="legend-color interest"></span>
-                                <span>Interest</span>
+                                <span data-translate="calculators.loan.interest">Interest</span>
                             </div>
                         </div>
                         
                         <div class="results-summary">
                             <span id="monthlyPayment" class="monthly-amount">$0.00</span>
-                            <span class="monthly-label">Monthly Payment</span>
+                            <span class="monthly-label" data-translate="calculators.loan.monthlyPayment">Monthly Payment</span>
                         </div>
                         
                         <div class="results-details">
                             <div class="result-row">
-                                <span class="result-label">Total Payment</span>
+                                <span class="result-label" data-translate="calculators.loan.totalPayment">Total Payment</span>
                                 <span id="totalPayment" class="result-value">$0.00</span>
                             </div>
                             <div class="result-row">
-                                <span class="result-label">Total Interest</span>
+                                <span class="result-label" data-translate="calculators.loan.totalInterest">Total Interest</span>
                                 <span id="totalInterest" class="result-value">$0.00</span>
                             </div>
                             <div class="result-row">
-                                <span class="result-label">Loan Amount</span>
+                                <span class="result-label" data-translate="calculators.loan.loanAmountLabel">Loan Amount</span>
                                 <span id="loanAmountDisplay" class="result-value">$0.00</span>
                             </div>
                             <div class="result-row">
-                                <span class="result-label">Interest Rate</span>
+                                <span class="result-label" data-translate="calculators.loan.interestRateLabel">Interest Rate</span>
                                 <span id="interestRateDisplay" class="result-value">0.00%</span>
                             </div>
                             <div class="result-row">
-                                <span class="result-label">Loan Term</span>
+                                <span class="result-label" data-translate="calculators.loan.loanTermLabel">Loan Term</span>
                                 <span id="loanTermDisplay" class="result-value">0 years</span>
                             </div>
                         </div>

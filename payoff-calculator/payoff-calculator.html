@@ -618,81 +618,81 @@
                 <!-- Main Content -->
                 <main class="calculator-main">
                     <div class="calculator-header">
-                        <h1 class="calculator-title">Debt Payoff Calculator</h1>
-                        <p class="calculator-description">Calculate when you'll be debt-free and how much interest you'll pay.</p>
+                        <h1 class="calculator-title" data-translate="calculators.debt.title">Debt Payoff Calculator</h1>
+                        <p class="calculator-description" data-translate="calculators.debt.description">Create a debt repayment plan, calculate your debt-free date, and see how much you can save on interest payments.</p>
                     </div>
                     
                     <div class="calculator-form">
                         <div class="form-group">
-                            <label for="debtAmount">Total Debt Amount</label>
+                            <label for="debtAmount" data-translate="calculators.debt.debtAmount">Total Debt Amount</label>
                             <div class="input-group">
                                 <span class="currency-symbol">$</span>
-                                <input type="number" id="debtAmount" placeholder="Enter your total debt amount" min="0">
+                                <input type="number" id="debtAmount" placeholder="Enter your total debt amount" data-translate-attr="calculators.debt.placeholderDebt" min="0">
                             </div>
                         </div>
                         
                         <div class="form-group">
-                            <label for="interestRate">Annual Interest Rate</label>
+                            <label for="interestRate" data-translate="calculators.debt.interestRate">Annual Interest Rate</label>
                             <div class="input-group">
-                                <input type="number" id="interestRate" placeholder="Enter annual interest rate" min="0" step="0.01">
+                                <input type="number" id="interestRate" placeholder="Enter annual interest rate" data-translate-attr="calculators.debt.placeholderRate" min="0" step="0.01">
                                 <span class="percent-symbol">%</span>
                             </div>
                         </div>
                         
                         <div class="form-group">
-                            <label for="monthlyPayment">Monthly Payment</label>
+                            <label for="monthlyPayment" data-translate="calculators.debt.monthlyPayment">Monthly Payment</label>
                             <div class="input-group">
                                 <span class="currency-symbol">$</span>
-                                <input type="number" id="monthlyPayment" placeholder="Enter monthly payment amount" min="0">
+                                <input type="number" id="monthlyPayment" placeholder="Enter monthly payment amount" data-translate-attr="calculators.debt.placeholderPayment" min="0">
                             </div>
                         </div>
                         
-                        <button id="calculateBtn" class="calculate-btn">Calculate</button>
+                        <button id="calculateBtn" class="calculate-btn" data-translate="calculators.debt.button">Calculate</button>
                     </div>
                     
                     <div class="results-section">
-                        <h3 class="results-header">Payoff Results</h3>
+                        <h3 class="results-header" data-translate="calculators.debt.results">Payoff Results</h3>
                         
                         <div class="chart-container">
                             <canvas id="payoffChart"></canvas>
-                            <div class="chart-placeholder">계산 후 차트가 표시됩니다</div>
+                            <div class="chart-placeholder" data-translate="calculators.debt.chartPlaceholder">Chart will be displayed after calculation</div>
                         </div>
                         
                         <div class="chart-legend">
                             <div class="legend-item">
                                 <span class="legend-color principal"></span>
-                                <span>Principal</span>
+                                <span data-translate="calculators.debt.principal">Principal</span>
                             </div>
                             <div class="legend-item">
                                 <span class="legend-color interest"></span>
-                                <span>Interest</span>
+                                <span data-translate="calculators.debt.interest">Interest</span>
                             </div>
                             <div class="legend-item">
                                 <span class="legend-color payment"></span>
-                                <span>Payment</span>
+                                <span data-translate="calculators.debt.payment">Payment</span>
                             </div>
                         </div>
                         
                         <div class="results-summary">
                             <span id="debtFreeDate" class="debt-free-date">0 months</span>
-                            <span class="debt-free-label">Time to Debt-Free</span>
+                            <span class="debt-free-label" data-translate="calculators.debt.timeToDebtFree">Time to Debt-Free</span>
                         </div>
                         
                         <div class="results-details">
                             <div class="result-row">
-                                <span class="result-label">Monthly Payment</span>
+                                <span class="result-label" data-translate="calculators.debt.monthlyPaymentLabel">Monthly Payment</span>
                                 <span id="monthlyPaymentDisplay" class="result-value">$0.00</span>
                             </div>
                             <div class="result-row">
-                                <span class="result-label">Debt Amount</span>
+                                <span class="result-label" data-translate="calculators.debt.debtAmountLabel">Debt Amount</span>
                                 <span id="debtAmountDisplay" class="result-value">$0.00</span>
                             </div>
                             <div class="result-row">
-                                <span class="result-label">Total Payment</span>
+                                <span class="result-label" data-translate="calculators.debt.totalPayment">Total Payment</span>
                                 <span id="totalPayment" class="result-value">$0.00</span>
                             </div>
                             <div class="result-row">
-                                <span class="result-label">Total Interest</span>
+                                <span class="result-label" data-translate="calculators.debt.totalInterest">Total Interest</span>
                                 <span id="totalInterest" class="result-value">$0.00</span>
                             </div>
                         </div>
