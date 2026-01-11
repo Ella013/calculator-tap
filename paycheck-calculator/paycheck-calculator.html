@@ -1078,6 +1078,38 @@
         const overtimeMultiplierSelect = document.getElementById('overtimeMultiplier');
         const calculateBtn = document.getElementById('calculateBtn');
         
+        // URL 경로에서 locale 감지
+        const currentPath = window.location.pathname;
+        const pathLang = currentPath.split('/').find(p => ['en', 'es', 'zh', 'ko', 'ja'].includes(p)) || 'en';
+        
+        // Locale별 통화 설정
+        const currencyConfig = {
+            en: { symbol: '$', currency: 'USD', locale: 'en-US' },
+            ko: { symbol: '₩', currency: 'KRW', locale: 'ko-KR' },
+            zh: { symbol: '¥', currency: 'CNY', locale: 'zh-CN' },
+            es: { symbol: '$', currency: 'USD', locale: 'es-US' },
+            ja: { symbol: '¥', currency: 'JPY', locale: 'ja-JP' }
+        };
+        
+        const currentCurrency = currencyConfig[pathLang] || currencyConfig['en'];
+        
+        // 모든 통화 기호 요소 업데이트
+        const currencySymbolElements = document.querySelectorAll('.currency-symbol');
+        currencySymbolElements.forEach(el => {
+            el.textContent = currentCurrency.symbol;
+        });
+        
+        // Format currency with locale
+        const formatCurrency = (amount) => {
+            const formatOptions = {
+                style: 'currency',
+                currency: currentCurrency.currency,
+                minimumFractionDigits: currentCurrency.currency === 'KRW' || currentCurrency.currency === 'JPY' ? 0 : 2,
+                maximumFractionDigits: currentCurrency.currency === 'KRW' || currentCurrency.currency === 'JPY' ? 0 : 2
+            };
+            return new Intl.NumberFormat(currentCurrency.locale, formatOptions).format(amount);
+        };
+        
         // Update overtime rate when hourly rate changes
         hourlyRateInput.addEventListener('input', updateOvertimeRate);
         overtimeMultiplierSelect.addEventListener('change', updateOvertimeRate);
@@ -1125,18 +1157,18 @@
             const netPay = grossPay - totalTaxes - totalBenefits;
             
             // Update result values
-            document.getElementById('regularEarnings').textContent = `$${regularEarnings.toFixed(2)}`;
-            document.getElementById('overtimeEarnings').textContent = `$${overtimeEarnings.toFixed(2)}`;
-            document.getElementById('grossPay').textContent = `$${grossPay.toFixed(2)}`;
-            document.getElementById('federalTaxAmount').textContent = `-$${federalTaxAmount.toFixed(2)}`;
-            document.getElementById('stateTaxAmount').textContent = `-$${stateTaxAmount.toFixed(2)}`;
-            document.getElementById('socialSecurityAmount').textContent = `-$${socialSecurityAmount.toFixed(2)}`;
-            document.getElementById('medicareAmount').textContent = `-$${medicareAmount.toFixed(2)}`;
-            document.getElementById('retirementAmount').textContent = `-$${retirementAmount.toFixed(2)}`;
-            document.getElementById('otherDeductionsAmount').textContent = `-$${otherDeductions.toFixed(2)}`;
-            document.getElementById('totalTaxes').textContent = `-$${totalTaxes.toFixed(2)}`;
-            document.getElementById('totalBenefits').textContent = `-$${totalBenefits.toFixed(2)}`;
-            document.getElementById('netPay').textContent = `$${netPay.toFixed(2)}`;
+            document.getElementById('regularEarnings').textContent = formatCurrency(regularEarnings);
+            document.getElementById('overtimeEarnings').textContent = formatCurrency(overtimeEarnings);
+            document.getElementById('grossPay').textContent = formatCurrency(grossPay);
+            document.getElementById('federalTaxAmount').textContent = '-' + formatCurrency(federalTaxAmount);
+            document.getElementById('stateTaxAmount').textContent = '-' + formatCurrency(stateTaxAmount);
+            document.getElementById('socialSecurityAmount').textContent = '-' + formatCurrency(socialSecurityAmount);
+            document.getElementById('medicareAmount').textContent = '-' + formatCurrency(medicareAmount);
+            document.getElementById('retirementAmount').textContent = '-' + formatCurrency(retirementAmount);
+            document.getElementById('otherDeductionsAmount').textContent = '-' + formatCurrency(otherDeductions);
+            document.getElementById('totalTaxes').textContent = '-' + formatCurrency(totalTaxes);
+            document.getElementById('totalBenefits').textContent = '-' + formatCurrency(totalBenefits);
+            document.getElementById('netPay').textContent = formatCurrency(netPay);
             
             // Create chart
             createPaycheckChart(grossPay, totalTaxes, totalBenefits, netPay);
@@ -1175,7 +1207,7 @@
                                     const label = context.label || '';
                                     const value = context.raw || 0;
                                     const percentage = ((value / grossPay) * 100).toFixed(1);
-                                    return `${label}: $${value.toFixed(2)} (${percentage}%)`;
+                                    return `${label}: ${formatCurrency(value)} (${percentage}%)`;
                                 }
                             }
                         }
@@ -1234,18 +1266,18 @@
             });
             
             // Update the display values to match sample chart
-            document.getElementById('netPay').textContent = `$${sampleNetPay.toFixed(2)}`;
-            document.getElementById('grossPay').textContent = `$${sampleGross.toFixed(2)}`;
-            document.getElementById('regularEarnings').textContent = `$${sampleNetPay.toFixed(2)}`;
-            document.getElementById('overtimeEarnings').textContent = `$0.00`;
-            document.getElementById('totalTaxes').textContent = `-$${sampleTaxes.toFixed(2)}`;
-            document.getElementById('federalTaxAmount').textContent = `-$${(sampleTaxes * 0.6).toFixed(2)}`;
-            document.getElementById('stateTaxAmount').textContent = `-$${(sampleTaxes * 0.2).toFixed(2)}`;
-            document.getElementById('socialSecurityAmount').textContent = `-$${(sampleTaxes * 0.15).toFixed(2)}`;
-            document.getElementById('medicareAmount').textContent = `-$${(sampleTaxes * 0.05).toFixed(2)}`;
-            document.getElementById('totalBenefits').textContent = `-$${sampleBenefits.toFixed(2)}`;
-            document.getElementById('retirementAmount').textContent = `-$${sampleBenefits.toFixed(2)}`;
-            document.getElementById('otherDeductionsAmount').textContent = `-$0.00`;
+            document.getElementById('netPay').textContent = formatCurrency(sampleNetPay);
+            document.getElementById('grossPay').textContent = formatCurrency(sampleGross);
+            document.getElementById('regularEarnings').textContent = formatCurrency(sampleNetPay);
+            document.getElementById('overtimeEarnings').textContent = formatCurrency(0);
+            document.getElementById('totalTaxes').textContent = '-' + formatCurrency(sampleTaxes);
+            document.getElementById('federalTaxAmount').textContent = '-' + formatCurrency(sampleTaxes * 0.6);
+            document.getElementById('stateTaxAmount').textContent = '-' + formatCurrency(sampleTaxes * 0.2);
+            document.getElementById('socialSecurityAmount').textContent = '-' + formatCurrency(sampleTaxes * 0.15);
+            document.getElementById('medicareAmount').textContent = '-' + formatCurrency(sampleTaxes * 0.05);
+            document.getElementById('totalBenefits').textContent = '-' + formatCurrency(sampleBenefits);
+            document.getElementById('retirementAmount').textContent = '-' + formatCurrency(sampleBenefits);
+            document.getElementById('otherDeductionsAmount').textContent = '-' + formatCurrency(0);
             
             // Hide placeholder once chart is loaded
             document.querySelector('.chart-placeholder').style.display = 'none';
