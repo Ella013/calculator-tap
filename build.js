@@ -121,15 +121,28 @@ function copyStaticFiles(srcDir, destDir) {
     fs.mkdirSync(destDir, { recursive: true });
   }
   
+  // srcDir이 dist 폴더 안에 있으면 복사하지 않음 (절대 경로로 비교)
+  const distPath = path.resolve(__dirname, 'dist');
+  const srcDirResolved = path.resolve(srcDir);
+  if (srcDirResolved === distPath || (srcDirResolved.startsWith(distPath + path.sep) && path.basename(srcDir) === 'dist')) {
+    return;
+  }
+  
   const files = fs.readdirSync(srcDir);
   
   files.forEach(file => {
+    // dist 폴더나 무시할 폴더는 건너뛰기
+    if (['i18n', 'node_modules', '.git', 'dist'].includes(file)) {
+      return;
+    }
+    
     const srcPath = path.join(srcDir, file);
     const destPath = path.join(destDir, file);
     const stat = fs.statSync(srcPath);
     
-    // dist 폴더나 무시할 폴더는 건너뛰기
-    if (['i18n', 'node_modules', '.git', 'dist'].includes(file)) {
+    // srcPath가 dist 폴더를 가리키는지 확인 (절대 경로로 비교)
+    const srcPathResolved = path.resolve(srcPath);
+    if (srcPathResolved === distPath || (srcPathResolved.startsWith(distPath + path.sep) && file === 'dist')) {
       return;
     }
     
@@ -147,6 +160,34 @@ function copyStaticFiles(srcDir, destDir) {
 // 메인 빌드 함수
 function build() {
   console.log('🚀 Starting build...\n');
+  
+  // 기존 dist 폴더 삭제 (깨끗한 빌드를 위해)
+  const distDir = path.join(__dirname, 'dist');
+  if (fs.existsSync(distDir)) {
+    try {
+      // Windows에서 파일이 사용 중일 수 있으므로 재시도 로직
+      let retries = 3;
+      while (retries > 0) {
+        try {
+          fs.rmSync(distDir, { recursive: true, force: true, maxRetries: 3, retryDelay: 100 });
+          console.log('  ✓ Cleaned existing dist directory\n');
+          break;
+        } catch (err) {
+          retries--;
+          if (retries === 0) throw err;
+          // 잠시 대기 후 재시도
+          const { execSync } = require('child_process');
+          if (process.platform === 'win32') {
+            execSync(`timeout /t 1 /nobreak >nul 2>&1`, { stdio: 'ignore' });
+          } else {
+            execSync(`sleep 1`, { stdio: 'ignore' });
+          }
+        }
+      }
+    } catch (err) {
+      console.warn('  ⚠ Could not clean dist directory, continuing anyway...\n');
+    }
+  }
   
   // 각 언어별로 빌드
   languages.forEach(lang => {
@@ -218,9 +259,31 @@ function build() {
   // 루트에 필요한 정적 파일들 복사 (CSS, 이미지 등)
   const enDir = path.join(__dirname, 'dist', 'en');
   const rootDir = path.join(__dirname, 'dist');
-  const staticFiles = ['styles.css', 'calculator tap logo.png', 'favicon.ico', 'script.js'];
+  const staticFiles = ['styles.css', 'calculator tap logo.png', 'script.js'];
+  const faviconFiles = ['favicon-16x16.png', 'favicon-32x32.png', 'apple-touch-icon.png', 'android-chrome-192x192.png', 'android-chrome-512x512.png', 'site.webmanifest'];
   
   staticFiles.forEach(file => {
+    const srcPath = path.join(enDir, file);
+    const destPath = path.join(rootDir, file);
+    if (fs.existsSync(srcPath)) {
+      fs.copyFileSync(srcPath, destPath);
+      console.log(`  ✓ Copied ${file} to root`);
+    }
+  });
+  
+  faviconFiles.forEach(file => {
+    const srcPath = path.join(__dirname, file);
+    const destPath = path.join(rootDir, file);
+    if (fs.existsSync(srcPath)) {
+      fs.copyFileSync(srcPath, destPath);
+      console.log(`  ✓ Copied ${file} to root`);
+    }
+  });
+  
+  // 루트에 필요한 HTML 페이지들 복사 (about, privacy-policy, terms, sitemap)
+  const rootPages = ['about.html', 'privacy-policy.html', 'terms.html', 'sitemap.html'];
+  
+  rootPages.forEach(file => {
     const srcPath = path.join(enDir, file);
     const destPath = path.join(rootDir, file);
     if (fs.existsSync(srcPath)) {
