@@ -890,11 +890,11 @@
                         } else {
                             // 언어 코드가 없는 경우 (메인 index.html에서)
                             const fileName = pathParts[pathParts.length - 1] || 'index.html';
-                            // 메인 index.html에서 dist/언어/index.html로 이동
+                            // 서버에서는 /언어/index.html로 이동 (dist 폴더가 publish directory이므로)
                             if (window.location.protocol === 'file:') {
                                 newPath = 'dist/' + selectedLang + '/' + fileName;
                             } else {
-                                newPath = '/dist/' + selectedLang + '/' + fileName;
+                                newPath = '/' + selectedLang + '/' + fileName;
                             }
                         }
                         
