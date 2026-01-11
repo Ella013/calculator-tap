@@ -89,7 +89,11 @@
       "principal": "元金",
       "interest": "利息",
       "payment": "返済",
-      "chartPlaceholder": "計算後にグラフが表示されます"
+      "chartPlaceholder": "計算後にグラフが表示されます",
+      "month": "ヶ月",
+      "months": "ヶ月",
+      "year": "年",
+      "years": "年"
     },
     "compound": {
       "title": "複利計算機",

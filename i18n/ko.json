@@ -89,7 +89,11 @@
       "principal": "원금",
       "interest": "이자",
       "payment": "상환",
-      "chartPlaceholder": "계산 후 차트가 표시됩니다"
+      "chartPlaceholder": "계산 후 차트가 표시됩니다",
+      "month": "개월",
+      "months": "개월",
+      "year": "년",
+      "years": "년"
     },
     "compound": {
       "title": "복리 계산기",

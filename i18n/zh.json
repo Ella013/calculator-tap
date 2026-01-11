@@ -89,7 +89,11 @@
       "principal": "本金",
       "interest": "利息",
       "payment": "付款",
-      "chartPlaceholder": "计算后将显示图表"
+      "chartPlaceholder": "计算后将显示图表",
+      "month": "个月",
+      "months": "个月",
+      "year": "年",
+      "years": "年"
     },
     "compound": {
       "title": "复利计算器",

@@ -788,14 +788,36 @@
         const debtAmountDisplay = document.getElementById('debtAmountDisplay');
         const chartPlaceholder = document.querySelector('.chart-placeholder');
         
-        // Format currency
+        // URL 경로에서 locale 감지
+        const currentPath = window.location.pathname;
+        const pathLang = currentPath.split('/').find(p => ['en', 'es', 'zh', 'ko', 'ja'].includes(p)) || 'en';
+        
+        // Locale별 통화 설정
+        const currencyConfig = {
+            en: { symbol: '$', currency: 'USD', locale: 'en-US' },
+            ko: { symbol: '₩', currency: 'KRW', locale: 'ko-KR' },
+            zh: { symbol: '¥', currency: 'CNY', locale: 'zh-CN' },
+            es: { symbol: '$', currency: 'USD', locale: 'es-US' },
+            ja: { symbol: '¥', currency: 'JPY', locale: 'ja-JP' }
+        };
+        
+        const currentCurrency = currencyConfig[pathLang] || currencyConfig['en'];
+        
+        // 모든 통화 기호 요소 업데이트
+        const currencySymbolElements = document.querySelectorAll('.currency-symbol');
+        currencySymbolElements.forEach(el => {
+            el.textContent = currentCurrency.symbol;
+        });
+        
+        // Format currency with locale
         const formatCurrency = (amount) => {
-            return new Intl.NumberFormat('en-US', {
+            const formatOptions = {
                 style: 'currency',
-                currency: 'USD',
-                minimumFractionDigits: 2,
-                maximumFractionDigits: 2
-            }).format(amount);
+                currency: currentCurrency.currency,
+                minimumFractionDigits: currentCurrency.currency === 'KRW' || currentCurrency.currency === 'JPY' ? 0 : 2,
+                maximumFractionDigits: currentCurrency.currency === 'KRW' || currentCurrency.currency === 'JPY' ? 0 : 2
+            };
+            return new Intl.NumberFormat(currentCurrency.locale, formatOptions).format(amount);
         };
         
         // Format percentage
@@ -860,7 +882,36 @@
             payoffChart = new Chart(ctx, config);
             
             // Sample values display
-            debtFreeDateElement.textContent = "24 months";
+            const sampleMonths = 24;
+            const sampleYears = Math.floor(sampleMonths / 12);
+            const sampleRemainingMonths = sampleMonths % 12;
+            let sampleTimeText = '';
+            if (sampleYears > 0) {
+                if (pathLang === 'ko') {
+                    sampleTimeText = `${sampleYears}년 ${sampleRemainingMonths}개월`;
+                } else if (pathLang === 'zh') {
+                    sampleTimeText = `${sampleYears}年${sampleRemainingMonths}个月`;
+                } else if (pathLang === 'ja') {
+                    sampleTimeText = `${sampleYears}年${sampleRemainingMonths}ヶ月`;
+                } else if (pathLang === 'es') {
+                    sampleTimeText = `${sampleYears} ${sampleYears > 1 ? 'años' : 'año'} ${sampleRemainingMonths} ${sampleRemainingMonths !== 1 ? 'meses' : 'mes'}`;
+                } else {
+                    sampleTimeText = `${sampleYears} ${sampleYears > 1 ? 'years' : 'year'} ${sampleRemainingMonths} ${sampleRemainingMonths !== 1 ? 'months' : 'month'}`;
+                }
+            } else {
+                if (pathLang === 'ko') {
+                    sampleTimeText = `${sampleMonths}개월`;
+                } else if (pathLang === 'zh') {
+                    sampleTimeText = `${sampleMonths}个月`;
+                } else if (pathLang === 'ja') {
+                    sampleTimeText = `${sampleMonths}ヶ月`;
+                } else if (pathLang === 'es') {
+                    sampleTimeText = `${sampleMonths} ${sampleMonths !== 1 ? 'meses' : 'mes'}`;
+                } else {
+                    sampleTimeText = `${sampleMonths} ${sampleMonths !== 1 ? 'months' : 'month'}`;
+                }
+            }
+            debtFreeDateElement.textContent = sampleTimeText;
             totalInterestElement.textContent = formatCurrency(2000);
             totalPaymentElement.textContent = formatCurrency(12000);
             monthlyPaymentDisplay.textContent = formatCurrency(500);
@@ -931,12 +982,38 @@
                 // Calculate total payment
                 const totalPayment = remainingBalance + totalInterest;
 
-                // Format months to years and months
+                // Format months to years and months with translations
                 const years = Math.floor(months / 12);
                 const remainingMonths = months % 12;
-                const timeToPayoff = years > 0 
-                    ? `${years} year${years > 1 ? 's' : ''} ${remainingMonths} month${remainingMonths !== 1 ? 's' : ''}`
-                    : `${months} month${months !== 1 ? 's' : ''}`;
+                
+                // Get translation keys from data attributes (build.js will have replaced them, so we'll use a simple approach)
+                // For now, use language-specific formatting based on pathLang
+                let timeToPayoff = '';
+                if (years > 0) {
+                    if (pathLang === 'ko') {
+                        timeToPayoff = `${years}년 ${remainingMonths}개월`;
+                    } else if (pathLang === 'zh') {
+                        timeToPayoff = `${years}年${remainingMonths}个月`;
+                    } else if (pathLang === 'ja') {
+                        timeToPayoff = `${years}年${remainingMonths}ヶ月`;
+                    } else if (pathLang === 'es') {
+                        timeToPayoff = `${years} ${years > 1 ? 'años' : 'año'} ${remainingMonths} ${remainingMonths !== 1 ? 'meses' : 'mes'}`;
+                    } else {
+                        timeToPayoff = `${years} ${years > 1 ? 'years' : 'year'} ${remainingMonths} ${remainingMonths !== 1 ? 'months' : 'month'}`;
+                    }
+                } else {
+                    if (pathLang === 'ko') {
+                        timeToPayoff = `${months}개월`;
+                    } else if (pathLang === 'zh') {
+                        timeToPayoff = `${months}个月`;
+                    } else if (pathLang === 'ja') {
+                        timeToPayoff = `${months}ヶ月`;
+                    } else if (pathLang === 'es') {
+                        timeToPayoff = `${months} ${months !== 1 ? 'meses' : 'mes'}`;
+                    } else {
+                        timeToPayoff = `${months} ${months !== 1 ? 'months' : 'month'}`;
+                    }
+                }
 
                 // Update results
                 debtFreeDateElement.textContent = timeToPayoff;

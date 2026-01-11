@@ -73,7 +73,27 @@
     "debt": {
       "title": "Debt Payoff Calculator",
       "description": "Create a debt repayment plan, calculate your debt-free date, and see how much you can save on interest payments.",
-      "button": "Calculate"
+      "button": "Calculate",
+      "debtAmount": "Total Debt Amount",
+      "interestRate": "Annual Interest Rate",
+      "monthlyPayment": "Monthly Payment",
+      "placeholderDebt": "Enter your total debt amount",
+      "placeholderRate": "Enter annual interest rate",
+      "placeholderPayment": "Enter monthly payment amount",
+      "results": "Payoff Results",
+      "timeToDebtFree": "Time to Debt-Free",
+      "monthlyPaymentLabel": "Monthly Payment",
+      "debtAmountLabel": "Debt Amount",
+      "totalPayment": "Total Payment",
+      "totalInterest": "Total Interest",
+      "principal": "Principal",
+      "interest": "Interest",
+      "payment": "Payment",
+      "chartPlaceholder": "Chart will be displayed after calculation",
+      "month": "month",
+      "months": "months",
+      "year": "year",
+      "years": "years"
     },
     "compound": {
       "title": "Compound Interest Calculator",
