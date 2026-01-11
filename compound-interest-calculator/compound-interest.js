@@ -21,6 +21,27 @@ document.addEventListener('DOMContentLoaded', function() {
     // Update year in footer
     document.getElementById('currentYear').textContent = new Date().getFullYear();
     
+    // URL 경로에서 locale 감지
+    const currentPath = window.location.pathname;
+    const pathLang = currentPath.split('/').find(p => ['en', 'es', 'zh', 'ko', 'ja'].includes(p)) || 'en';
+    
+    // Locale별 통화 설정
+    const currencyConfig = {
+        en: { symbol: '$', currency: 'USD', locale: 'en-US' },
+        ko: { symbol: '₩', currency: 'KRW', locale: 'ko-KR' },
+        zh: { symbol: '¥', currency: 'CNY', locale: 'zh-CN' },
+        es: { symbol: '$', currency: 'USD', locale: 'es-US' },
+        ja: { symbol: '¥', currency: 'JPY', locale: 'ja-JP' }
+    };
+    
+    const currentCurrency = currencyConfig[pathLang] || currencyConfig['en'];
+    
+    // 모든 통화 기호 요소 업데이트
+    const currencySymbolElements = document.querySelectorAll('.currency-symbol');
+    currencySymbolElements.forEach(el => {
+        el.textContent = currentCurrency.symbol;
+    });
+    
     // Event Listeners
     calculateBtn.addEventListener('click', calculateCompoundInterest);
     
