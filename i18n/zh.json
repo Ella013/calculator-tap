@@ -19,7 +19,7 @@
       "title": "贷款计算器",
       "description": "计算任何类型贷款的月付款、总利息和还款时间表。适用于个人贷款、汽车贷款和学生贷款。",
       "button": "计算",
-      "loanAmount": "贷款金额 ($)",
+      "loanAmount": "贷款金额",
       "interestRate": "年利率 (%)",
       "loanTerm": "贷款期限 (年)",
       "placeholderAmount": "输入贷款金额",

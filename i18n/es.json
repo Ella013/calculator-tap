@@ -19,7 +19,7 @@
       "title": "Calculadora de Préstamos",
       "description": "Calcule los pagos mensuales, el interés total y el cronograma de pago para cualquier tipo de préstamo. Perfecto para préstamos personales, préstamos para automóviles y préstamos estudiantiles.",
       "button": "Calcular",
-      "loanAmount": "Monto del Préstamo ($)",
+      "loanAmount": "Monto del Préstamo",
       "interestRate": "Tasa de Interés Anual (%)",
       "loanTerm": "Plazo del Préstamo (años)",
       "placeholderAmount": "Ingrese el monto del préstamo",

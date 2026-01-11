@@ -19,7 +19,7 @@
       "title": "Loan Calculator",
       "description": "Calculate monthly payments, total interest, and payoff timeline for any type of loan. Perfect for personal loans, auto loans, and student loans.",
       "button": "Calculate",
-      "loanAmount": "Loan Amount ($)",
+      "loanAmount": "Loan Amount",
       "interestRate": "Annual Interest Rate (%)",
       "loanTerm": "Loan Term (years)",
       "placeholderAmount": "Enter loan amount",

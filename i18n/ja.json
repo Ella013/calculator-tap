@@ -19,7 +19,7 @@
       "title": "ローン計算機",
       "description": "あらゆる種類のローンについて、月々の返済額、総利息、返済スケジュールを計算します。個人ローン、自動車ローン、学生ローンに最適です。",
       "button": "計算",
-      "loanAmount": "ローン金額 ($)",
+      "loanAmount": "ローン金額",
       "interestRate": "年利 (%)",
       "loanTerm": "ローン期間 (年)",
       "placeholderAmount": "ローン金額を入力",

@@ -19,7 +19,7 @@
       "title": "대출 계산기",
       "description": "모든 유형의 대출에 대한 월 상환액, 총 이자 및 상환 일정을 계산하세요. 개인 대출, 자동차 대출, 학자금 대출에 완벽합니다.",
       "button": "계산하기",
-      "loanAmount": "대출 금액 ($)",
+      "loanAmount": "대출 금액",
       "interestRate": "연 이자율 (%)",
       "loanTerm": "대출 기간 (년)",
       "placeholderAmount": "대출 금액 입력",
