@@ -630,7 +630,7 @@
                             <label for="loanAmount" data-translate="calculators.loan.loanAmount">Loan Amount ($)</label>
                             <div class="input-group">
                                 <span class="currency-symbol">$</span>
-                                <input type="number" id="loanAmount" placeholder="Enter loan amount" data-translate-attr="calculators.loan.placeholderAmount" min="0" class="input-field">
+                                <input type="text" id="loanAmount" placeholder="Enter loan amount" data-translate-attr="calculators.loan.placeholderAmount" class="input-field" inputmode="numeric">
                             </div>
                         </div>
                         
@@ -891,7 +891,7 @@
         
         // Calculate loan
         const calculateLoan = () => {
-            const loanAmount = parseFloat(loanAmountInput.value);
+            const loanAmount = parseNumber(loanAmountInput.value);
             const annualInterestRate = parseFloat(interestRateInput.value);
             const loanTermYears = parseFloat(loanTermInput.value);
 
