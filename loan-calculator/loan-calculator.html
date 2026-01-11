@@ -948,8 +948,47 @@
             });
         });
 
-        // Input validation
-        [loanAmountInput, interestRateInput, loanTermInput].forEach(input => {
+        // 숫자 포맷팅 함수 (세 자리마다 콤마)
+        const formatNumber = (value) => {
+            // 숫자가 아닌 문자 제거
+            const numValue = value.toString().replace(/[^0-9]/g, '');
+            if (!numValue) return '';
+            // 세 자리마다 콤마 추가
+            return parseInt(numValue, 10).toLocaleString(currentCurrency.locale, { maximumFractionDigits: 0 });
+        };
+        
+        // 포맷팅된 숫자에서 숫자만 추출
+        const parseNumber = (value) => {
+            return parseFloat(value.toString().replace(/[^0-9.]/g, '')) || 0;
+        };
+        
+        // 대출 금액 입력 필드 포맷팅
+        loanAmountInput.addEventListener('input', (e) => {
+            const cursorPosition = e.target.selectionStart;
+            const originalValue = e.target.value;
+            const formattedValue = formatNumber(originalValue);
+            
+            // 값이 변경된 경우만 업데이트
+            if (originalValue !== formattedValue) {
+                e.target.value = formattedValue;
+                
+                // 커서 위치 조정 (콤마 때문에 위치가 변경될 수 있음)
+                const diff = formattedValue.length - originalValue.length;
+                const newCursorPosition = Math.min(cursorPosition + diff, formattedValue.length);
+                e.target.setSelectionRange(newCursorPosition, newCursorPosition);
+            }
+        });
+        
+        // 포커스 아웃 시 포맷팅 확정
+        loanAmountInput.addEventListener('blur', (e) => {
+            const numValue = parseNumber(e.target.value);
+            if (numValue > 0) {
+                e.target.value = formatNumber(numValue.toString());
+            }
+        });
+        
+        // 다른 입력 필드 검증 (이자율, 대출 기간)
+        [interestRateInput, loanTermInput].forEach(input => {
             input.addEventListener('input', () => {
                 // Remove any non-numeric characters except decimal point
                 input.value = input.value.replace(/[^0-9.]/g, '');
