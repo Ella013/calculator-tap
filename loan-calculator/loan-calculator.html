@@ -795,6 +795,19 @@
             currencySymbolElement.textContent = currentCurrency.symbol;
         }
         
+        // 라벨 텍스트에 통화 기호 추가
+        const loanAmountLabel = document.querySelector('label[for="loanAmount"]');
+        if (loanAmountLabel) {
+            const baseText = loanAmountLabel.textContent.trim();
+            // 이미 괄호가 있는지 확인하고, 없으면 추가
+            if (!baseText.includes('(')) {
+                loanAmountLabel.textContent = baseText + ` (${currentCurrency.symbol})`;
+            } else {
+                // 괄호가 있으면 괄호 안의 내용만 교체
+                loanAmountLabel.textContent = baseText.replace(/\([^)]*\)/, `(${currentCurrency.symbol})`);
+            }
+        }
+        
         // Format currency with locale
         const formatCurrency = (amount) => {
             return new Intl.NumberFormat(currentCurrency.locale, {
