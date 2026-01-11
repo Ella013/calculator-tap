@@ -2,7 +2,28 @@
   command = "npm install && npm run build"
   publish = "dist"
 
+# SPA 라우팅을 위한 rewrite 규칙
 [[redirects]]
-  from = "/"
+  from = "/en/*"
   to = "/en/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/ko/*"
+  to = "/ko/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/es/*"
+  to = "/es/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/zh/*"
+  to = "/zh/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/ja/*"
+  to = "/ja/index.html"
   status = 200

@@ -199,6 +199,15 @@ function build() {
   
   console.log('\n✅ Build complete!');
   console.log(`\n📁 Output directory: ${path.join(__dirname, 'dist')}`);
+  
+  // 루트 index.html 생성 (영어 버전을 기본으로)
+  const enIndexPath = path.join(__dirname, 'dist', 'en', 'index.html');
+  const rootIndexPath = path.join(__dirname, 'dist', 'index.html');
+  
+  if (fs.existsSync(enIndexPath)) {
+    fs.copyFileSync(enIndexPath, rootIndexPath);
+    console.log('  ✓ Created root index.html (copy of en/index.html)');
+  }
 }
 
 // 빌드 실행
