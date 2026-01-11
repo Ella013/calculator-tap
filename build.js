@@ -208,6 +208,20 @@ function build() {
     fs.copyFileSync(enIndexPath, rootIndexPath);
     console.log('  ✓ Created root index.html (copy of en/index.html)');
   }
+  
+  // 루트에 필요한 정적 파일들 복사 (CSS, 이미지 등)
+  const enDir = path.join(__dirname, 'dist', 'en');
+  const rootDir = path.join(__dirname, 'dist');
+  const staticFiles = ['styles.css', 'calculator tap logo.png', 'favicon.ico', 'script.js'];
+  
+  staticFiles.forEach(file => {
+    const srcPath = path.join(enDir, file);
+    const destPath = path.join(rootDir, file);
+    if (fs.existsSync(srcPath)) {
+      fs.copyFileSync(srcPath, destPath);
+      console.log(`  ✓ Copied ${file} to root`);
+    }
+  });
 }
 
 // 빌드 실행
