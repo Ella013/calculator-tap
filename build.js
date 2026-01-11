@@ -205,8 +205,14 @@ function build() {
   const rootIndexPath = path.join(__dirname, 'dist', 'index.html');
   
   if (fs.existsSync(enIndexPath)) {
-    fs.copyFileSync(enIndexPath, rootIndexPath);
-    console.log('  ✓ Created root index.html (copy of en/index.html)');
+    let rootIndexContent = fs.readFileSync(enIndexPath, 'utf8');
+    
+    // 루트 index.html의 계산기 링크에 /en/ 경로 추가
+    rootIndexContent = rootIndexContent.replace(/href="(loan-calculator|Mortgage-Qualification-Calculator|paycheck-calculator|payoff-calculator|compound-interest-calculator|investment-return-calculator|dividend-calculator|stock-return-calculator)\//g, 'href="en/$1/');
+    rootIndexContent = rootIndexContent.replace(/url: '(loan-calculator|Mortgage-Qualification-Calculator|paycheck-calculator|payoff-calculator|compound-interest-calculator|investment-return-calculator|dividend-calculator|stock-return-calculator)\//g, "url: 'en/$1/");
+    
+    fs.writeFileSync(rootIndexPath, rootIndexContent, 'utf8');
+    console.log('  ✓ Created root index.html (copy of en/index.html with /en/ links)');
   }
   
   // 루트에 필요한 정적 파일들 복사 (CSS, 이미지 등)
