@@ -713,7 +713,10 @@
         <div class="header-container">
             <div class="logo">
                 <a href="../index.html" class="logo-link" style="display: flex; align-items: center; text-decoration: none;">
-                    <img src="../calculator tap logo.png" alt="Calculator Tap" style="height: 40px; width: auto;">
+                    <picture>
+                        <source srcset="../calculator-tap-logo.webp" type="image/webp">
+                        <img src="../calculator-tap-logo.png" alt="Calculator Tap" style="height: 40px; width: auto;">
+                    </picture>
                     <h1 style="margin-left: 10px; color: #2c3e50;">Calculator Tap</h1>
                 </a>
             </div>
@@ -753,50 +756,50 @@
 
                     <div class="tab-container">
                         <div class="tab-navigation">
-                            <button type="button" class="tab-button active" data-tab="earnings">Earnings</button>
-                            <button type="button" class="tab-button" data-tab="taxes">Taxes</button>
+                            <button type="button" class="tab-button active" data-tab="earnings" data-translate="calculators.paycheck.earningsTab">Earnings</button>
+                            <button type="button" class="tab-button" data-tab="taxes" data-translate="calculators.paycheck.taxesTab">Taxes</button>
                         </div>
 
                         <div id="earnings" class="tab-content active">
-                            <h3 class="section-title">How often are you paid?</h3>
+                            <h3 class="section-title" data-translate="calculators.paycheck.howOftenPaid">How often are you paid?</h3>
                             <div class="form-row">
                                 <div class="form-group full-width">
-                                    <label for="payPeriod" class="field-label">Pay Frequency</label>
+                                    <label for="payPeriod" class="field-label" data-translate="calculators.paycheck.payFrequency">Pay Frequency</label>
                                     <select id="payPeriod" class="input-field">
-                                        <option value="weekly">Weekly</option>
-                                        <option value="biweekly" selected>Bi-Weekly (Every 2 Weeks)</option>
-                                        <option value="semimonthly">Semi-Monthly (Twice a Month)</option>
-                                        <option value="monthly">Monthly</option>
+                                        <option value="weekly" data-translate="calculators.paycheck.weekly">Weekly</option>
+                                        <option value="biweekly" selected data-translate="calculators.paycheck.biweekly">Bi-Weekly (Every 2 Weeks)</option>
+                                        <option value="semimonthly" data-translate="calculators.paycheck.semimonthly">Semi-Monthly (Twice a Month)</option>
+                                        <option value="monthly" data-translate="calculators.paycheck.monthly">Monthly</option>
                                     </select>
                                 </div>
                             </div>
 
-                            <h3 class="section-title">How are you paid?</h3>
+                            <h3 class="section-title" data-translate="calculators.paycheck.howAreYouPaid">How are you paid?</h3>
                             <div id="earningsContainer">
                                 <div class="earnings-item">
                                     <div class="form-group">
-                                        <label for="hourlyRate" class="field-label">Hourly Rate</label>
+                                        <label for="hourlyRate" class="field-label" data-translate="calculators.paycheck.hourlyRate">Hourly Rate</label>
                                         <div class="input-group">
                                             <span class="currency-symbol">$</span>
-                                            <input type="number" id="hourlyRate" class="input-field" placeholder="0.00">
+                                            <input type="text" id="hourlyRate" class="input-field" placeholder="0.00" data-translate-attr="calculators.paycheck.placeholderHourlyRate" inputmode="numeric">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="regularHours" class="field-label">Hours</label>
-                                        <input type="number" id="regularHours" class="input-field" placeholder="Hours">
+                                        <label for="regularHours" class="field-label" data-translate="calculators.paycheck.hours">Hours</label>
+                                        <input type="number" id="regularHours" class="input-field" placeholder="Hours" data-translate-attr="calculators.paycheck.placeholderHours">
                                     </div>
                                 </div>
                             </div>
                             
-                            <h3 class="section-title">Any overtime?</h3>
+                            <h3 class="section-title" data-translate="calculators.paycheck.anyOvertime">Any overtime?</h3>
                             <div id="overtimeContainer">
                                 <div class="overtime-item">
                                     <div class="form-group">
-                                        <label for="overtimeHours" class="field-label">Hours</label>
-                                        <input type="number" id="overtimeHours" class="input-field" placeholder="Hours">
+                                        <label for="overtimeHours" class="field-label" data-translate="calculators.paycheck.hours">Hours</label>
+                                        <input type="number" id="overtimeHours" class="input-field" placeholder="Hours" data-translate-attr="calculators.paycheck.placeholderHours">
                                     </div>
                                     <div class="form-group">
-                                        <label for="overtimeMultiplier" class="field-label">Multiplier</label>
+                                        <label for="overtimeMultiplier" class="field-label" data-translate="calculators.paycheck.multiplier">Multiplier</label>
                                         <select id="overtimeMultiplier" class="input-field">
                                             <option value="1.5" selected>1.5x</option>
                                             <option value="2">2x</option>
@@ -810,51 +813,51 @@
                             </div>
                             
                             <div class="tab-buttons">
-                                <button type="button" class="tab-next calculator-btn" data-next="taxes">Next: Taxes</button>
+                                <button type="button" class="tab-next calculator-btn" data-next="taxes" data-translate="calculators.paycheck.nextTaxes">Next: Taxes</button>
                             </div>
                         </div>
 
                         <div id="taxes" class="tab-content">
-                            <h3 class="section-title">Tax Rates</h3>
+                            <h3 class="section-title" data-translate="calculators.paycheck.taxRates">Tax Rates</h3>
                             <div class="form-row">
                                 <div class="form-group">
-                                    <label for="federalTax" class="field-label">Federal Income Tax (%)</label>
+                                    <label for="federalTax" class="field-label" data-translate="calculators.paycheck.federalTax">Federal Income Tax (%)</label>
                                     <input type="number" id="federalTax" class="input-field" value="15" placeholder="%">
                                 </div>
                                 <div class="form-group">
-                                    <label for="stateTax" class="field-label">State Income Tax (%)</label>
+                                    <label for="stateTax" class="field-label" data-translate="calculators.paycheck.stateTax">State Income Tax (%)</label>
                                     <input type="number" id="stateTax" class="input-field" value="5" placeholder="%">
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group">
-                                    <label for="socialSecurity" class="field-label">Social Security Tax (%)</label>
+                                    <label for="socialSecurity" class="field-label" data-translate="calculators.paycheck.socialSecurityTax">Social Security Tax (%)</label>
                                     <input type="number" id="socialSecurity" class="input-field" value="6.2" disabled>
                                 </div>
                                 <div class="form-group">
-                                    <label for="medicare" class="field-label">Medicare Tax (%)</label>
+                                    <label for="medicare" class="field-label" data-translate="calculators.paycheck.medicareTax">Medicare Tax (%)</label>
                                     <input type="number" id="medicare" class="input-field" value="1.45" disabled>
                                 </div>
                             </div>
                             
-                            <h3 class="section-title">Deductions</h3>
+                            <h3 class="section-title" data-translate="calculators.paycheck.deductions">Deductions</h3>
                             <div class="form-row">
                                 <div class="form-group">
-                                    <label for="retirement" class="field-label">Retirement Contribution (%)</label>
+                                    <label for="retirement" class="field-label" data-translate="calculators.paycheck.retirement">Retirement Contribution (%)</label>
                                     <input type="number" id="retirement" class="input-field" value="0" placeholder="%">
                                 </div>
                                 <div class="form-group">
-                                    <label for="otherDeductions" class="field-label">Other Deductions ($)</label>
+                                    <label for="otherDeductions" class="field-label" data-translate="calculators.paycheck.otherDeductions">Other Deductions</label>
                                     <div class="input-group">
                                         <span class="currency-symbol">$</span>
-                                        <input type="number" id="otherDeductions" class="input-field" value="0" placeholder="0.00">
+                                        <input type="text" id="otherDeductions" class="input-field" value="0" placeholder="0.00" data-translate-attr="calculators.paycheck.placeholderOtherDeductions" inputmode="numeric">
                                     </div>
                                 </div>
                             </div>
                             
                             <div class="tab-buttons">
-                                <button type="button" class="tab-prev calculator-btn" data-prev="earnings">Previous</button>
-                                <button type="button" id="calculateBtn" class="calculator-btn">Calculate Paycheck</button>
+                                <button type="button" class="tab-prev calculator-btn" data-prev="earnings" data-translate="calculators.paycheck.previous">Previous</button>
+                                <button type="button" id="calculateBtn" class="calculator-btn" data-translate="calculators.paycheck.button">Calculate Paycheck</button>
                             </div>
                         </div>
                     </div>
@@ -1110,12 +1113,48 @@
             return new Intl.NumberFormat(currentCurrency.locale, formatOptions).format(amount);
         };
         
+        // Format number with commas
+        const formatNumber = (value) => {
+            if (!value) return '';
+            const numValue = value.toString().replace(/[^0-9.-]+/g, '');
+            if (!numValue) return '';
+            const num = parseFloat(numValue);
+            if (isNaN(num)) return '';
+            return num.toLocaleString('en-US');
+        };
+        
+        // Parse number from formatted string
+        const parseNumber = (value) => {
+            if (!value) return 0;
+            const numValue = value.toString().replace(/[^0-9.-]+/g, '');
+            return parseFloat(numValue) || 0;
+        };
+        
+        // Format input on input event
+        const formatInput = (input) => {
+            const cursorPosition = input.selectionStart;
+            const oldValue = input.value;
+            const numValue = oldValue.replace(/[^0-9.-]+/g, '');
+            const formattedValue = formatNumber(numValue);
+            input.value = formattedValue;
+            
+            // Adjust cursor position - calculate how many commas were added before cursor
+            const textBeforeCursor = oldValue.substring(0, cursorPosition);
+            const numBeforeCursor = textBeforeCursor.replace(/[^0-9.-]+/g, '');
+            const formattedBeforeCursor = formatNumber(numBeforeCursor);
+            const newCursorPosition = formattedBeforeCursor.length;
+            input.setSelectionRange(newCursorPosition, newCursorPosition);
+        };
+        
         // Update overtime rate when hourly rate changes
-        hourlyRateInput.addEventListener('input', updateOvertimeRate);
+        hourlyRateInput.addEventListener('input', () => {
+            formatInput(hourlyRateInput);
+            updateOvertimeRate();
+        });
         overtimeMultiplierSelect.addEventListener('change', updateOvertimeRate);
         
         function updateOvertimeRate() {
-            const hourlyRate = parseFloat(hourlyRateInput.value) || 0;
+            const hourlyRate = parseNumber(hourlyRateInput.value) || 0;
             const multiplier = parseFloat(overtimeMultiplierSelect.value) || 1.5;
             overtimeRateInput.value = (hourlyRate * multiplier).toFixed(2);
         }
@@ -1123,11 +1162,15 @@
         // Calculate button click handler
         calculateBtn.addEventListener('click', calculatePaycheck);
         
+        // Comma formatting for currency input fields
+        const otherDeductionsInput = document.getElementById('otherDeductions');
+        otherDeductionsInput.addEventListener('input', () => formatInput(otherDeductionsInput));
+        
         function calculatePaycheck() {
             // Get values from inputs
             const payPeriod = document.getElementById('payPeriod').value;
             const regularHours = parseFloat(regularHoursInput.value) || 0;
-            const hourlyRate = parseFloat(hourlyRateInput.value) || 0;
+            const hourlyRate = parseNumber(hourlyRateInput.value) || 0;
             const overtimeHours = parseFloat(overtimeHoursInput.value) || 0;
             const overtimeRate = parseFloat(overtimeRateInput.value) || 0;
             const federalTaxRate = parseFloat(document.getElementById('federalTax').value) || 15;
@@ -1135,7 +1178,7 @@
             const socialSecurityRate = 6.2; // Fixed rate
             const medicareRate = 1.45; // Fixed rate
             const retirementRate = parseFloat(document.getElementById('retirement').value) || 0;
-            const otherDeductions = parseFloat(document.getElementById('otherDeductions').value) || 0;
+            const otherDeductions = parseNumber(otherDeductionsInput.value) || 0;
             
             // Calculate earnings
             const regularEarnings = regularHours * hourlyRate;
@@ -1235,7 +1278,11 @@
             window.paycheckChart = new Chart(ctx, {
                 type: 'doughnut',
                 data: {
-                    labels: ['Take Home', 'Taxes', 'Benefits'],
+                    labels: [
+                        document.querySelector('[data-translate="calculators.paycheck.takeHome"]')?.textContent || 'Take Home',
+                        document.querySelector('[data-translate="calculators.paycheck.taxes"]')?.textContent || 'Taxes',
+                        document.querySelector('[data-translate="calculators.paycheck.benefits"]')?.textContent || 'Benefits'
+                    ],
                     datasets: [{
                         data: [sampleNetPay, sampleTaxes, sampleBenefits],
                         backgroundColor: ['#f39c12', '#3498db', '#9b59b6'],

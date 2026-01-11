@@ -611,7 +611,10 @@
         <div class="header-container">
             <div class="logo">
                 <a href="../index.html" class="logo-link" style="display: flex; align-items: center; text-decoration: none;">
-                    <img src="../calculator tap logo.png" alt="Calculator Tap" style="height: 40px; width: auto;">
+                    <picture>
+                        <source srcset="../calculator-tap-logo.webp" type="image/webp">
+                        <img src="../calculator-tap-logo.png" alt="Calculator Tap" style="height: 40px; width: auto;">
+                    </picture>
                     <h1 style="margin-left: 10px; color: #2c3e50;">Calculator Tap</h1>
                 </a>
             </div>
@@ -655,7 +658,7 @@
                             <label for="monthlyIncome" data-translate="calculators.mortgage.monthlyIncome">Monthly Income</label>
                             <div class="input-group">
                                 <span class="currency-symbol">$</span>
-                                <input type="number" id="monthlyIncome" placeholder="Enter your monthly income" data-translate-attr="calculators.mortgage.placeholderIncome" min="0">
+                                <input type="text" id="monthlyIncome" placeholder="Enter your monthly income" data-translate-attr="calculators.mortgage.placeholderIncome" min="0" inputmode="numeric">
                             </div>
                         </div>
                         
@@ -663,7 +666,7 @@
                             <label for="monthlyDebts" data-translate="calculators.mortgage.monthlyDebts">Other Monthly Debts</label>
                             <div class="input-group">
                                 <span class="currency-symbol">$</span>
-                                <input type="number" id="monthlyDebts" placeholder="Enter your monthly debts" data-translate-attr="calculators.mortgage.placeholderDebts" min="0">
+                                <input type="text" id="monthlyDebts" placeholder="Enter your monthly debts" data-translate-attr="calculators.mortgage.placeholderDebts" min="0" inputmode="numeric">
                             </div>
                         </div>
                         
@@ -684,7 +687,7 @@
                             <label for="downPayment" data-translate="calculators.mortgage.downPayment">Down Payment</label>
                             <div class="input-group">
                                 <span class="currency-symbol">$</span>
-                                <input type="number" id="downPayment" placeholder="Enter down payment amount" data-translate-attr="calculators.mortgage.placeholderDown" min="0">
+                                <input type="text" id="downPayment" placeholder="Enter down payment amount" data-translate-attr="calculators.mortgage.placeholderDown" min="0" inputmode="numeric">
                             </div>
                         </div>
     
@@ -695,7 +698,7 @@
                             </label>
                             <div class="input-group">
                                 <span class="currency-symbol">$</span>
-                                <input type="number" id="taxesInsurance" placeholder="Enter monthly taxes and insurance" data-translate-attr="calculators.mortgage.placeholderTaxes" min="0">
+                                <input type="text" id="taxesInsurance" placeholder="Enter monthly taxes and insurance" data-translate-attr="calculators.mortgage.placeholderTaxes" min="0" inputmode="numeric">
                             </div>
                         </div>
                         
@@ -867,25 +870,6 @@
             el.textContent = currentCurrency.symbol;
         });
         
-        // 라벨 텍스트에 통화 기호 추가
-        const currencyLabels = [
-            'monthlyIncome',
-            'monthlyDebts',
-            'downPayment',
-            'taxesInsurance'
-        ];
-        currencyLabels.forEach(id => {
-            const label = document.querySelector(`label[for="${id}"]`);
-            if (label) {
-                const baseText = label.textContent.trim();
-                if (!baseText.includes('(')) {
-                    label.textContent = baseText + ` (${currentCurrency.symbol})`;
-                } else {
-                    label.textContent = baseText.replace(/\([^)]*\)/, `(${currentCurrency.symbol})`);
-                }
-            }
-        });
-        
         // Format currency with locale
         const formatCurrency = (amount) => {
             const formatOptions = {
@@ -904,6 +888,39 @@
                 minimumFractionDigits: 1,
                 maximumFractionDigits: 1
             }).format(value / 100);
+        };
+        
+        // Format number with commas
+        const formatNumber = (value) => {
+            if (!value) return '';
+            const numValue = value.toString().replace(/[^0-9.-]+/g, '');
+            if (!numValue) return '';
+            const num = parseFloat(numValue);
+            if (isNaN(num)) return '';
+            return num.toLocaleString('en-US');
+        };
+        
+        // Parse number from formatted string
+        const parseNumber = (value) => {
+            if (!value) return 0;
+            const numValue = value.toString().replace(/[^0-9.-]+/g, '');
+            return parseFloat(numValue) || 0;
+        };
+        
+        // Format input on input event
+        const formatInput = (input) => {
+            const cursorPosition = input.selectionStart;
+            const oldValue = input.value;
+            const numValue = oldValue.replace(/[^0-9.-]+/g, '');
+            const formattedValue = formatNumber(numValue);
+            input.value = formattedValue;
+            
+            // Adjust cursor position - calculate how many commas were added before cursor
+            const textBeforeCursor = oldValue.substring(0, cursorPosition);
+            const numBeforeCursor = textBeforeCursor.replace(/[^0-9.-]+/g, '');
+            const formattedBeforeCursor = formatNumber(numBeforeCursor);
+            const newCursorPosition = formattedBeforeCursor.length;
+            input.setSelectionRange(newCursorPosition, newCursorPosition);
         };
         
         // Create the initial pie chart with sample data
@@ -996,12 +1013,12 @@
         const calculateMaxMortgage = () => {
             try {
                 // Get input values
-                const monthlyIncome = parseFloat(monthlyIncomeInput.value) || 0;
-                const monthlyDebts = parseFloat(monthlyDebtsInput.value) || 0;
+                const monthlyIncome = parseNumber(monthlyIncomeInput.value) || 0;
+                const monthlyDebts = parseNumber(monthlyDebtsInput.value) || 0;
                 const loanTerm = parseInt(loanTermInput.value) || 30;
                 const annualInterestRate = parseFloat(interestRateInput.value) || 0;
-                const downPayment = parseFloat(downPaymentInput.value) || 0;
-                const taxesInsurance = parseFloat(taxesInsuranceInput.value) || 0;
+                const downPayment = parseNumber(downPaymentInput.value) || 0;
+                const taxesInsurance = parseNumber(taxesInsuranceInput.value) || 0;
 
                 // Validate inputs
                 if (monthlyIncome <= 0) {
@@ -1073,18 +1090,21 @@
             });
         });
 
-        // Input validation
-        [monthlyIncomeInput, monthlyDebtsInput, interestRateInput, 
-        downPaymentInput, taxesInsuranceInput].forEach(input => {
-            input.addEventListener('input', () => {
-                // Remove any non-numeric characters except decimal point
-                input.value = input.value.replace(/[^0-9.]/g, '');
-                
-                // Ensure only one decimal point
-                if ((input.value.match(/\./g) || []).length > 1) {
-                    input.value = input.value.slice(0, -1);
-                }
-            });
+        // Input formatting for currency fields (monthlyIncome, monthlyDebts, downPayment, taxesInsurance)
+        monthlyIncomeInput.addEventListener('input', () => formatInput(monthlyIncomeInput));
+        monthlyDebtsInput.addEventListener('input', () => formatInput(monthlyDebtsInput));
+        downPaymentInput.addEventListener('input', () => formatInput(downPaymentInput));
+        taxesInsuranceInput.addEventListener('input', () => formatInput(taxesInsuranceInput));
+        
+        // Input validation for interest rate (keep numeric only)
+        interestRateInput.addEventListener('input', () => {
+            // Remove any non-numeric characters except decimal point
+            interestRateInput.value = interestRateInput.value.replace(/[^0-9.]/g, '');
+            
+            // Ensure only one decimal point
+            if ((interestRateInput.value.match(/\./g) || []).length > 1) {
+                interestRateInput.value = interestRateInput.value.slice(0, -1);
+            }
         });
 
         // Loan term validation (whole numbers only)
