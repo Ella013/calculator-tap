@@ -727,49 +727,49 @@
                 <!-- Main Content -->
                 <main class="calculator-main">
                     <div class="calculator-header">
-                        <h1 class="calculator-title">Stock Return Calculator</h1>
-                        <p class="calculator-description">Calculate your stock investment performance and measure your returns</p>
+                        <h1 class="calculator-title" data-translate="calculators.stock.title">Stock Return Calculator</h1>
+                        <p class="calculator-description" data-translate="calculators.stock.description">Calculate your stock investment returns including capital gains, dividends, and total returns over your investment period.</p>
                     </div>
                     
                     <div class="calculator-form">
                         <div class="form-group">
-                            <label for="initialPrice">Initial Share Price ($)</label>
+                            <label for="initialPrice" data-translate="calculators.stock.initialPrice">Initial Share Price</label>
                             <div class="input-group">
                                 <span class="currency-symbol">$</span>
-                                <input type="text" id="initialPrice" placeholder="Enter initial share price" class="input-field">
+                                <input type="text" id="initialPrice" class="input-field" placeholder="Enter initial share price" data-translate-attr="calculators.stock.placeholderInitialPrice">
                             </div>
                         </div>
                         
                         <div class="form-group">
-                            <label for="currentPrice">Current Share Price ($)</label>
+                            <label for="currentPrice" data-translate="calculators.stock.currentPrice">Current Share Price</label>
                             <div class="input-group">
                                 <span class="currency-symbol">$</span>
-                                <input type="text" id="currentPrice" placeholder="Enter current share price" class="input-field">
+                                <input type="text" id="currentPrice" class="input-field" placeholder="Enter current share price" data-translate-attr="calculators.stock.placeholderCurrentPrice">
                             </div>
                         </div>
                         
                         <div class="form-group">
-                            <label for="numberOfShares">Number of Shares</label>
-                            <input type="number" id="numberOfShares" placeholder="Enter number of shares" min="1" step="1">
+                            <label for="numberOfShares" data-translate="calculators.stock.numberOfShares">Number of Shares</label>
+                            <input type="number" id="numberOfShares" placeholder="Enter number of shares" data-translate-attr="calculators.stock.placeholderShares" min="1" step="1">
                         </div>
                         
                         <div class="form-group">
-                            <label for="investmentPeriod">Investment Period</label>
+                            <label for="investmentPeriod" data-translate="calculators.stock.investmentPeriod">Investment Period</label>
                             <select id="investmentPeriod">
-                                <option value="days">Days</option>
-                                <option value="months">Months</option>
-                                <option value="years" selected>Years</option>
+                                <option value="days" data-translate="calculators.stock.days">Days</option>
+                                <option value="months" data-translate="calculators.stock.months">Months</option>
+                                <option value="years" selected data-translate="calculators.stock.years">Years</option>
                             </select>
                         </div>
                         
                         <div class="form-group">
-                            <label for="investmentTime">Time Period Length</label>
-                            <input type="number" id="investmentTime" placeholder="Enter time period" min="1" step="1" value="1">
+                            <label for="investmentTime" data-translate="calculators.stock.timePeriodLength">Time Period Length</label>
+                            <input type="number" id="investmentTime" placeholder="Enter time period" data-translate-attr="calculators.stock.placeholderTime" min="1" step="1">
                         </div>
                         
                         <div class="checkbox-group">
                             <input type="checkbox" id="includeDividends">
-                            <label for="includeDividends">Include Dividends</label>
+                            <label for="includeDividends" data-translate="calculators.stock.includeDividends">Include Dividends</label>
                             <div class="tooltip-container">
                                 <div class="tooltip-icon">?</div>
                                 <div class="tooltip-text">Check this option to include dividends received during the investment period in your return calculations.</div>
@@ -777,16 +777,16 @@
                         </div>
                         
                         <div class="form-group" id="dividendAmountGroup" style="display: none;">
-                            <label for="dividendAmount">Total Dividends Received ($)</label>
+                            <label for="dividendAmount" data-translate="calculators.stock.totalDividendsReceived">Total Dividends Received ($)</label>
                             <div class="input-group">
                                 <span class="currency-symbol">$</span>
-                                <input type="text" id="dividendAmount" placeholder="Enter total dividends received" class="input-field">
+                                <input type="text" id="dividendAmount" class="input-field" placeholder="Enter total dividends received" data-translate-attr="calculators.stock.placeholderDividends">
                             </div>
                         </div>
                         
                         <div class="checkbox-group">
                             <input type="checkbox" id="accountForSplits">
-                            <label for="accountForSplits">Account for Stock Splits</label>
+                            <label for="accountForSplits" data-translate="calculators.stock.accountForSplits">Account for Stock Splits</label>
                             <div class="tooltip-container">
                                 <div class="tooltip-icon">?</div>
                                 <div class="tooltip-text">Check this option if your stock has undergone splits during the investment period. This will adjust your return calculations accordingly.</div>
@@ -794,70 +794,70 @@
                         </div>
                         
                         <div class="form-group" id="splitRatioGroup" style="display: none;">
-                            <label for="splitRatio">Split Ratio (e.g., 2:1 = 2)</label>
-                            <input type="number" id="splitRatio" placeholder="Enter split ratio" min="1" step="0.1" value="2">
+                            <label for="splitRatio" data-translate="calculators.stock.splitRatio">Split Ratio (e.g., 2:1 = 2)</label>
+                            <input type="number" id="splitRatio" placeholder="Enter split ratio" data-translate-attr="calculators.stock.placeholderSplitRatio" min="1" step="0.1">
                         </div>
                         
-                        <button id="calculateBtn" class="calculate-btn">Calculate Returns</button>
-                        <button id="resetBtn" class="reset-btn">Reset</button>
+                        <button id="calculateBtn" class="calculate-btn" data-translate="calculators.stock.button">Calculate Returns</button>
+                        <button id="resetBtn" class="reset-btn" data-translate="calculators.stock.resetButton">Reset</button>
                     </div>
                     
                     <div class="results-section" id="resultsSection">
-                        <h3 class="results-header">Investment Results</h3>
+                        <h3 class="results-header" data-translate="calculators.stock.results">Investment Results</h3>
                         
                         <div class="chart-container">
                             <canvas id="returnChart"></canvas>
-                            <div class="chart-placeholder">Results will be displayed here</div>
+                            <div class="chart-placeholder" data-translate="calculators.stock.chartPlaceholder">Results will be displayed here</div>
                         </div>
                         
                         <div class="chart-legend">
                             <div class="legend-item">
                                 <span class="legend-color initial"></span>
-                                <span>Initial Investment</span>
+                                <span data-translate="calculators.stock.initialInvestment">Initial Investment</span>
                             </div>
                             <div class="legend-item">
                                 <span class="legend-color final"></span>
-                                <span>Current Value</span>
+                                <span data-translate="calculators.stock.currentValue">Current Value</span>
                             </div>
                         </div>
                         
                         <div class="results-summary">
                             <span id="totalReturnAmount" class="return-amount">0.00%</span>
-                            <span class="return-label">Total Return</span>
+                            <span class="return-label" data-translate="calculators.stock.totalReturn">Total Return</span>
                         </div>
                         
                         <div class="results-details">
                             <div class="result-row">
-                                <span class="result-label">Initial Investment</span>
-                                <span id="initialInvestmentDisplay" class="result-value">$0.00</span>
+                                <span class="result-label" data-translate="calculators.stock.initialInvestment">Initial Investment</span>
+                                <span id="initialInvestmentDisplay" class="result-value"></span>
                             </div>
                             <div class="result-row">
-                                <span class="result-label">Current Value</span>
-                                <span id="currentValueDisplay" class="result-value">$0.00</span>
+                                <span class="result-label" data-translate="calculators.stock.currentValue">Current Value</span>
+                                <span id="currentValueDisplay" class="result-value"></span>
                             </div>
                             <div class="result-row">
-                                <span class="result-label">Total Gain/Loss</span>
-                                <span id="totalGainLossDisplay" class="result-value">$0.00</span>
+                                <span class="result-label" data-translate="calculators.stock.totalGainLoss">Total Gain/Loss</span>
+                                <span id="totalGainLossDisplay" class="result-value"></span>
                             </div>
                             <div class="result-row">
-                                <span class="result-label">Total Return</span>
+                                <span class="result-label" data-translate="calculators.stock.totalReturn">Total Return</span>
                                 <span id="totalReturnDisplay" class="result-value">0.00%</span>
                             </div>
                             <div class="result-row">
-                                <span class="result-label">Annualized Return (CAGR)</span>
+                                <span class="result-label" data-translate="calculators.stock.annualizedReturn">Annualized Return (CAGR)</span>
                                 <span id="annualizedReturnDisplay" class="result-value">0.00%</span>
                             </div>
                             <div class="result-row" id="dividendReturnRow" style="display: none;">
-                                <span class="result-label">Dividends Return</span>
+                                <span class="result-label" data-translate="calculators.stock.dividendsReturn">Dividends Return</span>
                                 <span id="dividendReturnDisplay" class="result-value">0.00%</span>
                             </div>
                             <div class="result-row" id="priceReturnRow">
-                                <span class="result-label">Price Return</span>
+                                <span class="result-label" data-translate="calculators.stock.priceReturn">Price Return</span>
                                 <span id="priceReturnDisplay" class="result-value">0.00%</span>
                             </div>
                             <div class="result-row">
-                                <span class="result-label">Investment Period</span>
-                                <span id="periodDisplay" class="result-value">0 years</span>
+                                <span class="result-label" data-translate="calculators.stock.investmentPeriodLabel">Investment Period</span>
+                                <span id="periodDisplay" class="result-value"></span>
                             </div>
                         </div>
                     </div>

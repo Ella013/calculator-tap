@@ -402,6 +402,19 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     };
     
+    // Initialize display values with correct currency format
+    annualDividendIncomeElement.textContent = formatCurrency(0);
+    stockPriceDisplay.textContent = formatCurrency(0);
+    dividendPerShareDisplay.textContent = formatCurrency(0);
+    dividendYieldDisplay.textContent = '0.00%';
+    sharesDisplay.textContent = '0';
+    initialInvestmentDisplay.textContent = formatCurrency(0);
+    monthlyDividendDisplay.textContent = formatCurrency(0);
+    quarterlyDividendDisplay.textContent = formatCurrency(0);
+    annualDividendDisplay.textContent = formatCurrency(0);
+    totalDividendsDisplay.textContent = formatCurrency(0);
+    finalValueDisplay.textContent = formatCurrency(0);
+    
     // Add event listeners
     calculateBtn.addEventListener('click', calculateDividends);
     resetBtn.addEventListener('click', resetCalculator);

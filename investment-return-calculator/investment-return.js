@@ -336,7 +336,20 @@ document.addEventListener('DOMContentLoaded', function() {
         contributionsDisplay.textContent = formatCurrency(totalContributions);
         totalInvestedDisplay.textContent = formatCurrency(totalInvested);
         finalValueDisplay.textContent = formatCurrency(finalValue);
-        investmentPeriodDisplay.textContent = investmentPeriod + (investmentPeriod === 1 ? " year" : " years");
+        // Format investment period with locale
+        let periodText;
+        if (pathLang === 'ko') {
+            periodText = `${investmentPeriod}년`;
+        } else if (pathLang === 'zh') {
+            periodText = `${investmentPeriod}年`;
+        } else if (pathLang === 'ja') {
+            periodText = `${investmentPeriod}年`;
+        } else if (pathLang === 'es') {
+            periodText = `${investmentPeriod} ${investmentPeriod === 1 ? 'año' : 'años'}`;
+        } else {
+            periodText = `${investmentPeriod} ${investmentPeriod === 1 ? 'year' : 'years'}`;
+        }
+        investmentPeriodDisplay.textContent = periodText;
         
         // Update chart
         updateChart(initialInvestment, finalValue, investmentPeriod, additionalContributions, contributionFrequency, annualizedReturn, totalInvested);
@@ -369,13 +382,47 @@ document.addEventListener('DOMContentLoaded', function() {
         contributionsDisplay.textContent = formatCurrency(0);
         totalInvestedDisplay.textContent = formatCurrency(0);
         finalValueDisplay.textContent = formatCurrency(0);
-        investmentPeriodDisplay.textContent = '0 years';
+        // Format investment period with locale for reset
+        let resetPeriodText;
+        if (pathLang === 'ko') {
+            resetPeriodText = '0년';
+        } else if (pathLang === 'zh') {
+            resetPeriodText = '0年';
+        } else if (pathLang === 'ja') {
+            resetPeriodText = '0年';
+        } else if (pathLang === 'es') {
+            resetPeriodText = '0 años';
+        } else {
+            resetPeriodText = '0 years';
+        }
+        investmentPeriodDisplay.textContent = resetPeriodText;
         
         // Reset chart to initial state
         if (investmentChart) {
             createInitialChart();
         }
     };
+    
+    // Initialize display values with correct currency format
+    initialInvestmentDisplay.textContent = formatCurrency(0);
+    contributionsDisplay.textContent = formatCurrency(0);
+    totalInvestedDisplay.textContent = formatCurrency(0);
+    finalValueDisplay.textContent = formatCurrency(0);
+    totalReturnAmountElement.textContent = formatCurrency(0);
+    // Format investment period with locale for initial value
+    let initPeriodText;
+    if (pathLang === 'ko') {
+        initPeriodText = '0년';
+    } else if (pathLang === 'zh') {
+        initPeriodText = '0年';
+    } else if (pathLang === 'ja') {
+        initPeriodText = '0年';
+    } else if (pathLang === 'es') {
+        initPeriodText = '0 años';
+    } else {
+        initPeriodText = '0 years';
+    }
+    investmentPeriodDisplay.textContent = initPeriodText;
     
     // Add event listeners
     calculateBtn.addEventListener('click', calculateInvestmentReturn);

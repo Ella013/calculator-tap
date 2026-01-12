@@ -30,14 +30,36 @@ const chartPlaceholder = document.querySelector('.chart-placeholder');
 const returnChart = document.getElementById('returnChart').getContext('2d');
 let chart;
 
-// Format currency
+// URL 경로에서 locale 감지
+const currentPath = window.location.pathname;
+const pathLang = currentPath.split('/').find(p => ['en', 'es', 'zh', 'ko', 'ja'].includes(p)) || 'en';
+
+// Locale별 통화 설정
+const currencyConfig = {
+    en: { symbol: '$', currency: 'USD', locale: 'en-US' },
+    ko: { symbol: '₩', currency: 'KRW', locale: 'ko-KR' },
+    zh: { symbol: '¥', currency: 'CNY', locale: 'zh-CN' },
+    es: { symbol: '$', currency: 'USD', locale: 'es-US' },
+    ja: { symbol: '¥', currency: 'JPY', locale: 'ja-JP' }
+};
+
+const currentCurrency = currencyConfig[pathLang] || currencyConfig['en'];
+
+// 모든 통화 기호 요소 업데이트
+const currencySymbolElements = document.querySelectorAll('.currency-symbol');
+currencySymbolElements.forEach(el => {
+    el.textContent = currentCurrency.symbol;
+});
+
+// Format currency with locale
 function formatCurrency(value) {
-    return new Intl.NumberFormat('en-US', {
+    const formatOptions = {
         style: 'currency',
-        currency: 'USD',
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2
-    }).format(value);
+        currency: currentCurrency.currency,
+        minimumFractionDigits: currentCurrency.currency === 'KRW' || currentCurrency.currency === 'JPY' ? 0 : 2,
+        maximumFractionDigits: currentCurrency.currency === 'KRW' || currentCurrency.currency === 'JPY' ? 0 : 2
+    };
+    return new Intl.NumberFormat(currentCurrency.locale, formatOptions).format(value);
 }
 
 // Format percentage
@@ -49,50 +71,39 @@ function formatPercentage(value) {
     }).format(value / 100);
 }
 
-// Add currency symbol to input fields
-initialPriceInput.addEventListener('focus', function() {
-    if (!this.value) {
-        this.value = '';
-    }
+// Format number with commas
+function formatNumber(value) {
+    if (!value) return '';
+    const numValue = value.toString().replace(/[^0-9.-]+/g, '');
+    if (!numValue) return '';
+    const num = parseFloat(numValue);
+    if (isNaN(num)) return '';
+    return num.toLocaleString('en-US');
+}
+
+// Format input on input event
+function formatInput(input) {
+    const cursorPosition = input.selectionStart;
+    const oldValue = input.value;
+    const formattedValue = formatNumber(oldValue);
+    input.value = formattedValue;
+    
+    // Adjust cursor position
+    const newCursorPosition = cursorPosition + (formattedValue.length - oldValue.length);
+    input.setSelectionRange(Math.max(0, Math.min(newCursorPosition, formattedValue.length)), Math.max(0, Math.min(newCursorPosition, formattedValue.length)));
+}
+
+// Format input fields with commas
+initialPriceInput.addEventListener('input', function() {
+    formatInput(this);
 });
 
-initialPriceInput.addEventListener('blur', function() {
-    if (this.value) {
-        const numValue = parseFloat(this.value.replace(/[^0-9.-]+/g, ''));
-        if (!isNaN(numValue)) {
-            this.value = formatCurrency(numValue).replace('$', '');
-        }
-    }
+currentPriceInput.addEventListener('input', function() {
+    formatInput(this);
 });
 
-currentPriceInput.addEventListener('focus', function() {
-    if (!this.value) {
-        this.value = '';
-    }
-});
-
-currentPriceInput.addEventListener('blur', function() {
-    if (this.value) {
-        const numValue = parseFloat(this.value.replace(/[^0-9.-]+/g, ''));
-        if (!isNaN(numValue)) {
-            this.value = formatCurrency(numValue).replace('$', '');
-        }
-    }
-});
-
-dividendAmountInput.addEventListener('focus', function() {
-    if (!this.value) {
-        this.value = '';
-    }
-});
-
-dividendAmountInput.addEventListener('blur', function() {
-    if (this.value) {
-        const numValue = parseFloat(this.value.replace(/[^0-9.-]+/g, ''));
-        if (!isNaN(numValue)) {
-            this.value = formatCurrency(numValue).replace('$', '');
-        }
-    }
+dividendAmountInput.addEventListener('input', function() {
+    formatInput(this);
 });
 
 // Toggle visibility of dividend and split fields
@@ -136,7 +147,7 @@ function initializeChart() {
                     beginAtZero: true,
                     ticks: {
                         callback: function(value) {
-                            return '$' + value.toLocaleString();
+                            return formatCurrency(value);
                         }
                     }
                 }
@@ -160,20 +171,20 @@ function initializeChart() {
 // Initialize chart on page load
 initializeChart();
 
-// Set default values and show initial chart
-function setDefaultValues() {
-    initialPriceInput.value = '100.00';
-    currentPriceInput.value = '120.00';
-    numberOfSharesInput.value = '100';
-    investmentTimeInput.value = '1';
-    investmentPeriodSelect.value = 'years';
-    
-    // Trigger calculation with default values
-    handleCalculation();
+// Initialize period display with locale
+let initPeriodText;
+if (pathLang === 'ko') {
+    initPeriodText = '0년';
+} else if (pathLang === 'zh') {
+    initPeriodText = '0年';
+} else if (pathLang === 'ja') {
+    initPeriodText = '0年';
+} else if (pathLang === 'es') {
+    initPeriodText = '0 años';
+} else {
+    initPeriodText = '0 years';
 }
-
-// Call setDefaultValues when the page is loaded
-document.addEventListener('DOMContentLoaded', setDefaultValues);
+periodDisplay.textContent = initPeriodText;
 
 // Handle calculation
 calculateBtn.addEventListener('click', handleCalculation);
@@ -263,12 +274,47 @@ function calculateInvestmentReturn(initialPrice, currentPrice, numberOfShares, i
     
     const annualizedReturn = (Math.pow((1 + totalReturn / 100), 1 / yearFraction) - 1) * 100;
     
-    // Format period display text
+    // Format period display text with locale
     let periodText;
-    if (investmentTime === 1) {
-        periodText = `1 ${investmentPeriod.slice(0, -1)}`;
+    if (pathLang === 'ko') {
+        if (investmentPeriod === 'days') {
+            periodText = investmentTime === 1 ? '1일' : `${investmentTime}일`;
+        } else if (investmentPeriod === 'months') {
+            periodText = investmentTime === 1 ? '1개월' : `${investmentTime}개월`;
+        } else {
+            periodText = investmentTime === 1 ? '1년' : `${investmentTime}년`;
+        }
+    } else if (pathLang === 'zh') {
+        if (investmentPeriod === 'days') {
+            periodText = investmentTime === 1 ? '1日' : `${investmentTime}日`;
+        } else if (investmentPeriod === 'months') {
+            periodText = investmentTime === 1 ? '1个月' : `${investmentTime}个月`;
+        } else {
+            periodText = investmentTime === 1 ? '1年' : `${investmentTime}年`;
+        }
+    } else if (pathLang === 'ja') {
+        if (investmentPeriod === 'days') {
+            periodText = investmentTime === 1 ? '1日' : `${investmentTime}日`;
+        } else if (investmentPeriod === 'months') {
+            periodText = investmentTime === 1 ? '1ヶ月' : `${investmentTime}ヶ月`;
+        } else {
+            periodText = investmentTime === 1 ? '1年' : `${investmentTime}年`;
+        }
+    } else if (pathLang === 'es') {
+        if (investmentPeriod === 'days') {
+            periodText = investmentTime === 1 ? '1 día' : `${investmentTime} días`;
+        } else if (investmentPeriod === 'months') {
+            periodText = investmentTime === 1 ? '1 mes' : `${investmentTime} meses`;
+        } else {
+            periodText = investmentTime === 1 ? '1 año' : `${investmentTime} años`;
+        }
     } else {
-        periodText = `${investmentTime} ${investmentPeriod}`;
+        // English (default)
+        if (investmentTime === 1) {
+            periodText = `1 ${investmentPeriod.slice(0, -1)}`;
+        } else {
+            periodText = `${investmentTime} ${investmentPeriod}`;
+        }
     }
     
     // Update chart
@@ -440,9 +486,9 @@ resetBtn.addEventListener('click', function() {
     // Reset results
     totalReturnAmount.textContent = '0.00%';
     totalReturnAmount.className = 'return-amount';
-    initialInvestmentDisplay.textContent = '$0.00';
-    currentValueDisplay.textContent = '$0.00';
-    totalGainLossDisplay.textContent = '$0.00';
+    initialInvestmentDisplay.textContent = formatCurrency(0);
+    currentValueDisplay.textContent = formatCurrency(0);
+    totalGainLossDisplay.textContent = formatCurrency(0);
     totalGainLossDisplay.className = 'result-value';
     totalReturnDisplay.textContent = '0.00%';
     totalReturnDisplay.className = 'result-value';
@@ -452,7 +498,20 @@ resetBtn.addEventListener('click', function() {
     dividendReturnRow.style.display = 'none';
     priceReturnDisplay.textContent = '0.00%';
     priceReturnDisplay.className = 'result-value';
-    periodDisplay.textContent = '0 years';
+    // Format period display with locale for reset
+    let resetPeriodText;
+    if (pathLang === 'ko') {
+        resetPeriodText = '0년';
+    } else if (pathLang === 'zh') {
+        resetPeriodText = '0年';
+    } else if (pathLang === 'ja') {
+        resetPeriodText = '0年';
+    } else if (pathLang === 'es') {
+        resetPeriodText = '0 años';
+    } else {
+        resetPeriodText = '0 years';
+    }
+    periodDisplay.textContent = resetPeriodText;
     
     // Reset chart
     initializeChart();

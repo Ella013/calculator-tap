@@ -20,11 +20,8 @@
     <title>Paycheck Calculator | Free Online Tool | Calculator Tap</title>
     <meta name="description" content="Calculate your take-home pay with our free paycheck calculator. Account for federal, state, local taxes, deductions, and see your estimated net pay.">
     <meta name="keywords" content="paycheck calculator, salary calculator, take-home pay calculator, net pay calculator, tax calculator, wage calculator">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="manifest" href="/site.webmanifest">
-    <meta name="theme-color" content="#ffffff">
+    <link rel="icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
@@ -1049,12 +1046,6 @@
         // Update current year in footer
         document.getElementById('currentYear').textContent = new Date().getFullYear();
         
-        // Check if Chart.js is loaded
-        if (typeof Chart === 'undefined') {
-            console.error('Chart.js is not loaded!');
-            document.querySelector('.chart-placeholder').textContent = 'Chart.js 라이브러리 로딩 오류';
-        }
-        
         // Tab Navigation
         const tabButtons = document.querySelectorAll('.tab-button');
         const tabContents = document.querySelectorAll('.tab-content');
@@ -1168,14 +1159,18 @@
             const oldValue = input.value;
             const numValue = oldValue.replace(/[^0-9.-]+/g, '');
             const formattedValue = formatNumber(numValue);
-            input.value = formattedValue;
             
-            // Adjust cursor position - calculate how many commas were added before cursor
-            const textBeforeCursor = oldValue.substring(0, cursorPosition);
-            const numBeforeCursor = textBeforeCursor.replace(/[^0-9.-]+/g, '');
-            const formattedBeforeCursor = formatNumber(numBeforeCursor);
-            const newCursorPosition = formattedBeforeCursor.length;
-            input.setSelectionRange(newCursorPosition, newCursorPosition);
+            // 값이 변경된 경우만 업데이트
+            if (oldValue !== formattedValue) {
+                input.value = formattedValue;
+                
+                // Adjust cursor position - calculate how many commas were added before cursor
+                const textBeforeCursor = oldValue.substring(0, cursorPosition);
+                const numBeforeCursor = textBeforeCursor.replace(/[^0-9.-]+/g, '');
+                const formattedBeforeCursor = formatNumber(numBeforeCursor);
+                const newCursorPosition = formattedBeforeCursor.length;
+                input.setSelectionRange(newCursorPosition, newCursorPosition);
+            }
         };
         
         // Update overtime rate when hourly rate changes
@@ -1351,14 +1346,18 @@
         updateOvertimeRate();
         
         // Initial chart with sample data - keep it visible with realistic sample values
-        try {
-            // Initialize with sample data that clearly shows the chart
+        const chartPlaceholder = document.querySelector('.chart-placeholder');
+        
+        function createInitialChart() {
+            const chartElement = document.getElementById('paycheckChart');
+            const ctx = chartElement.getContext('2d');
+            
+            // Sample data
             const sampleNetPay = 3000;
             const sampleTaxes = 900;
             const sampleBenefits = 300;
             const sampleGross = sampleNetPay + sampleTaxes + sampleBenefits;
             
-            const ctx = document.getElementById('paycheckChart').getContext('2d');
             window.paycheckChart = new Chart(ctx, {
                 type: 'doughnut',
                 data: {
@@ -1411,10 +1410,15 @@
             document.getElementById('otherDeductionsAmount').textContent = '-' + formatCurrency(0);
             
             // Hide placeholder once chart is loaded
-            document.querySelector('.chart-placeholder').style.display = 'none';
+            chartPlaceholder.style.display = 'none';
+        }
+        
+        // Initialize the chart
+        try {
+            createInitialChart();
         } catch (e) {
-            console.error('Failed to initialize chart:', e);
-            document.querySelector('.chart-placeholder').textContent = '차트 초기화 오류';
+            console.error('Error creating chart:', e);
+            chartPlaceholder.textContent = '차트 초기화 오류';
         }
         
         // 모바일 메뉴 스크립트 추가
