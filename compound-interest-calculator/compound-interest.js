@@ -56,17 +56,17 @@ document.addEventListener('DOMContentLoaded', function() {
     // Format number with commas
     const formatNumber = (value) => {
         if (!value) return '';
-        const numValue = value.toString().replace(/[^0-9.-]+/g, '');
+        // 숫자만 추출 (소수점 제외, 정수만)
+        const numValue = value.toString().replace(/[^0-9]/g, '');
         if (!numValue) return '';
-        const num = parseFloat(numValue);
-        if (isNaN(num)) return '';
-        return num.toLocaleString('en-US');
+        // 콤마 추가
+        return numValue.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
     };
     
     // Parse number from formatted string
     const parseNumber = (value) => {
         if (!value) return 0;
-        const numValue = value.toString().replace(/[^0-9.-]+/g, '');
+        const numValue = value.toString().replace(/[^0-9]/g, '');
         return parseFloat(numValue) || 0;
     };
     
@@ -74,12 +74,24 @@ document.addEventListener('DOMContentLoaded', function() {
     const formatInput = (input) => {
         const cursorPosition = input.selectionStart;
         const oldValue = input.value;
-        const formattedValue = formatNumber(oldValue);
+        
+        // 숫자만 추출
+        const numValue = oldValue.replace(/[^0-9]/g, '');
+        
+        // 콤마 추가
+        const formattedValue = numValue.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+        
+        // 값 업데이트
         input.value = formattedValue;
         
-        // Adjust cursor position
-        const newCursorPosition = cursorPosition + (formattedValue.length - oldValue.length);
-        input.setSelectionRange(newCursorPosition, newCursorPosition);
+        // 커서 위치 조정 (콤마 개수 차이만큼 조정)
+        const commaCountBefore = (oldValue.substring(0, cursorPosition).match(/,/g) || []).length;
+        const commaCountAfter = (formattedValue.substring(0, cursorPosition).match(/,/g) || []).length;
+        const newCursorPosition = cursorPosition + (commaCountAfter - commaCountBefore);
+        
+        // 커서 위치가 범위를 벗어나지 않도록 조정
+        const safePosition = Math.min(newCursorPosition, formattedValue.length);
+        input.setSelectionRange(safePosition, safePosition);
     };
     
     // Reset function
