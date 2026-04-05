@@ -286,6 +286,7 @@ body {
 .growth-table-wrapper {
     max-height: 250px;
     overflow-y: auto;
+    overflow-x: auto;
     border-top: 1px solid #eee;
     background-color: #fff;
 }
