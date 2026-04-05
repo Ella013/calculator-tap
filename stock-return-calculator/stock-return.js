@@ -48,8 +48,8 @@ const currentCurrency = currencyConfig[pathLang] || currencyConfig['en'];
 // Locale-appropriate default values
 const localeDefaults = {
     en: { initialPrice: '50', currentPrice: '75', numberOfShares: '100', investmentPeriod: '3' },
-    ko: { initialPrice: '50000', currentPrice: '75000', numberOfShares: '100', investmentPeriod: '3' },
-    ja: { initialPrice: '1500', currentPrice: '2500', numberOfShares: '100', investmentPeriod: '3' },
+    ko: { initialPrice: '50,000', currentPrice: '75,000', numberOfShares: '100', investmentPeriod: '3' },
+    ja: { initialPrice: '1,500', currentPrice: '2,500', numberOfShares: '100', investmentPeriod: '3' },
     zh: { initialPrice: '30', currentPrice: '45', numberOfShares: '100', investmentPeriod: '3' },
     es: { initialPrice: '50', currentPrice: '70', numberOfShares: '100', investmentPeriod: '3' }
 };

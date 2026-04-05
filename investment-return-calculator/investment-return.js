@@ -42,11 +42,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const currentCurrency = currencyConfig[pathLang] || currencyConfig['en'];
     // Locale-appropriate default values
     const localeDefaults = {
-        en: { initialInvestment: '10000', finalValue: '15000', investmentPeriod: '5' },
-        ko: { initialInvestment: '10000000', finalValue: '15000000', investmentPeriod: '5' },
-        ja: { initialInvestment: '1000000', finalValue: '1500000', investmentPeriod: '5' },
-        zh: { initialInvestment: '100000', finalValue: '150000', investmentPeriod: '5' },
-        es: { initialInvestment: '10000', finalValue: '14000', investmentPeriod: '5' }
+        en: { initialInvestment: '10,000', finalValue: '15,000', investmentPeriod: '5' },
+        ko: { initialInvestment: '10,000,000', finalValue: '15,000,000', investmentPeriod: '5' },
+        ja: { initialInvestment: '1,000,000', finalValue: '1,500,000', investmentPeriod: '5' },
+        zh: { initialInvestment: '100,000', finalValue: '150,000', investmentPeriod: '5' },
+        es: { initialInvestment: '10,000', finalValue: '14,000', investmentPeriod: '5' }
     };
     const locDefs = localeDefaults[pathLang] || localeDefaults['en'];
     const iiEl = document.getElementById('initialInvestment');

@@ -49,8 +49,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // Locale-appropriate default values
     const localeDefaults = {
         en: { stockPrice: '50', dividendAmount: '1.50', numberOfShares: '100' },
-        ko: { stockPrice: '50000', dividendAmount: '1500', numberOfShares: '100' },
-        ja: { stockPrice: '3000', dividendAmount: '90', numberOfShares: '100' },
+        ko: { stockPrice: '50,000', dividendAmount: '1,500', numberOfShares: '100' },
+        ja: { stockPrice: '3,000', dividendAmount: '90', numberOfShares: '100' },
         zh: { stockPrice: '30', dividendAmount: '0.90', numberOfShares: '100' },
         es: { stockPrice: '50', dividendAmount: '2.00', numberOfShares: '100' }
     };

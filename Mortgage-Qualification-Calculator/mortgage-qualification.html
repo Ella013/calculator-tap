@@ -994,11 +994,11 @@
         const currentCurrency = currencyConfig[pathLang] || currencyConfig['en'];
         // Locale-appropriate default values
         const localeDefaults = {
-            en: { monthlyIncome: '6000', monthlyDebts: '500', loanTerm: '30', interestRate: '7.0', downPayment: '50000' },
-            ko: { monthlyIncome: '5000000', monthlyDebts: '500000', loanTerm: '30', interestRate: '4.5', downPayment: '50000000' },
-            ja: { monthlyIncome: '500000', monthlyDebts: '50000', loanTerm: '35', interestRate: '1.5', downPayment: '5000000' },
-            zh: { monthlyIncome: '25000', monthlyDebts: '2000', loanTerm: '30', interestRate: '4.2', downPayment: '300000' },
-            es: { monthlyIncome: '3000', monthlyDebts: '300', loanTerm: '30', interestRate: '7.5', downPayment: '30000' }
+            en: { monthlyIncome: '6,000', monthlyDebts: '500', loanTerm: '30', interestRate: '7.0', downPayment: '50,000' },
+            ko: { monthlyIncome: '5,000,000', monthlyDebts: '500,000', loanTerm: '30', interestRate: '4.5', downPayment: '50,000,000' },
+            ja: { monthlyIncome: '500,000', monthlyDebts: '50,000', loanTerm: '35', interestRate: '1.5', downPayment: '5,000,000' },
+            zh: { monthlyIncome: '25,000', monthlyDebts: '2,000', loanTerm: '30', interestRate: '4.2', downPayment: '300,000' },
+            es: { monthlyIncome: '3,000', monthlyDebts: '300', loanTerm: '30', interestRate: '7.5', downPayment: '30,000' }
         };
         const defaults = localeDefaults[pathLang] || localeDefaults['en'];
         const miEl = document.getElementById('monthlyIncome');
