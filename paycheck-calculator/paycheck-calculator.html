@@ -1274,243 +1274,242 @@
         const netPayLabelEl = document.getElementById('netPayLabel');
         if (netPayLabelEl) netPayLabelEl.textContent = netPayLabels[pathLang] || 'Take Home Pay';
 
-        // ── EN/ES setup ───────────────────────────────────────────────
+        // ── Tax calculation helpers (top-level, no hoisting issues) ──
+        function calcKoreanTax(annual) {
+            var b = [
+                [14000000,  0.06, 0],
+                [50000000,  0.15, 840000],
+                [88000000,  0.24, 6240000],
+                [150000000, 0.35, 15360000],
+                [300000000, 0.38, 37060000],
+                [500000000, 0.40, 94060000],
+                [Infinity,  0.42, 174060000]
+            ];
+            var prev = [0,14000000,50000000,88000000,150000000,300000000,500000000];
+            for (var i = 0; i < b.length; i++) {
+                if (annual <= b[i][0]) return b[i][2] + (annual - prev[i]) * b[i][1];
+            }
+            return 0;
+        }
+
+        function calcJapanTax(annual) {
+            var b = [
+                [1950000,  0.05, 0],
+                [3300000,  0.10, 97500],
+                [6950000,  0.20, 232500],
+                [9000000,  0.23, 962500],
+                [18000000, 0.33, 1434000],
+                [40000000, 0.40, 4404000],
+                [Infinity, 0.45, 13204000]
+            ];
+            var prev = [0,1950000,3300000,6950000,9000000,18000000,40000000];
+            for (var i = 0; i < b.length; i++) {
+                if (annual <= b[i][0]) return b[i][2] + (annual - prev[i]) * b[i][1];
+            }
+            return 0;
+        }
+
+        function calcChinaTax(taxable) {
+            var b = [
+                [3000,     0.03, 0],
+                [12000,    0.10, 210],
+                [25000,    0.20, 1410],
+                [35000,    0.25, 2660],
+                [55000,    0.30, 4410],
+                [80000,    0.35, 7160],
+                [Infinity, 0.45, 15160]
+            ];
+            for (var i = 0; i < b.length; i++) {
+                if (taxable <= b[i][0]) return Math.max(0, taxable * b[i][1] - b[i][2]);
+            }
+            return 0;
+        }
+
+        function calculateEnEs() {
+            var hourlyRate = parseNumber(document.getElementById('hourlyRate').value);
+            var regularHours = parseFloat(document.getElementById('regularHours').value) || 0;
+            var overtimeHours = parseFloat(document.getElementById('overtimeHours').value) || 0;
+            var overtimeRate = parseFloat(document.getElementById('overtimeRate').value) || 0;
+            var federalTaxRate = parseFloat(document.getElementById('federalTax').value) || 15;
+            var stateTaxRate = parseFloat(document.getElementById('stateTax').value) || 5;
+            var retirementRate = parseFloat(document.getElementById('retirement').value) || 0;
+            var otherDed = parseNumber(document.getElementById('otherDeductions').value);
+
+            var regularEarnings = regularHours * hourlyRate;
+            var overtimeEarnings = overtimeHours * overtimeRate;
+            var grossPay = regularEarnings + overtimeEarnings;
+            var federalTax = grossPay * (federalTaxRate / 100);
+            var stateTax = grossPay * (stateTaxRate / 100);
+            var socialSecurity = grossPay * 0.062;
+            var medicare = grossPay * 0.0145;
+            var retirement = grossPay * (retirementRate / 100);
+            var totalTaxes = federalTax + stateTax + socialSecurity + medicare;
+            var totalDed = retirement + otherDed;
+            var netPay = grossPay - totalTaxes - totalDed;
+
+            var rows = [
+                { label:'Gross Pay', value: grossPay },
+                { label:'Regular Earnings', value: regularEarnings, sub: true },
+                { label:'Overtime Earnings', value: overtimeEarnings, sub: true },
+                { label:'Total Taxes', value: -totalTaxes, neg: true },
+                { label:'Federal Tax (' + federalTaxRate + '%)', value: -federalTax, neg: true, sub: true },
+                { label:'State Tax (' + stateTaxRate + '%)', value: -stateTax, neg: true, sub: true },
+                { label:'Social Security (6.2%)', value: -socialSecurity, neg: true, sub: true },
+                { label:'Medicare (1.45%)', value: -medicare, neg: true, sub: true },
+                { label:'Deductions', value: -totalDed, neg: true },
+                { label:'Retirement (' + retirementRate + '%)', value: -retirement, neg: true, sub: true },
+                { label:'Other', value: -otherDed, neg: true, sub: true }
+            ];
+            renderResults(netPay, totalTaxes, totalDed, grossPay, rows, netPayLabels[pathLang]);
+        }
+
+        function calculateKo() {
+            var gross = parseNumber(document.getElementById('monthlySalaryKo').value);
+            if (!gross) return;
+            var pension = gross * 0.045;
+            var health = gross * 0.03545;
+            var longCare = health * 0.1295;
+            var employment = gross * 0.009;
+            var totalInsurance = pension + health + longCare + employment;
+            var annual = gross * 12;
+            var annualTax = calcKoreanTax(Math.max(0, annual - totalInsurance * 12));
+            var incomeTax = annualTax / 12;
+            var localTax = incomeTax * 0.1;
+            var totalTaxes = incomeTax + localTax;
+            var netPay = gross - totalInsurance - totalTaxes;
+
+            var rows = [
+                { label:'월 총급여', value: gross },
+                { label:'4대보험 합계', value: -totalInsurance, neg: true },
+                { label:'국민연금 (4.5%)', value: -pension, neg: true, sub: true },
+                { label:'건강보험 (3.545%)', value: -health, neg: true, sub: true },
+                { label:'장기요양보험', value: -longCare, neg: true, sub: true },
+                { label:'고용보험 (0.9%)', value: -employment, neg: true, sub: true },
+                { label:'소득세 합계', value: -totalTaxes, neg: true },
+                { label:'소득세', value: -incomeTax, neg: true, sub: true },
+                { label:'지방소득세', value: -localTax, neg: true, sub: true }
+            ];
+            renderResults(netPay, totalTaxes, totalInsurance, gross, rows, '실수령액');
+        }
+
+        function calculateJa() {
+            var gross = parseNumber(document.getElementById('monthlySalaryJa').value);
+            if (!gross) return;
+            var kosei = gross * 0.0915;
+            var health = gross * 0.04985;
+            var koyo = gross * 0.006;
+            var totalInsurance = kosei + health + koyo;
+            var annual = gross * 12;
+            var taxable = Math.max(0, annual - totalInsurance * 12 - 480000);
+            var incomeTax = calcJapanTax(taxable) / 12;
+            var residentTax = annual * 0.10 / 12;
+            var totalTaxes = incomeTax + residentTax;
+            var netPay = gross - totalInsurance - totalTaxes;
+
+            var rows = [
+                { label:'月収（税引前）', value: gross },
+                { label:'社会保険料 合計', value: -totalInsurance, neg: true },
+                { label:'厚生年金保険料 (9.15%)', value: -kosei, neg: true, sub: true },
+                { label:'健康保険料 (4.985%)', value: -health, neg: true, sub: true },
+                { label:'雇用保険料 (0.6%)', value: -koyo, neg: true, sub: true },
+                { label:'税金 合計', value: -totalTaxes, neg: true },
+                { label:'所得税', value: -incomeTax, neg: true, sub: true },
+                { label:'住民税 (概算)', value: -residentTax, neg: true, sub: true }
+            ];
+            renderResults(netPay, totalTaxes, totalInsurance, gross, rows, '手取り額');
+        }
+
+        function calculateZh() {
+            var gross = parseNumber(document.getElementById('monthlySalaryZh').value);
+            if (!gross) return;
+            var pension = gross * 0.08;
+            var medical = gross * 0.02;
+            var unemploy = gross * 0.005;
+            var housing = gross * 0.12;
+            var totalInsurance = pension + medical + unemploy + housing;
+            var taxable = Math.max(0, gross - totalInsurance - 5000);
+            var incomeTax = calcChinaTax(taxable);
+            var netPay = gross - totalInsurance - incomeTax;
+
+            var rows = [
+                { label:'税前月薪', value: gross },
+                { label:'社会保险 合计', value: -totalInsurance, neg: true },
+                { label:'养老保险 (8%)', value: -pension, neg: true, sub: true },
+                { label:'医疗保险 (2%)', value: -medical, neg: true, sub: true },
+                { label:'失业保险 (0.5%)', value: -unemploy, neg: true, sub: true },
+                { label:'住房公积金 (12%)', value: -housing, neg: true, sub: true },
+                { label:'个人所得税', value: -incomeTax, neg: true }
+            ];
+            renderResults(netPay, incomeTax, totalInsurance, gross, rows, '税后月薪');
+        }
+
+        // ── Locale-specific init ──────────────────────────────────────
         if (isEnEs) {
-            const hrEl = document.getElementById('hourlyRate');
-            const rhEl = document.getElementById('regularHours');
+            var hrEl = document.getElementById('hourlyRate');
+            var rhEl = document.getElementById('regularHours');
             if (hrEl) hrEl.value = defaults.hourlyRate;
             if (rhEl) rhEl.value = defaults.regularHours;
 
-            const hourlyRateInput = document.getElementById('hourlyRate');
-            const overtimeMultiplierSelect = document.getElementById('overtimeMultiplier');
-            const overtimeRateInput = document.getElementById('overtimeRate');
-            const otherDeductionsInput = document.getElementById('otherDeductions');
+            document.querySelectorAll('.currency-symbol').forEach(function(el) { el.textContent = currentCurrency.symbol; });
 
-            document.querySelectorAll('.currency-symbol').forEach(el => { el.textContent = currentCurrency.symbol; });
+            var _hrInput = document.getElementById('hourlyRate');
+            var _otInput = document.getElementById('otherDeductions');
+            var _omSel  = document.getElementById('overtimeMultiplier');
+            var _orInput = document.getElementById('overtimeRate');
 
             function updateOvertimeRate() {
-                const rate = parseNumber(hourlyRateInput.value);
-                const mult = parseFloat(overtimeMultiplierSelect.value) || 1.5;
-                overtimeRateInput.value = (rate * mult).toFixed(2);
+                var rate = parseNumber(_hrInput.value);
+                var mult = parseFloat(_omSel.value) || 1.5;
+                _orInput.value = (rate * mult).toFixed(2);
             }
-            hourlyRateInput.addEventListener('input', () => { formatInput(hourlyRateInput); updateOvertimeRate(); });
-            overtimeMultiplierSelect.addEventListener('change', updateOvertimeRate);
-            otherDeductionsInput.addEventListener('input', () => formatInput(otherDeductionsInput));
+            _hrInput.addEventListener('input', function() { formatInput(_hrInput); updateOvertimeRate(); });
+            _omSel.addEventListener('change', updateOvertimeRate);
+            _otInput.addEventListener('input', function() { formatInput(_otInput); });
             updateOvertimeRate();
 
             document.getElementById('calculateBtn').addEventListener('click', calculateEnEs);
-            document.getElementById('resetBtn').addEventListener('click', () => {
-                hourlyRateInput.value = '';
+            document.getElementById('resetBtn').addEventListener('click', function() {
+                _hrInput.value = '';
                 document.getElementById('regularHours').value = '';
                 document.getElementById('overtimeHours').value = '';
-                overtimeRateInput.value = '';
-                overtimeMultiplierSelect.value = '1.5';
+                _orInput.value = '';
+                _omSel.value = '1.5';
                 document.getElementById('federalTax').value = '15';
                 document.getElementById('stateTax').value = '5';
                 document.getElementById('retirement').value = '0';
-                otherDeductionsInput.value = '0';
+                _otInput.value = '0';
                 document.getElementById('payPeriod').value = 'biweekly';
                 resetResults();
             });
-
-            function calculateEnEs() {
-                const hourlyRate = parseNumber(hourlyRateInput.value);
-                const regularHours = parseFloat(document.getElementById('regularHours').value) || 0;
-                const overtimeHours = parseFloat(document.getElementById('overtimeHours').value) || 0;
-                const overtimeRate = parseFloat(overtimeRateInput.value) || 0;
-                const federalTaxRate = parseFloat(document.getElementById('federalTax').value) || 15;
-                const stateTaxRate = parseFloat(document.getElementById('stateTax').value) || 5;
-                const retirementRate = parseFloat(document.getElementById('retirement').value) || 0;
-                const otherDed = parseNumber(otherDeductionsInput.value);
-
-                const regularEarnings = regularHours * hourlyRate;
-                const overtimeEarnings = overtimeHours * overtimeRate;
-                const grossPay = regularEarnings + overtimeEarnings;
-                const federalTax = grossPay * (federalTaxRate / 100);
-                const stateTax = grossPay * (stateTaxRate / 100);
-                const socialSecurity = grossPay * 0.062;
-                const medicare = grossPay * 0.0145;
-                const retirement = grossPay * (retirementRate / 100);
-                const totalTaxes = federalTax + stateTax + socialSecurity + medicare;
-                const totalDed = retirement + otherDed;
-                const netPay = grossPay - totalTaxes - totalDed;
-
-                const rows = [
-                    { label:'Gross Pay', value: grossPay },
-                    { label:'Regular Earnings', value: regularEarnings, sub: true },
-                    { label:'Overtime Earnings', value: overtimeEarnings, sub: true },
-                    { label:'Total Taxes', value: -totalTaxes, neg: true },
-                    { label:`Federal Tax (${federalTaxRate}%)`, value: -federalTax, neg: true, sub: true },
-                    { label:`State Tax (${stateTaxRate}%)`, value: -stateTax, neg: true, sub: true },
-                    { label:'Social Security (6.2%)', value: -socialSecurity, neg: true, sub: true },
-                    { label:'Medicare (1.45%)', value: -medicare, neg: true, sub: true },
-                    { label:'Other Deductions', value: -totalDed, neg: true },
-                    { label:`Retirement (${retirementRate}%)`, value: -retirement, neg: true, sub: true },
-                    { label:'Other', value: -otherDed, neg: true, sub: true },
-                ];
-                renderResults(netPay, totalTaxes, totalDed, grossPay, rows, netPayLabels[pathLang]);
-            }
         }
 
-        // ── KO setup ──────────────────────────────────────────────────
         if (pathLang === 'ko') {
-            const salInput = document.getElementById('monthlySalaryKo');
-            salInput.value = defaults.monthlySalary;
-            salInput.addEventListener('input', () => formatInput(salInput));
-
-            document.getElementById('calculateBtnKo').addEventListener('click', calculateKo);
-            document.getElementById('resetBtnKo').addEventListener('click', () => { salInput.value = ''; resetResults(); });
-
-            function calculateKo() {
-                const gross = parseNumber(salInput.value);
-                if (!gross) return;
-                const pension = gross * 0.045;
-                const health = gross * 0.03545;
-                const longCare = health * 0.1295;
-                const employment = gross * 0.009;
-                const totalInsurance = pension + health + longCare + employment;
-                const annual = gross * 12;
-                const annualTax = calcKoreanTax(Math.max(0, annual - totalInsurance * 12));
-                const incomeTax = annualTax / 12;
-                const localTax = incomeTax * 0.1;
-                const totalTaxes = incomeTax + localTax;
-                const totalDed = totalInsurance;
-                const netPay = gross - totalInsurance - totalTaxes;
-
-                const rows = [
-                    { label:'월 총급여', value: gross },
-                    { label:'4대보험 합계', value: -totalInsurance, neg: true },
-                    { label:`국민연금 (4.5%)`, value: -pension, neg: true, sub: true },
-                    { label:`건강보험 (3.545%)`, value: -health, neg: true, sub: true },
-                    { label:`장기요양보험`, value: -longCare, neg: true, sub: true },
-                    { label:`고용보험 (0.9%)`, value: -employment, neg: true, sub: true },
-                    { label:'소득세 합계', value: -totalTaxes, neg: true },
-                    { label:'소득세', value: -incomeTax, neg: true, sub: true },
-                    { label:'지방소득세', value: -localTax, neg: true, sub: true },
-                ];
-                renderResults(netPay, totalTaxes, totalDed, gross, rows, '실수령액');
-            }
-
-            function calcKoreanTax(annual) {
-                const b = [
-                    [14000000,  0.06, 0],
-                    [50000000,  0.15, 840000],
-                    [88000000,  0.24, 6240000],
-                    [150000000, 0.35, 15360000],
-                    [300000000, 0.38, 37060000],
-                    [500000000, 0.40, 94060000],
-                    [Infinity,  0.42, 174060000]
-                ];
-                const prev = [0,14000000,50000000,88000000,150000000,300000000,500000000];
-                for (let i = 0; i < b.length; i++) {
-                    if (annual <= b[i][0]) return b[i][2] + (annual - prev[i]) * b[i][1];
-                }
-                return 0;
+            var _koInput = document.getElementById('monthlySalaryKo');
+            if (_koInput) {
+                _koInput.value = defaults.monthlySalary;
+                _koInput.addEventListener('input', function() { formatInput(_koInput); });
+                document.getElementById('calculateBtnKo').addEventListener('click', calculateKo);
+                document.getElementById('resetBtnKo').addEventListener('click', function() { _koInput.value = ''; resetResults(); });
             }
         }
 
-        // ── JA setup ──────────────────────────────────────────────────
         if (pathLang === 'ja') {
-            const salInput = document.getElementById('monthlySalaryJa');
-            salInput.value = defaults.monthlySalary;
-            salInput.addEventListener('input', () => formatInput(salInput));
-
-            document.getElementById('calculateBtnJa').addEventListener('click', calculateJa);
-            document.getElementById('resetBtnJa').addEventListener('click', () => { salInput.value = ''; resetResults(); });
-
-            function calculateJa() {
-                const gross = parseNumber(salInput.value);
-                if (!gross) return;
-                const kosei = gross * 0.0915;
-                const health = gross * 0.04985;
-                const koyo = gross * 0.006;
-                const totalInsurance = kosei + health + koyo;
-                const annual = gross * 12;
-                const taxable = Math.max(0, annual - totalInsurance * 12 - 480000);
-                const incomeTax = calcJapanTax(taxable) / 12;
-                const residentTax = annual * 0.10 / 12;
-                const totalTaxes = incomeTax + residentTax;
-                const netPay = gross - totalInsurance - totalTaxes;
-
-                const rows = [
-                    { label:'月収（税引前）', value: gross },
-                    { label:'社会保険料 合計', value: -totalInsurance, neg: true },
-                    { label:'厚生年金保険料 (9.15%)', value: -kosei, neg: true, sub: true },
-                    { label:'健康保険料 (4.985%)', value: -health, neg: true, sub: true },
-                    { label:'雇用保険料 (0.6%)', value: -koyo, neg: true, sub: true },
-                    { label:'税金 合計', value: -totalTaxes, neg: true },
-                    { label:'所得税', value: -incomeTax, neg: true, sub: true },
-                    { label:'住民税 (概算)', value: -residentTax, neg: true, sub: true },
-                ];
-                renderResults(netPay, totalTaxes, totalInsurance, gross, rows, '手取り額');
-            }
-
-            function calcJapanTax(annual) {
-                const b = [
-                    [1950000,  0.05, 0],
-                    [3300000,  0.10, 97500],
-                    [6950000,  0.20, 232500],
-                    [9000000,  0.23, 962500],
-                    [18000000, 0.33, 1434000],
-                    [40000000, 0.40, 4404000],
-                    [Infinity, 0.45, 13204000]
-                ];
-                const prev = [0,1950000,3300000,6950000,9000000,18000000,40000000];
-                for (let i = 0; i < b.length; i++) {
-                    if (annual <= b[i][0]) return b[i][2] + (annual - prev[i]) * b[i][1];
-                }
-                return 0;
+            var _jaInput = document.getElementById('monthlySalaryJa');
+            if (_jaInput) {
+                _jaInput.value = defaults.monthlySalary;
+                _jaInput.addEventListener('input', function() { formatInput(_jaInput); });
+                document.getElementById('calculateBtnJa').addEventListener('click', calculateJa);
+                document.getElementById('resetBtnJa').addEventListener('click', function() { _jaInput.value = ''; resetResults(); });
             }
         }
 
-        // ── ZH setup ──────────────────────────────────────────────────
         if (pathLang === 'zh') {
-            const salInput = document.getElementById('monthlySalaryZh');
-            salInput.value = defaults.monthlySalary;
-            salInput.addEventListener('input', () => formatInput(salInput));
-
-            document.getElementById('calculateBtnZh').addEventListener('click', calculateZh);
-            document.getElementById('resetBtnZh').addEventListener('click', () => { salInput.value = ''; resetResults(); });
-
-            function calculateZh() {
-                const gross = parseNumber(salInput.value);
-                if (!gross) return;
-                const pension = gross * 0.08;
-                const medical = gross * 0.02;
-                const unemploy = gross * 0.005;
-                const housing = gross * 0.12;
-                const totalInsurance = pension + medical + unemploy + housing;
-                const taxable = Math.max(0, gross - totalInsurance - 5000);
-                const incomeTax = calcChinaTax(taxable);
-                const totalDed = totalInsurance;
-                const netPay = gross - totalInsurance - incomeTax;
-
-                const rows = [
-                    { label:'税前月薪', value: gross },
-                    { label:'社会保险 合计', value: -totalInsurance, neg: true },
-                    { label:'养老保险 (8%)', value: -pension, neg: true, sub: true },
-                    { label:'医疗保险 (2%)', value: -medical, neg: true, sub: true },
-                    { label:'失业保险 (0.5%)', value: -unemploy, neg: true, sub: true },
-                    { label:'住房公积金 (12%)', value: -housing, neg: true, sub: true },
-                    { label:'个人所得税', value: -incomeTax, neg: true },
-                ];
-                renderResults(netPay, incomeTax, totalDed, gross, rows, '税后月薪');
-            }
-
-            function calcChinaTax(taxable) {
-                const b = [
-                    [3000,     0.03, 0],
-                    [12000,    0.10, 210],
-                    [25000,    0.20, 1410],
-                    [35000,    0.25, 2660],
-                    [55000,    0.30, 4410],
-                    [80000,    0.35, 7160],
-                    [Infinity, 0.45, 15160]
-                ];
-                for (const [limit, rate, ded] of b) {
-                    if (taxable <= limit) return Math.max(0, taxable * rate - ded);
-                }
-                return 0;
+            var _zhInput = document.getElementById('monthlySalaryZh');
+            if (_zhInput) {
+                _zhInput.value = defaults.monthlySalary;
+                _zhInput.addEventListener('input', function() { formatInput(_zhInput); });
+                document.getElementById('calculateBtnZh').addEventListener('click', calculateZh);
+                document.getElementById('resetBtnZh').addEventListener('click', function() { _zhInput.value = ''; resetResults(); });
             }
         }
 

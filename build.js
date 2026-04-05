@@ -289,6 +289,14 @@ function build() {
       console.log(`  ✓ Copied ${file} to root`);
     }
   });
+
+  // 로고 파일을 하이픈 버전으로도 복사 (about.html 등 일부 페이지에서 calculator-tap-logo.png 사용)
+  const logoSrc = path.join(enDir, 'calculator-tap-logo.png');
+  const logoDest = path.join(rootDir, 'calculator-tap-logo.png');
+  if (fs.existsSync(logoSrc)) {
+    fs.copyFileSync(logoSrc, logoDest);
+    console.log('  ✓ Copied calculator-tap-logo.png to root');
+  }
   
   faviconFiles.forEach(file => {
     const srcPath = path.join(__dirname, file);
