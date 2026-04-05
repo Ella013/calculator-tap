@@ -35,7 +35,8 @@
       "loanTermLabel": "Plazo del Préstamo",
       "principal": "Principal",
       "interest": "Interés",
-      "chartPlaceholder": "El gráfico se mostrará después del cálculo"
+      "chartPlaceholder": "El gráfico se mostrará después del cálculo",
+      "explanation": "<h2 class=\"explanation-title\">Cómo Usar la Calculadora de Préstamos</h2>\n                    <div class=\"explanation-text\">\n                        <p>Nuestra calculadora de préstamos te ayuda a tomar decisiones financieras informadas al estimar con precisión tus pagos mensuales. Ya sea un préstamo personal, de automóvil o hipoteca, esta herramienta te da una imagen clara de tu compromiso financiero.</p>\n                        <h3>Características Principales</h3>\n                        <ul>\n                            <li>Calcula los pagos mensuales exactos para cualquier monto y plazo</li>\n                            <li>Visualiza el total de intereses pagados durante la vida del préstamo</li>\n                            <li>Compara diferentes montos, tasas y plazos al instante</li>\n                            <li>Gráfico interactivo con el desglose de capital e intereses</li>\n                            <li>Gratis y sin registro requerido</li>\n                        </ul>\n                        <h3>Cómo Funcionan los Intereses del Préstamo</h3>\n                        <p>Tu pago mensual está determinado por tres factores:</p>\n                        <ul>\n                            <li><strong>Capital (Principal):</strong> El monto que solicitas en préstamo</li>\n                            <li><strong>Tasa de Interés Anual:</strong> El costo anual del préstamo expresado en porcentaje</li>\n                            <li><strong>Plazo del Préstamo:</strong> El número de años para devolver el préstamo</li>\n                        </ul>\n                        <p>Las tasas de interés en América Latina varían según el país y tipo de préstamo. En México, los préstamos personales rondan el 20-30% anual; en España, entre el 6-12%. Las condiciones reales dependen de tu historial crediticio y el banco.</p>\n                    </div>"
     },
     "mortgage": {
       "title": "Calculadora Hipotecaria",
@@ -65,7 +66,8 @@
       "mortgage": "Préstamo",
       "payment": "Pago",
       "dti": "DTI",
-      "chartPlaceholder": "El gráfico se mostrará después del cálculo"
+      "chartPlaceholder": "El gráfico se mostrará después del cálculo",
+      "explanation": "<h2 class=\"explanation-title\">Calculadora de Calificación Hipotecaria</h2>\n                    <div class=\"explanation-text\">\n                        <p>La calculadora de calificación hipotecaria estima el monto máximo de préstamo para comprar una vivienda según tus ingresos, deudas y pago inicial. Los bancos utilizan cálculos similares para determinar tu elegibilidad.</p>\n                        <h3>Factores Clave de Calificación</h3>\n                        <ul>\n                            <li><strong>Relación Deuda-Ingreso (DTI):</strong> El total de pagos mensuales de deuda (incluida la hipoteca nueva) no debe superar el 40-43% de tu ingreso bruto mensual</li>\n                            <li><strong>Pago Inicial (Enganche):</strong> Un enganche mayor reduce el monto del préstamo y puede eliminar el seguro hipotecario privado (PMI)</li>\n                            <li><strong>Tasa de Interés:</strong> Incluso una pequeña diferencia en la tasa afecta significativamente tu cuota mensual y monto calificado</li>\n                            <li><strong>Plazo:</strong> A 30 años la cuota es menor; a 15 años pagas mucho menos en intereses totales</li>\n                        </ul>\n                        <h3>Consejos para Mejorar tu Calificación</h3>\n                        <ul>\n                            <li>Reduce tus deudas existentes para mejorar tu relación DTI</li>\n                            <li>Ahorra para un enganche del 20% o más</li>\n                            <li>Mejora tu historial crediticio para acceder a tasas más bajas</li>\n                            <li>Considera todos los costos: impuestos, seguros, mantenimiento</li>\n                        </ul>\n                    </div>"
     },
     "paycheck": {
       "title": "Calculadora de Salario",
@@ -111,7 +113,8 @@
       "placeholderHourlyRate": "0.00",
       "placeholderHours": "Horas",
       "placeholderOtherDeductions": "0.00",
-      "chartPlaceholder": "El gráfico se mostrará después del cálculo"
+      "chartPlaceholder": "El gráfico se mostrará después del cálculo",
+      "explanation": "<h2 class=\"explanation-title\">Calculadora de Nómina y Salario Neto</h2>\n                    <div class=\"explanation-text\">\n                        <p>La calculadora de nómina estima tu salario neto después de impuestos y deducciones. Te ayuda a planificar tu presupuesto y entender exactamente cuánto recibirás en tu cuenta.</p>\n                        <h3>Principales Deducciones</h3>\n                        <ul>\n                            <li><strong>Impuesto sobre la Renta:</strong> Varía según el país y nivel de ingresos; se aplica tasa progresiva</li>\n                            <li><strong>Seguridad Social / IMSS:</strong> Aportaciones para pensión, salud y desempleo (varía por país)</li>\n                            <li><strong>Seguro Médico:</strong> Contribución al sistema de salud pública o seguro privado</li>\n                            <li><strong>Otras Retenciones:</strong> Fondo de vivienda (INFONAVIT en México), seguro de cesantía, etc.</li>\n                        </ul>\n                        <h3>Cómo Usar la Calculadora</h3>\n                        <ul>\n                            <li>Ingresa tu salario por hora o anual</li>\n                            <li>Selecciona la frecuencia de pago (semanal, quincenal, mensual)</li>\n                            <li>Los resultados muestran el salario bruto, las deducciones y el neto</li>\n                        </ul>\n                        <p>Esta calculadora es una estimación de referencia. Tu nómina real puede variar según las leyes locales, beneficios de empresa y otras deducciones específicas de tu país.</p>\n                    </div>"
     },
     "debt": {
       "title": "Calculadora de Pago de Deudas",
@@ -165,7 +168,8 @@
       "year": "Año",
       "principal": "Principal",
       "interest": "Interés",
-      "balance": "Saldo"
+      "balance": "Saldo",
+      "explanation": "<h2>Cómo Funciona el Interés Compuesto</h2>\n                    <p>La calculadora de interés compuesto muestra cómo crece tu inversión cuando los intereses se generan sobre el capital inicial y los intereses ya acumulados. Este efecto de \"interés sobre interés\" es la base de la creación de riqueza a largo plazo.</p>\n                    <h3>Frecuencia de Capitalización</h3>\n                    <p>Cuanto más frecuentemente se capitaliza el interés, más rápido crece tu inversión:</p>\n                    <ul>\n                        <li><strong>Diaria:</strong> El interés se calcula y añade 365 veces al año</li>\n                        <li><strong>Mensual:</strong> Capitaliza 12 veces al año</li>\n                        <li><strong>Trimestral:</strong> Capitaliza 4 veces al año</li>\n                        <li><strong>Anual:</strong> Capitaliza una vez al año</li>\n                    </ul>\n                    <h3>El Poder de las Aportaciones Regulares</h3>\n                    <p>Añadir contribuciones mensuales constantes acelera significativamente el crecimiento. Incluso pequeños depósitos recurrentes, combinados con el interés compuesto, pueden producir resultados notables a lo largo de décadas. Empieza cuanto antes y mantén la constancia.</p>"
     },
     "investment": {
       "title": "Calculadora de Retorno de Inversión",
@@ -194,12 +198,14 @@
       "returnAmountLabel": "Monto de Retorno",
       "totalReturnLabel": "Retorno Total",
       "annualizedReturnLabel": "Retorno Anualizado",
-      "investmentPeriodLabel": "Período de Inversión"
+      "investmentPeriodLabel": "Período de Inversión",
+      "explanation": "<h2 class=\"explanation-title\">Calculadora de Rentabilidad de Inversiones</h2>\n                    <div class=\"explanation-text\">\n                        <p>La calculadora de rentabilidad mide el rendimiento real de tu inversión basándose en el valor inicial, el valor final y el período de tiempo elegido. Úsala para evaluar acciones, fondos de inversión, bienes raíces o cualquier activo.</p>\n                        <h3>Métricas Clave de Rentabilidad</h3>\n                        <ul>\n                            <li><strong>Rentabilidad Total:</strong> El porcentaje de ganancia o pérdida desde el inicio hasta el final</li>\n                            <li><strong>Rentabilidad Anualizada (CAGR):</strong> La tasa de crecimiento anual compuesto — el rendimiento anual constante que produciría el mismo resultado</li>\n                            <li><strong>Ganancia/Pérdida Absoluta:</strong> El monto real en dinero ganado o perdido</li>\n                        </ul>\n                        <h3>Factores que Afectan los Retornos</h3>\n                        <ul>\n                            <li>Condiciones del mercado y ciclos económicos</li>\n                            <li>Dividendos e ingresos reinvertidos</li>\n                            <li>Comisiones e impuestos (reducen el retorno neto)</li>\n                            <li>Horizonte temporal — períodos más largos suavizan la volatilidad</li>\n                        </ul>\n                        <p>Compara siempre rentabilidades durante el mismo período para comparaciones justas. El rendimiento pasado no garantiza resultados futuros.</p>\n                    </div>"
     },
     "dividend": {
       "title": "Calculadora de Dividendos",
       "description": "Calcule los ingresos por dividendos, el rendimiento y el potencial de crecimiento de sus inversiones en acciones y carteras de dividendos.",
-      "button": "Calcular"
+      "button": "Calcular",
+      "explanation": "<h2 class=\"explanation-title\">Calculadora de Dividendos</h2>\n                    <div class=\"explanation-text\">\n                        <p>La calculadora de dividendos te ayuda a estimar los ingresos por dividendos de tus inversiones en acciones. Ingresa el precio de la acción, el dividendo anual por acción y la cantidad de acciones para ver tu rendimiento y tus ingresos proyectados.</p>\n                        <h3>Métricas Clave de Dividendos</h3>\n                        <ul>\n                            <li><strong>Rendimiento por Dividendo:</strong> Dividendo anual ÷ precio de acción — mayor rendimiento significa más ingresos relativos al precio</li>\n                            <li><strong>Ingresos Anuales:</strong> Pagos totales de dividendos anuales de todas tus acciones</li>\n                            <li><strong>Crecimiento del Dividendo:</strong> Las empresas que aumentan consistentemente sus dividendos pueden proporcionar ingresos crecientes a lo largo del tiempo</li>\n                        </ul>\n                        <h3>Construyendo Ingresos por Dividendos</h3>\n                        <ul>\n                            <li>Reinvertir dividendos (DRIP) aprovecha el crecimiento compuesto para acelerar el valor de la cartera</li>\n                            <li>Diversifica entre sectores para reducir el riesgo de recorte de dividendos</li>\n                            <li>Busca empresas con largo historial de pagos y crecimiento de dividendos</li>\n                            <li>El alto rendimiento solo no siempre es mejor — verifica el ratio de pago y la salud financiera</li>\n                        </ul>\n                    </div>"
     },
     "stock": {
       "title": "Calculadora de Retorno de Acciones",
@@ -233,7 +239,11 @@
       "annualizedReturn": "Retorno Anualizado (CAGR)",
       "dividendsReturn": "Retorno de Dividendos",
       "priceReturn": "Retorno de Precio",
-      "investmentPeriodLabel": "Período de Inversión"
+      "investmentPeriodLabel": "Período de Inversión",
+      "explanation": "<h2 class=\"explanation-title\">Calculadora de Rentabilidad de Acciones</h2>\n                    <div class=\"explanation-text\">\n                        <p>La calculadora de retorno de acciones mide el rendimiento de tu inversión bursátil. Ingresa el precio de compra, precio de venta, número de acciones y período de tenencia para ver tu rentabilidad total, rendimiento anualizado y ganancia o pérdida.</p>\n                        <h3>Métricas de Rentabilidad Explicadas</h3>\n                        <ul>\n                            <li><strong>Rentabilidad Total:</strong> Porcentaje total de ganancia o pérdida en tu inversión</li>\n                            <li><strong>Rentabilidad Anualizada (CAGR):</strong> La tasa de rendimiento anual equivalente — útil para comparar inversiones mantenidas durante períodos diferentes</li>\n                            <li><strong>Ganancia / Pérdida:</strong> El monto real en dinero ganado o perdido en tu posición</li>\n                        </ul>\n                        <h3>Factores que Afectan los Retornos Bursátiles</h3>\n                        <ul>\n                            <li>Crecimiento de beneficios de la empresa y salud financiera</li>\n                            <li>Sentimiento del mercado y tendencias macroeconómicas</li>\n                            <li>Dividendos recibidos durante el período de tenencia</li>\n                            <li>Costos de transacción e impuestos sobre ganancias de capital</li>\n                        </ul>\n                        <p>Usa esta calculadora para revisar el rendimiento de tu cartera y comparar cómo cada inversión contribuyó a tus retornos totales.</p>\n                    </div>"
+    },
+    "payoff": {
+      "explanation": "<h2 class=\"explanation-title\">Calculadora de Pago de Deudas</h2>\n                    <div class=\"explanation-text\">\n                        <p>La calculadora de pago de deudas te muestra exactamente cuándo quedarás libre de deudas y cuánto interés pagarás, según tu saldo actual, tasa de interés y pago mensual. Úsala para crear un plan realista de eliminación de deudas.</p>\n                        <h3>Estrategias de Pago</h3>\n                        <ul>\n                            <li><strong>Método Avalancha:</strong> Paga el mínimo en todas las deudas y dirige el dinero extra a la de mayor interés primero — ahorra más en intereses</li>\n                            <li><strong>Método Bola de Nieve:</strong> Liquida primero la deuda de menor saldo para ganar motivación con logros rápidos</li>\n                            <li><strong>Aumentar el Pago Mensual:</strong> Incluso una pequeña cantidad adicional cada mes reduce drásticamente el tiempo de pago</li>\n                        </ul>\n                        <h3>Por Qué Importa Pagar Pronto</h3>\n                        <ul>\n                            <li>Las tarjetas de crédito con tasas del 25-40% anual generan intereses rápidamente — pagarlas pronto ahorra miles</li>\n                            <li>Liberarte de deudas libera flujo de efectivo mensual para ahorro e inversión</li>\n                            <li>Reducir el saldo de tarjetas mejora tu historial y puntaje crediticio</li>\n                        </ul>\n                    </div>"
     }
   },
   "about": {
@@ -440,5 +450,51 @@
   },
   "sidebar": {
     "otherCalculators": "Otras Calculadoras"
+  },
+  "localeDefaults": {
+    "loan": {
+      "amount": "15000",
+      "rate": "8.0",
+      "term": "5"
+    },
+    "mortgage": {
+      "income": "3000",
+      "debts": "300",
+      "term": "30",
+      "rate": "7.5",
+      "down": "30000"
+    },
+    "paycheck": {
+      "rate": "20",
+      "hours": "40"
+    },
+    "debt": {
+      "amount": "10000",
+      "rate": "15.0",
+      "payment": "300"
+    },
+    "compound": {
+      "initial": "5000",
+      "contribution": "200",
+      "rate": "7.0",
+      "years": "10"
+    },
+    "investment": {
+      "initial": "10000",
+      "final": "15000",
+      "period": "5"
+    },
+    "dividend": {
+      "price": "50",
+      "dividend": "1.50",
+      "shares": "100",
+      "period": "5"
+    },
+    "stock": {
+      "initial": "50",
+      "current": "75",
+      "shares": "100",
+      "period": "3"
+    }
   }
 }

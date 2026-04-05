@@ -826,7 +826,7 @@
                 </main>
 
                 <!-- SEO Content Section -->
-                <section class="explanation-section">
+                <section class="explanation-section" data-translate="calculators.loan.explanation">
                     <h2 class="explanation-title">Understanding Your Loan Calculations</h2>
                     <div class="explanation-text">
                         <p>Our loan calculator helps you make informed financial decisions by providing accurate estimates of your loan payments. Whether you're planning to take out a personal loan, auto loan, or mortgage, this calculator gives you a clear picture of your financial commitment.</p>
@@ -919,6 +919,18 @@
         };
         
         const currentCurrency = currencyConfig[pathLang] || currencyConfig['en'];
+        // Locale-appropriate default values
+        const localeDefaults = {
+            en: { loanAmount: '10000', interestRate: '7.5', loanTerm: '5' },
+            ko: { loanAmount: '10000000', interestRate: '5.5', loanTerm: '3' },
+            ja: { loanAmount: '1000000', interestRate: '2.5', loanTerm: '5' },
+            zh: { loanAmount: '100000', interestRate: '4.35', loanTerm: '5' },
+            es: { loanAmount: '15000', interestRate: '8.0', loanTerm: '5' }
+        };
+        const defaults = localeDefaults[pathLang] || localeDefaults['en'];
+        document.getElementById('loanAmount').value = defaults.loanAmount;
+        document.getElementById('interestRate').value = defaults.interestRate;
+        document.getElementById('loanTerm').value = defaults.loanTerm;
         
         // 통화 기호 업데이트
         if (currencySymbolElement) {

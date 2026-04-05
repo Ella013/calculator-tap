@@ -1074,7 +1074,7 @@
                     </div>
                 </main>
 
-                <section class="explanation-section">
+                <section class="explanation-section" data-translate="calculators.paycheck.explanation">
                     <h2 class="explanation-title">How Our Paycheck Calculator Works</h2>
                     <div class="explanation-text">
                         <p>
@@ -1226,6 +1226,19 @@
         };
         
         const currentCurrency = currencyConfig[pathLang] || currencyConfig['en'];
+        // Locale-appropriate default values
+        const localeDefaults = {
+            en: { hourlyRate: '25', regularHours: '40' },
+            ko: { hourlyRate: '12000', regularHours: '40' },
+            ja: { hourlyRate: '1200', regularHours: '160' },
+            zh: { hourlyRate: '25', regularHours: '176' },
+            es: { hourlyRate: '20', regularHours: '40' }
+        };
+        const defaults = localeDefaults[pathLang] || localeDefaults['en'];
+        const hrEl = document.getElementById('hourlyRate');
+        const rhEl = document.getElementById('regularHours');
+        if (hrEl) hrEl.value = defaults.hourlyRate;
+        if (rhEl) rhEl.value = defaults.regularHours;
         
         // 모든 통화 기호 요소 업데이트
         const currencySymbolElements = document.querySelectorAll('.currency-symbol');

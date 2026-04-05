@@ -40,6 +40,21 @@ document.addEventListener('DOMContentLoaded', function() {
     };
     
     const currentCurrency = currencyConfig[pathLang] || currencyConfig['en'];
+    // Locale-appropriate default values
+    const localeDefaults = {
+        en: { initialInvestment: '10000', finalValue: '15000', investmentPeriod: '5' },
+        ko: { initialInvestment: '10000000', finalValue: '15000000', investmentPeriod: '5' },
+        ja: { initialInvestment: '1000000', finalValue: '1500000', investmentPeriod: '5' },
+        zh: { initialInvestment: '100000', finalValue: '150000', investmentPeriod: '5' },
+        es: { initialInvestment: '10000', finalValue: '14000', investmentPeriod: '5' }
+    };
+    const locDefs = localeDefaults[pathLang] || localeDefaults['en'];
+    const iiEl = document.getElementById('initialInvestment');
+    const fvEl = document.getElementById('finalValue');
+    const ipEl = document.getElementById('investmentPeriod');
+    if (iiEl) iiEl.value = locDefs.initialInvestment;
+    if (fvEl) fvEl.value = locDefs.finalValue;
+    if (ipEl) ipEl.value = locDefs.investmentPeriod;
     
     // 모든 통화 기호 요소 업데이트
     const currencySymbolElements = document.querySelectorAll('.currency-symbol');

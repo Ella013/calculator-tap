@@ -45,6 +45,24 @@ const currencyConfig = {
 
 const currentCurrency = currencyConfig[pathLang] || currencyConfig['en'];
 
+// Locale-appropriate default values
+const localeDefaults = {
+    en: { initialPrice: '50', currentPrice: '75', numberOfShares: '100', investmentPeriod: '3' },
+    ko: { initialPrice: '50000', currentPrice: '75000', numberOfShares: '100', investmentPeriod: '3' },
+    ja: { initialPrice: '1500', currentPrice: '2500', numberOfShares: '100', investmentPeriod: '3' },
+    zh: { initialPrice: '30', currentPrice: '45', numberOfShares: '100', investmentPeriod: '3' },
+    es: { initialPrice: '50', currentPrice: '70', numberOfShares: '100', investmentPeriod: '3' }
+};
+const locDefs = localeDefaults[pathLang] || localeDefaults['en'];
+const ipEl2 = document.getElementById('initialPrice');
+const cpEl2 = document.getElementById('currentPrice');
+const nsEl2 = document.getElementById('numberOfShares');
+const periodEl2 = document.getElementById('investmentPeriod');
+if (ipEl2) ipEl2.value = locDefs.initialPrice;
+if (cpEl2) cpEl2.value = locDefs.currentPrice;
+if (nsEl2) nsEl2.value = locDefs.numberOfShares;
+if (periodEl2) periodEl2.value = locDefs.investmentPeriod;
+
 // 모든 통화 기호 요소 업데이트
 const currencySymbolElements = document.querySelectorAll('.currency-symbol');
 currencySymbolElements.forEach(el => {

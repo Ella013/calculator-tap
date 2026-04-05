@@ -829,7 +829,7 @@
                 </main>
 
                 <!-- SEO Content Section -->
-                <section class="explanation-section">
+                <section class="explanation-section" data-translate="calculators.payoff.explanation">
                     <h2 class="explanation-title">Understanding Debt Payoff</h2>
                     <div class="explanation-text">
                         <p>
@@ -936,6 +936,21 @@
         };
         
         const currentCurrency = currencyConfig[pathLang] || currencyConfig['en'];
+        // Locale-appropriate default values
+        const localeDefaults = {
+            en: { debtAmount: '15000', interestRate: '18.0', monthlyPayment: '500' },
+            ko: { debtAmount: '15000000', interestRate: '12.0', monthlyPayment: '500000' },
+            ja: { debtAmount: '500000', interestRate: '15.0', monthlyPayment: '20000' },
+            zh: { debtAmount: '50000', interestRate: '18.0', monthlyPayment: '2000' },
+            es: { debtAmount: '10000', interestRate: '25.0', monthlyPayment: '400' }
+        };
+        const defaults = localeDefaults[pathLang] || localeDefaults['en'];
+        const daEl = document.getElementById('debtAmount');
+        const irEl = document.getElementById('interestRate');
+        const mpEl = document.getElementById('monthlyPayment');
+        if (daEl) daEl.value = defaults.debtAmount;
+        if (irEl) irEl.value = defaults.interestRate;
+        if (mpEl) mpEl.value = defaults.monthlyPayment;
         
         // 모든 통화 기호 요소 업데이트
         const currencySymbolElements = document.querySelectorAll('.currency-symbol');

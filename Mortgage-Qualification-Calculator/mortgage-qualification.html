@@ -886,7 +886,7 @@
                 </main>
 
                 <!-- SEO Content Section -->
-                <section class="explanation-section">
+                <section class="explanation-section" data-translate="calculators.mortgage.explanation">
                     <h2 class="explanation-title">Understanding Mortgage Qualification</h2>
                     <div class="explanation-text">
                         <p>
@@ -992,6 +992,25 @@
         };
         
         const currentCurrency = currencyConfig[pathLang] || currencyConfig['en'];
+        // Locale-appropriate default values
+        const localeDefaults = {
+            en: { monthlyIncome: '6000', monthlyDebts: '500', loanTerm: '30', interestRate: '7.0', downPayment: '50000' },
+            ko: { monthlyIncome: '5000000', monthlyDebts: '500000', loanTerm: '30', interestRate: '4.5', downPayment: '50000000' },
+            ja: { monthlyIncome: '500000', monthlyDebts: '50000', loanTerm: '35', interestRate: '1.5', downPayment: '5000000' },
+            zh: { monthlyIncome: '25000', monthlyDebts: '2000', loanTerm: '30', interestRate: '4.2', downPayment: '300000' },
+            es: { monthlyIncome: '3000', monthlyDebts: '300', loanTerm: '30', interestRate: '7.5', downPayment: '30000' }
+        };
+        const defaults = localeDefaults[pathLang] || localeDefaults['en'];
+        const miEl = document.getElementById('monthlyIncome');
+        const mdEl = document.getElementById('monthlyDebts');
+        const ltEl = document.getElementById('loanTerm');
+        const irEl = document.getElementById('interestRate');
+        const dpEl = document.getElementById('downPayment');
+        if (miEl) miEl.value = defaults.monthlyIncome;
+        if (mdEl) mdEl.value = defaults.monthlyDebts;
+        if (ltEl) ltEl.value = defaults.loanTerm;
+        if (irEl) irEl.value = defaults.interestRate;
+        if (dpEl) dpEl.value = defaults.downPayment;
         
         // 모든 통화 기호 요소 업데이트
         const currencySymbolElements = document.querySelectorAll('.currency-symbol');

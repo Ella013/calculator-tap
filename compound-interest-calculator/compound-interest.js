@@ -35,6 +35,23 @@ document.addEventListener('DOMContentLoaded', function() {
     };
     
     const currentCurrency = currencyConfig[pathLang] || currencyConfig['en'];
+    // Locale-appropriate default values
+    const localeDefaults = {
+        en: { initialInvestment: '5000', contributionAmount: '200', interestRate: '7.0', investmentLength: '10' },
+        ko: { initialInvestment: '5000000', contributionAmount: '200000', interestRate: '5.0', investmentLength: '10' },
+        ja: { initialInvestment: '500000', contributionAmount: '20000', interestRate: '4.0', investmentLength: '10' },
+        zh: { initialInvestment: '50000', contributionAmount: '2000', interestRate: '4.5', investmentLength: '10' },
+        es: { initialInvestment: '5000', contributionAmount: '200', interestRate: '7.0', investmentLength: '10' }
+    };
+    const locDefs = localeDefaults[pathLang] || localeDefaults['en'];
+    const iiEl = document.getElementById('initialInvestment');
+    const caEl = document.getElementById('contributionAmount');
+    const irEl = document.getElementById('interestRate');
+    const ilEl = document.getElementById('investmentLength');
+    if (iiEl) iiEl.value = locDefs.initialInvestment;
+    if (caEl) caEl.value = locDefs.contributionAmount;
+    if (irEl) irEl.value = locDefs.interestRate;
+    if (ilEl) ilEl.value = locDefs.investmentLength;
     
     // 모든 통화 기호 요소 업데이트
     const currencySymbolElements = document.querySelectorAll('.currency-symbol');

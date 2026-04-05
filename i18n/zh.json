@@ -35,7 +35,8 @@
       "loanTermLabel": "贷款期限",
       "principal": "本金",
       "interest": "利息",
-      "chartPlaceholder": "计算后将显示图表"
+      "chartPlaceholder": "计算后将显示图表",
+      "explanation": "<h2 class=\"explanation-title\">贷款计算器使用说明</h2>\n                    <div class=\"explanation-text\">\n                        <p>贷款计算器帮助您快速估算每月还款额、总利息及总还款金额。无论是个人贷款、汽车贷款还是房贷，都能让您清晰了解财务负担。</p>\n                        <h3>主要功能</h3>\n                        <ul>\n                            <li>根据贷款金额、利率和期限精确计算每月还款额</li>\n                            <li>查看整个还款期内支付的总利息</li>\n                            <li>通过图表直观了解本金与利息的比例</li>\n                            <li>快速比较不同贷款方案，找到最优选择</li>\n                            <li>免费使用，无需注册</li>\n                        </ul>\n                        <h3>贷款利息计算原理</h3>\n                        <p>每月还款额由以下三个因素决定：</p>\n                        <ul>\n                            <li><strong>贷款本金：</strong>借款金额</li>\n                            <li><strong>年利率：</strong>每年的借贷成本（如4.35%）</li>\n                            <li><strong>贷款期限：</strong>还款年限</li>\n                        </ul>\n                        <p>中国个人消费贷款利率通常为年利率4%~8%，住房贷款利率约为3.5%~5.5%。实际利率因银行、信用评级和市场状况而异。</p>\n                    </div>"
     },
     "mortgage": {
       "title": "抵押贷款计算器",
@@ -65,7 +66,8 @@
       "mortgage": "贷款",
       "payment": "付款",
       "dti": "DTI",
-      "chartPlaceholder": "计算后将显示图表"
+      "chartPlaceholder": "计算后将显示图表",
+      "explanation": "<h2 class=\"explanation-title\">房贷资格计算器</h2>\n                    <div class=\"explanation-text\">\n                        <p>房贷资格计算器根据您的收入、负债和首付款，估算您能够获批的最高贷款金额。银行和贷款机构也使用类似的计算方式来评估您的贷款资格。</p>\n                        <h3>主要资格评估标准</h3>\n                        <ul>\n                            <li><strong>负债收入比（DTI）：</strong>每月所有债务还款（包括新增房贷）不超过月收入的50%</li>\n                            <li><strong>首付比例（LTV）：</strong>首套房通常首付不低于20%~30%；二套房首付比例更高</li>\n                            <li><strong>贷款利率：</strong>LPR（贷款市场报价利率）加点确定，固定利率与浮动利率各有优劣</li>\n                            <li><strong>贷款期限：</strong>30年期月供低但总利息多；20年期节省利息但月供较高</li>\n                        </ul>\n                        <h3>提高贷款额度的建议</h3>\n                        <ul>\n                            <li>提前偿还现有债务以改善DTI比率</li>\n                            <li>增加首付比例以降低贷款金额</li>\n                            <li>维护良好的信用记录以获得更低利率</li>\n                            <li>综合考虑房产税、物业费、维修基金等额外费用</li>\n                        </ul>\n                    </div>"
     },
     "paycheck": {
       "title": "工资计算器",
@@ -111,7 +113,8 @@
       "placeholderHourlyRate": "0.00",
       "placeholderHours": "小时",
       "placeholderOtherDeductions": "0.00",
-      "chartPlaceholder": "计算后将显示图表"
+      "chartPlaceholder": "计算后将显示图表",
+      "explanation": "<h2 class=\"explanation-title\">工资税后收入计算器</h2>\n                    <div class=\"explanation-text\">\n                        <p>工资计算器帮助您估算扣除个人所得税和社会保险后的实际到手收入。合理规划预算，掌握每月实际收入。</p>\n                        <h3>主要扣除项目</h3>\n                        <ul>\n                            <li><strong>个人所得税：</strong>采用3%~45%七级超额累进税率，按月应纳税所得额计算</li>\n                            <li><strong>养老保险：</strong>个人缴纳工资的8%</li>\n                            <li><strong>医疗保险：</strong>个人缴纳工资的2%+每月10元</li>\n                            <li><strong>失业保险：</strong>个人缴纳工资的0.5%~1%</li>\n                            <li><strong>住房公积金：</strong>个人缴纳工资的5%~12%（各地比例不同）</li>\n                        </ul>\n                        <h3>使用方法</h3>\n                        <ul>\n                            <li>输入时薪或月薪/年薪</li>\n                            <li>选择发薪频率（每周、每两周、每月）</li>\n                            <li>查看各扣除项明细及税后实发金额</li>\n                        </ul>\n                        <p>本计算器提供估算数值。实际到手工资因各地社保基数、专项附加扣除（如子女教育、住房贷款利息）等因素而有所不同。</p>\n                    </div>"
     },
     "debt": {
       "title": "债务偿还计算器",
@@ -169,7 +172,8 @@
       "year": "年",
       "principal": "本金",
       "interest": "利息",
-      "balance": "余额"
+      "balance": "余额",
+      "explanation": "<h2>复利计算器使用说明</h2>\n                    <p>复利计算器模拟您的投资如何随时间增长——不仅本金产生利息，已累积的利息也继续产生利息。这种\"利滚利\"效应是长期财富积累的核心原理。</p>\n                    <h3>复利计算频率</h3>\n                    <p>复利计算越频繁，资产增长越快：</p>\n                    <ul>\n                        <li><strong>按日复利：</strong>每天将利息加入本金（每年365次）</li>\n                        <li><strong>按月复利：</strong>每年复利12次</li>\n                        <li><strong>按季复利：</strong>每年复利4次</li>\n                        <li><strong>按年复利：</strong>每年复利1次</li>\n                    </ul>\n                    <h3>定期定投的力量</h3>\n                    <p>每月坚持追加投入可显著加速复利效果。哪怕是小额的定期存入，结合复利，数十年后也能积累可观财富。越早开始，复利效果越显著。</p>"
     },
     "investment": {
       "title": "投资回报计算器",
@@ -198,12 +202,14 @@
       "returnAmountLabel": "回报金额",
       "totalReturnLabel": "总回报",
       "annualizedReturnLabel": "年化回报",
-      "investmentPeriodLabel": "投资期间"
+      "investmentPeriodLabel": "投资期间",
+      "explanation": "<h2 class=\"explanation-title\">投资回报率计算器</h2>\n                    <div class=\"explanation-text\">\n                        <p>投资回报率计算器根据初始投资额、最终价值和投资期限，计算您的实际投资收益表现。适用于股票、基金、房产等各类投资。</p>\n                        <h3>核心收益指标</h3>\n                        <ul>\n                            <li><strong>总收益率：</strong>从投资开始到结束的整体盈亏比例</li>\n                            <li><strong>年化收益率（CAGR）：</strong>假设每年以相同比率增长时的年均回报率，用于比较不同期限的投资</li>\n                            <li><strong>绝对盈亏：</strong>实际盈利或亏损的金额（人民币）</li>\n                        </ul>\n                        <h3>影响投资收益的因素</h3>\n                        <ul>\n                            <li>市场行情与经济周期</li>\n                            <li>股息、分红再投资的复利效应</li>\n                            <li>手续费和税收（如资本利得税）的影响</li>\n                            <li>投资期限——时间越长，波动性越趋于平稳</li>\n                        </ul>\n                        <p>为公平比较，请统一使用相同期限衡量投资收益。历史业绩不代表未来表现。</p>\n                    </div>"
     },
     "dividend": {
       "title": "股息计算器",
       "description": "计算您股票投资和股息投资组合的股息收入、收益率和增长潜力。",
-      "button": "计算"
+      "button": "计算",
+      "explanation": "<h2 class=\"explanation-title\">股息计算器</h2>\n                    <div class=\"explanation-text\">\n                        <p>股息计算器帮助您估算股票投资的预期分红收入。输入股价、每股年度股息和持有股数，即可查看股息收益率和年度股息收入。</p>\n                        <h3>主要股息指标</h3>\n                        <ul>\n                            <li><strong>股息收益率：</strong>年度股息 ÷ 股价 × 100%——收益率越高，相对股价获得的分红越多</li>\n                            <li><strong>年度股息收入：</strong>持有全部股份获得的年度分红总额</li>\n                            <li><strong>股息增长：</strong>持续提高分红的公司可提供长期增长的被动收入</li>\n                        </ul>\n                        <h3>股息投资策略</h3>\n                        <ul>\n                            <li>股息再投资（DRIP）利用复利加速组合增值</li>\n                            <li>跨行业分散投资，降低个股减息或停息风险</li>\n                            <li>优选连续多年稳定分红的蓝筹股或高股息ETF</li>\n                            <li>不要只看高股息率，还需检查派息比率和公司财务健康状况</li>\n                        </ul>\n                    </div>"
     },
     "stock": {
       "title": "股票回报计算器",
@@ -237,7 +243,11 @@
       "annualizedReturn": "年化回报 (CAGR)",
       "dividendsReturn": "股息回报",
       "priceReturn": "价格回报",
-      "investmentPeriodLabel": "投资期间"
+      "investmentPeriodLabel": "投资期间",
+      "explanation": "<h2 class=\"explanation-title\">股票收益计算器</h2>\n                    <div class=\"explanation-text\">\n                        <p>股票收益计算器通过输入买入价、卖出价、持有股数和持有期限，计算您的总收益率、年化收益率（CAGR）及实际盈亏金额。</p>\n                        <h3>收益指标说明</h3>\n                        <ul>\n                            <li><strong>总收益率：</strong>投资的整体盈亏百分比</li>\n                            <li><strong>年化收益率（CAGR）：</strong>假设每年以相同比率增长时的年均回报率——便于比较持有期不同的投资</li>\n                            <li><strong>实现盈亏：</strong>实际盈利或亏损的金额（人民币）</li>\n                        </ul>\n                        <h3>影响股票收益的因素</h3>\n                        <ul>\n                            <li>公司盈利增长和财务健康状况</li>\n                            <li>市场情绪和宏观经济趋势</li>\n                            <li>持有期间获得的股息收入</li>\n                            <li>交易手续费和资本利得税</li>\n                        </ul>\n                        <p>使用本计算器分析各持仓的表现，全面评估您的投资组合收益情况。</p>\n                    </div>"
+    },
+    "payoff": {
+      "explanation": "<h2 class=\"explanation-title\">债务还清计划计算器</h2>\n                    <div class=\"explanation-text\">\n                        <p>债务还清计算器根据当前余额、利率和每月还款额，计算何时能够完全还清债务以及需要支付的总利息。帮助您制定切实可行的还债计划。</p>\n                        <h3>有效的还款策略</h3>\n                        <ul>\n                            <li><strong>高息优先法（雪崩法）：</strong>优先偿还利率最高的债务，最大程度节省利息支出</li>\n                            <li><strong>小额优先法（滚雪球法）：</strong>优先偿还余额最小的债务，获得成就感并保持动力</li>\n                            <li><strong>增加月还款额：</strong>即使每月多还一点，也能大幅缩短还款期限</li>\n                        </ul>\n                        <h3>提前还款的重要性</h3>\n                        <ul>\n                            <li>信用卡欠款（年利率15%~24%）复利增长迅速，早还早省</li>\n                            <li>还清债务后每月释放大量现金流，可用于储蓄和投资</li>\n                            <li>降低信用卡使用率有助于提升信用评分</li>\n                        </ul>\n                    </div>"
     }
   },
   "about": {
@@ -444,5 +454,51 @@
   },
   "sidebar": {
     "otherCalculators": "其他计算器"
+  },
+  "localeDefaults": {
+    "loan": {
+      "amount": "100000",
+      "rate": "4.35",
+      "term": "5"
+    },
+    "mortgage": {
+      "income": "25000",
+      "debts": "2000",
+      "term": "30",
+      "rate": "4.2",
+      "down": "300000"
+    },
+    "paycheck": {
+      "rate": "25",
+      "hours": "176"
+    },
+    "debt": {
+      "amount": "150000",
+      "rate": "12.0",
+      "payment": "5000"
+    },
+    "compound": {
+      "initial": "50000",
+      "contribution": "2000",
+      "rate": "4.0",
+      "years": "10"
+    },
+    "investment": {
+      "initial": "100000",
+      "final": "150000",
+      "period": "5"
+    },
+    "dividend": {
+      "price": "50",
+      "dividend": "1.50",
+      "shares": "100",
+      "period": "5"
+    },
+    "stock": {
+      "initial": "50",
+      "current": "75",
+      "shares": "100",
+      "period": "3"
+    }
   }
 }

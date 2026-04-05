@@ -35,7 +35,8 @@
       "loanTermLabel": "대출 기간",
       "principal": "원금",
       "interest": "이자",
-      "chartPlaceholder": "계산 후 차트가 표시됩니다"
+      "chartPlaceholder": "계산 후 차트가 표시됩니다",
+      "explanation": "<h2 class=\"explanation-title\">대출 계산기 사용법</h2>\n                    <div class=\"explanation-text\">\n                        <p>대출 계산기를 사용하면 월 상환액, 총 이자, 총 상환금액을 한눈에 확인할 수 있습니다. 개인 대출, 자동차 대출, 주택담보대출 등 다양한 대출 계획에 활용하세요.</p>\n                        <h3>주요 기능</h3>\n                        <ul>\n                            <li>대출 금액, 금리, 기간에 따른 정확한 월 상환액 계산</li>\n                            <li>대출 기간 동안 납부하는 총 이자 확인</li>\n                            <li>원금과 이자 비율을 시각적 차트로 비교</li>\n                            <li>다양한 조건을 빠르게 비교하여 최적의 대출 구조 파악</li>\n                            <li>회원가입 없이 무료로 사용 가능</li>\n                        </ul>\n                        <h3>대출 이자 계산 원리</h3>\n                        <p>월 상환액은 다음 세 가지 요소에 의해 결정됩니다:</p>\n                        <ul>\n                            <li><strong>대출 원금:</strong> 빌리는 금액</li>\n                            <li><strong>연 이자율:</strong> 연간 이자 비율 (예: 5.5%)</li>\n                            <li><strong>대출 기간:</strong> 상환 기간 (년 단위)</li>\n                        </ul>\n                        <p>한국의 평균 개인 신용대출 금리는 연 5~7% 수준이며, 주택담보대출은 연 3~5% 수준입니다. 실제 조건은 신용등급, 금융기관, 시장 상황에 따라 다를 수 있습니다.</p>\n                    </div>"
     },
     "mortgage": {
       "title": "주택담보대출 계산기",
@@ -65,7 +66,8 @@
       "mortgage": "대출",
       "payment": "상환",
       "dti": "DTI",
-      "chartPlaceholder": "계산 후 차트가 표시됩니다"
+      "chartPlaceholder": "계산 후 차트가 표시됩니다",
+      "explanation": "<h2 class=\"explanation-title\">주택담보대출 한도 계산기</h2>\n                    <div class=\"explanation-text\">\n                        <p>주택담보대출 자격 계산기는 소득, 부채, 자기자본(보증금)을 바탕으로 대출 가능 금액을 추정합니다. 금융기관도 비슷한 방식으로 최대 대출 한도를 산정합니다.</p>\n                        <h3>주요 자격 요건</h3>\n                        <ul>\n                            <li><strong>DSR (총부채원리금상환비율):</strong> 모든 대출 상환액 합계가 연 소득의 40% 이하여야 합니다 (규제지역 기준)</li>\n                            <li><strong>LTV (주택담보대출비율):</strong> 규제지역은 40~50%, 비규제지역은 최대 70%까지 가능</li>\n                            <li><strong>금리:</strong> 고정금리와 변동금리를 비교하여 유리한 조건 선택</li>\n                            <li><strong>대출 기간:</strong> 30년 만기는 월 상환 부담이 낮지만 총 이자가 많음</li>\n                        </ul>\n                        <h3>대출 한도 높이는 방법</h3>\n                        <ul>\n                            <li>기존 부채를 상환하여 DSR 비율 개선</li>\n                            <li>자기자본 비율을 높여 LTV 조건 충족</li>\n                            <li>신용등급 향상으로 우대금리 적용 받기</li>\n                            <li>재산세, 관리비, 수리비 등 부대비용도 미리 계산</li>\n                        </ul>\n                    </div>"
     },
     "paycheck": {
       "title": "급여 계산기",
@@ -112,7 +114,8 @@
       "placeholderHourlyRate": "0.00",
       "placeholderHours": "시간",
       "placeholderOtherDeductions": "0.00",
-      "chartPlaceholder": "계산 후 차트가 표시됩니다"
+      "chartPlaceholder": "계산 후 차트가 표시됩니다",
+      "explanation": "<h2 class=\"explanation-title\">급여 실수령액 계산기</h2>\n                    <div class=\"explanation-text\">\n                        <p>급여 계산기는 세금 및 4대 보험 공제 후 실제 받는 금액(실수령액)을 추정합니다. 정확한 예산 계획을 위해 활용하세요.</p>\n                        <h3>공제 항목</h3>\n                        <ul>\n                            <li><strong>국민연금:</strong> 월 소득의 4.5% (사업주 4.5% 별도 부담)</li>\n                            <li><strong>건강보험:</strong> 월 소득의 3.545% (장기요양보험 포함 시 약 3.75%)</li>\n                            <li><strong>고용보험:</strong> 월 소득의 0.9%</li>\n                            <li><strong>소득세:</strong> 과세표준에 따라 6%~45% 누진세율 적용</li>\n                            <li><strong>지방소득세:</strong> 소득세의 10%</li>\n                        </ul>\n                        <h3>사용 방법</h3>\n                        <ul>\n                            <li>시급 또는 연봉을 입력하세요</li>\n                            <li>근무 시간 또는 급여 형태를 선택하세요</li>\n                            <li>결과에서 공제 항목별 금액과 실수령액을 확인하세요</li>\n                        </ul>\n                        <p>이 계산기는 참고용 추정치를 제공합니다. 실제 급여는 회사 내규, 비과세 항목, 추가 공제 등에 따라 달라질 수 있습니다.</p>\n                    </div>"
     },
     "debt": {
       "title": "채무 상환 계산기",
@@ -170,7 +173,8 @@
       "year": "년",
       "principal": "원금",
       "interest": "이자",
-      "balance": "잔액"
+      "balance": "잔액",
+      "explanation": "<h2>복리 계산기 사용법</h2>\n                    <p>복리 계산기는 시간이 지남에 따라 원금과 누적 이자 모두에 이자가 붙는 복리 효과를 보여줍니다. 장기 자산 형성의 핵심인 복리의 힘을 직접 확인해 보세요.</p>\n                    <h3>복리 계산 주기</h3>\n                    <p>이자가 더 자주 복리로 계산될수록 자산이 빠르게 성장합니다:</p>\n                    <ul>\n                        <li><strong>일 복리:</strong> 이자를 매일 원금에 합산</li>\n                        <li><strong>월 복리:</strong> 연 12회 합산</li>\n                        <li><strong>분기 복리:</strong> 연 4회 합산</li>\n                        <li><strong>연 복리:</strong> 연 1회 합산</li>\n                    </ul>\n                    <h3>정기 납입의 효과</h3>\n                    <p>매월 꾸준히 추가 납입하면 복리 효과가 극대화됩니다. 적금이나 ETF에 소액이라도 꾸준히 투자하면 수십 년 후 놀라운 결과를 얻을 수 있습니다. 빨리 시작할수록 유리합니다.</p>"
     },
     "investment": {
       "title": "투자 수익률 계산기",
@@ -199,7 +203,8 @@
       "returnAmountLabel": "수익 금액",
       "totalReturnLabel": "총 수익률",
       "annualizedReturnLabel": "연간 수익률",
-      "investmentPeriodLabel": "투자 기간"
+      "investmentPeriodLabel": "투자 기간",
+      "explanation": "<h2 class=\"explanation-title\">투자 수익률 계산기</h2>\n                    <div class=\"explanation-text\">\n                        <p>투자 수익률 계산기는 초기 투자금, 최종 가치, 투자 기간을 기반으로 실제 투자 성과를 계산합니다. 주식, 펀드, 부동산, 예금 등 모든 투자 상품에 활용 가능합니다.</p>\n                        <h3>핵심 수익률 지표</h3>\n                        <ul>\n                            <li><strong>총 수익률:</strong> 투자 시작부터 종료까지의 전체 손익 비율</li>\n                            <li><strong>연평균 수익률 (CAGR):</strong> 매년 동일한 비율로 성장했을 때의 연간 수익률</li>\n                            <li><strong>절대 손익:</strong> 실제 벌거나 잃은 금액 (원화)</li>\n                        </ul>\n                        <h3>투자 수익에 영향을 미치는 요소</h3>\n                        <ul>\n                            <li>시장 상황 및 경기 사이클</li>\n                            <li>배당금 및 분배금 재투자 여부</li>\n                            <li>수수료와 세금 (양도소득세 등) 차감 효과</li>\n                            <li>투자 기간 — 장기 투자일수록 변동성이 평준화됨</li>\n                        </ul>\n                        <p>공정한 비교를 위해 동일한 기간 기준으로 수익률을 비교하세요. 과거 수익률이 미래 성과를 보장하지 않습니다.</p>\n                    </div>"
     },
     "dividend": {
       "title": "배당금 계산기",
@@ -240,7 +245,8 @@
       "quarterlyDividend": "분기 배당금",
       "annualDividend": "연간 배당금",
       "totalDividends": "총 배당금 (전체 기간)",
-      "finalValue": "최종 투자 가치"
+      "finalValue": "최종 투자 가치",
+      "explanation": "<h2 class=\"explanation-title\">배당금 계산기</h2>\n                    <div class=\"explanation-text\">\n                        <p>배당금 계산기를 이용하면 주식 투자로 얻을 수 있는 예상 배당 수입을 쉽게 계산할 수 있습니다. 주가, 주당 연간 배당금, 보유 주식 수를 입력하면 배당 수익률과 연간 배당 수입을 확인할 수 있습니다.</p>\n                        <h3>주요 배당 지표</h3>\n                        <ul>\n                            <li><strong>배당 수익률:</strong> 연간 배당금 ÷ 주가 × 100 — 수익률이 높을수록 주가 대비 배당 수입이 많음</li>\n                            <li><strong>연간 배당 수입:</strong> 보유 주식 전체에서 받는 연간 배당금 합계</li>\n                            <li><strong>배당 성장:</strong> 꾸준히 배당을 늘려온 기업은 장기적으로 증가하는 수입 제공</li>\n                        </ul>\n                        <h3>배당 투자 전략</h3>\n                        <ul>\n                            <li>배당 재투자(DRIP)로 복리 효과를 극대화하여 자산 성장 가속</li>\n                            <li>다양한 섹터에 분산 투자하여 배당 삭감 위험 최소화</li>\n                            <li>배당 지급 이력이 긴 기업 선별 (배당귀족주 등)</li>\n                            <li>높은 배당 수익률만 보지 말고 배당 성향, 재무 건전성 함께 확인</li>\n                        </ul>\n                    </div>"
     },
     "stock": {
       "title": "주식 수익률 계산기",
@@ -274,7 +280,11 @@
       "annualizedReturn": "연환산 수익률 (CAGR)",
       "dividendsReturn": "배당 수익률",
       "priceReturn": "가격 수익률",
-      "investmentPeriodLabel": "투자 기간"
+      "investmentPeriodLabel": "투자 기간",
+      "explanation": "<h2 class=\"explanation-title\">주식 수익률 계산기</h2>\n                    <div class=\"explanation-text\">\n                        <p>주식 수익률 계산기는 매수가, 매도가, 보유 주식 수, 보유 기간을 입력하여 총 수익률, 연평균 수익률(CAGR), 실제 손익 금액을 계산합니다.</p>\n                        <h3>수익률 지표 설명</h3>\n                        <ul>\n                            <li><strong>총 수익률:</strong> 투자 대비 전체 손익 비율 (%)</li>\n                            <li><strong>연평균 수익률 (CAGR):</strong> 매년 동일한 비율로 성장했다고 가정할 때의 연간 수익률 — 보유 기간이 다른 투자 비교에 유용</li>\n                            <li><strong>실현 손익:</strong> 실제 벌거나 잃은 금액 (원화)</li>\n                        </ul>\n                        <h3>주식 수익에 영향을 미치는 요소</h3>\n                        <ul>\n                            <li>기업의 실적 성장과 재무 건전성</li>\n                            <li>시장 심리 및 거시 경제 흐름</li>\n                            <li>보유 기간 중 배당금 수령 여부</li>\n                            <li>거래 수수료 및 양도소득세</li>\n                        </ul>\n                        <p>이 계산기로 보유 종목별 성과를 분석하고 포트폴리오 전반의 투자 수익을 점검해 보세요.</p>\n                    </div>"
+    },
+    "payoff": {
+      "explanation": "<h2 class=\"explanation-title\">부채 상환 계획 계산기</h2>\n                    <div class=\"explanation-text\">\n                        <p>부채 상환 계산기는 현재 잔액, 이자율, 월 납부액을 기반으로 부채를 완전히 갚는 데 걸리는 기간과 총 이자를 계산합니다. 현실적인 부채 탈출 계획을 세우는 데 활용하세요.</p>\n                        <h3>효과적인 상환 전략</h3>\n                        <ul>\n                            <li><strong>고금리 우선 상환 (눈덩이 효과 역방향):</strong> 가장 높은 이자율의 부채부터 상환 — 총 이자 절감 효과 극대화</li>\n                            <li><strong>소액 부채 우선 상환 (눈덩이 효과):</strong> 잔액이 적은 부채부터 상환 — 심리적 성취감으로 동기 유지</li>\n                            <li><strong>월 납부액 증가:</strong> 소액이라도 납부액을 늘리면 상환 기간이 크게 단축됨</li>\n                        </ul>\n                        <h3>빠른 상환이 중요한 이유</h3>\n                        <ul>\n                            <li>카드론이나 마이너스 통장 금리(연 12~20%)는 빠르게 복리로 불어남</li>\n                            <li>부채를 갚으면 매달 여유 자금이 생겨 저축과 투자가 가능해짐</li>\n                            <li>신용카드 사용률 감소로 신용점수 향상</li>\n                        </ul>\n                    </div>"
     }
   },
   "about": {
@@ -481,5 +491,51 @@
   },
   "sidebar": {
     "otherCalculators": "다른 계산기"
+  },
+  "localeDefaults": {
+    "loan": {
+      "amount": "10000000",
+      "rate": "5.5",
+      "term": "3"
+    },
+    "mortgage": {
+      "income": "5000000",
+      "debts": "500000",
+      "term": "30",
+      "rate": "4.5",
+      "down": "50000000"
+    },
+    "paycheck": {
+      "rate": "12000",
+      "hours": "40"
+    },
+    "debt": {
+      "amount": "15000000",
+      "rate": "12.0",
+      "payment": "500000"
+    },
+    "compound": {
+      "initial": "5000000",
+      "contribution": "200000",
+      "rate": "5.0",
+      "years": "10"
+    },
+    "investment": {
+      "initial": "10000000",
+      "final": "15000000",
+      "period": "5"
+    },
+    "dividend": {
+      "price": "50000",
+      "dividend": "1500",
+      "shares": "100",
+      "period": "5"
+    },
+    "stock": {
+      "initial": "50000",
+      "current": "75000",
+      "shares": "100",
+      "period": "3"
+    }
   }
 }

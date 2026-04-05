@@ -35,7 +35,8 @@
       "loanTermLabel": "ローン期間",
       "principal": "元金",
       "interest": "利息",
-      "chartPlaceholder": "計算後にグラフが表示されます"
+      "chartPlaceholder": "計算後にグラフが表示されます",
+      "explanation": "<h2 class=\"explanation-title\">ローン計算機の使い方</h2>\n                    <div class=\"explanation-text\">\n                        <p>ローン計算機では、借入金額・金利・返済期間を入力するだけで、毎月の返済額・総利息・総支払額を瞬時に計算できます。カーローン、住宅ローン、フリーローンなど、あらゆるローンの計画にご活用ください。</p>\n                        <h3>主な機能</h3>\n                        <ul>\n                            <li>任意の借入額・金利・期間で毎月の返済額を正確に計算</li>\n                            <li>返済期間中に支払う総利息を確認</li>\n                            <li>元金と利息の割合をグラフで視覚的に把握</li>\n                            <li>さまざまな条件をすぐに比較し、最適なローン構造を見つける</li>\n                            <li>登録不要・完全無料</li>\n                        </ul>\n                        <h3>ローン利息の仕組み</h3>\n                        <p>毎月の返済額は以下の3つの要素で決まります：</p>\n                        <ul>\n                            <li><strong>借入金額（元本）：</strong>借りる金額</li>\n                            <li><strong>年利率：</strong>年間の借入コスト（例：2.5%）</li>\n                            <li><strong>返済期間：</strong>返済にかかる年数</li>\n                        </ul>\n                        <p>日本の消費者ローン平均金利は年2〜15%程度、住宅ローンは変動金利で年0.5〜2%程度です。実際の条件は信用情報や金融機関により異なります。</p>\n                    </div>"
     },
     "mortgage": {
       "title": "住宅ローン計算機",
@@ -64,7 +65,8 @@
       "mortgage": "ローン",
       "payment": "返済",
       "dti": "DTI",
-      "chartPlaceholder": "計算後にグラフが表示されます"
+      "chartPlaceholder": "計算後にグラフが表示されます",
+      "explanation": "<h2 class=\"explanation-title\">住宅ローン借入可能額計算機</h2>\n                    <div class=\"explanation-text\">\n                        <p>住宅ローン資格計算機は、収入・借入残高・頭金をもとに借入可能な最大金額を試算します。金融機関も同様の計算で融資可能額を判断します。</p>\n                        <h3>主な審査基準</h3>\n                        <ul>\n                            <li><strong>返済負担率（DTI）：</strong>年間返済額が年収の25〜35%以内が目安（金融機関により異なる）</li>\n                            <li><strong>頭金：</strong>購入価格の20%以上が理想。頭金が多いほど借入額が減り、月々の返済が軽くなる</li>\n                            <li><strong>金利：</strong>変動金利と固定金利の特徴を比較し、将来の金利上昇リスクも考慮する</li>\n                            <li><strong>返済期間：</strong>35年返済は月々の負担が軽いが、総支払利息が多くなる</li>\n                        </ul>\n                        <h3>借入可能額を増やすコツ</h3>\n                        <ul>\n                            <li>既存の借入を返済してDTI比率を改善する</li>\n                            <li>頭金を増やしてLTV（担保価値比率）を下げる</li>\n                            <li>信用情報を改善して優遇金利を獲得する</li>\n                            <li>固定資産税・管理費・修繕費など住居関連コスト全体を試算する</li>\n                        </ul>\n                    </div>"
     },
     "paycheck": {
       "title": "給与計算機",
@@ -110,7 +112,8 @@
       "placeholderHourlyRate": "0.00",
       "placeholderHours": "時間",
       "placeholderOtherDeductions": "0.00",
-      "chartPlaceholder": "計算後にグラフが表示されます"
+      "chartPlaceholder": "計算後にグラフが表示されます",
+      "explanation": "<h2 class=\"explanation-title\">給与手取り計算機</h2>\n                    <div class=\"explanation-text\">\n                        <p>給与計算機は、額面給与から各種控除を差し引いた手取り金額を試算します。家計管理や転職時の条件比較にご活用ください。</p>\n                        <h3>主な控除項目</h3>\n                        <ul>\n                            <li><strong>所得税：</strong>課税所得に応じて5%〜45%の累進税率が適用</li>\n                            <li><strong>住民税：</strong>前年の所得に対して約10%（翌年6月から天引き）</li>\n                            <li><strong>厚生年金：</strong>標準報酬月額の9.15%（会社が同額を負担）</li>\n                            <li><strong>健康保険：</strong>標準報酬月額の約5%（組合健保により異なる）</li>\n                            <li><strong>雇用保険：</strong>賃金の0.6%</li>\n                        </ul>\n                        <h3>使い方</h3>\n                        <ul>\n                            <li>時給または月給・年収を入力してください</li>\n                            <li>給与形態（時給・月給・年収）を選択してください</li>\n                            <li>結果で控除項目ごとの金額と手取り額を確認できます</li>\n                        </ul>\n                        <p>この計算機は概算を提供します。実際の手取りは通勤手当の非課税枠、社会保険料の等級区分、iDeCoなどの控除により異なる場合があります。</p>\n                    </div>"
     },
     "debt": {
       "title": "債務返済計算機",
@@ -168,7 +171,8 @@
       "year": "年",
       "principal": "元金",
       "interest": "利息",
-      "balance": "残高"
+      "balance": "残高",
+      "explanation": "<h2>複利計算機の使い方</h2>\n                    <p>複利計算機は、元本に加えて累積した利息にも利息がつく「複利効果」による資産成長をシミュレートします。長期的な資産形成の基本原理を直接体験してみてください。</p>\n                    <h3>複利の計算頻度</h3>\n                    <p>利息が加算される頻度が高いほど、資産の成長が速くなります：</p>\n                    <ul>\n                        <li><strong>日次複利：</strong>利息を毎日元本に加算（年365回）</li>\n                        <li><strong>月次複利：</strong>年12回加算</li>\n                        <li><strong>四半期複利：</strong>年4回加算</li>\n                        <li><strong>年次複利：</strong>年1回加算</li>\n                    </ul>\n                    <h3>定期積立の効果</h3>\n                    <p>毎月一定額を追加積立することで複利効果が加速します。少額でも積立NISAやiDeCoなどを活用して継続的に投資することで、数十年後には大きな資産になります。早く始めるほど有利です。</p>"
     },
     "investment": {
       "title": "投資リターン計算機",
@@ -197,12 +201,14 @@
       "returnAmountLabel": "リターン額",
       "totalReturnLabel": "総リターン",
       "annualizedReturnLabel": "年率リターン",
-      "investmentPeriodLabel": "投資期間"
+      "investmentPeriodLabel": "投資期間",
+      "explanation": "<h2 class=\"explanation-title\">投資リターン計算機</h2>\n                    <div class=\"explanation-text\">\n                        <p>投資リターン計算機は、投資元本・最終評価額・投資期間をもとに、実際の投資パフォーマンスを計算します。株式、投資信託、不動産など、あらゆる投資の評価に活用できます。</p>\n                        <h3>主なリターン指標</h3>\n                        <ul>\n                            <li><strong>トータルリターン：</strong>投資開始から終了までの総損益率</li>\n                            <li><strong>年平均リターン（CAGR）：</strong>毎年同じ割合で成長した場合の年間リターン。期間の異なる投資を比較する際に有効</li>\n                            <li><strong>絶対損益：</strong>実際に増減した金額（円）</li>\n                        </ul>\n                        <h3>投資リターンに影響する要因</h3>\n                        <ul>\n                            <li>市場環境・景気サイクル</li>\n                            <li>配当・分配金の再投資効果</li>\n                            <li>信託報酬・税金（譲渡所得税）の影響</li>\n                            <li>投資期間 — 長期投資ほど価格変動が平準化される</li>\n                        </ul>\n                        <p>公平な比較のため、同一期間でリターンを比較してください。過去の運用実績は将来の成果を保証するものではありません。</p>\n                    </div>"
     },
     "dividend": {
       "title": "配当計算機",
       "description": "株式投資と配当ポートフォリオから配当収入、利回り、成長の可能性を計算します。",
-      "button": "計算"
+      "button": "計算",
+      "explanation": "<h2 class=\"explanation-title\">配当計算機</h2>\n                    <div class=\"explanation-text\">\n                        <p>配当計算機を使えば、株式投資から得られる予想配当収入を簡単に試算できます。株価・1株当たり年間配当金・保有株数を入力すると、配当利回りと年間配当収入が確認できます。</p>\n                        <h3>主な配当指標</h3>\n                        <ul>\n                            <li><strong>配当利回り：</strong>年間配当金 ÷ 株価 × 100 — 高いほど株価に対する配当収入が多い</li>\n                            <li><strong>年間配当収入：</strong>保有株数全体から受け取る年間の配当金合計</li>\n                            <li><strong>増配傾向：</strong>継続的に増配している企業は長期的に増加する収入源となる</li>\n                        </ul>\n                        <h3>配当投資の戦略</h3>\n                        <ul>\n                            <li>配当再投資（DRIP）で複利効果を活かしてポートフォリオを加速成長させる</li>\n                            <li>複数セクターへの分散投資で減配・無配リスクを軽減</li>\n                            <li>連続増配実績のある企業（日本の高配当株・配当貴族）を重視</li>\n                            <li>高配当利回りだけでなく、配当性向と財務健全性も確認</li>\n                        </ul>\n                    </div>"
     },
     "stock": {
       "title": "株式リターン計算機",
@@ -236,7 +242,11 @@
       "annualizedReturn": "年率リターン (CAGR)",
       "dividendsReturn": "配当リターン",
       "priceReturn": "価格リターン",
-      "investmentPeriodLabel": "投資期間"
+      "investmentPeriodLabel": "投資期間",
+      "explanation": "<h2 class=\"explanation-title\">株式リターン計算機</h2>\n                    <div class=\"explanation-text\">\n                        <p>株式リターン計算機は、購入価格・売却価格・保有株数・保有期間を入力して、トータルリターン・年平均リターン・実現損益を計算します。</p>\n                        <h3>リターン指標の説明</h3>\n                        <ul>\n                            <li><strong>トータルリターン：</strong>投資全体の損益率（%）</li>\n                            <li><strong>年平均リターン（CAGR）：</strong>毎年同じ割合で成長したと仮定した場合の年率 — 保有期間が異なる投資の比較に便利</li>\n                            <li><strong>実現損益：</strong>実際に利益または損失した金額（円）</li>\n                        </ul>\n                        <h3>株式リターンに影響する要因</h3>\n                        <ul>\n                            <li>企業の業績成長と財務健全性</li>\n                            <li>市場のセンチメントとマクロ経済動向</li>\n                            <li>保有期間中の配当受取</li>\n                            <li>取引手数料と譲渡所得税</li>\n                        </ul>\n                        <p>この計算機で保有銘柄ごとのパフォーマンスを分析し、ポートフォリオ全体の投資収益を確認してみてください。</p>\n                    </div>"
+    },
+    "payoff": {
+      "explanation": "<h2 class=\"explanation-title\">借金完済シミュレーター</h2>\n                    <div class=\"explanation-text\">\n                        <p>借金返済計算機は、現在の残高・金利・月々の返済額をもとに、完済までの期間と総利息を計算します。現実的な借金解消プランを立てるのに役立ちます。</p>\n                        <h3>効果的な返済戦略</h3>\n                        <ul>\n                            <li><strong>高金利優先（アバランチ法）：</strong>最も金利の高い借入から優先して返済。総利息の節約額が最大になる</li>\n                            <li><strong>少額優先（スノーボール法）：</strong>残高の少ない借入から返済。達成感を得やすくモチベーション維持に有効</li>\n                            <li><strong>毎月の返済額を増やす：</strong>少額でも追加返済することで完済期間が大幅に短縮できる</li>\n                        </ul>\n                        <h3>早期返済が重要な理由</h3>\n                        <ul>\n                            <li>カードローンや消費者金融（金利15〜18%）の利息は複利で急増する</li>\n                            <li>借金がなくなると毎月の余裕資金が増え、貯蓄・投資が可能になる</li>\n                            <li>借入残高の減少でクレジットスコアの改善が期待できる</li>\n                        </ul>\n                    </div>"
     }
   },
   "about": {
@@ -443,5 +453,51 @@
   },
   "sidebar": {
     "otherCalculators": "他の計算機"
+  },
+  "localeDefaults": {
+    "loan": {
+      "amount": "1000000",
+      "rate": "2.5",
+      "term": "5"
+    },
+    "mortgage": {
+      "income": "500000",
+      "debts": "50000",
+      "term": "35",
+      "rate": "1.5",
+      "down": "5000000"
+    },
+    "paycheck": {
+      "rate": "1200",
+      "hours": "160"
+    },
+    "debt": {
+      "amount": "1500000",
+      "rate": "10.0",
+      "payment": "50000"
+    },
+    "compound": {
+      "initial": "500000",
+      "contribution": "20000",
+      "rate": "3.0",
+      "years": "10"
+    },
+    "investment": {
+      "initial": "1000000",
+      "final": "1500000",
+      "period": "5"
+    },
+    "dividend": {
+      "price": "5000",
+      "dividend": "150",
+      "shares": "100",
+      "period": "5"
+    },
+    "stock": {
+      "initial": "5000",
+      "current": "7500",
+      "shares": "100",
+      "period": "3"
+    }
   }
 }
