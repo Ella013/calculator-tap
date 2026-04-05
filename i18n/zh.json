@@ -173,7 +173,7 @@
       "principal": "本金",
       "interest": "利息",
       "balance": "余额",
-      "explanation": "<h2>复利计算器使用说明</h2>\n                    <p>复利计算器模拟您的投资如何随时间增长——不仅本金产生利息，已累积的利息也继续产生利息。这种\"利滚利\"效应是长期财富积累的核心原理。</p>\n                    <h3>复利计算频率</h3>\n                    <p>复利计算越频繁，资产增长越快：</p>\n                    <ul>\n                        <li><strong>按日复利：</strong>每天将利息加入本金（每年365次）</li>\n                        <li><strong>按月复利：</strong>每年复利12次</li>\n                        <li><strong>按季复利：</strong>每年复利4次</li>\n                        <li><strong>按年复利：</strong>每年复利1次</li>\n                    </ul>\n                    <h3>定期定投的力量</h3>\n                    <p>每月坚持追加投入可显著加速复利效果。哪怕是小额的定期存入，结合复利，数十年后也能积累可观财富。越早开始，复利效果越显著。</p>"
+      "explanation": "<h2>复利计算器使用说明</h2>\n                    <p>复利计算器模拟您的投资如何随时间增长,,不仅本金产生利息，已累积的利息也继续产生利息。这种\"利滚利\"效应是长期财富积累的核心原理。</p>\n                    <h3>复利计算频率</h3>\n                    <p>复利计算越频繁，资产增长越快：</p>\n                    <ul>\n                        <li><strong>按日复利：</strong>每天将利息加入本金（每年365次）</li>\n                        <li><strong>按月复利：</strong>每年复利12次</li>\n                        <li><strong>按季复利：</strong>每年复利4次</li>\n                        <li><strong>按年复利：</strong>每年复利1次</li>\n                    </ul>\n                    <h3>定期定投的力量</h3>\n                    <p>每月坚持追加投入可显著加速复利效果。哪怕是小额的定期存入，结合复利，数十年后也能积累可观财富。越早开始，复利效果越显著。</p>"
     },
     "investment": {
       "title": "投资回报计算器",
@@ -203,13 +203,13 @@
       "totalReturnLabel": "总回报",
       "annualizedReturnLabel": "年化回报",
       "investmentPeriodLabel": "投资期间",
-      "explanation": "<h2 class=\"explanation-title\">投资回报率计算器</h2>\n                    <div class=\"explanation-text\">\n                        <p>投资回报率计算器根据初始投资额、最终价值和投资期限，计算您的实际投资收益表现。适用于股票、基金、房产等各类投资。</p>\n                        <h3>核心收益指标</h3>\n                        <ul>\n                            <li><strong>总收益率：</strong>从投资开始到结束的整体盈亏比例</li>\n                            <li><strong>年化收益率（CAGR）：</strong>假设每年以相同比率增长时的年均回报率，用于比较不同期限的投资</li>\n                            <li><strong>绝对盈亏：</strong>实际盈利或亏损的金额（人民币）</li>\n                        </ul>\n                        <h3>影响投资收益的因素</h3>\n                        <ul>\n                            <li>市场行情与经济周期</li>\n                            <li>股息、分红再投资的复利效应</li>\n                            <li>手续费和税收（如资本利得税）的影响</li>\n                            <li>投资期限——时间越长，波动性越趋于平稳</li>\n                        </ul>\n                        <p>为公平比较，请统一使用相同期限衡量投资收益。历史业绩不代表未来表现。</p>\n                    </div>"
+      "explanation": "<h2 class=\"explanation-title\">投资回报率计算器</h2>\n                    <div class=\"explanation-text\">\n                        <p>投资回报率计算器根据初始投资额、最终价值和投资期限，计算您的实际投资收益表现。适用于股票、基金、房产等各类投资。</p>\n                        <h3>核心收益指标</h3>\n                        <ul>\n                            <li><strong>总收益率：</strong>从投资开始到结束的整体盈亏比例</li>\n                            <li><strong>年化收益率（CAGR）：</strong>假设每年以相同比率增长时的年均回报率，用于比较不同期限的投资</li>\n                            <li><strong>绝对盈亏：</strong>实际盈利或亏损的金额（人民币）</li>\n                        </ul>\n                        <h3>影响投资收益的因素</h3>\n                        <ul>\n                            <li>市场行情与经济周期</li>\n                            <li>股息、分红再投资的复利效应</li>\n                            <li>手续费和税收（如资本利得税）的影响</li>\n                            <li>投资期限,,时间越长，波动性越趋于平稳</li>\n                        </ul>\n                        <p>为公平比较，请统一使用相同期限衡量投资收益。历史业绩不代表未来表现。</p>\n                    </div>"
     },
     "dividend": {
       "title": "股息计算器",
       "description": "计算您股票投资和股息投资组合的股息收入、收益率和增长潜力。",
       "button": "计算",
-      "explanation": "<h2 class=\"explanation-title\">股息计算器</h2>\n                    <div class=\"explanation-text\">\n                        <p>股息计算器帮助您估算股票投资的预期分红收入。输入股价、每股年度股息和持有股数，即可查看股息收益率和年度股息收入。</p>\n                        <h3>主要股息指标</h3>\n                        <ul>\n                            <li><strong>股息收益率：</strong>年度股息 ÷ 股价 × 100%——收益率越高，相对股价获得的分红越多</li>\n                            <li><strong>年度股息收入：</strong>持有全部股份获得的年度分红总额</li>\n                            <li><strong>股息增长：</strong>持续提高分红的公司可提供长期增长的被动收入</li>\n                        </ul>\n                        <h3>股息投资策略</h3>\n                        <ul>\n                            <li>股息再投资（DRIP）利用复利加速组合增值</li>\n                            <li>跨行业分散投资，降低个股减息或停息风险</li>\n                            <li>优选连续多年稳定分红的蓝筹股或高股息ETF</li>\n                            <li>不要只看高股息率，还需检查派息比率和公司财务健康状况</li>\n                        </ul>\n                    </div>"
+      "explanation": "<h2 class=\"explanation-title\">股息计算器</h2>\n                    <div class=\"explanation-text\">\n                        <p>股息计算器帮助您估算股票投资的预期分红收入。输入股价、每股年度股息和持有股数，即可查看股息收益率和年度股息收入。</p>\n                        <h3>主要股息指标</h3>\n                        <ul>\n                            <li><strong>股息收益率：</strong>年度股息 ÷ 股价 × 100%,,收益率越高，相对股价获得的分红越多</li>\n                            <li><strong>年度股息收入：</strong>持有全部股份获得的年度分红总额</li>\n                            <li><strong>股息增长：</strong>持续提高分红的公司可提供长期增长的被动收入</li>\n                        </ul>\n                        <h3>股息投资策略</h3>\n                        <ul>\n                            <li>股息再投资（DRIP）利用复利加速组合增值</li>\n                            <li>跨行业分散投资，降低个股减息或停息风险</li>\n                            <li>优选连续多年稳定分红的蓝筹股或高股息ETF</li>\n                            <li>不要只看高股息率，还需检查派息比率和公司财务健康状况</li>\n                        </ul>\n                    </div>"
     },
     "stock": {
       "title": "股票回报计算器",
@@ -244,7 +244,7 @@
       "dividendsReturn": "股息回报",
       "priceReturn": "价格回报",
       "investmentPeriodLabel": "投资期间",
-      "explanation": "<h2 class=\"explanation-title\">股票收益计算器</h2>\n                    <div class=\"explanation-text\">\n                        <p>股票收益计算器通过输入买入价、卖出价、持有股数和持有期限，计算您的总收益率、年化收益率（CAGR）及实际盈亏金额。</p>\n                        <h3>收益指标说明</h3>\n                        <ul>\n                            <li><strong>总收益率：</strong>投资的整体盈亏百分比</li>\n                            <li><strong>年化收益率（CAGR）：</strong>假设每年以相同比率增长时的年均回报率——便于比较持有期不同的投资</li>\n                            <li><strong>实现盈亏：</strong>实际盈利或亏损的金额（人民币）</li>\n                        </ul>\n                        <h3>影响股票收益的因素</h3>\n                        <ul>\n                            <li>公司盈利增长和财务健康状况</li>\n                            <li>市场情绪和宏观经济趋势</li>\n                            <li>持有期间获得的股息收入</li>\n                            <li>交易手续费和资本利得税</li>\n                        </ul>\n                        <p>使用本计算器分析各持仓的表现，全面评估您的投资组合收益情况。</p>\n                    </div>"
+      "explanation": "<h2 class=\"explanation-title\">股票收益计算器</h2>\n                    <div class=\"explanation-text\">\n                        <p>股票收益计算器通过输入买入价、卖出价、持有股数和持有期限，计算您的总收益率、年化收益率（CAGR）及实际盈亏金额。</p>\n                        <h3>收益指标说明</h3>\n                        <ul>\n                            <li><strong>总收益率：</strong>投资的整体盈亏百分比</li>\n                            <li><strong>年化收益率（CAGR）：</strong>假设每年以相同比率增长时的年均回报率,,便于比较持有期不同的投资</li>\n                            <li><strong>实现盈亏：</strong>实际盈利或亏损的金额（人民币）</li>\n                        </ul>\n                        <h3>影响股票收益的因素</h3>\n                        <ul>\n                            <li>公司盈利增长和财务健康状况</li>\n                            <li>市场情绪和宏观经济趋势</li>\n                            <li>持有期间获得的股息收入</li>\n                            <li>交易手续费和资本利得税</li>\n                        </ul>\n                        <p>使用本计算器分析各持仓的表现，全面评估您的投资组合收益情况。</p>\n                    </div>"
     },
     "payoff": {
       "explanation": "<h2 class=\"explanation-title\">债务还清计划计算器</h2>\n                    <div class=\"explanation-text\">\n                        <p>债务还清计算器根据当前余额、利率和每月还款额，计算何时能够完全还清债务以及需要支付的总利息。帮助您制定切实可行的还债计划。</p>\n                        <h3>有效的还款策略</h3>\n                        <ul>\n                            <li><strong>高息优先法（雪崩法）：</strong>优先偿还利率最高的债务，最大程度节省利息支出</li>\n                            <li><strong>小额优先法（滚雪球法）：</strong>优先偿还余额最小的债务，获得成就感并保持动力</li>\n                            <li><strong>增加月还款额：</strong>即使每月多还一点，也能大幅缩短还款期限</li>\n                        </ul>\n                        <h3>提前还款的重要性</h3>\n                        <ul>\n                            <li>信用卡欠款（年利率15%~24%）复利增长迅速，早还早省</li>\n                            <li>还清债务后每月释放大量现金流，可用于储蓄和投资</li>\n                            <li>降低信用卡使用率有助于提升信用评分</li>\n                        </ul>\n                    </div>"
@@ -425,7 +425,7 @@
       "breadcrumbHome": "首页",
       "breadcrumbContact": "联系",
       "touchTitle": "联系方式",
-      "touchText": "通过电子邮件联系我们是最好的方式。我们通常在1–2个工作日内回复。",
+      "touchText": "通过电子邮件联系我们是最好的方式。我们通常在1-2个工作日内回复。",
       "touchText2": "请尽可能包含详细信息，以便我们快速为您提供帮助。",
       "helpTitle": "我们能帮您什么？",
       "topic1Title": "计算器反馈",
@@ -438,7 +438,7 @@
       "topic4Desc": "有兴趣合作或广告？请发送消息给我们。",
       "faqTitle": "常见问题",
       "faq1Q": "您的计算器是免费的吗？",
-      "faq1A": "是的 — 所有Calculator Tap工具完全免费，无需注册。",
+      "faq1A": "是的, 所有Calculator Tap工具完全免费，无需注册。",
       "faq2Q": "您会存储我的财务数据吗？",
       "faq2A": "不会。所有计算都在您的浏览器中进行。我们从不存储、收集或共享您的财务数据。",
       "faq3Q": "我可以申请新的计算器吗？",
