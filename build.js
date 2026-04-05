@@ -279,7 +279,7 @@ function build() {
   const enDir = path.join(__dirname, 'dist', 'en');
   const rootDir = path.join(__dirname, 'dist');
   const staticFiles = ['styles.css', 'calculator tap logo.png', 'script.js'];
-  const faviconFiles = ['favicon-16x16.png', 'favicon-32x32.png', 'apple-touch-icon.png', 'android-chrome-192x192.png', 'android-chrome-512x512.png', 'site.webmanifest'];
+  const faviconFiles = ['favicon-16x16.png', 'favicon-32x32.png', 'apple-touch-icon.png', 'android-chrome-192x192.png', 'android-chrome-512x512.png', 'site.webmanifest', 'ads.txt'];
   
   staticFiles.forEach(file => {
     const srcPath = path.join(enDir, file);
