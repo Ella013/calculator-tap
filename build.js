@@ -97,16 +97,34 @@ function translateHTML(html, translations, lang) {
   return translatedHTML;
 }
 
+// hreflang 태그 생성
+function generateHreflang(pageRelPath) {
+  const langs = ['en', 'es', 'zh', 'ko', 'ja'];
+  const base = 'https://calculatortap.com';
+  let tags = '';
+  langs.forEach(l => {
+    tags += `\n    <link rel="alternate" hreflang="${l}" href="${base}/${l}/${pageRelPath}">`;
+  });
+  tags += `\n    <link rel="alternate" hreflang="x-default" href="${base}/en/${pageRelPath}">`;
+  return tags;
+}
+
 // HTML 파일 빌드
 function buildHTML(filePath, outputDir, translations, lang) {
   const html = fs.readFileSync(filePath, 'utf8');
-  const translatedHTML = translateHTML(html, translations, lang);
+  let translatedHTML = translateHTML(html, translations, lang);
+
+  // hreflang 태그 삽입
+  const rootDir = path.resolve(__dirname);
+  const fileRelPath = path.relative(rootDir, filePath).replace(/\\/g, '/');
+  const hreflangTags = generateHreflang(fileRelPath);
+  translatedHTML = translatedHTML.replace('</head>', hreflangTags + '\n</head>');
   
   // 출력 디렉토리 생성
   if (!fs.existsSync(outputDir)) {
     fs.mkdirSync(outputDir, { recursive: true });
   }
-  
+
   // 파일 저장
   const fileName = path.basename(filePath);
   const outputPath = path.join(outputDir, fileName);
@@ -202,6 +220,7 @@ function build() {
     const htmlFiles = [
       'index.html',
       'about.html',
+      'contact.html',
       'privacy-policy.html',
       'terms.html',
       'sitemap.html'
@@ -280,8 +299,8 @@ function build() {
     }
   });
   
-  // 루트에 필요한 HTML 페이지들 복사 (about, privacy-policy, terms, sitemap)
-  const rootPages = ['about.html', 'privacy-policy.html', 'terms.html', 'sitemap.html'];
+  // 루트에 필요한 HTML 페이지들 복사 (about, privacy-policy, terms, sitemap, contact)
+  const rootPages = ['about.html', 'contact.html', 'privacy-policy.html', 'terms.html', 'sitemap.html'];
   
   rootPages.forEach(file => {
     const srcPath = path.join(enDir, file);

@@ -325,7 +325,7 @@
       "changesP2": "変更が有効になった後も引き続きサービスにアクセスまたは使用することで、変更された規約に拘束されることに同意したものとみなされます。",
       "contactTitle": "お問い合わせ",
       "contactText": "これらの規約について質問がある場合は、お問い合わせください：",
-      "contactEmail": "メール：yourtap1000@gmail.com",
+      "contactEmail": "メール：jakehan60@gmail.com",
       "lastUpdated": "最終更新：2025年5月1日"
     },
     "privacy": {
@@ -376,7 +376,7 @@
       "rightsItem4": "個人情報の処理に異議を唱える権利",
       "rightsItem5": "データポータビリティの権利",
       "rightsItem6": "いつでも同意を撤回する権利",
-      "rightsContactText": "これらの権利のいずれかを行使するには、yourtap1000@gmail.comまでお問い合わせください。",
+      "rightsContactText": "これらの権利のいずれかを行使するには、jakehan60@gmail.comまでお問い合わせください。",
       "childrenTitle": "子供のプライバシー",
       "childrenText": "私たちのウェブサイトは、13歳未満の子供を対象としていません。13歳未満の子供から故意に個人情報を収集することはありません。親または保護者で、お子様が個人情報を提供したと思われる場合は、お問い合わせください。",
       "changesTitle": "このプライバシーポリシーの変更",
@@ -384,7 +384,7 @@
       "changesP2": "変更を定期的に確認することをお勧めします。このプライバシーポリシーの変更は、このページに投稿されたときに有効になります。",
       "contactTitle": "お問い合わせ",
       "contactText": "このプライバシーポリシーについて質問がある場合は、お問い合わせください：",
-      "contactEmail": "メール：yourtap1000@gmail.com",
+      "contactEmail": "メール：jakehan60@gmail.com",
       "lastUpdated": "最終更新：2025年5月1日"
     },
     "sitemap": {
@@ -407,7 +407,41 @@
       "dividendDesc": "配当利回りと収入を計算する",
       "stockTitle": "株式リターン計算機",
       "stockDesc": "株式投資リターンを計算する"
+    },
+    "contact": {
+      "headerTitle": "お問い合わせ",
+      "headerSubtitle": "ご質問、フィードバック、またはパートナーシップのアイデアがあれば、いつでもご連絡ください。",
+      "breadcrumbHome": "ホーム",
+      "breadcrumbContact": "お問い合わせ",
+      "touchTitle": "お問い合わせ方法",
+      "touchText": "メールでのお問い合わせが最善の方法です。通常1〜2営業日以内にご回答します。",
+      "touchText2": "迅速にご対応するため、できるだけ詳細な情報をお含めください。",
+      "helpTitle": "何かお手伝いできることはありますか？",
+      "topic1Title": "計算機のフィードバック",
+      "topic1Desc": "問題を見つけたり、新機能を希望する場合はお知らせください。",
+      "topic2Title": "バグ報告",
+      "topic2Desc": "計算結果に問題がありますか？詳細をお知らせください。",
+      "topic3Title": "提案",
+      "topic3Desc": "新しい計算機や改善のアイデアがありますか？ぜひお聞かせください。",
+      "topic4Title": "パートナーシップ",
+      "topic4Desc": "コラボレーションや広告に興味がありますか？メッセージを送ってください。",
+      "faqTitle": "よくある質問",
+      "faq1Q": "計算機は無料ですか？",
+      "faq1A": "はい — すべてのCalculator Tapツールは、登録不要で完全無料です。",
+      "faq2Q": "財務データを保存しますか？",
+      "faq2A": "いいえ。すべての計算はブラウザ内で行われます。財務データの保存、収集、共有は一切行いません。",
+      "faq3Q": "新しい計算機をリクエストできますか？",
+      "faq3A": "もちろんです。上記のメールアドレスにメッセージを送ってください。将来のアップデートで検討します。"
     }
+  },
+  "footer": {
+    "privacyPolicy": "プライバシーポリシー",
+    "terms": "利用規約",
+    "about": "について",
+    "contact": "お問い合わせ",
+    "sitemap": "サイトマップ"
+  },
+  "sidebar": {
+    "otherCalculators": "他の計算機"
   }
 }
-

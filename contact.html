@@ -164,15 +164,28 @@
         <div class="header-container">
             <div class="logo">
                 <a href="index.html" class="logo-link" style="display:flex;align-items:center;text-decoration:none;">
-                    <picture>
-                        <source srcset="calculator-tap-logo.webp" type="image/webp">
-                        <img src="calculator-tap-logo.png" alt="Calculator Tap" style="height:40px;width:auto;">
-                    </picture>
+                    <img src="calculator-tap-logo.png" alt="Calculator Tap" style="height:40px;width:auto;">
                     <h1 style="margin-left:10px;color:#2c3e50;">Calculator Tap</h1>
                 </a>
             </div>
             <nav class="main-nav">
-                <a href="index.html" class="nav-link"><i class="fas fa-home"></i> Home</a>
+                <a href="index.html" class="nav-link" data-translate="nav.home"><i class="fas fa-home"></i> Home</a>
+                <div class="language-selector">
+                    <div class="language-select-wrapper">
+                        <i class="fas fa-globe language-icon"></i>
+                        <button class="language-select-btn" id="languageSelectBtn">
+                            <span class="language-selected">English</span>
+                            <i class="fas fa-chevron-down language-arrow"></i>
+                        </button>
+                        <div class="language-dropdown" id="languageDropdown">
+                            <div class="language-option" data-lang="en">English</div>
+                            <div class="language-option" data-lang="es">Español</div>
+                            <div class="language-option" data-lang="zh">中文</div>
+                            <div class="language-option" data-lang="ko">한국어</div>
+                            <div class="language-option" data-lang="ja">日本語</div>
+                        </div>
+                    </div>
+                </div>
             </nav>
         </div>
     </header>
@@ -180,58 +193,58 @@
     <!-- Breadcrumb -->
     <nav class="breadcrumb" aria-label="breadcrumb">
         <ol>
-            <li><a href="index.html">Home</a></li>
-            <li aria-current="page">Contact</li>
+            <li><a href="index.html" data-translate="pages.contact.breadcrumbHome">Home</a></li>
+            <li aria-current="page" data-translate="pages.contact.breadcrumbContact">Contact</li>
         </ol>
     </nav>
 
     <main class="contact-container">
         <div class="contact-header">
-            <h1>Contact Us</h1>
-            <p>We'd love to hear from you. Whether you have a question, feedback, or a partnership idea — reach out anytime.</p>
+            <h1 data-translate="pages.contact.headerTitle">Contact Us</h1>
+            <p data-translate="pages.contact.headerSubtitle">We'd love to hear from you. Whether you have a question, feedback, or a partnership idea — reach out anytime.</p>
         </div>
 
         <section class="contact-section">
-            <h2>Get in Touch</h2>
-            <p>The best way to reach us is by email. We typically respond within 1–2 business days.</p>
+            <h2 data-translate="pages.contact.touchTitle">Get in Touch</h2>
+            <p data-translate="pages.contact.touchText">The best way to reach us is by email. We typically respond within 1–2 business days.</p>
             <div class="contact-email-box">
                 <i class="fas fa-envelope"></i>
                 <a href="mailto:jakehan60@gmail.com">jakehan60@gmail.com</a>
             </div>
-            <p>Please include as much detail as possible so we can help you quickly.</p>
+            <p data-translate="pages.contact.touchText2">Please include as much detail as possible so we can help you quickly.</p>
         </section>
 
         <section class="contact-section">
-            <h2>What Can We Help With?</h2>
+            <h2 data-translate="pages.contact.helpTitle">What Can We Help With?</h2>
             <div class="contact-topics">
                 <div class="contact-topic">
                     <i class="fas fa-calculator"></i>
-                    <h3>Calculator Feedback</h3>
-                    <p>Found an issue or want a new feature? Tell us and we'll look into it.</p>
+                    <h3 data-translate="pages.contact.topic1Title">Calculator Feedback</h3>
+                    <p data-translate="pages.contact.topic1Desc">Found an issue or want a new feature? Tell us and we'll look into it.</p>
                 </div>
                 <div class="contact-topic">
                     <i class="fas fa-bug"></i>
-                    <h3>Bug Reports</h3>
-                    <p>Spotted something off in a calculation result? Let us know the details.</p>
+                    <h3 data-translate="pages.contact.topic2Title">Bug Reports</h3>
+                    <p data-translate="pages.contact.topic2Desc">Spotted something off in a calculation result? Let us know the details.</p>
                 </div>
                 <div class="contact-topic">
                     <i class="fas fa-lightbulb"></i>
-                    <h3>Suggestions</h3>
-                    <p>Have an idea for a new calculator or an improvement? We're all ears.</p>
+                    <h3 data-translate="pages.contact.topic3Title">Suggestions</h3>
+                    <p data-translate="pages.contact.topic3Desc">Have an idea for a new calculator or an improvement? We're all ears.</p>
                 </div>
                 <div class="contact-topic">
                     <i class="fas fa-handshake"></i>
-                    <h3>Partnerships</h3>
-                    <p>Interested in collaborating or advertising? Send us a message.</p>
+                    <h3 data-translate="pages.contact.topic4Title">Partnerships</h3>
+                    <p data-translate="pages.contact.topic4Desc">Interested in collaborating or advertising? Send us a message.</p>
                 </div>
             </div>
         </section>
 
         <section class="contact-section">
-            <h2>Frequently Asked Questions</h2>
-            <p><strong>Are your calculators free to use?</strong><br>Yes — all Calculator Tap tools are completely free with no sign-up required.</p>
-            <p><strong>Do you store my financial data?</strong><br>No. All calculations happen in your browser. We never store, collect, or share your financial data.</p>
-            <p><strong>Can I request a new calculator?</strong><br>Absolutely. Send us a message at the email above and we'll consider it for a future update.</p>
+            <h2 data-translate="pages.contact.faqTitle">Frequently Asked Questions</h2>
+            <p><strong data-translate="pages.contact.faq1Q">Are your calculators free to use?</strong><br><span data-translate="pages.contact.faq1A">Yes — all Calculator Tap tools are completely free with no sign-up required.</span></p>
+            <p><strong data-translate="pages.contact.faq2Q">Do you store my financial data?</strong><br><span data-translate="pages.contact.faq2A">No. All calculations happen in your browser. We never store, collect, or share your financial data.</span></p>
+            <p><strong data-translate="pages.contact.faq3Q">Can I request a new calculator?</strong><br><span data-translate="pages.contact.faq3A">Absolutely. Send us a message at the email above and we'll consider it for a future update.</span></p>
         </section>
     </main>
 
@@ -252,6 +265,66 @@
 
     <script>
         document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // Language switcher
+        (function initLanguageSelector() {
+            const languageSelectBtn = document.getElementById('languageSelectBtn');
+            const languageDropdown = document.getElementById('languageDropdown');
+            const languageOptions = document.querySelectorAll('.language-option');
+            const languageSelected = document.querySelector('.language-selected');
+            if (!languageSelectBtn || !languageDropdown) return;
+            const currentPath = window.location.pathname;
+            const pathLang = currentPath.split('/').find(p => ['en', 'es', 'zh', 'ko', 'ja'].includes(p)) || 'en';
+            const langMap = { 'en': 'English', 'es': 'Español', 'zh': '中文', 'ko': '한국어', 'ja': '日本語' };
+            if (languageSelected) languageSelected.textContent = langMap[pathLang] || 'English';
+            languageOptions.forEach(option => {
+                if (option.dataset.lang === pathLang) option.classList.add('active');
+            });
+            languageSelectBtn.addEventListener('click', function(e) {
+                e.preventDefault(); e.stopPropagation();
+                languageSelectBtn.classList.toggle('active');
+                languageDropdown.classList.toggle('show');
+            });
+            languageOptions.forEach(option => {
+                option.addEventListener('click', function(e) {
+                    e.preventDefault(); e.stopPropagation();
+                    const selectedLang = option.dataset.lang;
+                    if (!selectedLang || selectedLang === pathLang) {
+                        languageSelectBtn.classList.remove('active');
+                        languageDropdown.classList.remove('show');
+                        return;
+                    }
+                    localStorage.setItem('preferred-language', selectedLang);
+                    const langCodes = ['en', 'es', 'zh', 'ko', 'ja'];
+                    const pathParts = currentPath.split('/').filter(p => p);
+                    let langIndex = -1;
+                    for (let i = 0; i < pathParts.length; i++) {
+                        if (langCodes.includes(pathParts[i])) { langIndex = i; break; }
+                    }
+                    let newPath = '';
+                    if (langIndex >= 0) {
+                        const afterLang = pathParts.slice(langIndex + 1);
+                        if (window.location.protocol === 'file:') {
+                            const dirDepth = afterLang.length;
+                            newPath = '../'.repeat(dirDepth) + selectedLang + '/' + afterLang.join('/');
+                        } else {
+                            pathParts[langIndex] = selectedLang;
+                            newPath = '/' + pathParts.join('/');
+                        }
+                    } else {
+                        const fileName = pathParts[pathParts.length - 1] || 'index.html';
+                        newPath = '/' + selectedLang + '/' + fileName;
+                    }
+                    window.location.href = newPath;
+                });
+            });
+            document.addEventListener('click', function(e) {
+                if (!languageSelectBtn.contains(e.target) && !languageDropdown.contains(e.target)) {
+                    languageSelectBtn.classList.remove('active');
+                    languageDropdown.classList.remove('show');
+                }
+            });
+        })();
     </script>
 </body>
 </html>

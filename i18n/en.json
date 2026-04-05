@@ -354,7 +354,7 @@
       "changesP2": "By continuing to access or use our services after any revisions become effective, you agree to be bound by the revised terms.",
       "contactTitle": "Contact Us",
       "contactText": "If you have any questions about these Terms, please contact us:",
-      "contactEmail": "By email: yourtap1000@gmail.com",
+      "contactEmail": "By email: jakehan60@gmail.com",
       "lastUpdated": "Last Updated: May 1, 2025"
     },
     "privacy": {
@@ -405,7 +405,7 @@
       "rightsItem4": "The right to object to processing of your personal information",
       "rightsItem5": "The right to data portability",
       "rightsItem6": "The right to withdraw consent at any time",
-      "rightsContactText": "To exercise any of these rights, please contact us at yourtap1000@gmail.com.",
+      "rightsContactText": "To exercise any of these rights, please contact us at jakehan60@gmail.com.",
       "childrenTitle": "Children's Privacy",
       "childrenText": "Our website is not intended for children under 13 years of age. We do not knowingly collect personal information from children under 13. If you are a parent or guardian and believe your child has provided us with personal information, please contact us.",
       "changesTitle": "Changes to This Privacy Policy",
@@ -413,7 +413,7 @@
       "changesP2": "You are advised to review this Privacy Policy periodically for any changes. Changes to this Privacy Policy are effective when they are posted on this page.",
       "contactTitle": "Contact Us",
       "contactText": "If you have any questions about this Privacy Policy, please contact us:",
-      "contactEmail": "By email: yourtap1000@gmail.com",
+      "contactEmail": "By email: jakehan60@gmail.com",
       "lastUpdated": "Last Updated: May 1, 2025"
     },
     "sitemap": {
@@ -436,6 +436,31 @@
       "dividendDesc": "Calculate dividend yields and income",
       "stockTitle": "Stock Return Calculator",
       "stockDesc": "Calculate stock investment returns"
+    },
+    "contact": {
+      "headerTitle": "Contact Us",
+      "headerSubtitle": "We'd love to hear from you. Whether you have a question, feedback, or a partnership idea — reach out anytime.",
+      "breadcrumbHome": "Home",
+      "breadcrumbContact": "Contact",
+      "touchTitle": "Get in Touch",
+      "touchText": "The best way to reach us is by email. We typically respond within 1–2 business days.",
+      "touchText2": "Please include as much detail as possible so we can help you quickly.",
+      "helpTitle": "What Can We Help With?",
+      "topic1Title": "Calculator Feedback",
+      "topic1Desc": "Found an issue or want a new feature? Tell us and we'll look into it.",
+      "topic2Title": "Bug Reports",
+      "topic2Desc": "Spotted something off in a calculation result? Let us know the details.",
+      "topic3Title": "Suggestions",
+      "topic3Desc": "Have an idea for a new calculator or an improvement? We're all ears.",
+      "topic4Title": "Partnerships",
+      "topic4Desc": "Interested in collaborating or advertising? Send us a message.",
+      "faqTitle": "Frequently Asked Questions",
+      "faq1Q": "Are your calculators free to use?",
+      "faq1A": "Yes — all Calculator Tap tools are completely free with no sign-up required.",
+      "faq2Q": "Do you store my financial data?",
+      "faq2A": "No. All calculations happen in your browser. We never store, collect, or share your financial data.",
+      "faq3Q": "Can I request a new calculator?",
+      "faq3A": "Absolutely. Send us a message at the email above and we'll consider it for a future update."
     }
   },
   "faq": {
@@ -446,6 +471,15 @@
     "a2": "Our calculators use standard financial formulas and up-to-date tax rates. However, actual results may vary based on specific circumstances.",
     "q3": "Can I save my calculations?",
     "a3": "Currently, calculations are performed in real-time and not saved. We recommend noting down important results."
+  },
+  "footer": {
+    "privacyPolicy": "Privacy Policy",
+    "terms": "Terms",
+    "about": "About",
+    "contact": "Contact",
+    "sitemap": "Sitemap"
+  },
+  "sidebar": {
+    "otherCalculators": "Other Calculators"
   }
 }
-

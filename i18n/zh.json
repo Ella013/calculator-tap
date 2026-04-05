@@ -326,7 +326,7 @@
       "changesP2": "在任何修订生效后继续访问或使用我们的服务，您同意受修订后的条款约束。",
       "contactTitle": "联系我们",
       "contactText": "如果您对这些条款有任何疑问，请联系我们：",
-      "contactEmail": "通过电子邮件：yourtap1000@gmail.com",
+      "contactEmail": "通过电子邮件：jakehan60@gmail.com",
       "lastUpdated": "最后更新：2025年5月1日"
     },
     "privacy": {
@@ -377,7 +377,7 @@
       "rightsItem4": "反对处理您的个人信息的权利",
       "rightsItem5": "数据可移植性权利",
       "rightsItem6": "随时撤回同意的权利",
-      "rightsContactText": "要行使这些权利中的任何一项，请通过 yourtap1000@gmail.com 联系我们。",
+      "rightsContactText": "要行使这些权利中的任何一项，请通过 jakehan60@gmail.com 联系我们。",
       "childrenTitle": "儿童隐私",
       "childrenText": "我们的网站不面向13岁以下的儿童。我们不会故意收集13岁以下儿童的个人信息。如果您是父母或监护人，并且认为您的孩子向我们提供了个人信息，请联系我们。",
       "changesTitle": "隐私政策的变更",
@@ -385,7 +385,7 @@
       "changesP2": "建议您定期查看本隐私政策以了解任何更改。本隐私政策的更改在发布在此页面上时生效。",
       "contactTitle": "联系我们",
       "contactText": "如果您对本隐私政策有任何疑问，请联系我们：",
-      "contactEmail": "通过电子邮件：yourtap1000@gmail.com",
+      "contactEmail": "通过电子邮件：jakehan60@gmail.com",
       "lastUpdated": "最后更新：2025年5月1日"
     },
     "sitemap": {
@@ -408,7 +408,41 @@
       "dividendDesc": "计算股息收益率和收入",
       "stockTitle": "股票回报计算器",
       "stockDesc": "计算股票投资回报"
+    },
+    "contact": {
+      "headerTitle": "联系我们",
+      "headerSubtitle": "我们很乐意听取您的意见。无论您有问题、反馈还是合作想法，随时与我们联系。",
+      "breadcrumbHome": "首页",
+      "breadcrumbContact": "联系",
+      "touchTitle": "联系方式",
+      "touchText": "通过电子邮件联系我们是最好的方式。我们通常在1–2个工作日内回复。",
+      "touchText2": "请尽可能包含详细信息，以便我们快速为您提供帮助。",
+      "helpTitle": "我们能帮您什么？",
+      "topic1Title": "计算器反馈",
+      "topic1Desc": "发现问题或想要新功能？告诉我们，我们会处理。",
+      "topic2Title": "错误报告",
+      "topic2Desc": "计算结果有问题？请告诉我们详细信息。",
+      "topic3Title": "建议",
+      "topic3Desc": "有新计算器或改进的想法？我们洗耳恭听。",
+      "topic4Title": "合作伙伴",
+      "topic4Desc": "有兴趣合作或广告？请发送消息给我们。",
+      "faqTitle": "常见问题",
+      "faq1Q": "您的计算器是免费的吗？",
+      "faq1A": "是的 — 所有Calculator Tap工具完全免费，无需注册。",
+      "faq2Q": "您会存储我的财务数据吗？",
+      "faq2A": "不会。所有计算都在您的浏览器中进行。我们从不存储、收集或共享您的财务数据。",
+      "faq3Q": "我可以申请新的计算器吗？",
+      "faq3A": "当然可以。通过上面的电子邮件给我们发送消息，我们将在未来的更新中考虑。"
     }
+  },
+  "footer": {
+    "privacyPolicy": "隐私政策",
+    "terms": "条款",
+    "about": "关于",
+    "contact": "联系我们",
+    "sitemap": "网站地图"
+  },
+  "sidebar": {
+    "otherCalculators": "其他计算器"
   }
 }
-

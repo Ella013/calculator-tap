@@ -1,87 +1,182 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+    <!-- Home -->
     <url>
         <loc>https://calculatortap.com/</loc>
-        <lastmod>2025-06-26</lastmod>
+        <lastmod>2026-04-05</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
+        <xhtml:link rel="alternate" hreflang="en" href="https://calculatortap.com/en/index.html"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://calculatortap.com/es/index.html"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://calculatortap.com/zh/index.html"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://calculatortap.com/ko/index.html"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://calculatortap.com/ja/index.html"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://calculatortap.com/en/index.html"/>
     </url>
+    <!-- Loan Calculator -->
     <url>
-        <loc>https://calculatortap.com/loan-calculator/loan-calculator.html</loc>
-        <lastmod>2025-06-26</lastmod>
+        <loc>https://calculatortap.com/en/loan-calculator/loan-calculator.html</loc>
+        <lastmod>2026-04-05</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
+        <xhtml:link rel="alternate" hreflang="en" href="https://calculatortap.com/en/loan-calculator/loan-calculator.html"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://calculatortap.com/es/loan-calculator/loan-calculator.html"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://calculatortap.com/zh/loan-calculator/loan-calculator.html"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://calculatortap.com/ko/loan-calculator/loan-calculator.html"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://calculatortap.com/ja/loan-calculator/loan-calculator.html"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://calculatortap.com/en/loan-calculator/loan-calculator.html"/>
     </url>
+    <!-- Mortgage Calculator -->
     <url>
-        <loc>https://calculatortap.com/Mortgage-Qualification-Calculator/mortgage-qualification.html</loc>
-        <lastmod>2025-06-26</lastmod>
+        <loc>https://calculatortap.com/en/Mortgage-Qualification-Calculator/mortgage-qualification.html</loc>
+        <lastmod>2026-04-05</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
+        <xhtml:link rel="alternate" hreflang="en" href="https://calculatortap.com/en/Mortgage-Qualification-Calculator/mortgage-qualification.html"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://calculatortap.com/es/Mortgage-Qualification-Calculator/mortgage-qualification.html"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://calculatortap.com/zh/Mortgage-Qualification-Calculator/mortgage-qualification.html"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://calculatortap.com/ko/Mortgage-Qualification-Calculator/mortgage-qualification.html"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://calculatortap.com/ja/Mortgage-Qualification-Calculator/mortgage-qualification.html"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://calculatortap.com/en/Mortgage-Qualification-Calculator/mortgage-qualification.html"/>
     </url>
+    <!-- Paycheck Calculator -->
     <url>
-        <loc>https://calculatortap.com/paycheck-calculator/paycheck-calculator.html</loc>
-        <lastmod>2025-06-26</lastmod>
+        <loc>https://calculatortap.com/en/paycheck-calculator/paycheck-calculator.html</loc>
+        <lastmod>2026-04-05</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
+        <xhtml:link rel="alternate" hreflang="en" href="https://calculatortap.com/en/paycheck-calculator/paycheck-calculator.html"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://calculatortap.com/es/paycheck-calculator/paycheck-calculator.html"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://calculatortap.com/zh/paycheck-calculator/paycheck-calculator.html"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://calculatortap.com/ko/paycheck-calculator/paycheck-calculator.html"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://calculatortap.com/ja/paycheck-calculator/paycheck-calculator.html"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://calculatortap.com/en/paycheck-calculator/paycheck-calculator.html"/>
     </url>
+    <!-- Payoff Calculator -->
     <url>
-        <loc>https://calculatortap.com/payoff-calculator/payoff-calculator.html</loc>
-        <lastmod>2025-06-26</lastmod>
+        <loc>https://calculatortap.com/en/payoff-calculator/payoff-calculator.html</loc>
+        <lastmod>2026-04-05</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
+        <xhtml:link rel="alternate" hreflang="en" href="https://calculatortap.com/en/payoff-calculator/payoff-calculator.html"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://calculatortap.com/es/payoff-calculator/payoff-calculator.html"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://calculatortap.com/zh/payoff-calculator/payoff-calculator.html"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://calculatortap.com/ko/payoff-calculator/payoff-calculator.html"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://calculatortap.com/ja/payoff-calculator/payoff-calculator.html"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://calculatortap.com/en/payoff-calculator/payoff-calculator.html"/>
     </url>
+    <!-- Compound Interest Calculator -->
     <url>
-        <loc>https://calculatortap.com/compound-interest-calculator/compound-interest.html</loc>
-        <lastmod>2025-06-26</lastmod>
+        <loc>https://calculatortap.com/en/compound-interest-calculator/compound-interest.html</loc>
+        <lastmod>2026-04-05</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
+        <xhtml:link rel="alternate" hreflang="en" href="https://calculatortap.com/en/compound-interest-calculator/compound-interest.html"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://calculatortap.com/es/compound-interest-calculator/compound-interest.html"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://calculatortap.com/zh/compound-interest-calculator/compound-interest.html"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://calculatortap.com/ko/compound-interest-calculator/compound-interest.html"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://calculatortap.com/ja/compound-interest-calculator/compound-interest.html"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://calculatortap.com/en/compound-interest-calculator/compound-interest.html"/>
     </url>
+    <!-- Investment Return Calculator -->
     <url>
-        <loc>https://calculatortap.com/investment-return-calculator/investment-return.html</loc>
-        <lastmod>2025-06-26</lastmod>
+        <loc>https://calculatortap.com/en/investment-return-calculator/investment-return.html</loc>
+        <lastmod>2026-04-05</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
+        <xhtml:link rel="alternate" hreflang="en" href="https://calculatortap.com/en/investment-return-calculator/investment-return.html"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://calculatortap.com/es/investment-return-calculator/investment-return.html"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://calculatortap.com/zh/investment-return-calculator/investment-return.html"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://calculatortap.com/ko/investment-return-calculator/investment-return.html"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://calculatortap.com/ja/investment-return-calculator/investment-return.html"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://calculatortap.com/en/investment-return-calculator/investment-return.html"/>
     </url>
+    <!-- Dividend Calculator -->
     <url>
-        <loc>https://calculatortap.com/dividend-calculator/dividend-calculator.html</loc>
-        <lastmod>2025-06-26</lastmod>
+        <loc>https://calculatortap.com/en/dividend-calculator/dividend-calculator.html</loc>
+        <lastmod>2026-04-05</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
+        <xhtml:link rel="alternate" hreflang="en" href="https://calculatortap.com/en/dividend-calculator/dividend-calculator.html"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://calculatortap.com/es/dividend-calculator/dividend-calculator.html"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://calculatortap.com/zh/dividend-calculator/dividend-calculator.html"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://calculatortap.com/ko/dividend-calculator/dividend-calculator.html"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://calculatortap.com/ja/dividend-calculator/dividend-calculator.html"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://calculatortap.com/en/dividend-calculator/dividend-calculator.html"/>
     </url>
+    <!-- Stock Return Calculator -->
     <url>
-        <loc>https://calculatortap.com/stock-return-calculator/stock-return.html</loc>
-        <lastmod>2025-06-26</lastmod>
+        <loc>https://calculatortap.com/en/stock-return-calculator/stock-return.html</loc>
+        <lastmod>2026-04-05</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
+        <xhtml:link rel="alternate" hreflang="en" href="https://calculatortap.com/en/stock-return-calculator/stock-return.html"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://calculatortap.com/es/stock-return-calculator/stock-return.html"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://calculatortap.com/zh/stock-return-calculator/stock-return.html"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://calculatortap.com/ko/stock-return-calculator/stock-return.html"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://calculatortap.com/ja/stock-return-calculator/stock-return.html"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://calculatortap.com/en/stock-return-calculator/stock-return.html"/>
     </url>
+    <!-- About -->
     <url>
-        <loc>https://calculatortap.com/about.html</loc>
-        <lastmod>2025-06-26</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.6</priority>
-    </url>
-    <url>
-        <loc>https://calculatortap.com/privacy-policy.html</loc>
-        <lastmod>2025-06-26</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.6</priority>
-    </url>
-    <url>
-        <loc>https://calculatortap.com/terms.html</loc>
-        <lastmod>2025-06-26</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.6</priority>
-    </url>
-    <url>
-        <loc>https://calculatortap.com/contact.html</loc>
+        <loc>https://calculatortap.com/en/about.html</loc>
         <lastmod>2026-04-05</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.6</priority>
+        <xhtml:link rel="alternate" hreflang="en" href="https://calculatortap.com/en/about.html"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://calculatortap.com/es/about.html"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://calculatortap.com/zh/about.html"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://calculatortap.com/ko/about.html"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://calculatortap.com/ja/about.html"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://calculatortap.com/en/about.html"/>
     </url>
+    <!-- Privacy Policy -->
     <url>
-        <loc>https://calculatortap.com/sitemap.html</loc>
-        <lastmod>2025-06-26</lastmod>
+        <loc>https://calculatortap.com/en/privacy-policy.html</loc>
+        <lastmod>2026-04-05</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+        <xhtml:link rel="alternate" hreflang="en" href="https://calculatortap.com/en/privacy-policy.html"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://calculatortap.com/es/privacy-policy.html"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://calculatortap.com/zh/privacy-policy.html"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://calculatortap.com/ko/privacy-policy.html"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://calculatortap.com/ja/privacy-policy.html"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://calculatortap.com/en/privacy-policy.html"/>
+    </url>
+    <!-- Terms -->
+    <url>
+        <loc>https://calculatortap.com/en/terms.html</loc>
+        <lastmod>2026-04-05</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+        <xhtml:link rel="alternate" hreflang="en" href="https://calculatortap.com/en/terms.html"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://calculatortap.com/es/terms.html"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://calculatortap.com/zh/terms.html"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://calculatortap.com/ko/terms.html"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://calculatortap.com/ja/terms.html"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://calculatortap.com/en/terms.html"/>
+    </url>
+    <!-- Contact -->
+    <url>
+        <loc>https://calculatortap.com/en/contact.html</loc>
+        <lastmod>2026-04-05</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+        <xhtml:link rel="alternate" hreflang="en" href="https://calculatortap.com/en/contact.html"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://calculatortap.com/es/contact.html"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://calculatortap.com/zh/contact.html"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://calculatortap.com/ko/contact.html"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://calculatortap.com/ja/contact.html"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://calculatortap.com/en/contact.html"/>
+    </url>
+    <!-- Sitemap -->
+    <url>
+        <loc>https://calculatortap.com/en/sitemap.html</loc>
+        <lastmod>2026-04-05</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.4</priority>
+        <xhtml:link rel="alternate" hreflang="en" href="https://calculatortap.com/en/sitemap.html"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://calculatortap.com/en/sitemap.html"/>
     </url>
-</urlset> 
+</urlset>

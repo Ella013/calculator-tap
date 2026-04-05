@@ -322,7 +322,7 @@
       "changesP2": "Al continuar accediendo o usando nuestros servicios después de que cualquier revisión entre en vigor, usted acepta estar sujeto a los términos revisados.",
       "contactTitle": "Contáctenos",
       "contactText": "Si tiene alguna pregunta sobre estos Términos, por favor contáctenos:",
-      "contactEmail": "Por correo electrónico: yourtap1000@gmail.com",
+      "contactEmail": "Por correo electrónico: jakehan60@gmail.com",
       "lastUpdated": "Última Actualización: 1 de Mayo de 2025"
     },
     "privacy": {
@@ -373,7 +373,7 @@
       "rightsItem4": "El derecho a oponerse al procesamiento de su información personal",
       "rightsItem5": "El derecho a la portabilidad de datos",
       "rightsItem6": "El derecho a retirar el consentimiento en cualquier momento",
-      "rightsContactText": "Para ejercer cualquiera de estos derechos, por favor contáctenos en yourtap1000@gmail.com.",
+      "rightsContactText": "Para ejercer cualquiera de estos derechos, por favor contáctenos en jakehan60@gmail.com.",
       "childrenTitle": "Privacidad de los Niños",
       "childrenText": "Nuestro sitio web no está dirigido a niños menores de 13 años. No recopilamos conscientemente información personal de niños menores de 13 años. Si es padre o tutor y cree que su hijo nos ha proporcionado información personal, por favor contáctenos.",
       "changesTitle": "Cambios a Esta Política de Privacidad",
@@ -381,7 +381,7 @@
       "changesP2": "Se le aconseja revisar esta Política de Privacidad periódicamente para cualquier cambio. Los cambios a esta Política de Privacidad son efectivos cuando se publican en esta página.",
       "contactTitle": "Contáctenos",
       "contactText": "Si tiene alguna pregunta sobre esta Política de Privacidad, por favor contáctenos:",
-      "contactEmail": "Por correo electrónico: yourtap1000@gmail.com",
+      "contactEmail": "Por correo electrónico: jakehan60@gmail.com",
       "lastUpdated": "Última Actualización: 1 de Mayo de 2025"
     },
     "sitemap": {
@@ -404,7 +404,41 @@
       "dividendDesc": "Calcule rendimientos e ingresos por dividendos",
       "stockTitle": "Calculadora de Retorno de Acciones",
       "stockDesc": "Calcule retornos de inversión en acciones"
+    },
+    "contact": {
+      "headerTitle": "Contáctenos",
+      "headerSubtitle": "Nos encantaría escuchar de usted. Ya sea que tenga una pregunta, comentarios o una idea de asociación — comuníquese con nosotros en cualquier momento.",
+      "breadcrumbHome": "Inicio",
+      "breadcrumbContact": "Contacto",
+      "touchTitle": "Póngase en Contacto",
+      "touchText": "La mejor manera de comunicarse con nosotros es por correo electrónico. Normalmente respondemos dentro de 1 a 2 días hábiles.",
+      "touchText2": "Incluya todos los detalles posibles para que podamos ayudarle rápidamente.",
+      "helpTitle": "¿En Qué Podemos Ayudarle?",
+      "topic1Title": "Comentarios sobre la Calculadora",
+      "topic1Desc": "¿Encontró un problema o desea una nueva función? Díganos y lo investigaremos.",
+      "topic2Title": "Informes de Errores",
+      "topic2Desc": "¿Notó algo incorrecto en un resultado de cálculo? Háganos saber los detalles.",
+      "topic3Title": "Sugerencias",
+      "topic3Desc": "¿Tiene una idea para una nueva calculadora o una mejora? Los escuchamos.",
+      "topic4Title": "Asociaciones",
+      "topic4Desc": "¿Está interesado en colaborar o en publicidad? Envíenos un mensaje.",
+      "faqTitle": "Preguntas Frecuentes",
+      "faq1Q": "¿Son gratuitas sus calculadoras?",
+      "faq1A": "Sí — todas las herramientas de Calculator Tap son completamente gratuitas sin necesidad de registrarse.",
+      "faq2Q": "¿Almacenan mis datos financieros?",
+      "faq2A": "No. Todos los cálculos se realizan en su navegador. Nunca almacenamos, recopilamos ni compartimos sus datos financieros.",
+      "faq3Q": "¿Puedo solicitar una nueva calculadora?",
+      "faq3A": "Por supuesto. Envíenos un mensaje al correo electrónico anterior y lo consideraremos para una actualización futura."
     }
+  },
+  "footer": {
+    "privacyPolicy": "Política de Privacidad",
+    "terms": "Términos",
+    "about": "Acerca de",
+    "contact": "Contacto",
+    "sitemap": "Mapa del Sitio"
+  },
+  "sidebar": {
+    "otherCalculators": "Otras Calculadoras"
   }
 }
-
