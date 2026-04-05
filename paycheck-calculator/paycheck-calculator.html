@@ -1470,7 +1470,9 @@
         const chartPlaceholder = document.querySelector('.chart-placeholder');
         
         function createInitialChart() {
+            if (typeof Chart === 'undefined') return;
             const chartElement = document.getElementById('paycheckChart');
+            if (!chartElement) return;
             const ctx = chartElement.getContext('2d');
             
             // Sample data
@@ -1539,7 +1541,7 @@
             createInitialChart();
         } catch (e) {
             console.error('Error creating chart:', e);
-            chartPlaceholder.textContent = '차트 초기화 오류';
+            // Keep the normal placeholder message on error
         }
         
         

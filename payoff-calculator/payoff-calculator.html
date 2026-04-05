@@ -1104,7 +1104,7 @@
             createInitialChart();
         } catch (e) {
             console.error('Error creating chart:', e);
-            chartPlaceholder.textContent = '차트 초기화 오류';
+            // Keep the normal placeholder message on error
         }
         
         // Update the chart with calculated values

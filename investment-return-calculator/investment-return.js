@@ -254,7 +254,7 @@ document.addEventListener('DOMContentLoaded', function() {
     } catch (e) {
         console.error('Error creating chart:', e);
         if (chartPlaceholder) {
-            chartPlaceholder.textContent = '차트 초기화 오류';
+            // Keep the normal placeholder message on error
         }
     }
     
